@@ -1,0 +1,9 @@
+title: Preet Mehta
+description: Data Engineering, Healthcare Analytics and AI/ML
+url: https://datawithpreet.github.io
+baseurl: ""
+markdown: kramdown
+permalink: /writing/:title/
+exclude:
+  - Readme.txt
+  - changelog.txt

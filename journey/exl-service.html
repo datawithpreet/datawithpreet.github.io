@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EXL Service — The Journey · Data with Preet</title>
+  <meta name="description" content="Preet Mehta at EXL Service — Manager, Healthcare Analytics: nephrology RCM on Databricks, a $300M Medicaid churn model, and a Medicare Stars prediction model for Humana.">
+  <meta name="author" content="Preet Mehta">
+  <meta name="theme-color" content="#faf8f2">
+  <meta property="og:title" content="EXL Service — The Journey · Data with Preet">
+  <meta property="og:description" content="Preet Mehta at EXL Service — Manager, Healthcare Analytics: nephrology RCM on Databricks, a $300M Medicaid churn model, and a Medicare Stars prediction model for Humana.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://datawithpreet.github.io/journey/exl-service.html">
+  <link rel="icon" href="../assets/img/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Space+Grotesk:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <noscript><style>.reveal{opacity:1!important;transform:none!important}.section-title{clip-path:none!important}</style></noscript>
+</head>
+<body>
+  <header class="site-header" id="top">
+    <a class="brand" href="../index.html#home" aria-label="Data with Preet home">
+      <span class="brand-mark">DwP</span>
+      <span class="brand-copy"><strong>DATA WITH PREET</strong><small>BY PREET MEHTA</small></span>
+    </a>
+    <a class="page-back" href="../index.html#experience"><span aria-hidden="true">&larr;</span> Back to the journey</a>
+  </header>
+
+  <main>
+    <section class="section page-hero">
+      <div class="kicker reveal" data-num="05">JOURNEY &middot; EXPERIENCE</div>
+      <img class="org-logo reveal" src="../assets/img/logos/exl.svg" alt="EXL logo">
+      <h1 class="page-title reveal">Healthcare data that <span class="serif">has to be right.</span></h1>
+      <p class="j-role reveal">Manager, Healthcare Analytics · New York · Current</p>
+      <p class="j-story reveal" style="margin-top:18px">Three high-stakes chapters, one through-line — healthcare data that has to be right. From revenue cycles to risk adjustment to predicting member health decline.</p>
+    </section>
+
+    <section class="section page-block">
+      <div class="kicker reveal" data-num="01">WHAT I BUILT</div>
+      <h2 class="section-title reveal">The <span class="serif">work.</span></h2>
+      <div style="height:26px"></div>
+      <div class="j-subnav reveal" role="tablist" aria-label="EXL projects">
+          <button class="is-active" role="tab" aria-selected="true" data-chapter="rcm">Nephrology RCM</button>
+          <button class="" role="tab" aria-selected="false" data-chapter="risk">Revenue Integrity</button>
+          <button class="" role="tab" aria-selected="false" data-chapter="stars">Humana Stars</button>
+      </div>
+      <div class="j-chapter is-active" data-chapter="rcm">
+        <h4>One pipeline for every EMR</h4>
+        <ul class="j-did">
+      <li>Built the entire RCM (revenue cycle management) model for an integrated nephrology provider group</li>
+      <li>Unified Athena, AdvancedMD and Epic into a business-logic-agnostic pipeline — any future EMR plugs in the same way</li>
+      <li>Migrated Azure Data Factory / SSMS / SSIS to Databricks + Snowflake; refactored the whole codebase</li>
+      <li>Stood up Databricks from scratch — networking to production; they didn't have it before</li>
+      <li>Deployed through Azure DevOps across multiple environments</li>
+        </ul>
+        <div class="j-metrics">
+      <div><b>6</b><span>engineers led</span></div>
+      <div><b>6</b><span>months, delivered</span></div>
+      <div><b>3+</b><span>EMRs unified</span></div>
+        </div>
+        <div class="j-tags"><span>Databricks</span><span>Snowflake</span><span>Azure Data Factory</span><span>SSIS</span><span>Azure DevOps</span><span>RCM</span></div>
+      </div>
+      <div class="j-chapter " data-chapter="risk">
+        <h4>Risk adjustment at scale</h4>
+        <ul class="j-did">
+      <li>Built an Auto Loader pipeline ingesting vendor files (Ciox, Datavant, Cotiviti — TXT, ZIP, CSV) into per-line-of-business tables: Medicare, Medicaid, Dual, D-SNP</li>
+      <li>Built home-visit and enrollment dashboards for Health &amp; Human Services reporting</li>
+      <li>Shipped a Medicaid member-churn ML model that told the team exactly which members to reach out to</li>
+        </ul>
+        <div class="j-metrics">
+      <div><b>$300M</b><span>saved by the churn model</span></div>
+      <div><b>4</b><span>lines of business</span></div>
+        </div>
+        <div class="j-tags"><span>Auto Loader</span><span>Risk Adjustment</span><span>Machine Learning</span><span>Dashboards</span></div>
+      </div>
+      <div class="j-chapter " data-chapter="stars">
+        <h4>Predicting decline before it happens</h4>
+        <ul class="j-did">
+      <li>Building an ML model for Medicare Stars that flags members whose health is likely to decline over the next two years — so care teams can act early</li>
+      <li>Designed to lift HOS and PCS scores, and with them the Star rating itself</li>
+      <li>Leading a team of 4 engineers on the build</li>
+        </ul>
+        <div class="j-metrics">
+      <div><b>2-yr</b><span>prediction window</span></div>
+      <div><b>4</b><span>engineers led</span></div>
+        </div>
+        <div class="j-tags"><span>Machine Learning</span><span>Medicare Stars</span><span>HOS</span><span>PCS</span><span>Predictive Health</span></div>
+      </div>
+    </section>
+
+    <section class="section page-block">
+      <div class="kicker reveal" data-num="02">STACK</div>
+      <h2 class="section-title reveal">The <span class="serif">tools.</span></h2>
+      <div style="height:26px"></div>
+      <div class="j-tags reveal"><span>Databricks</span><span>Snowflake</span><span>Machine Learning</span><span>Azure DevOps</span><span>Risk Adjustment</span><span>Medicare Stars</span></div>
+    </section>
+
+    <section class="section throughline">
+      <div class="kicker reveal" data-num="03">THROUGH-LINE</div>
+      <p class="throughline-text reveal">Through-line — healthcare data that has to be right, because downstream, it's someone's care.</p>
+      <div class="throughline-nav reveal">
+        <a class="btn btn-light" href="../index.html#experience">&larr; Back to the journey</a>
+        
+        <a class="btn btn-light" href="cvs-health.html">&larr; CVS Health</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div><strong>PREET MEHTA</strong><span>Data Engineering &bull; Healthcare &bull; AI/ML</span></div>
+    <span>&copy; <span id="year"></span> Data with Preet</span>
+    <a class="to-top" href="#top">Back to top &uarr;</a>
+  </footer>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

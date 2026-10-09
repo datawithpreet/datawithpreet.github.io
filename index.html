@@ -1,0 +1,633 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Data with Preet | Data Engineering • Analytics • AI/ML</title>
+  <meta name="description" content="Preet Mehta — Data Engineer building modern data platforms, product analytics, Spark, Databricks, cloud data engineering, AI/ML and data-driven products.">
+  <meta name="author" content="Preet Mehta">
+  <meta name="theme-color" content="#faf8f2">
+  <meta property="og:title" content="Data with Preet | Data Engineering & Analytics">
+  <meta property="og:description" content="Building modern data platforms, analytics solutions and practical data engineering content.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://datawithpreet.github.io/">
+  <meta property="og:image" content="https://datawithpreet.github.io/assets/img/preet-creator.jpg">
+  <link rel="icon" href="assets/img/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Space+Grotesk:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <noscript><style>.reveal{opacity:1!important;transform:none!important}.section-title{clip-path:none!important}</style></noscript>
+</head>
+<body>
+  <header class="site-header" id="top">
+    <a class="brand" href="#home" aria-label="Data with Preet home">
+      <span class="brand-mark">DwP</span>
+      <span class="brand-copy"><strong>DATA WITH PREET</strong><small>BY PREET MEHTA</small></span>
+    </a>
+    <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false"><span></span><span></span></button>
+    <nav class="nav" aria-label="Primary navigation">
+      <a class="active" href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#work">Work</a>
+      <a href="#experience">Experience</a>
+      <a href="#writing">Writing</a>
+      <a href="#achievements">Achievements</a>
+      <a href="#contact">Contact</a>
+      <button class="video-toggle" id="videoToggle" aria-label="Pause intro video" title="Pause intro video">⏸</button>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ================= HERO ================= -->
+    <section class="hero" id="home">
+      <div class="hero-bg-name" data-parallax="0.18" data-parallax-keep="1" aria-hidden="true">PREET</div>
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <div class="hero-eyebrow reveal"><span class="dot"></span> DATA • ANALYTICS • AI/ML</div>
+          <h1 class="reveal" style="--reveal-delay:.08s">Data Engineer<br><span class="serif">for high-stakes data.</span></h1>
+          <p class="hero-sub reveal" style="--reveal-delay:.16s">I&rsquo;m Preet Mehta — I build modern data platforms, product analytics, and practical AI/ML systems that people can trust.</p>
+          <div class="hero-actions reveal" style="--reveal-delay:.24s">
+            <a class="btn btn-dark" href="#work">Explore work <span class="arr">→</span></a>
+            <a class="btn btn-light" href="#contact">Let&rsquo;s talk</a>
+          </div>
+          <div class="hero-socials reveal" style="--reveal-delay:.32s">
+            <a href="https://www.linkedin.com/in/preetmehta/" target="_blank" rel="noopener">LINKEDIN ↗</a>
+            <a href="https://github.com/ynpreet" target="_blank" rel="noopener">GITHUB ↗</a>
+            <a href="https://open.substack.com/pub/masterdataengineering" target="_blank" rel="noopener">SUBSTACK ↗</a>
+            <a href="https://ynpreetmehta.medium.com/" target="_blank" rel="noopener">MEDIUM ↗</a>
+          </div>
+        </div>
+        <div class="hero-visual reveal" style="--reveal-delay:.2s">
+          <div class="talk-figure">
+            <div class="speech-bubble" id="speechBubble" aria-hidden="true"><span id="typewriter"></span><span class="caret"></span></div>
+            <div class="talk-card" aria-label="Preet Mehta">
+              <video id="introVideo" autoplay muted playsinline preload="auto" poster="assets/img/preet-creator.jpg">
+                <source src="assets/video/intro.mp4?v=4" type="video/mp4">
+              </video>
+              <img id="introFallback" src="assets/img/preet-creator.jpg" alt="Portrait of Preet Mehta" hidden>
+              <button class="mute-toggle" id="muteToggle" aria-label="Unmute intro video" title="Sound on/off"><svg class="ic-muted" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor" stroke="none"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg><svg class="ic-unmuted" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor" stroke="none"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a class="scroll-cue" href="#about"><span></span>SCROLL</a>
+    </section>
+
+    <div class="proof-strip reveal" aria-label="Career highlights">
+      <span>10 yrs data engineering</span><i aria-hidden="true">&middot;</i>
+      <span>340M-member campaigns</span><i aria-hidden="true">&middot;</i>
+      <span>~$300M model impact</span><i aria-hidden="true">&middot;</i>
+      <span>30+ articles</span>
+    </div>
+
+<section class="section" id="about">
+      <div class="kicker reveal" data-num="01">ABOUT</div>
+      <h2 class="section-title reveal">Hi, I&rsquo;m <span class="serif">Preet.</span></h2>
+      <div class="about-grid-3">
+        <div class="about-copy reveal">
+          <p>I work at the intersection of <strong>data engineering, analytics and business outcomes</strong> — designing pipelines and platforms that make data usable, governed and ready for decisions.</p>
+          <p>The last six years have been in <strong>healthcare</strong> — claims, clinical, enrollment, survey and operational data — but the craft underneath is domain-agnostic: pipelines, platforms, product analytics and ML systems that people can trust.</p>
+          <p>Outside of work I teach, judge hackathons, mentor students and write <strong>Healthcare for Data Engineers</strong> — a daily series for people working with healthcare data.</p>
+          <div class="about-cta">
+            <a class="btn btn-dark" href="https://www.linkedin.com/in/preetmehta/" target="_blank" rel="noopener">LinkedIn <span class="arr">→</span></a>
+            <a class="btn btn-light" href="https://github.com/ynpreet" target="_blank" rel="noopener">GitHub ↗</a>
+          </div>
+        </div>
+        <div class="id-zone reveal" style="--reveal-delay:.15s">
+          <div class="id-swing" id="idSwing">
+            <div class="lanyard" aria-hidden="true"></div>
+            <div class="lanyard-clip" aria-hidden="true"></div>
+            <div class="id-card" id="idCard" role="button" tabindex="0" aria-label="Flip Preet's developer ID card">
+              <div class="id-card-inner">
+                <div class="id-face front">
+                  <div class="id-top"><small>DEVELOPER ID</small><span class="id-mark">PM</span></div>
+                  <div class="id-photo"><img src="assets/img/preet-creator.jpg" alt="Preet Mehta"></div>
+                  <div class="id-name"><b>PREET MEHTA</b><span>DATA ENGINEER</span></div>
+                  <div class="id-meta">
+                    <div><span>ID</span><span>PM-0001</span></div>
+                    <div><span>FOCUS</span><span>Healthcare Data</span></div>
+                    <div><span>VALID</span><span>∞</span></div>
+                  </div>
+                  <div class="id-barcode"><i></i></div>
+                </div>
+                <div class="id-face back">
+                  <div class="id-back-body">
+                    <h4>QUICK FACTS</h4>
+                    <ul>
+                      <li><span>BASED IN</span><span>Boston, MA</span></li>
+                      <li><span>ROLE</span><span>Manager, Healthcare Analytics @ EXL</span></li>
+                      <li><span>STACK</span><span>Databricks · Spark · SQL</span></li>
+                      <li><span>WRITES</span><span>Healthcare for Data Engineers</span></li>
+                      <li><span>COMMUNITY</span><span>3,000+ mentored</span></li>
+                    </ul>
+                    <p class="id-quote">&ldquo;Turning complex data into systems people can trust.&rdquo;</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="id-hint">TAP TO FLIP ⟲</div>
+        </div>
+      </div>
+    </section>
+
+<section class="section" id="skills">
+      <div class="kicker reveal" data-num="02">SKILLS</div>
+      <h2 class="section-title reveal">The periodic table <span class="serif">of my stack.</span></h2>
+      <p class="section-sub reveal">Twenty-two elements in six families. Hover a tile to inspect it — or pick a family to light it up.</p>
+      <div class="ptable-toolbar reveal">
+        <div class="ptable-families" id="familyFilters">
+          <button class="family-btn on" data-family="all"><i style="--swatch:#141414"></i>All</button>
+          <button class="family-btn" data-family="languages"><i style="--swatch:#1a1a1a"></i>Languages</button>
+          <button class="family-btn" data-family="platforms"><i style="--swatch:#3d3d3d"></i>Platforms</button>
+          <button class="family-btn" data-family="databases"><i style="--swatch:#6b6b6b"></i>Databases</button>
+          <button class="family-btn" data-family="bi"><i style="--swatch:#a8a29a"></i>BI &amp; Tools</button>
+          <button class="family-btn" data-family="healthcare"><i style="--swatch:#d8d2c4"></i>Healthcare</button>
+          <button class="family-btn" data-family="core"><i style="--swatch:#efe9db"></i>Core</button>
+        </div>
+      </div>
+      <div class="ptable-layout">
+        <div class="ptable reveal" id="ptable">
+          <div class="element" data-family="languages" data-name="Python" data-desc="Primary language for pipelines, transformations and ML feature work." style="--es:#1a1a1a;--et:#faf8f2"><span class="el-num">01</span><span class="el-sym">Py</span><span class="el-name">Python</span></div>
+          <div class="element" data-family="languages" data-name="SQL" data-desc="Analytical SQL across warehouses — modeling, optimization, complex joins." style="--es:#1a1a1a;--et:#faf8f2"><span class="el-num">02</span><span class="el-sym">Sq</span><span class="el-name">SQL</span></div>
+          <div class="element" data-family="platforms" data-name="Databricks" data-desc="Lakehouse development: notebooks, jobs, Delta Live Tables." style="--es:#3d3d3d;--et:#faf8f2"><span class="el-num">03</span><span class="el-sym">Db</span><span class="el-name">Databricks</span></div>
+          <div class="element" data-family="platforms" data-name="Apache Spark / PySpark" data-desc="Distributed batch and incremental processing at scale." style="--es:#3d3d3d;--et:#faf8f2"><span class="el-num">04</span><span class="el-sym">Sp</span><span class="el-name">PySpark</span></div>
+          <div class="element" data-family="platforms" data-name="Delta Lake" data-desc="Bronze → Silver → Gold medallion architecture, ACID on the lake." style="--es:#3d3d3d;--et:#faf8f2"><span class="el-num">05</span><span class="el-sym">Dl</span><span class="el-name">Delta Lake</span></div>
+          <div class="element" data-family="platforms" data-name="Unity Catalog" data-desc="Governance, lineage and fine-grained access control." style="--es:#3d3d3d;--et:#faf8f2"><span class="el-num">06</span><span class="el-sym">Uc</span><span class="el-name">Unity Catalog</span></div>
+          <div class="element" data-family="platforms" data-name="Azure Data Factory" data-desc="Cloud orchestration for ingestion and ELT pipelines." style="--es:#3d3d3d;--et:#faf8f2"><span class="el-num">07</span><span class="el-sym">Ad</span><span class="el-name">ADF</span></div>
+          <div class="element" data-family="databases" data-name="SQL Server" data-desc="Enterprise relational modeling and stored-procedure ETL roots." style="--es:#6b6b6b;--et:#faf8f2"><span class="el-num">08</span><span class="el-sym">Ss</span><span class="el-name">SQL Server</span></div>
+          <div class="element" data-family="databases" data-name="BigQuery" data-desc="Serverless analytics warehouse on Google Cloud." style="--es:#6b6b6b;--et:#faf8f2"><span class="el-num">09</span><span class="el-sym">Bq</span><span class="el-name">BigQuery</span></div>
+          <div class="element" data-family="bi" data-name="Power BI" data-desc="Dashboards and self-service analytics on governed datasets." style="--es:#a8a29a;--et:#141414"><span class="el-num">10</span><span class="el-sym">Pb</span><span class="el-name">Power BI</span></div>
+          <div class="element" data-family="bi" data-name="Looker" data-desc="LookML modeling — certified LookML Developer." style="--es:#a8a29a;--et:#141414"><span class="el-num">11</span><span class="el-sym">Lk</span><span class="el-name">Looker</span></div>
+          <div class="element" data-family="bi" data-name="Tableau" data-desc="Visual analytics and storytelling with data." style="--es:#a8a29a;--et:#141414"><span class="el-num">12</span><span class="el-sym">Tb</span><span class="el-name">Tableau</span></div>
+          <div class="element" data-family="bi" data-name="Git" data-desc="Version control for pipelines, notebooks and IaC." style="--es:#a8a29a;--et:#141414"><span class="el-num">13</span><span class="el-sym">Gt</span><span class="el-name">Git</span></div>
+          <div class="element" data-family="healthcare" data-name="Claims Data" data-desc="Medical &amp; pharmacy claims — the backbone of payer analytics." style="--es:#d8d2c4;--et:#141414"><span class="el-num">14</span><span class="el-sym">Cl</span><span class="el-name">Claims</span></div>
+          <div class="element" data-family="healthcare" data-name="EMR / Clinical" data-desc="Electronic medical records and clinical data concepts." style="--es:#d8d2c4;--et:#141414"><span class="el-num">15</span><span class="el-sym">Em</span><span class="el-name">EMR</span></div>
+          <div class="element" data-family="healthcare" data-name="HEDIS" data-desc="Quality measures for health plan performance." style="--es:#d8d2c4;--et:#141414"><span class="el-num">16</span><span class="el-sym">Hd</span><span class="el-name">HEDIS</span></div>
+          <div class="element" data-family="healthcare" data-name="HCC / Risk Adjustment" data-desc="Hierarchical condition categories and risk scoring." style="--es:#d8d2c4;--et:#141414"><span class="el-num">17</span><span class="el-sym">Hc</span><span class="el-name">HCC Risk</span></div>
+          <div class="element" data-family="core" data-name="Data Modeling" data-desc="Dimensional, Data Vault and lakehouse modeling patterns." style="--es:#efe9db;--et:#141414"><span class="el-num">18</span><span class="el-sym">Dm</span><span class="el-name">Modeling</span></div>
+          <div class="element" data-family="core" data-name="ETL / ELT" data-desc="Batch and incremental ingestion frameworks, metadata-driven." style="--es:#efe9db;--et:#141414"><span class="el-num">19</span><span class="el-sym">Et</span><span class="el-name">ETL/ELT</span></div>
+          <div class="element" data-family="core" data-name="Data Governance" data-desc="Cataloging, quality, lineage and access management." style="--es:#efe9db;--et:#141414"><span class="el-num">20</span><span class="el-sym">Gv</span><span class="el-name">Governance</span></div>
+          <div class="element" data-family="core" data-name="Machine Learning" data-desc="Feature pipelines and model-ready temporal datasets." style="--es:#efe9db;--et:#141414"><span class="el-num">21</span><span class="el-sym">Ml</span><span class="el-name">ML</span></div>
+          <div class="element" data-family="core" data-name="Data Architecture" data-desc="Platform design, migration planning and stakeholder alignment." style="--es:#efe9db;--et:#141414"><span class="el-num">22</span><span class="el-sym">Ar</span><span class="el-name">Architecture</span></div>
+        </div>
+        <aside class="ptable-detail reveal" id="ptableDetail" aria-live="polite">
+          <div class="pd-kicker">ELEMENT INSPECTOR</div>
+          <div class="pd-sym" id="pdSym">Py</div>
+          <div class="pd-name" id="pdName">Python</div>
+          <span class="pd-family" id="pdFamily">LANGUAGES</span>
+          <p class="pd-desc" id="pdDesc">Primary language for pipelines, transformations and ML feature work.</p>
+          <div class="pd-projects">
+            <div class="pd-proj-kicker">BUILT WITH THIS</div>
+            <ul id="pdProjList"></ul>
+          </div>
+          <p class="pd-hint">Hover any tile to inspect it.</p>
+        </aside>
+      </div>
+      <div class="capability-grid">
+        <article class="capability featured reveal">
+          <div class="cap-number">01</div><div class="cap-icon">⌁</div>
+          <h3>Data Engineering</h3>
+          <p>Batch and incremental pipelines, ETL/ELT, metadata-driven frameworks, orchestration, data quality and performance engineering.</p>
+          <div class="tags"><span>PySpark</span><span>SQL</span><span>Python</span><span>ADF</span></div>
+        </article>
+        <article class="capability reveal" style="--reveal-delay:.08s">
+          <div class="cap-number">02</div><div class="cap-icon">◈</div>
+          <h3>Modern Data Platforms</h3>
+          <p>Lakehouse architecture, medallion patterns, Delta Lake, governance, cataloging and cloud-native analytics.</p>
+          <div class="tags"><span>Databricks</span><span>Delta Lake</span><span>Unity Catalog</span></div>
+        </article>
+        <article class="capability reveal" style="--reveal-delay:.16s">
+          <div class="cap-number">03</div><div class="cap-icon">⌬</div>
+          <h3>Healthcare Analytics</h3>
+          <p>Healthcare data concepts, claims, clinical data, HEDIS, HCC/risk adjustment, Medicare and member analytics.</p>
+          <div class="tags"><span>Claims</span><span>EMR</span><span>Risk</span></div>
+        </article>
+        <article class="capability reveal">
+          <div class="cap-number">04</div><div class="cap-icon">◎</div>
+          <h3>AI / ML Data Foundations</h3>
+          <p>Feature pipelines, temporal data preparation, model-ready datasets, experimentation and analytics delivery.</p>
+          <div class="tags"><span>ML</span><span>Feature Engineering</span><span>Python</span></div>
+        </article>
+        <article class="capability reveal" style="--reveal-delay:.08s">
+          <div class="cap-number">05</div><div class="cap-icon">▦</div>
+          <h3>Analytics &amp; BI</h3>
+          <p>Turning governed datasets into dashboards, self-service analytics and decision-ready experiences.</p>
+          <div class="tags"><span>Power BI</span><span>Looker</span><span>BigQuery</span></div>
+        </article>
+        <article class="capability reveal" style="--reveal-delay:.16s">
+          <div class="cap-number">06</div><div class="cap-icon">↗</div>
+          <h3>Data Strategy</h3>
+          <p>Architecture, migration planning, stakeholder alignment, governance and adoption across teams.</p>
+          <div class="tags"><span>Architecture</span><span>Governance</span><span>Delivery</span></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ================= ARCHITECTURE LAB ================= -->
+    <section class="section architecture-section" id="lab">
+      <div class="kicker reveal" data-num="02B">ARCHITECTURE LAB</div>
+      <h2 class="section-title reveal">How I think about <span class="serif">a data platform.</span></h2>
+      <p class="section-sub reveal">A practical view of the journey: source systems → ingestion → governed storage → transformation → quality → analytics and ML.</p>
+      <div class="flow-board reveal">
+        <div class="flow-stage"><small>01</small><h3>Sources</h3><p>EMR • SQL Server • APIs • Claims • Files</p></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-stage active"><small>02</small><h3>Lakehouse</h3><p>Bronze → Silver → Gold • Delta</p></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-stage"><small>03</small><h3>Governance</h3><p>Catalog • Access • Quality • Lineage</p></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-stage"><small>04</small><h3>Outcomes</h3><p>BI • ML • Products • Decisions</p></div>
+      </div>
+    </section>
+
+    <!-- ================= WORK ================= -->
+    <section class="section" id="work">
+      <div class="kicker reveal" data-num="03">WORK</div>
+      <h2 class="section-title reveal">Things I&rsquo;ve <span class="serif">built.</span></h2>
+      <p class="section-sub reveal">Three case studies across healthcare platforms, ML foundations and cloud modernization. Hover a panel to open it.</p>
+      <div class="panels reveal" id="workPanels">
+          <article class="panel open reveal" tabindex="0" role="button" aria-expanded="true" aria-label="Open Healthcare Data Platform case study">
+            <div class="panel-collapsed-label"><span class="p-num">01</span><span class="p-vtitle">Healthcare Data Platform</span><span class="p-plus">+</span></div>
+            <div class="panel-body">
+            <span class="wc-num">01</span>
+            <div class="wc-tags"><span>HEALTHCARE</span><span>DATA PLATFORM</span></div>
+            <h3>Healthcare Data Platform</h3>
+            <p>Modernizing fragmented healthcare data into a governed, scalable platform for analytics and downstream ML.</p>
+            <ul>
+              <li>Medallion architecture for claims &amp; clinical data</li>
+              <li>Governance-first design with lineage</li>
+              <li>Analytics-ready gold layer for BI and ML</li>
+            </ul>
+            <div class="wc-tech"><span>Databricks</span><span>Delta Lake</span><span>PySpark</span><span>Unity Catalog</span></div>
+            <a class="btn btn-dark" href="blog.html">Explore related writing <span class="arr">→</span></a>
+          
+            </div>
+          </article>
+          <article class="panel reveal" tabindex="0" role="button" aria-expanded="false" aria-label="Open Model-Ready Data case study">
+            <div class="panel-collapsed-label"><span class="p-num">02</span><span class="p-vtitle">Model-Ready Data</span><span class="p-plus">+</span></div>
+            <div class="panel-body">
+            <span class="wc-num">02</span>
+            <div class="wc-tags"><span>ML</span><span>FEATURE ENGINEERING</span></div>
+            <h3>Model-Ready Data</h3>
+            <p>Building temporal feature pipelines that respect snapshot dates, lookback windows and follow-up periods.</p>
+            <ul>
+              <li>Point-in-time correct feature engineering</li>
+              <li>Reusable feature definitions across models</li>
+              <li>Experimentation-ready datasets</li>
+            </ul>
+            <div class="wc-tech"><span>Python</span><span>Spark</span><span>SQL</span><span>ML</span></div>
+            <a class="btn btn-dark" href="blog.html">Explore related writing <span class="arr">→</span></a>
+          
+            </div>
+          </article>
+          <article class="panel reveal" tabindex="0" role="button" aria-expanded="false" aria-label="Open Data Platform Modernization case study">
+            <div class="panel-collapsed-label"><span class="p-num">03</span><span class="p-vtitle">Data Platform Modernization</span><span class="p-plus">+</span></div>
+            <div class="panel-body">
+            <span class="wc-num">03</span>
+            <div class="wc-tags"><span>CLOUD</span><span>MIGRATION</span></div>
+            <h3>Data Platform Modernization</h3>
+            <p>Moving legacy pipelines toward cloud-native architectures with stronger governance, reliability and observability.</p>
+            <ul>
+              <li>Legacy ETL → cloud-native ELT migration</li>
+              <li>Observability and data quality gates</li>
+              <li>Stakeholder-aligned rollout planning</li>
+            </ul>
+            <div class="wc-tech"><span>ADF</span><span>BigQuery</span><span>Looker</span><span>Cloud</span></div>
+            <a class="btn btn-dark" href="blog.html">Explore related writing <span class="arr">→</span></a>
+          
+            </div>
+          </article>
+      </div>
+    </section>
+
+    <!-- ================= EXPERIENCE ================= -->
+    <section class="section" id="experience">
+      <div class="kicker reveal" data-num="04">EXPERIENCE</div>
+      <h2 class="section-title reveal">The <span class="serif">journey.</span></h2>
+      <p class="section-sub reveal">Five organizations, one through-line — taking messy, high-stakes data and turning it into systems people can trust. Hover a logo for a peek inside — click to read the full story.</p>
+                        <!-- logo card marquee — slow infinite scroll, each org links to its contribution page -->
+      <div class="journey-marquee reveal">
+        <div class="journey-track" role="list" aria-label="Organizations">
+                  <article class="j-card" role="listitem">
+            <a class="j-card-logo" href="journey/dcm-shriram.html" aria-label="Open: how Preet built this at DCM Shriram"><img src="assets/img/logos/dcm-shriram.svg" alt="DCM Shriram"></a>
+            <p class="j-card-cap">IoT &amp; supply-chain data · 5 yrs</p>
+            <a class="j-card-link" href="journey/dcm-shriram.html">How I built this at DCM Shriram<span aria-hidden="true">&nbsp;→</span></a>
+          <a class="j-card-teaser" href="journey/dcm-shriram.html" tabindex="-1" aria-hidden="true"><span class="j-teaser-label">Inside</span><ul><li>IoT data from plant machines</li><li>Supply-chain analytics</li><li>PMO dashboards · 5 yrs</li></ul></a>
+          </article>
+                  <article class="j-card" role="listitem">
+            <a class="j-card-logo" href="journey/searce.html" aria-label="Open: how Preet built this at Searce"><img src="assets/img/logos/searce.svg" alt="Searce"></a>
+            <p class="j-card-cap">Looker-certified in 30 days</p>
+            <a class="j-card-link" href="journey/searce.html">How I built this at Searce<span aria-hidden="true">&nbsp;→</span></a>
+          <a class="j-card-teaser" href="journey/searce.html" tabindex="-1" aria-hidden="true"><span class="j-teaser-label">Inside</span><ul><li>Looker-certified in 30 days</li><li>BI delivery across clients</li><li>GCP services</li></ul></a>
+          </article>
+                  <article class="j-card" role="listitem">
+            <a class="j-card-logo" href="journey/linkedin.html" aria-label="Open: how Preet built this at LinkedIn"><img src="assets/img/logos/linkedin.svg" alt="LinkedIn"></a>
+            <p class="j-card-cap">Sales-ops reporting at scale</p>
+            <a class="j-card-link" href="journey/linkedin.html">How I built this at LinkedIn<span aria-hidden="true">&nbsp;→</span></a>
+          <a class="j-card-teaser" href="journey/linkedin.html" tabindex="-1" aria-hidden="true"><span class="j-teaser-label">Inside</span><ul><li>Sales-ops ETL at scale</li><li>Presto · Hadoop · Azkaban</li><li>Talent Solutions reporting</li></ul></a>
+          </article>
+                  <article class="j-card" role="listitem">
+            <a class="j-card-logo" href="journey/cvs-health.html" aria-label="Open: how Preet built this at CVS Health"><img src="assets/img/logos/cvs-health.svg" alt="CVS Health"></a>
+            <p class="j-card-cap">Campaigns for 340M members</p>
+            <a class="j-card-link" href="journey/cvs-health.html">How I built this at CVS Health<span aria-hidden="true">&nbsp;→</span></a>
+          <a class="j-card-teaser" href="journey/cvs-health.html" tabindex="-1" aria-hidden="true"><span class="j-teaser-label">Inside</span><ul><li>340M-member campaigns</li><li>Daily Airflow ingestion</li><li>Marketo · Campaign · AEP</li></ul></a>
+          </article>
+                  <article class="j-card" role="listitem">
+            <a class="j-card-logo" href="journey/exl-service.html" aria-label="Open: how Preet built this at EXL"><img src="assets/img/logos/exl.svg" alt="EXL"></a>
+            <p class="j-card-cap">$300M churn model · Medicare Stars</p>
+            <a class="j-card-link" href="journey/exl-service.html">How I built this at EXL<span aria-hidden="true">&nbsp;→</span></a>
+          <a class="j-card-teaser" href="journey/exl-service.html" tabindex="-1" aria-hidden="true"><span class="j-teaser-label">Inside</span><ul><li>Nephrology RCM platform</li><li>$300M churn model</li><li>Medicare Stars ML</li></ul></a>
+          </article>
+                  <article class="j-card" aria-hidden="true">
+            <a tabindex="-1" class="j-card-logo" href="journey/dcm-shriram.html" aria-label="Open: how Preet built this at DCM Shriram"><img src="assets/img/logos/dcm-shriram.svg" alt="DCM Shriram"></a>
+            <p class="j-card-cap">IoT &amp; supply-chain data · 5 yrs</p>
+            <a tabindex="-1" class="j-card-link" href="journey/dcm-shriram.html">How I built this at DCM Shriram<span aria-hidden="true">&nbsp;→</span></a>
+          <a class="j-card-teaser" href="journey/dcm-shriram.html" tabindex="-1" aria-hidden="true"><span class="j-teaser-label">Inside</span><ul><li>IoT data from plant machines</li><li>Supply-chain analytics</li><li>PMO dashboards · 5 yrs</li></ul></a>
+          </article>
+                  <article class="j-card" aria-hidden="true">
+            <a tabindex="-1" class="j-card-logo" href="journey/searce.html" aria-label="Open: how Preet built this at Searce"><img src="assets/img/logos/searce.svg" alt="Searce"></a>
+            <p class="j-card-cap">Looker-certified in 30 days</p>
+            <a tabindex="-1" class="j-card-link" href="journey/searce.html">How I built this at Searce<span aria-hidden="true">&nbsp;→</span></a>
+          <a class="j-card-teaser" href="journey/searce.html" tabindex="-1" aria-hidden="true"><span class="j-teaser-label">Inside</span><ul><li>Looker-certified in 30 days</li><li>BI delivery across clients</li><li>GCP services</li></ul></a>
+          </article>
+                  <article class="j-card" aria-hidden="true">
+            <a tabindex="-1" class="j-card-logo" href="journey/linkedin.html" aria-label="Open: how Preet built this at LinkedIn"><img src="assets/img/logos/linkedin.svg" alt="LinkedIn"></a>
+            <p class="j-card-cap">Sales-ops reporting at scale</p>
+            <a tabindex="-1" class="j-card-link" href="journey/linkedin.html">How I built this at LinkedIn<span aria-hidden="true">&nbsp;→</span></a>
+          <a class="j-card-teaser" href="journey/linkedin.html" tabindex="-1" aria-hidden="true"><span class="j-teaser-label">Inside</span><ul><li>Sales-ops ETL at scale</li><li>Presto · Hadoop · Azkaban</li><li>Talent Solutions reporting</li></ul></a>
+          </article>
+                  <article class="j-card" aria-hidden="true">
+            <a tabindex="-1" class="j-card-logo" href="journey/cvs-health.html" aria-label="Open: how Preet built this at CVS Health"><img src="assets/img/logos/cvs-health.svg" alt="CVS Health"></a>
+            <p class="j-card-cap">Campaigns for 340M members</p>
+            <a tabindex="-1" class="j-card-link" href="journey/cvs-health.html">How I built this at CVS Health<span aria-hidden="true">&nbsp;→</span></a>
+          <a class="j-card-teaser" href="journey/cvs-health.html" tabindex="-1" aria-hidden="true"><span class="j-teaser-label">Inside</span><ul><li>340M-member campaigns</li><li>Daily Airflow ingestion</li><li>Marketo · Campaign · AEP</li></ul></a>
+          </article>
+                  <article class="j-card" aria-hidden="true">
+            <a tabindex="-1" class="j-card-logo" href="journey/exl-service.html" aria-label="Open: how Preet built this at EXL"><img src="assets/img/logos/exl.svg" alt="EXL"></a>
+            <p class="j-card-cap">$300M churn model · Medicare Stars</p>
+            <a tabindex="-1" class="j-card-link" href="journey/exl-service.html">How I built this at EXL<span aria-hidden="true">&nbsp;→</span></a>
+          <a class="j-card-teaser" href="journey/exl-service.html" tabindex="-1" aria-hidden="true"><span class="j-teaser-label">Inside</span><ul><li>Nephrology RCM platform</li><li>$300M churn model</li><li>Medicare Stars ML</li></ul></a>
+          </article>
+        </div>
+      </div>
+
+</section>
+
+    <!-- ================= CLIENTS ================= -->
+    <section class="section" id="clients">
+      <div class="kicker reveal" data-num="05">CLIENTS &amp; OUTCOMES</div>
+      <h2 class="section-title reveal">Organizations I&rsquo;ve <span class="serif">worked with.</span></h2>
+      <p class="section-sub reveal">Selected organizations and outcomes preserved from the original portfolio.</p>
+      <div class="client-grid">
+        <div class="client-card reveal"><strong>Searce Inc.</strong><span>$90k worth of projects; 75% delivered using Looker</span></div>
+        <div class="client-card reveal"><strong>Air Asia</strong><span>Looker dashboards for customer analytics and fare prediction</span></div>
+        <div class="client-card reveal"><strong>Arcus Finance</strong><span>Looker dashboard tracking transaction patterns across countries</span></div>
+        <div class="client-card reveal"><strong>Bajaj Finserv Health</strong><span>Looker dashboard analyzing symptoms and hospitals across cities</span></div>
+        <div class="client-card reveal"><strong>EPL Global</strong><span>Power BI dashboards for real-time machine parameter analysis</span></div>
+        <div class="client-card reveal"><strong>Imagination Media</strong><span>Tableau dashboards analyzing employee effort hours and profits</span></div>
+        <div class="client-card reveal"><strong>Platform Science</strong><span>Looker dashboards monitoring logistics globally</span></div>
+        <div class="client-card reveal"><strong>PulsePoint</strong><span>BigQuery solution support for user-level cost tracking</span></div>
+        <div class="client-card reveal"><strong>Servify</strong><span>BI solutions and Superset workshop</span></div>
+        <div class="client-card reveal"><strong>TRM Labs</strong><span>Looker dashboards for churn and retention KPIs</span></div>
+      </div>
+    </section>
+
+    <!-- ================= WRITING ================= -->
+    <section class="section" id="writing">
+      <div class="kicker reveal" data-num="06">WRITING</div>
+      <h2 class="section-title reveal">I write about <span class="serif">what I build.</span></h2>
+      <p class="section-sub reveal">Practical notes for data engineers — especially people working with healthcare data, cloud platforms and modern analytics.</p>
+      <div class="writing-grid">
+        <a class="writing-card featured-writing reveal" href="https://open.substack.com/pub/masterdataengineering" target="_blank" rel="noopener">
+          <span>FEATURED SERIES</span>
+          <h3>Healthcare for Data Engineers</h3>
+          <p>Healthcare 101 → claims → diagnosis codes → HCC → risk adjustment → analytics and ML.</p>
+          <strong>Read on Substack ↗</strong>
+        </a>
+        <a class="writing-card reveal" style="--reveal-delay:.08s" href="blog.html">
+          <span>ON THIS SITE</span>
+          <h3>Data Engineering Notes</h3>
+          <p>A growing collection of architecture, Spark, Databricks, cloud and healthcare data notes.</p>
+          <strong>Explore posts →</strong>
+        </a>
+        <a class="writing-card reveal" style="--reveal-delay:.16s" href="https://ynpreetmehta.medium.com/" target="_blank" rel="noopener">
+          <span>MEDIUM</span>
+          <h3>Long-form technical writing</h3>
+          <p>Deep dives, lessons learned and practical analytics stories.</p>
+          <strong>Read on Medium ↗</strong>
+        </a>
+      </div>
+    </section>
+
+    <!-- ================= NEWSLETTER ================= -->
+    <div class="newsletter-band reveal">
+      <div class="newsletter-copy">
+        <h2>One data-engineering idea, <span class="serif">every day.</span></h2>
+        <p>Currently writing the daily "Healthcare for Data Engineers" series — free, practical, no fluff. Get it in your inbox.</p>
+      </div>
+      <div class="newsletter-cta">
+        <a class="btn btn-light" href="https://masterdataengineering.substack.com/subscribe" target="_blank" rel="noopener">Subscribe free <span class="arr">→</span></a>
+        <span class="newsletter-note">Prefer browsing? <a href="https://masterdataengineering.substack.com" target="_blank" rel="noopener">Read it on Substack ↗</a></span>
+      </div>
+    </div>
+
+    <!-- ================= CERTIFICATIONS ================= -->
+    <section class="section" id="learning" style="padding-top:0;">
+      <div class="kicker reveal" data-num="07">CREDENTIALS</div>
+      <h2 class="section-title reveal">Always <span class="serif">learning.</span></h2>
+      <p class="section-sub reveal">Certifications and the learning I keep in public.</p>
+      <div class="cert-list">
+        <a class="cert-row reveal" href="https://drive.google.com/file/d/1SkhBHgFvCZD7VIA2oymBOvMfC3A2q4zi/view?usp=sharing" target="_blank" rel="noopener">
+          <span class="cert-num">01</span>
+          <div><b>Looker LookML Developer</b><span class="cert-org">Looker · Google Cloud</span></div>
+          <span class="cert-go">View ↗</span>
+        </a>
+        <a class="cert-row reveal" href="https://www.linkedin.com/posts/preetmehta_achievementunlocked-solvingforbetter-looker-activity-6811442346924752896-v42U" target="_blank" rel="noopener">
+          <span class="cert-num">02</span>
+          <div><b>Looker Consulting Partner — Delivery Verified</b><span class="cert-org">Looker</span></div>
+          <span class="cert-go">View ↗</span>
+        </a>
+        <a class="cert-row reveal" href="https://open.substack.com/pub/masterdataengineering" target="_blank" rel="noopener">
+          <span class="cert-num">03</span>
+          <div><b>Healthcare for Data Engineers — daily series</b><span class="cert-org">Substack · writing in public</span></div>
+          <span class="cert-go">Read ↗</span>
+        </a>
+        <a class="cert-row reveal" href="https://usergroups.databricks.com/boston-databricks-user-group/" target="_blank" rel="noopener">
+          <span class="cert-num">04</span>
+          <div><b>Boston Databricks User Group — Organizer</b><span class="cert-org">Databricks Community</span></div>
+          <span class="cert-go">Visit ↗</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ================= ACHIEVEMENTS ================= -->
+    <section class="section" id="achievements">
+      <div class="kicker reveal" data-num="08">ACHIEVEMENTS</div>
+      <h2 class="section-title reveal">Proud <span class="serif">moments.</span></h2>
+      <p class="section-sub reveal">Work that made it outside the classroom. Hover to pause.</p>
+      <div class="ach-marquee reveal">
+        <div class="ach-track" id="achTrack">
+          <article class="ach-card dark reveal">
+            <div class="ach-top"><span>01</span><span>2023</span></div>
+            <div class="ach-big">TA ★</div>
+            <h3>Feretti &amp; Yamamura Award Winner</h3>
+            <p>Recognized for outstanding teaching assistance at Northeastern University.</p>
+            <a href="https://youtube.com/shorts/C3Y9TAPmTZ0?is=YNsjQB9IQiu8_5Q2" target="_blank" rel="noopener">Watch the story ↗</a>
+          </article>
+          <article class="ach-card reveal">
+            <div class="ach-top"><span>02</span><span>2025</span></div>
+            <div class="ach-big">NYC</div>
+            <h3>Apache Spark Speaker</h3>
+            <p>Invited speaker at an Apache Spark meetup in New York, sharing practical data engineering knowledge.</p>
+            <a href="https://youtu.be/LnMioyUWf1Q?is=VKB3pwAuDdi1x15C" target="_blank" rel="noopener">Watch the talk ↗</a>
+          </article>
+          <article class="ach-card reveal">
+            <div class="ach-top"><span>03</span><span>2026 · SF</span></div>
+            <div class="ach-big">DB</div>
+            <h3>Databricks Summit</h3>
+            <p>Attended Databricks Summit 2026 in San Francisco and shared my perspective through an interview.</p>
+            <a href="https://lnkd.in/p/gWeRsqJF" target="_blank" rel="noopener">Watch the interview ↗</a>
+          </article>
+          <article class="ach-card reveal">
+            <div class="ach-top"><span>04</span><span>KEY SPEAKER</span></div>
+            <div class="ach-big">UMA</div>
+            <h3>UMass Amherst</h3>
+            <p>Invited to speak at UMass Amherst and share practical perspectives from data engineering and analytics.</p>
+            <a href="https://www.linkedin.com/posts/activity-7452040469095591937-15Ma?utm_source=share&utm_medium=member_ios&rcm=ACoAABlIgdYBQSP7EMn1R4MaRX2Wm33LVimX3kQ" target="_blank" rel="noopener">See the invitation ↗</a>
+          </article>
+          <article class="ach-card dark reveal">
+            <div class="ach-top"><span>05</span><span>COMMUNITY</span></div>
+            <div class="ach-big">BOS</div>
+            <h3>Boston Databricks User Group Organizer</h3>
+            <p>Official organizer — creating a space for local data professionals to learn and connect.</p>
+            <a href="https://usergroups.databricks.com/boston-databricks-user-group/" target="_blank" rel="noopener">Visit the user group ↗</a>
+          </article>
+          <article class="ach-card reveal">
+            <div class="ach-top"><span>06</span><span>9× JUDGE</span></div>
+            <div class="ach-big">9×</div>
+            <h3>Data Mining Hackathon Judge</h3>
+            <p>Invited as a judge for the Data Mining Hackathon at Northeastern University nine times.</p>
+            <span class="ach-static">NORTHEASTERN UNIVERSITY</span>
+          </article>
+          <article class="ach-card dark reveal">
+            <div class="ach-top"><span>07</span><span>3,000+</span></div>
+            <div class="ach-big">3K+</div>
+            <h3>Students Mentored &amp; Guided</h3>
+            <p>Mentored and guided 3,000+ students through learning, career and data engineering journeys.</p>
+            <span class="ach-static">MENTORSHIP • COMMUNITY • TEACHING</span>
+          </article>
+          <article class="ach-card reveal">
+            <div class="ach-top"><span>08</span><span>2026 · PANELIST</span></div>
+            <img class="ach-photo" src="assets/img/speaking/preet-cics-panel.svg" alt="Preet Mehta speaking as an industry panelist at the UMass Amherst Manning CICS Future of Computing Tech Conference" loading="lazy">
+            <h3>UMass CICS Tech Conference Panelist</h3>
+            <p>Invited industry panelist at UMass Amherst's "Future of Computing" Tech Conference — on stage with leaders from Google, NVIDIA and MathWorks.</p>
+            <a href="https://cicstechconference.netlify.app/" target="_blank" rel="noopener">See the event ↗</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ================= PERSONAL PROJECTS ================= -->
+    <section class="section" id="projects">
+      <div class="kicker reveal" data-num="09">PERSONAL PROJECTS</div>
+      <h2 class="section-title reveal">From the <span class="serif">archive.</span></h2>
+      <p class="section-sub reveal">Earlier experiments, dashboards and models — preserved from the original portfolio and kept for the record.</p>
+      <div class="archive-wrap projects-wrap">
+        <div class="archive-filter-note reveal">18 PROJECTS &amp; ACHIEVEMENTS • PRESERVED FROM THE ORIGINAL PORTFOLIO</div>
+        <div class="archive-project-grid">
+          <article class="archive-project-card reveal"><a href="https://public.tableau.com/app/profile/preet.shailesh.mehta/viz/OTTPlatform_16425659537330/Dashboard1" target="_blank" rel="noopener"><div class="archive-project-image"><img src="assets/img/portfolio/OTT.jpeg" alt="OTT Platform Subscribers" loading="lazy"></div><div class="archive-project-body"><span>DATA VISUALIZATION</span><h3>OTT Platform Subscribers</h3><b>View project</b></div></a></article>
+          <article class="archive-project-card reveal"><a href="https://covidsepression.wixsite.com/website" target="_blank" rel="noopener"><div class="archive-project-image"><img src="assets/img/portfolio/nursing home care.jpg" alt="Nursing Home Care in USA" loading="lazy"></div><div class="archive-project-body"><span>DATA VISUALIZATION</span><h3>Nursing Home Care in USA</h3><b>View project</b></div></a></article>
+          <article class="archive-project-card reveal"><a href="https://covidsepression.wixsite.com/covd" target="_blank" rel="noopener"><div class="archive-project-image"><img src="assets/img/portfolio/covid depression.jpeg" alt="Covid Depression" loading="lazy"></div><div class="archive-project-body"><span>DATA ANALYTICS</span><h3>Covid Depression</h3><b>View project</b></div></a></article>
+          <article class="archive-project-card reveal"><a href="https://public.tableau.com/app/profile/preet.shailesh.mehta/viz/FoodSupplychain/Dashboard2" target="_blank" rel="noopener"><div class="archive-project-image"><img src="assets/img/portfolio/who grow what we eat.jpeg" alt="Feeding the World" loading="lazy"></div><div class="archive-project-body"><span>DATA VISUALIZATION</span><h3>Feeding the World</h3><b>View project</b></div></a></article>
+          <article class="archive-project-card reveal"><a href="https://public.tableau.com/app/profile/preet.shailesh.mehta/viz/Spotify_16367235491610/Dashboard1" target="_blank" rel="noopener"><div class="archive-project-image"><img src="assets/img/portfolio/spotify-music.gif" alt="Spotify" loading="lazy"></div><div class="archive-project-body"><span>DATA VISUALIZATION</span><h3>Spotify</h3><b>View project</b></div></a></article>
+          <article class="archive-project-card reveal"><a href="https://datastudio.google.com/u/0/reporting/35c06c17-767d-4969-ade2-6d2175af404f" target="_blank" rel="noopener"><div class="archive-project-image"><img src="assets/img/portfolio/netflix-intro-netflix.gif" alt="Netflix" loading="lazy"></div><div class="archive-project-body"><span>DATA VISUALIZATION</span><h3>Netflix</h3><b>View project</b></div></a></article>
+          <article class="archive-project-card reveal"><a href="https://datastudio.google.com/u/0/reporting/a1a315a5-9338-4e21-a0a1-8945b42fffa0/page/mAuQC" target="_blank" rel="noopener"><div class="archive-project-image"><img src="assets/img/portfolio/ecommerce.jpeg" alt="Ecommerce Store" loading="lazy"></div><div class="archive-project-body"><span>DATA VISUALIZATION</span><h3>Ecommerce Store</h3><b>View project</b></div></a></article>
+          <article class="archive-project-card reveal"><a href="https://public.tableau.com/app/profile/preet.shailesh.mehta/viz/PreetMehta_Gameofthrones/Kills" target="_blank" rel="noopener"><div class="archive-project-image"><img src="assets/img/portfolio/game of thrones gif.gif" alt="Game of Thrones" loading="lazy"></div><div class="archive-project-body"><span>DATA VISUALIZATION</span><h3>Game of Thrones</h3><b>View project</b></div></a></article>
+          <article class="archive-project-card reveal"><a href="https://github.com/ynpreet/Analysing-Russian-Troll-Tweets-data-using-Python" target="_blank" rel="noopener"><div class="archive-project-image"><img src="assets/img/portfolio/russian tweets.jpg" alt="Russian Troll Tweets" loading="lazy"></div><div class="archive-project-body"><span>MACHINE LEARNING</span><h3>Russian Troll Tweets</h3><b>View project</b></div></a></article>
+          <article class="archive-project-card reveal"><a href="https://github.com/ynpreet/Game-Of-Thrones-Sentiment-Analysis-using-Twitter-data" target="_blank" rel="noopener"><div class="archive-project-image"><img src="assets/img/portfolio/sentiment.jpg" alt="GOT Characters Sentiment Analysis" loading="lazy"></div><div class="archive-project-body"><span>MACHINE LEARNING</span><h3>GOT Characters Sentiment Analysis</h3><b>View project</b></div></a></article>
+          <article class="archive-project-card reveal"><a href="https://github.com/ynpreet/Prediction-of-Wildfire-in-California" target="_blank" rel="noopener"><div class="archive-project-image"><img src="assets/img/portfolio/wild fire.jpg" alt="Predicting Wildfire in CA" loading="lazy"></div><div class="archive-project-body"><span>MACHINE LEARNING</span><h3>Predicting Wildfire in CA</h3><b>View project</b></div></a></article>
+          <article class="archive-project-card reveal"><a href="https://github.com/ynpreet/Data-warehouse-for-Yelp-dataset" target="_blank" rel="noopener"><div class="archive-project-image"><img src="assets/img/portfolio/DWBI Architecture.jpg" alt="Datawarehouse for Yelp" loading="lazy"></div><div class="archive-project-body"><span>DATA ENGINEERING</span><h3>Datawarehouse for Yelp</h3><b>View project</b></div></a></article>
+          <article class="archive-project-card reveal"><a href="https://github.com/ynpreet/Designing-Ecommerce-Sales-operation-OLTP-database" target="_blank" rel="noopener"><div class="archive-project-image"><img src="assets/img/portfolio/oltp.jpg" alt="Designing Ecommerce OLTP Database" loading="lazy"></div><div class="archive-project-body"><span>DATA ENGINEERING</span><h3>Designing Ecommerce OLTP Database</h3><b>View project</b></div></a></article>
+          <article class="archive-project-card reveal"><a href="https://github.com/ynpreet/Flight-Fare-Prediction-Web-App-Project-With-Deployment" target="_blank" rel="noopener"><div class="archive-project-image"><img src="assets/img/portfolio/flight fare.jpg" alt="Flight Fare Prediction" loading="lazy"></div><div class="archive-project-body"><span>MACHINE LEARNING</span><h3>Flight Fare Prediction</h3><b>View project</b></div></a></article>
+          <article class="archive-project-card reveal"><a href="https://github.com/ynpreet/Predicting-Ideal-location-for-a-new-reastaurant-using-Yelp-dataset" target="_blank" rel="noopener"><div class="archive-project-image"><img src="assets/img/portfolio/yelp.jpg" alt="Predicting Ideal Location for Restaurant" loading="lazy"></div><div class="archive-project-body"><span>MACHINE LEARNING</span><h3>Predicting Ideal Location for Restaurant</h3><b>View project</b></div></a></article>
+          <article class="archive-project-card reveal"><a href="https://drive.google.com/file/d/1SkhBHgFvCZD7VIA2oymBOvMfC3A2q4zi/view?usp=sharing" target="_blank" rel="noopener"><div class="archive-project-image"><img src="assets/img/portfolio/looker part of google cloud.jpg" alt="Looker LookML Developer" loading="lazy"></div><div class="archive-project-body"><span>CERTIFICATION</span><h3>Looker LookML Developer</h3><b>View project</b></div></a></article>
+          <article class="archive-project-card reveal"><a href="https://www.linkedin.com/posts/preetmehta_achievementunlocked-solvingforbetter-looker-activity-6811442346924752896-v42U?utm_source=linkedin_share&utm_medium=member_desktop_web" target="_blank" rel="noopener"><div class="archive-project-image"><img src="assets/img/portfolio/looker consulting partner delivery veriied.jpg" alt="Looker Consulting Partner" loading="lazy"></div><div class="archive-project-body"><span>CERTIFICATION</span><h3>Looker Consulting Partner</h3><b>View project</b></div></a></article>
+          <article class="archive-project-card reveal"><a href="https://www.linkedin.com/posts/preetmehta_hackathon-powerbi-daeso-activity-6858606729383444480-hQAT?utm_source=linkedin_share&utm_medium=member_desktop_web" target="_blank" rel="noopener"><div class="archive-project-image"><img src="assets/img/portfolio/hackathon-cover-16-9-1.jpg" alt="DAESO Hackathon Winner" loading="lazy"></div><div class="archive-project-body"><span>AWARD</span><h3>DAESO Hackathon Winner</h3><b>View project</b></div></a></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= RESOURCES ================= -->
+    <section class="section" id="free-resources" style="padding-top:0;">
+      <div class="kicker reveal" data-num="10">FREE RESOURCES</div>
+      <h2 class="section-title reveal">Take something useful <span class="serif">with you.</span></h2>
+      <p class="section-sub reveal">A growing library of practical resources for people learning data engineering, preparing for interviews or building their next career move.</p>
+      <div class="resource-grid">
+        <a class="resource-card reveal" href="resources.html#books">
+          <div class="resource-icon">01</div>
+          <div><span>LEARN</span><h3>Data Engineering Books</h3><p>Curated books, reading lists and practical references for building strong data engineering fundamentals.</p><strong>Explore the library ↗</strong></div>
+        </a>
+        <a class="resource-card reveal" style="--reveal-delay:.08s" href="resources.html#resume">
+          <div class="resource-icon">02</div>
+          <div><span>CAREER</span><h3>Resume Templates</h3><p>Clean, practical resume templates and guidance designed for data, analytics and engineering roles.</p><strong>Get the templates ↗</strong></div>
+        </a>
+        <a class="resource-card reveal" href="resources.html#videos">
+          <div class="resource-icon">03</div>
+          <div><span>WATCH</span><h3>Video Library</h3><p>Talks, tutorials, workshops and videos that make complex data concepts easier to understand.</p><strong>Watch &amp; learn ↗</strong></div>
+        </a>
+        <a class="resource-card reveal" style="--reveal-delay:.08s" href="resources.html#mock-interviews">
+          <div class="resource-icon">04</div>
+          <div><span>PREPARE</span><h3>Mock Interview Questions</h3><p>SQL, Spark, Databricks, data engineering, architecture and scenario-based interview practice.</p><strong>Start practicing ↗</strong></div>
+        </a>
+      </div>
+      <div class="resources-note reveal"><span>FREE • PRACTICAL • BUILT FOR DATA ENGINEERS</span><b>I&rsquo;ll keep adding to this library.</b></div>
+    </section>
+
+    <!-- ================= COMMUNITY ================= -->
+    <section class="section" id="community" style="padding-top:0;">
+      <div class="community-band reveal">
+        <div>
+          <div class="kicker" data-num="11" style="color:#a09a8a;">COMMUNITY</div>
+          <h2>Learning is better <span class="serif">together.</span></h2>
+          <p>I share practical data engineering content and build spaces where engineers can learn, ask questions and grow together.</p>
+          <a class="btn btn-light" href="https://lnkd.in/e62X5nuH" target="_blank" rel="noopener">Join the free community <span class="arr">→</span></a>
+        </div>
+        <div class="community-card">
+          <div class="community-top"><span>DATA ENGINEERS</span><span>CLOUD HUB</span></div>
+          <div class="community-name">Data Engineers<br><span class="serif">and Cloud Hub</span></div>
+          <div class="community-bottom"><span>Healthcare</span><span>Data Engineering</span><span>AI/ML</span><span>Cloud</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CONTACT ================= -->
+    <section class="section" id="contact" style="padding-top:0;">
+      <div class="kicker reveal" data-num="12">CONTACT</div>
+      <div class="contact-grid">
+        <div class="reveal">
+          <h2>Have a data problem <span class="serif">worth solving?</span></h2>
+          <p>For professional conversations, speaking, collaboration, community or data engineering discussions — reach out through LinkedIn.</p>
+        </div>
+        <div class="contact-links reveal" style="--reveal-delay:.12s">
+          <a href="https://www.linkedin.com/in/preetmehta/" target="_blank" rel="noopener"><span>LinkedIn</span><b>↗</b></a>
+          <a href="https://github.com/ynpreet" target="_blank" rel="noopener"><span>GitHub</span><b>↗</b></a>
+          <a href="https://open.substack.com/pub/masterdataengineering" target="_blank" rel="noopener"><span>Substack</span><b>↗</b></a>
+          <a href="https://ynpreetmehta.medium.com/" target="_blank" rel="noopener"><span>Medium</span><b>↗</b></a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div><strong>PREET MEHTA</strong><span>Data Engineering • Analytics • AI/ML</span></div>
+    <span>© <span id="year"></span> Data with Preet</span>
+    <a class="to-top" href="#home">Back to top ↑</a>
+  </footer>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+---
+layout: null
+---
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{{ page.title }} | Preet Mehta</title><meta name="description" content="{{ page.description }}">
+<link rel="icon" href="{{ '/assets/img/favicon.png' | relative_url }}"><link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head><body><header class="site-header scrolled"><a class="brand" href="{{ '/' | relative_url }}"><span class="brand-mark">PM</span><span class="brand-copy"><strong>PREET MEHTA</strong><small>WRITING</small></span></a><nav class="nav" style="display:flex"><a href="{{ '/' | relative_url }}">Portfolio</a><a class="active" href="{{ '/blog.html' | relative_url }}">Writing</a></nav></header>
+<main><article class="section intro-section" style="padding-top:150px;max-width:900px"><div class="section-kicker">{{ page.date | date: "%B %d, %Y" }} / {{ page.categories | join: " • " }}</div><h1 style="font-size:clamp(46px,7vw,82px);margin:22px 0;color:#142333">{{ page.title }}</h1><p style="font-size:18px;color:#667887;max-width:720px">{{ page.description }}</p><div style="margin-top:55px;font-size:17px;color:#405463">{{ content }}</div></article></main>
+<footer class="footer"><div><strong>PREET MEHTA</strong><span>Data Engineering • Healthcare • AI/ML</span></div><span>© <span id="year"></span> Preet Mehta</span></footer><script src="{{ '/assets/js/main.js' | relative_url }}"></script></body></html>
