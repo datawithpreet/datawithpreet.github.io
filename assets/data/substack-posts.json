@@ -1,0 +1,246 @@
+{
+  "publication": "Healthcare for Data Engineers",
+  "publication_url": "https://masterdataengineering.substack.com",
+  "updated_utc": "2026-10-06T14:23:56Z",
+  "count": 34,
+  "posts": [
+    {
+      "title": "Healthcare for Data Engineers | Day 30: From Healthcare Data to a Churn ML Model",
+      "url": "https://masterdataengineering.substack.com/p/healthcare-for-data-engineers-day-1f1",
+      "date": "2026-10-05",
+      "date_display": "Oct 5, 2026",
+      "excerpt": "Today is Day 30, and we are going to continue with the same real-world use case."
+    },
+    {
+      "title": "Healthcare for Data Engineers | Day 29: Building a Healthy Home Visit Member Churn Model",
+      "url": "https://masterdataengineering.substack.com/p/healthcare-for-data-engineers-day-d44",
+      "date": "2026-10-04",
+      "date_display": "Oct 4, 2026",
+      "excerpt": "Today is Day 29, and today we are going to use an actual use case in which all the concepts that we learned so far will be applicable."
+    },
+    {
+      "title": "Healthcare for Data Engineers | Day 28: Line of Business (LOB) & Populations",
+      "url": "https://masterdataengineering.substack.com/p/healthcare-for-data-engineers-day-ec2",
+      "date": "2026-10-03",
+      "date_display": "Oct 3, 2026",
+      "excerpt": "So far we understood a lot about HHV and IOA and the entire process of why a medical chart exists, the chart retrieval process from clinic to insurance, and how this data eventually becomes part of…"
+    },
+    {
+      "title": "Interview questions- Soft skills",
+      "url": "https://masterdataengineering.substack.com/p/interview-questions-soft-skills",
+      "date": "2026-10-01",
+      "date_display": "Oct 1, 2026",
+      "excerpt": "Communication"
+    },
+    {
+      "title": "Interview General questions",
+      "url": "https://masterdataengineering.substack.com/p/interview-general-questions",
+      "date": "2026-10-01",
+      "date_display": "Oct 1, 2026",
+      "excerpt": "1."
+    },
+    {
+      "title": "The 25 most difficult questions you'll be asked on a job interview",
+      "url": "https://masterdataengineering.substack.com/p/the-25-most-difficult-questions-youll",
+      "date": "2026-10-01",
+      "date_display": "Oct 1, 2026",
+      "excerpt": "Being prepared is half the battle."
+    },
+    {
+      "title": "Healthcare for Data Engineers | Day 27 - Prospective Data: Healthy Home Visit and In-Office Assessment",
+      "url": "https://masterdataengineering.substack.com/p/healthcare-for-data-engineers-day-e83",
+      "date": "2026-10-01",
+      "date_display": "Oct 1, 2026",
+      "excerpt": "Now that we understood the data captured by third-party vendors for the retrospective purpose, and we also understood who the retrospective team is and what kind of work they do, let’s understand…"
+    },
+    {
+      "title": "Healthcare for Data Engineers | Day 26 - Building the Data Engineering Pipeline for Vendor Files",
+      "url": "https://masterdataengineering.substack.com/p/healthcare-for-data-engineers-day-545",
+      "date": "2026-09-30",
+      "date_display": "Sep 30, 2026",
+      "excerpt": "In the previous post, we understood what third-party vendors send to the payer and what a Data Engineer receives."
+    },
+    {
+      "title": "Healthcare for Data Engineers | Day 25 - From Medical Charts to Vendor Files: What Does a Data Engineer Receive?",
+      "url": "https://masterdataengineering.substack.com/p/healthcare-for-data-engineers-day-a30",
+      "date": "2026-09-29",
+      "date_display": "Sep 29, 2026",
+      "excerpt": "Now that we understood why the medical chart is needed, we also understood that the payer cannot directly access it from the EMR system of the provider."
+    },
+    {
+      "title": "Healthcare for Data Engineers | Day 24 - From Medical Chart to Risk Adjustment Data",
+      "url": "https://masterdataengineering.substack.com/p/healthcare-for-data-engineers-day-660",
+      "date": "2026-09-28",
+      "date_display": "Sep 28, 2026",
+      "excerpt": "Now let’s connect everything we have discussed so far."
+    },
+    {
+      "title": "Healthcare for Data Engineers | Day 23 - How Does a Medical Chart Reach the Health Plan?",
+      "url": "https://masterdataengineering.substack.com/p/healthcare-for-data-engineers-day-fcb",
+      "date": "2026-09-27",
+      "date_display": "Sep 27, 2026",
+      "excerpt": "Now we understand:"
+    },
+    {
+      "title": "Healthcare for Data Engineers | Day 22 - Who Creates the Medical Chart and Why Does It Exist?",
+      "url": "https://masterdataengineering.substack.com/p/healthcare-for-data-engineers-day-b12",
+      "date": "2026-09-26",
+      "date_display": "Sep 26, 2026",
+      "excerpt": "Now that we understand the difference between a medical chart and a medical claim, let’s go one level deeper."
+    },
+    {
+      "title": "Healthcare for Data Engineers | Day 21 Medical Chart vs. Medical Claim: Why Are They Different?",
+      "url": "https://masterdataengineering.substack.com/p/healthcare-for-data-engineers-day-6c8",
+      "date": "2026-09-25",
+      "date_display": "Sep 25, 2026",
+      "excerpt": "Before we go deeper into retrospective and prospective risk adjustment, there are a few important concepts that we need to understand first."
+    },
+    {
+      "title": "Healthcare for Data Engineers | Day 20: Prospective Targeting",
+      "url": "https://masterdataengineering.substack.com/p/healthcare-for-data-engineers-day-de1",
+      "date": "2026-09-24",
+      "date_display": "Sep 24, 2026",
+      "excerpt": "Healthcare series"
+    },
+    {
+      "title": "Healthcare for Data Engineers | Day 19: Prospective vs. Retrospective Risk Adjustment",
+      "url": "https://masterdataengineering.substack.com/p/healthcare-for-data-engineers-day-527",
+      "date": "2026-09-22",
+      "date_display": "Sep 22, 2026",
+      "excerpt": "In the last post, we understood about what the nurse does after visiting the member’s home."
+    },
+    {
+      "title": "Healthcare for Data Engineers | Day 18: The Business Model Behind the Healthy Home Visit",
+      "url": "https://masterdataengineering.substack.com/p/healthcare-for-data-engineers-day-7cb",
+      "date": "2026-09-20",
+      "date_display": "Sep 20, 2026",
+      "excerpt": "Today we are going to understand the business model behind the nurse being sent for the Healthy Home Visit."
+    },
+    {
+      "title": "Healthcare for Data Engineers | Day 17: Deep Dive into Healthy Home Visits",
+      "url": "https://masterdataengineering.substack.com/p/healthcare-for-data-engineers-day-9d9",
+      "date": "2026-09-20",
+      "date_display": "Sep 20, 2026",
+      "excerpt": "Today we are going to deep dive into Healthy Home Visit."
+    },
+    {
+      "title": "Healthcare for Data Engineers | Day 16: Healthy Home Visits",
+      "url": "https://masterdataengineering.substack.com/p/healthcare-for-data-engineers-day-c87",
+      "date": "2026-09-18",
+      "date_display": "Sep 18, 2026",
+      "excerpt": "Preet’s news letter"
+    },
+    {
+      "title": "Healthcare for Data Engineers | Day 15: HCC and Risk Adjustment",
+      "url": "https://masterdataengineering.substack.com/p/healthcare-for-data-engineers-day-173",
+      "date": "2026-09-17",
+      "date_display": "Sep 17, 2026",
+      "excerpt": "Today is Day 15, and today we are going to do a deep dive into HCC and Risk Adjustment."
+    },
+    {
+      "title": "Healthcare for Data Engineers — Day 14: Risk Factor Analysis & HCC Coding 🏥",
+      "url": "https://masterdataengineering.substack.com/p/healthcare-for-data-engineers-day-daa",
+      "date": "2026-09-16",
+      "date_display": "Sep 16, 2026",
+      "excerpt": "Preet’s News letter"
+    },
+    {
+      "title": "Healthcare for Data Engineers — Day 13: Risk Factor Analysis 🏥",
+      "url": "https://masterdataengineering.substack.com/p/healthcare-for-data-engineers-day-b24",
+      "date": "2026-09-15",
+      "date_display": "Sep 15, 2026",
+      "excerpt": "Preet’s News letter"
+    },
+    {
+      "title": "Healthcare for Data Engineers — Day 12: The Core Math of Health Insurance 🏥",
+      "url": "https://masterdataengineering.substack.com/p/healthcare-for-data-engineers-day-0fd",
+      "date": "2026-09-14",
+      "date_display": "Sep 14, 2026",
+      "excerpt": "Preet’s Newsletter"
+    },
+    {
+      "title": "Healthcare for Data Engineer - Day 11 | Claims from a Data Engineer’s Perspective",
+      "url": "https://masterdataengineering.substack.com/p/healthcare-for-data-engineer-day",
+      "date": "2026-09-13",
+      "date_display": "Sep 13, 2026",
+      "excerpt": "Preet’s Newsletter"
+    },
+    {
+      "title": "Healthcare for Data Engineers - Day 10 | How Medical Claims Are Processed",
+      "url": "https://masterdataengineering.substack.com/p/healthcare-for-data-engineers-day-efe",
+      "date": "2026-09-12",
+      "date_display": "Sep 12, 2026",
+      "excerpt": "Preet’s Newsletter"
+    },
+    {
+      "title": "Healthcare for Data Engineers - Day 9 : CPT Codes: From Clinical Care to Reimbursement",
+      "url": "https://masterdataengineering.substack.com/p/healthcare-for-data-engineers-day-125",
+      "date": "2026-09-11",
+      "date_display": "Sep 11, 2026",
+      "excerpt": "Healthcare for Data Engineers by Preet Mehta"
+    },
+    {
+      "title": "Healthcare for Data Engineers - Day 8 | Why Diagnosis Codes Matter in Healthcare",
+      "url": "https://masterdataengineering.substack.com/p/healthcare-for-data-engineers-day-9c3",
+      "date": "2026-09-10",
+      "date_display": "Sep 10, 2026",
+      "excerpt": "Today’s post is exclusively about the diagnosis code."
+    },
+    {
+      "title": "📢 Mock Interview Opportunity – For Our Community",
+      "url": "https://masterdataengineering.substack.com/p/mock-interview-opportunity-for-our",
+      "date": "2026-09-08",
+      "date_display": "Sep 8, 2026",
+      "excerpt": "A lot of students are currently actively looking for jobs but are struggling to get interview opportunities."
+    },
+    {
+      "title": "Healthcare for Data Engineers — Day 6: Types of Health Insurance",
+      "url": "https://masterdataengineering.substack.com/p/healthcare-for-data-engineers-day-32b",
+      "date": "2026-09-08",
+      "date_display": "Sep 8, 2026",
+      "excerpt": "Healthcare for Data Engineers"
+    },
+    {
+      "title": "If you are mentioning names of tools (SQL, Python, Tableau etc) in your LinkedIn headline or poster or our promoting youself as an expert in it, it’s high time to pivot yourself",
+      "url": "https://masterdataengineering.substack.com/p/if-you-are-mentioning-names-of-tools",
+      "date": "2026-09-07",
+      "date_display": "Sep 7, 2026",
+      "excerpt": "It’s like mentioning expert in spanner, nut, bolt, saw, screw, wood being a carpenter"
+    },
+    {
+      "title": "Healthcare for Data Engineers — Day 5: What Happens Behind an EMR? 🏥",
+      "url": "https://masterdataengineering.substack.com/p/healthcare-for-data-engineers-day-628",
+      "date": "2026-09-07",
+      "date_display": "Sep 7, 2026",
+      "excerpt": "Healthcare series for Data Engineers"
+    },
+    {
+      "title": "Healthcare for Data Engineers — Day 4: Understanding Healthcare Terms Through a Real-Life Example 🏥",
+      "url": "https://masterdataengineering.substack.com/p/healthcare-for-data-engineers-day-9c9",
+      "date": "2026-09-06",
+      "date_display": "Sep 6, 2026",
+      "excerpt": "Healthcare series for Data Engineers"
+    },
+    {
+      "title": "Healthcare for Data Engineers — Day 3: Understanding Healthcare Terms Through a Real-Life Example 🏥",
+      "url": "https://masterdataengineering.substack.com/p/healthcare-for-data-engineers-day-2cb",
+      "date": "2026-09-05",
+      "date_display": "Sep 5, 2026",
+      "excerpt": "Healthcare series"
+    },
+    {
+      "title": "Healthcare for Data Engineers — Day 2: What Are We Going to Learn? 🏥",
+      "url": "https://masterdataengineering.substack.com/p/healthcare-for-data-engineers-day",
+      "date": "2026-09-05",
+      "date_display": "Sep 5, 2026",
+      "excerpt": "The moment we think about the word healthcare, the first thing that usually comes to our mind is health insurance."
+    },
+    {
+      "title": "Lets connect",
+      "url": "https://masterdataengineering.substack.com/p/lets-connect",
+      "date": "2026-04-12",
+      "date_display": "Apr 12, 2026",
+      "excerpt": "I’m looking to connect with 20 professionals and enthusiasts working in:"
+    }
+  ]
+}
