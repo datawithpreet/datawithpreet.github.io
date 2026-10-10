@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GuestFirst AI — Project Deep Dive | Preet Mehta</title>
+  <meta name="description" content="How an agentic AI turns restaurant complaints into recoveries: connect feedback to order and kitchen data, find root causes, stage recovery for manager approval, verify resolution. Architecture, data engineering, agent workflow, and implementation.">
+  <link rel="icon" href="../assets/img/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .proj-hero { max-width: 880px; margin: 120px auto 0; padding: 40px 24px 10px; }
+    .proj-kicker { font-size: 13px; font-weight: 800; letter-spacing: .14em; color: var(--teal); text-transform: uppercase; margin-bottom: 18px; }
+    .proj-hero h1 { font-family: "Space Grotesk", sans-serif; font-size: clamp(32px, 5vw, 52px); line-height: 1.12; letter-spacing: -.02em; margin: 0 0 20px; color: var(--ink); }
+    .proj-hero .lede { font-size: 18px; line-height: 1.7; color: #3c4a68; max-width: 70ch; }
+    .proj-hero img.hero-img { width: 100%; border-radius: 16px; margin: 30px 0 8px; box-shadow: 0 18px 50px rgba(20,30,50,.14); }
+    .proof { background: rgba(42,161,152,.08); border: 1px solid rgba(42,161,152,.35); border-radius: 14px; padding: 20px 24px; margin: 26px 0; font-size: 16px; line-height: 1.65; color: #24324f; }
+    .proof a { color: #1b6f6a; font-weight: 700; }
+    .proj-body { max-width: 880px; margin: 0 auto; padding: 10px 24px 60px; }
+    .proj-body h2 { font-family: "Space Grotesk", sans-serif; font-size: 26px; margin: 48px 0 14px; color: var(--ink); letter-spacing: -.01em; }
+    .proj-body h3 { font-size: 18px; margin: 28px 0 10px; color: #1b2a4a; }
+    .proj-body p, .proj-body li { font-size: 16px; line-height: 1.75; color: #33415e; }
+    .proj-body ul, .proj-body ol { padding-left: 22px; }
+    .proj-body li { margin-bottom: 8px; }
+    .agent-flow { display: grid; gap: 0; margin: 20px 0; }
+    .agent-step { display: grid; grid-template-columns: 44px 1fr; gap: 16px; padding: 16px 0; border-bottom: 1px dashed rgba(27,42,74,.18); }
+    .agent-step:last-child { border-bottom: 0; }
+    .agent-num { width: 44px; height: 44px; border-radius: 50%; background: rgba(42,161,152,.14); border: 1.5px solid #2aa198; color: #1b6f6a; font-weight: 800; display: flex; align-items: center; justify-content: center; font-size: 17px; }
+    .agent-step b { color: #1b2a4a; }
+    .agent-step p { margin: 4px 0 0; font-size: 15px; }
+    table.spec { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 15px; }
+    table.spec th { text-align: left; padding: 10px 14px; background: rgba(27,42,74,.06); color: #1b2a4a; font-size: 12.5px; letter-spacing: .06em; text-transform: uppercase; border-bottom: 2px solid rgba(27,42,74,.14); }
+    table.spec td { padding: 10px 14px; border-bottom: 1px solid rgba(27,42,74,.1); color: #33415e; vertical-align: top; }
+    code.inline, .code-line { background: rgba(27,42,74,.07); padding: 2px 8px; border-radius: 6px; font-size: 14px; font-family: ui-monospace, Menlo, Consolas, monospace; }
+    .cta-row { display: flex; gap: 14px; flex-wrap: wrap; margin: 34px 0 10px; }
+    .btn { display: inline-block; padding: 14px 30px; border-radius: 12px; font-weight: 800; font-size: 16px; text-decoration: none; }
+    .btn-primary { background: #14b8a6; color: #04211c; }
+    .btn-ghost { border: 1.5px solid #2aa198; color: #1b6f6a; background: transparent; }
+    .back-link { display: inline-block; margin-bottom: 6px; color: #1b6f6a; font-weight: 700; text-decoration: none; font-size: 15px; }
+    .disclaimer { font-size: 13.5px; color: #7a8aa5; border-top: 1px solid rgba(27,42,74,.12); margin-top: 50px; padding-top: 20px; }
+    footer.site-footer { text-align: center; padding: 30px 20px 50px; color: #7a8aa5; font-size: 14px; }
+    footer.site-footer a { color: #1b6f6a; font-weight: 700; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <header class="site-header" id="top">
+    <a class="brand" href="../index.html#home" aria-label="Preet Mehta home">
+      <span class="brand-mark">PM</span>
+      <span class="brand-copy"><strong>PREET MEHTA</strong><small>AGENTIC AI WORKSHOP</small></span>
+    </a>
+    <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false"><span></span><span></span></button>
+    <nav class="nav resources-page-nav" aria-label="Workshop navigation">
+      <a href="../index.html#home">Home</a>
+      <a href="../resources.html">Resources</a>
+      <a class="active" href="../demos.html">Demos</a>
+      <a href="../index.html#writing">Writing</a>
+      <a href="../index.html#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="proj-hero">
+      <a class="back-link" href="../demos.html#demo-guestfirst">&larr; All demos</a>
+      <div class="proj-kicker">08 · Restaurants · Customer Intelligence · Agentic AI</div>
+      <h1>A Great Restaurant Fixes the Order. An Exceptional One Fixes the Experience.</h1>
+      <p class="lede">What if a restaurant could connect customer feedback, order history, kitchen operations, and loyalty data to understand what went wrong — and coordinate the right recovery? GuestFirst AI identifies service issues, recommends personalized responses, and tracks follow-up so restaurants can turn unhappy customers into an opportunity to rebuild trust.</p>
+      <img class="hero-img" src="../assets/demos/guestfirst-outcome.webp" alt="Warm restaurant counter — employee handing a drink to a customer, the hospitality moment data should protect" loading="lazy">
+      <div class="proof">
+        <strong>Real-world proof:</strong> Chick-fil-A tested geofencing and predictive order wait times at 100 restaurants. Customers' wait times <strong>decreased by an average of one to two minutes</strong>, while estimated wait times were accurate <strong>more than 90% of the time</strong> — data improving hospitality, not replacing it.<br>
+        <a href="https://www.qsrmagazine.com/news/chick-fil-deploy-geofencing-technology-app-update/" target="_blank" rel="noopener">QSR Magazine: Chick-fil-A to Deploy Geofencing Technology &#8599;</a>
+      </div>
+    </div>
+
+    <div class="proj-body">
+      <h2>The business outcome</h2>
+      <p>Most systems collect feedback. GuestFirst <strong>connects feedback to operational evidence</strong> — order data, kitchen timing, loyalty history — and helps coordinate what happens next. The outcome: every complaint becomes an investigated case with a proposed recovery, a manager decision, a drafted customer message, and a 48-hour follow-up check.</p>
+      <p>The differentiator is the interactive loop: the agent thinks out loud, investigates, and proposes — then the <strong>manager approves, adjusts, or rejects</strong>. Recovery stays a human decision, informed by evidence.</p>
+
+      <h2>How the agent works</h2>
+      <p>A free-text complaint box (with example chips) starts a real interactive loop — investigate → propose → approve → message → follow up:</p>
+      <div class="agent-flow">
+        <div class="agent-step"><div class="agent-num">1</div><div><b>Listen</b><p>Takes the guest's complaint in free text — cold food, wrong order, long wait — and parses the issue type and severity.</p></div></div>
+        <div class="agent-step"><div class="agent-num">2</div><div><b>Connect</b><p>Pulls the order record, kitchen ticket timing, and loyalty history to find operational evidence behind the complaint.</p></div></div>
+        <div class="agent-step"><div class="agent-num">3</div><div><b>Diagnose</b><p>Identifies the likely root cause — a kitchen delay pattern, a recurring wrong-item error, a staffing gap at the Friday-lunch rush — thinking out loud so the manager sees the reasoning.</p></div></div>
+        <div class="agent-step"><div class="agent-num">4</div><div><b>Propose</b><p>Recommends a personalized recovery action proportionate to the issue and the guest's history.</p></div></div>
+        <div class="agent-step"><div class="agent-num">5</div><div><b>Manager decides</b><p><strong>Approve / Adjust / Reject</strong> — nothing goes to the guest without a human decision.</p></div></div>
+        <div class="agent-step"><div class="agent-num">6</div><div><b>Message + follow up</b><p>Drafts the customer message and schedules a 48-hour follow-up to verify the issue was resolved.</p></div></div>
+      </div>
+      <p>The research grounding: a fast-food service study found courteous, attentive service correlates most with satisfaction — the "why the recovery matters" section of the demo puts the manager in a second-person role-play of that finding.</p>
+
+      <h2>Data engineering</h2>
+      <p>The demo runs on a synthetic restaurant dataset: complaints, order records, kitchen ticket timings, and loyalty histories — including the Friday-lunch rush scenario (28 complaints → pattern-chosen inspection → mechanism-tested root cause → staged recovery). Feedback is joined to operational evidence the way a real customer-data platform would join it.</p>
+
+      <h2>Architecture</h2>
+      <table class="spec">
+        <tr><th>Layer</th><th>What it does</th></tr>
+        <tr><td>Intake</td><td>Free-text complaint box with example chips; issue-type and severity parsing.</td></tr>
+        <tr><td>Evidence join</td><td>Connects the complaint to order, kitchen, and loyalty data.</td></tr>
+        <tr><td>Diagnosis</td><td>Root-cause analysis with think-aloud reasoning the manager can audit.</td></tr>
+        <tr><td>Recovery recommender</td><td>Personalized recovery action proportionate to issue and guest history.</td></tr>
+        <tr><td>Approval gate</td><td>Manager Approve / Adjust / Reject — the load-bearing human decision.</td></tr>
+        <tr><td>Follow-up tracker</td><td>Drafted customer message + 48h resolution verification.</td></tr>
+        <tr><td>Web UI</td><td><span class="code-line">app.py</span> over stdlib <span class="code-line">http.server</span>; offline, no installs.</td></tr>
+      </table>
+
+      <h2>Implementation</h2>
+      <ul>
+        <li><strong>Deterministic:</strong> stdlib only, offline — identical runs; edge-case batteries in <span class="code-line">TEST-LOG-EDGE.md</span>.</li>
+        <li><strong>Honest boundaries:</strong> a proposed demonstration inspired by documented restaurant practices. The Chick-fil-A sources do not establish that it uses this exact agentic workflow — the page and demo say so explicitly.</li>
+        <li><strong>Sidebar research:</strong> the demo's learn-more sidebar leads with the Hightouch piece on how Chick-fil-A turns guest data into caring experiences.</li>
+      </ul>
+
+      <h2>Technical details</h2>
+      <ul>
+        <li><strong>Run it:</strong> <span class="code-line">python3 app.py</span>, then open <span class="code-line">http://localhost:8008</span> in Chrome and click <strong>Run live demo</strong> (binds 127.0.0.1, port 8008).</li>
+        <li><strong>Repo:</strong> <a href="https://github.com/ynpreet/guestfirst-ai" target="_blank" rel="noopener">ynpreet/guestfirst-ai &#8599;</a></li>
+        <li><strong>Success criteria:</strong> complaint → evidence → root cause → proposed recovery → manager decision → drafted message → 48h follow-up; nothing reaches the guest unapproved.</li>
+      </ul>
+
+      <div class="cta-row">
+        <a class="btn btn-primary" href="https://github.com/ynpreet/guestfirst-ai" target="_blank" rel="noopener">View the code on GitHub ↗</a>
+        <a class="btn btn-ghost" href="../demos.html#how-to-run-guestfirst">How to run ↓</a>
+      </div>
+
+      <p class="disclaimer"><strong>Educational demo.</strong> All guests, complaints, and orders are synthetic. The Chick-fil-A geofencing and wait-time results are from the QSR Magazine report linked above; GuestFirst is a proposed demonstration inspired by documented restaurant practices, not Chick-fil-A's system.</p>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div>© 2026 Preet Mehta · <a href="../demos.html">All demos</a> · <a href="https://github.com/ynpreet/guestfirst-ai" target="_blank" rel="noopener">GitHub</a></div>
+  </footer>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>
