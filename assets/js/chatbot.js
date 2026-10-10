@@ -204,6 +204,14 @@
       if (g && query.toLowerCase().split(/\s+/).length <= 3) return { entry: g, score: 999 };
     }
 
+    // personal-life guard: these topics intentionally have NO KB entry.
+    // Return null (fallback) before scoring so a shared token like "preet"
+    // can never drag them onto an unrelated entry (e.g. the bio).
+    // NOTE: salary/visa/adobe are NOT in this list — they route to contact.
+    if (/\b(married|marriage|wife|husband|spouse|fiance|fiancee|girlfriend|boyfriend|dating|divorce|children|kids|kid|son|daughter|family|parents|mother|father|mom|dad|brother|sister|sibling|grandmother|grandfather|age|how old|born|birth|birthday|dob|hobby|hobbies|pastime|favorite food|favourite food|movie|movies|film|films|music|song|songs|sport|sports|cricket|religion|religious|politics|political)\b/i.test(query)) {
+      return null;
+    }
+
     // exact question-variant substring bonus (very high precision).
     // longest matching variant wins; ties break toward more words
     // ("cvs health" beats "experience", "teaching award" beats "teaching").
