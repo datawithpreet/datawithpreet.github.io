@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Music Mood Agent — Project Deep Dive | Preet Mehta</title>
+  <meta name="description" content="How an agentic AI builds mood-aware music arcs: match where you are, lift toward where you want to be, sustain the mood. Architecture, data engineering, agent workflow, and implementation.">
+  <link rel="icon" href="../assets/img/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .proj-hero { max-width: 880px; margin: 120px auto 0; padding: 40px 24px 10px; }
+    .proj-kicker { font-size: 13px; font-weight: 800; letter-spacing: .14em; color: var(--teal); text-transform: uppercase; margin-bottom: 18px; }
+    .proj-hero h1 { font-family: "Space Grotesk", sans-serif; font-size: clamp(32px, 5vw, 52px); line-height: 1.12; letter-spacing: -.02em; margin: 0 0 20px; color: var(--ink); }
+    .proj-hero .lede { font-size: 18px; line-height: 1.7; color: #3c4a68; max-width: 70ch; }
+    .proj-hero img.hero-img { width: 100%; border-radius: 16px; margin: 30px 0 8px; box-shadow: 0 18px 50px rgba(20,30,50,.14); }
+    .proof { background: rgba(42,161,152,.08); border: 1px solid rgba(42,161,152,.35); border-radius: 14px; padding: 20px 24px; margin: 26px 0; font-size: 16px; line-height: 1.65; color: #24324f; }
+    .proof a { color: #1b6f6a; font-weight: 700; }
+    .proj-body { max-width: 880px; margin: 0 auto; padding: 10px 24px 60px; }
+    .proj-body h2 { font-family: "Space Grotesk", sans-serif; font-size: 26px; margin: 48px 0 14px; color: var(--ink); letter-spacing: -.01em; }
+    .proj-body h3 { font-size: 18px; margin: 28px 0 10px; color: #1b2a4a; }
+    .proj-body p, .proj-body li { font-size: 16px; line-height: 1.75; color: #33415e; }
+    .proj-body ul, .proj-body ol { padding-left: 22px; }
+    .proj-body li { margin-bottom: 8px; }
+    .agent-flow { display: grid; gap: 0; margin: 20px 0; }
+    .agent-step { display: grid; grid-template-columns: 44px 1fr; gap: 16px; padding: 16px 0; border-bottom: 1px dashed rgba(27,42,74,.18); }
+    .agent-step:last-child { border-bottom: 0; }
+    .agent-num { width: 44px; height: 44px; border-radius: 50%; background: rgba(42,161,152,.14); border: 1.5px solid #2aa198; color: #1b6f6a; font-weight: 800; display: flex; align-items: center; justify-content: center; font-size: 17px; }
+    .agent-step b { color: #1b2a4a; }
+    .agent-step p { margin: 4px 0 0; font-size: 15px; }
+    table.spec { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 15px; }
+    table.spec th { text-align: left; padding: 10px 14px; background: rgba(27,42,74,.06); color: #1b2a4a; font-size: 12.5px; letter-spacing: .06em; text-transform: uppercase; border-bottom: 2px solid rgba(27,42,74,.14); }
+    table.spec td { padding: 10px 14px; border-bottom: 1px solid rgba(27,42,74,.1); color: #33415e; vertical-align: top; }
+    code.inline, .code-line { background: rgba(27,42,74,.07); padding: 2px 8px; border-radius: 6px; font-size: 14px; font-family: ui-monospace, Menlo, Consolas, monospace; }
+    .cta-row { display: flex; gap: 14px; flex-wrap: wrap; margin: 34px 0 10px; }
+    .btn { display: inline-block; padding: 14px 30px; border-radius: 12px; font-weight: 800; font-size: 16px; text-decoration: none; }
+    .btn-primary { background: #14b8a6; color: #04211c; }
+    .btn-ghost { border: 1.5px solid #2aa198; color: #1b6f6a; background: transparent; }
+    .back-link { display: inline-block; margin-bottom: 6px; color: #1b6f6a; font-weight: 700; text-decoration: none; font-size: 15px; }
+    .disclaimer { font-size: 13.5px; color: #7a8aa5; border-top: 1px solid rgba(27,42,74,.12); margin-top: 50px; padding-top: 20px; }
+    footer.site-footer { text-align: center; padding: 30px 20px 50px; color: #7a8aa5; font-size: 14px; }
+    footer.site-footer a { color: #1b6f6a; font-weight: 700; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <header class="site-header" id="top">
+    <a class="brand" href="../index.html#home" aria-label="Preet Mehta home">
+      <span class="brand-mark">PM</span>
+      <span class="brand-copy"><strong>PREET MEHTA</strong><small>AGENTIC AI WORKSHOP</small></span>
+    </a>
+    <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false"><span></span><span></span></button>
+    <nav class="nav resources-page-nav" aria-label="Workshop navigation">
+      <a href="../index.html#home">Home</a>
+      <a href="../resources.html">Resources</a>
+      <a class="active" href="../demos.html">Demos</a>
+      <a href="../index.html#writing">Writing</a>
+      <a href="../index.html#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="proj-hero">
+      <a class="back-link" href="../demos.html#demo-music">&larr; All demos</a>
+      <div class="proj-kicker">05 · Personalization · Recommender Systems · Agentic AI</div>
+      <h1>Your Next Song Should Fit Your Moment — Not Just Your Listening History.</h1>
+      <p class="lede">Music can help shape how we feel, focus, and unwind. This agent combines listening preferences with optional context — time of day, activity, calendar commitments, and your stated mood — to recommend music for the moment, then adapts to your feedback.</p>
+      <img class="hero-img" src="../assets/demos/music-mood-outcome.webp" alt="Listener with eyes closed wearing headphones in warm golden light — music for the moment" loading="lazy">
+      <div class="proof">
+        <strong>Real-world proof:</strong> Spotify reported that a conversational recommendation experience <strong>increased additional listening by 14%</strong> and <strong>reduced skip rates by 5%</strong> in a two-week A/B test involving approximately 15 million users. These are engagement results — not proof of improved mood or productivity.<br>
+        <a href="https://research.atspotify.com/2026/9/bootstrapping-conversational-recommendation-agents-at-spotify-synthetic-data-generation-and-self-improvement-loops" target="_blank" rel="noopener">Spotify Research, September 2026 &#8599;</a>
+      </div>
+    </div>
+
+    <div class="proj-body">
+      <h2>The business outcome</h2>
+      <p>Recommendation engines optimize for the next click. Nobody builds the <strong>sequence</strong>: an arc with a beginning, a turn, and a landing — plus the honesty of saying <em>why</em> each song fits, and a memory of what worked for you last time. The outcome this project delivers: a playlist built as an <strong>emotional arc</strong> — MATCH the mood you're in (so it starts honest, not forced) → LIFT you toward where you want to be → SUSTAIN the good mood once you're there.</p>
+      <p>Mood is not reliably inferred from time or location alone. This demo treats contextual signals as clues, <strong>prioritizes your stated mood</strong>, and makes sensitive data optional.</p>
+
+      <h2>How the agent works</h2>
+      <p>Three agents, each printing its PLAN and numbered steps so you can see the agentic loop — interpret → target arc → retrieve → score → sequence → explain:</p>
+      <div class="agent-flow">
+        <div class="agent-step"><div class="agent-num">1</div><div><b>Interpret</b><p>Reads your plain-words request ("I'm stressed after a long workday") plus optional context — time of day, activity, calendar — and infers the current mood and the target mood. Keyword-based mood detection; no black box.</p></div></div>
+        <div class="agent-step"><div class="agent-num">2</div><div><b>Design the arc</b><p>Plans the emotional sequence: MATCH (meet you where you are) → LIFT (move you toward the goal) → SUSTAIN (hold the good mood). Every arc slot becomes a retrieval query.</p></div></div>
+        <div class="agent-step"><div class="agent-num">3</div><div><b>search_catalog</b><p>Filters the track catalog per arc slot on energy, valence, and tempo. Every pick comes from the real catalog through this tool — never hallucinated by an LLM.</p></div></div>
+        <div class="agent-step"><div class="agent-num">4</div><div><b>Score and sequence</b><p>Ranks candidates per slot; tracks that worked in past sessions get a <span class="code-line">[MEMORY-BOOSTED]</span> weight (+8 points) the next time you ask for the same goal.</p></div></div>
+        <div class="agent-step"><div class="agent-num">5</div><div><b>Explain</b><p>Presents the playlist with one why-it-fits line per song — the honesty layer recommendation engines skip.</p></div></div>
+        <div class="agent-step"><div class="agent-num">6</div><div><b>Adapt</b><p>Skips, likes, or a changed mood feed back into the next recommendation; the arc re-plans around your feedback.</p></div></div>
+      </div>
+      <p>Three situations play back-to-back in the demo: stressed after work, road trip with friends, can't focus while studying.</p>
+
+      <h2>Data engineering</h2>
+      <p><span class="code-line">tracks.json</span> holds <strong>35 real, recognizable Spotify tracks — 5 per mood</strong> — every track ID verified through Spotify's oEmbed, with inline lazy-loaded 30-second preview players (no login needed). Each track carries approximate teaching values for energy, valence, and tempo — labeled as teaching values, not measured audio features. Session memory stores which tracks worked for which goals and biases future picks.</p>
+      <p>The differentiator was inspired by real listening-data analysis: listening patterns follow mood patterns across time of day and activity — which is exactly what this agent automates.</p>
+
+      <h2>Architecture</h2>
+      <table class="spec">
+        <tr><th>Layer</th><th>What it does</th></tr>
+        <tr><td>Interpreter agent</td><td>Parses the request + optional context into current mood and target mood; prints its PLAN.</td></tr>
+        <tr><td>Arc designer</td><td>Builds the MATCH → LIFT → SUSTAIN sequence and turns each slot into a retrieval query.</td></tr>
+        <tr><td>Retrieval tool</td><td><span class="code-line">search_catalog</span> — every song pick comes from the catalog via this tool; you see every tool call.</td></tr>
+        <tr><td>Memory</td><td>Past sessions bias future picks ([MEMORY-BOOSTED]); feedback (skips, likes, mood change) re-plans the arc.</td></tr>
+        <tr><td>Explainer</td><td>One why-it-fits line per song — transparent reasoning, not a black-box queue.</td></tr>
+        <tr><td>Web UI</td><td><span class="code-line">app.py</span> over stdlib <span class="code-line">http.server</span>; no installs, no API keys, fully offline.</td></tr>
+      </table>
+
+      <h2>Implementation</h2>
+      <ul>
+        <li><strong>Deterministic:</strong> stdlib only, offline, no randomness — identical runs; <span class="code-line">TEST-LOG.md</span> records the determinism gate, <span class="code-line">TEST-LOG-EDGE.md</span> the edge-case battery.</li>
+        <li><strong>Honest boundaries:</strong> mood detection is keyword-based; track audio values are teaching approximations; this is entertainment, not therapy.</li>
+        <li><strong>Why an agent, not a chatbot:</strong> an LLM would hallucinate song titles. This system plans, uses tools, reasons over multiple steps, and remembers — the structure is the point.</li>
+      </ul>
+
+      <h2>Technical details</h2>
+      <ul>
+        <li><strong>Run it:</strong> <span class="code-line">python3 app.py</span>, then open <span class="code-line">http://localhost:8005</span> in Chrome and click <strong>Run live demo</strong> (binds 127.0.0.1, port 8005).</li>
+        <li><strong>Repo:</strong> <a href="https://github.com/ynpreet/music-mood-agent" target="_blank" rel="noopener">ynpreet/music-mood-agent &#8599;</a></li>
+        <li><strong>Success criteria:</strong> three situations play back-to-back; every pick from the catalog via the tool; memory boost visible in situation 3; one explanation line per song.</li>
+      </ul>
+
+      <div class="cta-row">
+        <a class="btn btn-primary" href="https://github.com/ynpreet/music-mood-agent" target="_blank" rel="noopener">View the code on GitHub ↗</a>
+        <a class="btn btn-ghost" href="../demos.html#how-to-run-music">How to run ↓</a>
+      </div>
+
+      <p class="disclaimer"><strong>Educational demo.</strong> Track audio values are approximate teaching values, not measured audio features; mood detection is keyword-based. The Spotify statistics are engagement results from the linked Spotify Research article — not proof of improved mood or productivity.</p>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div>© 2026 Preet Mehta · <a href="../demos.html">All demos</a> · <a href="https://github.com/ynpreet/music-mood-agent" target="_blank" rel="noopener">GitHub</a></div>
+  </footer>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>
