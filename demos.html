@@ -4,14 +4,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Agentic AI Workshop — Demos | Preet Mehta</title>
-  <meta name="description" content="Nine hands-on agentic AI demos by Preet Mehta: a personalized care management agent, the flagship HHV Copilot for Medicare Advantage in-home assessments, a restaurant location finder, AeroYield AI (agentic airline revenue management), a music mood matcher, FixMate AI (intelligent equipment maintenance), GameGuard AI (gaming safety and fraud detection), GuestFirst AI (personalized restaurant experiences — investigate, fix, verify), and Resume Reviewer AI (33 hiring-manager rules + JD match, right in your browser). Open source on GitHub.">
+  <meta name="description" content="Eight hands-on agentic AI demos by Preet Mehta: a personalized care management agent, the flagship HHV Copilot for Medicare Advantage in-home assessments, a restaurant location finder, AeroYield AI (agentic airline revenue management), a music mood matcher, FixMate AI (intelligent equipment maintenance), GameGuard AI (gaming safety and fraud detection), and GuestFirst AI (personalized restaurant experiences — investigate, fix, verify). Open source on GitHub.">
   <link rel="icon" href="assets/img/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
   <meta property="og:title" content="Agentic AI Workshop — Demos | Preet Mehta">
-  <meta property="og:description" content="Watch AI agents think: nine open-source agentic AI demos — care management, Medicare Advantage in-home assessments, restaurant site selection, airline revenue management, music mood matching, equipment maintenance, gaming safety, personalized restaurant experiences, and resume feedback.">
+  <meta property="og:description" content="Watch AI agents think: eight open-source agentic AI demos — care management, Medicare Advantage in-home assessments, restaurant site selection, airline revenue management, music mood matching, equipment maintenance, gaming safety, and personalized restaurant experiences.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://datawithpreet.github.io/assets/img/preet-creator.jpg">
   <noscript><style>.reveal{opacity:1!important;transform:none!important}.section-title{clip-path:none!important}</style></noscript>
@@ -56,6 +56,8 @@
       border: 1px solid var(--line-strong); border-radius: 999px; padding: 7px 14px; color: var(--gray);
     }
     .demo-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .demo-note { margin: 0 0 18px; font-size: 14.5px; color: var(--muted); }
+    .demo-note a { color: var(--accent); font-weight: 700; }
     .demo-actions .btn { padding: 12px 24px; font-size: 13.5px; }
     .run-block {
       border: 1px solid var(--line-strong);
@@ -152,7 +154,7 @@
     <section class="resources-hero" id="demos">
       <div class="section-kicker">AGENTIC AI WORKSHOP</div>
       <h1>AI agents that <em>do the work.</em></h1>
-      <p>Not chatbots that answer questions — agents that read, reason, and act. These nine demos are the hands-on core of the Agentic AI Workshop: each one takes a real-world workflow, breaks it into steps, and lets an AI agent run it end to end. Every demo is open source — read the code, run it, and make it your own.</p>
+      <p>Not chatbots that answer questions — agents that read, reason, and act. These eight demos are the hands-on core of the Agentic AI Workshop: each one takes a real-world workflow, breaks it into steps, and lets an AI agent run it end to end. Every demo is open source — read the code, run it, and make it your own.</p>
       <div class="resources-hero-pills"><span>AGENTIC AI</span><span>OPEN SOURCE</span><span>PYTHON</span><span>HANDS-ON</span></div>
     </section>
 
@@ -179,7 +181,7 @@
     <section class="resource-library" id="demo-care">
       <div class="resource-library-heading"><span>01</span><div><h2>Personalized Care Management Agent</h2><p>From patient data chaos to a ready-to-review care plan.</p></div></div>
       <article class="demo-card">
-        <img class="demo-img" src="assets/demos/care-management.webp" alt="Personalized care messages reaching patients through email, text message, and phone call" loading="lazy">
+        <img class="demo-img" src="assets/demos/care-management.webp" alt="Doctor showing a personalized care plan to a patient on a tablet" loading="lazy">
         <p>Five small agents, one job each, working one patient at a time: Auth verifies login, Triage scores risk, Channel picks email / SMS / a call script, Care Plan builds the plan, and Message renders it. The story is a before/after — one generic blast email (<em>"Get yourself checked. Visit a physician."</em>) versus a personalized, risk-triaged care plan plus a tailored outreach message for every patient. Pure Python, zero dependencies, fully deterministic.</p>
         <div class="demo-compare">
           <div class="before"><b>BEFORE AI</b>One generic blast email to every patient: "Get yourself checked. Visit a physician." — no name, no condition, no next step.</div>
@@ -222,9 +224,11 @@
           <div class="after"><b>AFTER AI</b>The agent scores every candidate block on competition, demand, and rent — and tells you where to sign the lease.</div>
         </div>
         <div class="demo-tech"><span>PYTHON</span><span>YELP-STYLE DATA</span><span>BUSINESS RULES</span><span>SCORING AGENT</span></div>
+        <p class="demo-note">I also built an end-to-end <b>ML model predicting the ideal location for a new restaurant on the Yelp dataset</b> — the machine-learning companion to this agent. <a href="https://github.com/ynpreet/Predicting-Ideal-location-for-a-new-reastaurant-using-Yelp-dataset" target="_blank" rel="noopener">Visit the project ↗</a></p>
         <div class="demo-actions">
           <a class="btn btn-primary" href="https://github.com/ynpreet/restaurant-location-agent" target="_blank" rel="noopener">View on GitHub ↗</a>
           <a class="btn btn-ghost" href="#how-to-run-restaurant">How to run ↓</a>
+          <a class="btn btn-ghost" href="https://github.com/ynpreet/Predicting-Ideal-location-for-a-new-reastaurant-using-Yelp-dataset" target="_blank" rel="noopener">My Yelp ML model ↗</a>
         </div>
       </article>
     </section>
@@ -240,9 +244,11 @@
           <div class="after"><b>AFTER AI</b>The agent reads demand and competitor moves and prices the corridor continuously — with fixed and rule-based baselines side by side to prove the difference.</div>
         </div>
         <div class="demo-tech"><span>PYTHON</span><span>REVENUE MANAGEMENT</span><span>DEMAND FORECASTING</span><span>THREE-WAY BASELINE</span></div>
+        <p class="demo-note">Companion project: my <b>end-to-end flight fare prediction web app</b> — trained ML model, deployed, ready to visit. <a href="https://github.com/ynpreet/Flight-Fare-Prediction-Web-App-Project-With-Deployment" target="_blank" rel="noopener">Visit the project ↗</a></p>
         <div class="demo-actions">
           <a class="btn btn-primary" href="https://github.com/ynpreet/aeroyield-ai" target="_blank" rel="noopener">View on GitHub ↗</a>
           <a class="btn btn-ghost" href="#how-to-run-aeroyield">How to run ↓</a>
+          <a class="btn btn-ghost" href="https://github.com/ynpreet/Flight-Fare-Prediction-Web-App-Project-With-Deployment" target="_blank" rel="noopener">My Flight-Fare ML project ↗</a>
         </div>
       </article>
     </section>
@@ -319,25 +325,6 @@
       </article>
     </section>
 
-    <!-- ================= DEMO 09 ================= -->
-    <section class="resource-library" id="demo-resumereviewer">
-      <div class="resource-library-heading"><span>09</span><div><h2>Resume Reviewer AI — An Agentic AI System for Resume Feedback</h2><p>Upload a resume, paste the job description, get 33 hiring-manager rules scored.</p></div></div>
-      <article class="demo-card">
-        <img class="demo-img" src="assets/demos/resume-reviewer.webp" alt="Magnifying glass over a resume revealing checkmarks and a score ring" loading="lazy">
-        <p>The job hunt is a black box: you send a resume, hear nothing, and never learn why. Resume Reviewer AI opens the box. Upload your resume (PDF or Word) and paste the job description you're targeting, and the agent runs <b>33 hiring-manager rules</b> — 15 for the header (contact block, LinkedIn, location) and 18 for the body and formatting (action verbs, quantified bullets, tense consistency, buzzwords, ATS-friendly layout) — plus a job-description skill and keyword match that names exactly what's missing. Every failed rule comes with evidence from <em>your</em> resume and a concrete fix. And it's private by design: everything runs in your browser — the resume never leaves your tab.</p>
-        <div class="demo-compare">
-          <div class="before"><b>BEFORE AI</b>Generic resume tips, keyword-stuffing guesses, and paid reviews that take a week to come back.</div>
-          <div class="after"><b>AFTER AI</b>33 checks in seconds with evidence and fixes, JD skill coverage with the exact missing terms, and a score that shows where you stand — free, instant, private.</div>
-        </div>
-        <div class="demo-tech"><span>RULE ENGINE</span><span>PDF PARSING</span><span>JD KEYWORD MATCH</span><span>PRIVACY-FIRST</span></div>
-        <div class="demo-actions">
-          <a class="btn btn-primary" href="resume-reviewer.html">Try it live ↗</a>
-          <a class="btn btn-ghost" href="https://github.com/ynpreet/resume-reviewer-agent" target="_blank" rel="noopener">View on GitHub ↗</a>
-          <a class="btn btn-ghost" href="#how-to-run-resumereviewer">How to run ↓</a>
-        </div>
-      </article>
-    </section>
-
     <!-- ================= HOW TO RUN ================= -->
     <section class="resource-library" id="how-to-run">
       <div class="resource-library-heading"><span>★</span><div><h2>How to run</h2><p>No IT background needed — if you can open a web browser, you can run these. Each demo opens as a <b>website on your own computer</b>: you click through the story in Chrome, no coding required. Nothing is installed, no accounts, no API keys. The whole thing takes about 5 minutes the first time.</p></div></div>
@@ -362,7 +349,7 @@
             </ol>
           </div>
         </div>
-        <p style="margin-bottom:0"><b>Want all 9 open at once?</b> Start each demo's <code>app.py</code> in its own terminal window — each uses its own port, so you can hop between them in Chrome just by changing the number at the end of the address. <i>Prefer the classic terminal version? Run <code>python3 demo.py</code> instead of <code>app.py</code> — same story, text only.</i></p>
+        <p style="margin-bottom:0"><b>Want all 8 open at once?</b> Start each demo's <code>app.py</code> in its own terminal window — each uses its own port, so you can hop between them in Chrome just by changing the number at the end of the address. <i>Prefer the classic terminal version? Run <code>python3 demo.py</code> instead of <code>app.py</code> — same story, text only.</i></p>
       </div>
 
       <div class="run-block" id="how-to-run-care">
@@ -427,13 +414,6 @@
         <span class="code-line">git clone https://github.com/ynpreet/guestfirst-ai.git</span>
         <span class="code-line">cd guestfirst-ai &amp;&amp; python3 app.py</span>
         <span class="code-line">open http://localhost:8008 in Chrome &nbsp;·&nbsp; terminal-only: python3 demo.py</span>
-      </div>
-      <div class="run-block" id="how-to-run-resumereviewer">
-        <h3><a href="https://github.com/ynpreet/resume-reviewer-agent" target="_blank" rel="noopener">Resume Reviewer AI — Resume Feedback with 33 Hiring-Manager Rules ↗</a></h3>
-        <p>The only demo that runs entirely in your browser — no install, no server, no accounts. It's live on this site: hit <b>Try it live</b>, upload a PDF or Word resume, paste a job description, and get your score. Prefer the terminal? The repo ships a text-only version with sample resumes.</p>
-        <span class="code-line">git clone https://github.com/ynpreet/resume-reviewer-agent.git</span>
-        <span class="code-line">cd resume-reviewer-agent &amp;&amp; python3 demo.py fixtures/strong.txt fixtures/sample-jd.txt</span>
-        <span class="code-line">open resume-reviewer.html in Chrome (from this site) &nbsp;·&nbsp; local preview: python3 app.py → http://localhost:8009/resume-reviewer.html</span>
       </div>
     </section>
 
