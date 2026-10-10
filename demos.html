@@ -70,6 +70,60 @@
       .demo-compare { grid-template-columns: 1fr; }
       .demo-card { padding: 22px 20px; }
     }
+
+    /* ===== Demos hub: tab system ===== */
+    /* ADDING A NEW TAB: add one <button class="tab-btn" data-tab="your-id"> in .tab-bar
+       and one <div class="tab-panel" id="tab-your-id"> right after the other panels. */
+    .tab-bar { display:flex; flex-wrap:wrap; gap:10px; margin: 8px 0 30px; }
+    .tab-btn { font: inherit; font-weight:700; font-size:15px; padding:12px 22px; border-radius:999px;
+      border:2px solid rgba(27,42,74,.18); background:#fff; color:#1b2a4a; cursor:pointer; transition:all .18s ease; }
+    .tab-btn:hover { border-color:#2aa198; color:#1b6f6a; }
+    .tab-btn.active { background:#1b2a4a; border-color:#1b2a4a; color:#fff; box-shadow:0 6px 18px rgba(27,42,74,.25); }
+    .tab-btn:disabled { opacity:.45; cursor:not-allowed; }
+    .tab-panel { display:none; }
+    .tab-panel.active { display:block; animation: fadeIn .25s ease; }
+    @keyframes fadeIn { from { opacity:0; transform: translateY(6px);} to { opacity:1; transform:none;} }
+    /* ===== Intro essay ===== */
+    .hub-essay { background:#fff; border:1px solid rgba(27,42,74,.12); border-radius:18px; padding:34px 36px;
+      margin:0 0 30px; box-shadow:0 10px 30px rgba(27,42,74,.08); }
+    .hub-essay h2 { margin-top:0; color:#1b2a4a; font-size:24px; }
+    .hub-essay p { font-size:16.5px; line-height:1.85; color:#24324f; margin:0 0 14px; }
+    .hub-essay p:last-child { margin-bottom:0; }
+    /* ===== Checklist tab ===== */
+    .check-cols { display:grid; grid-template-columns:1fr 1fr; gap:22px; margin:0 0 28px; }
+    @media (max-width:820px){ .check-cols { grid-template-columns:1fr; } }
+    .check-col { background:#fff; border-radius:18px; padding:28px 30px; box-shadow:0 10px 30px rgba(27,42,74,.08);
+      border-top:5px solid #2aa198; }
+    .check-col.donts { border-top-color:#c0392b; }
+    .check-col h3 { margin-top:0; color:#1b2a4a; font-size:19px; }
+    .check-col ul { margin:8px 0 0; padding-left:20px; }
+    .check-col li { font-size:15px; line-height:1.7; margin-bottom:9px; color:#24324f; }
+    .check-col.dos li::marker { color:#2aa198; font-weight:700; }
+    .check-col.donts li::marker { color:#c0392b; font-weight:700; }
+    .download-card { text-align:center; background:linear-gradient(135deg,#1b2a4a,#1b6f6a); color:#fff;
+      border-radius:18px; padding:36px 30px; margin:0 0 28px; box-shadow:0 12px 32px rgba(27,42,74,.25); }
+    .download-card h3 { color:#fff; margin-top:0; font-size:21px; }
+    .download-card p { color:rgba(255,255,255,.85); font-size:15.5px; max-width:640px; margin:0 auto 20px; }
+    .btn-download { display:inline-block; background:#fff; color:#1b2a4a; font-weight:800; font-size:16px;
+      padding:14px 32px; border-radius:999px; text-decoration:none; transition:transform .15s ease; }
+    .btn-download:hover { transform:translateY(-2px); }
+    /* ===== Learn tab: resource cards ===== */
+    .res-group { margin:0 0 34px; }
+    .res-group > h3 { color:#1b2a4a; font-size:20px; margin:0 0 16px; padding-bottom:8px;
+      border-bottom:2px solid rgba(42,161,152,.35); }
+    .res-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:18px; }
+    .res-card { background:#fff; border:1px solid rgba(27,42,74,.12); border-radius:16px; padding:22px 24px;
+      box-shadow:0 8px 24px rgba(27,42,74,.07); display:flex; flex-direction:column; }
+    .res-card h4 { margin:0 0 4px; font-size:16.5px; color:#1b2a4a; }
+    .res-provider { font-size:13px; font-weight:700; color:#1b6f6a; letter-spacing:.04em; text-transform:uppercase; margin-bottom:8px; }
+    .res-card p { font-size:14.5px; line-height:1.65; color:#3c4a68; flex:1; margin:0 0 14px; }
+    .res-meta { display:flex; align-items:center; justify-content:space-between; gap:10px; }
+    .res-badge { font-size:12px; font-weight:800; padding:5px 12px; border-radius:999px; white-space:nowrap; }
+    .res-badge.free { background:rgba(42,161,152,.14); color:#1b6f6a; }
+    .res-badge.paid { background:rgba(27,42,74,.1); color:#1b2a4a; }
+    .res-badge.mixed { background:rgba(240,178,70,.18); color:#9a6b12; }
+    .res-link { font-size:14px; font-weight:700; color:#1b2a4a; text-decoration:none; border-bottom:2px solid #2aa198; }
+    .res-link:hover { color:#1b6f6a; }
   </style>
 </head>
 <body>
@@ -95,6 +149,25 @@
       <p>Not chatbots that answer questions — agents that read, reason, and act. These eight demos are the hands-on core of the Agentic AI Workshop: each one takes a real-world workflow, breaks it into steps, and lets an AI agent run it end to end. Every demo is open source — read the code, run it, and make it your own.</p>
       <div class="resources-hero-pills"><span>AGENTIC AI</span><span>OPEN SOURCE</span><span>PYTHON</span><span>HANDS-ON</span></div>
     </section>
+
+    <!-- ================= DEMOS HUB TABS ================= -->
+    <!-- ADDING A NEW TAB: add one <button class="tab-btn" data-tab="tab-yourid"> below,
+         then add <div class="tab-panel" id="tab-yourid"> ... </div> after the last panel. -->
+    <nav class="tab-bar" aria-label="Demo collections">
+      <button class="tab-btn active" data-tab="tab-agentic">Agentic AI</button>
+      <button class="tab-btn" data-tab="tab-checklist">Builder's Checklist</button>
+      <button class="tab-btn" data-tab="tab-learn">Learn Agentic AI</button>
+      <button class="tab-btn" data-tab="tab-soon" disabled>More collections soon</button>
+    </nav>
+
+    <div class="tab-panel active" id="tab-agentic">
+      <div class="hub-essay">
+        <h2>From chatbots that answer to agents that <em>do</em></h2>
+        <p>For years, AI meant a chatbot: you ask a question, it gives you an answer. Useful — but the work still landed on your desk. That era is ending. The world is moving toward <strong>agentic AI</strong>: systems that don't just answer, they <strong>plan, use tools, make decisions, and ask for help when they're unsure</strong>.</p>
+        <p>Think about the tools you already trust. A travel assistant that doesn't just suggest flights but books them, rebooks when the flight is cancelled, and messages you the new plan. A health app that notices you missed a checkup, calls the clinic, and puts the appointment on your calendar. Customer support that doesn't hand you a help article — it looks up your order, finds the problem, and fixes it. A coding assistant that writes the code, runs the tests, and fixes the failures. Every one of these is an agent: a loop of observe, decide, act — with you able to step in at any point.</p>
+        <p>This matters now because the barrier has collapsed. You no longer need a research lab to build one: the demos below were built with plain Python, no paid APIs, no special hardware. If you understand a workflow — the steps, the tools, the judgment calls — you can turn it into an agent. That makes agentic AI the most practical AI skill to learn today: it applies to healthcare, finance, retail, gaming, and everywhere decisions get made.</p>
+        <p>Below are 8 working demos you can run on your own computer — each one a complete agentic system, not a slide deck.</p>
+      </div>
 
     <!-- ================= DEMO 01 ================= -->
     <section class="resource-library" id="demo-care">
@@ -320,6 +393,130 @@
       </div>
     </section>
 
+    </div><!-- /#tab-agentic -->
+
+    <div class="tab-panel" id="tab-checklist">
+      <div class="hub-essay">
+        <h2>Building your own agent? Start here.</h2>
+        <p>These are the do's and don'ts distilled from teams shipping agents in production — the practices that separate demos that impress from systems that survive real users. General builder guidance, not a rulebook: use it as a pre-flight check before you build, and again before you ship. The full version covers problem definition, agent design, safety, testing, and operations.</p>
+      </div>
+      <div class="download-card">
+        <h3>The Agentic AI Builder's Checklist</h3>
+        <p>5 sections, 44 one-line rules: before you build, designing the agent, safety &amp; trust, testing &amp; evaluation, shipping &amp; operating. Keep it next to your keyboard.</p>
+        <a class="btn-download" href="assets/agentic-ai-builders-checklist.pdf" download>Download the full checklist (PDF)</a>
+      </div>
+      <div class="check-cols">
+        <div class="check-col dos"><h3>✓ Do</h3><ul>
+          <li>Write down the exact task the agent performs, in one sentence, before touching any code.</li>
+          <li>Start with the simplest thing that could work: one model call, one tool, a fixed sequence of steps.</li>
+          <li>Design a few clear, well-named tools instead of dozens of vague ones.</li>
+          <li>Decide up front which decisions the agent may make alone and which need a human's approval.</li>
+          <li>Put a human checkpoint before any irreversible action: sending, paying, deleting, publishing.</li>
+          <li>Treat user-provided content as untrusted data — never let it become instructions the agent follows blindly.</li>
+          <li>Build 10–15 realistic test scenarios (including failure cases) and run them after every change.</li>
+          <li>Track cost and latency per task from day one — agentic loops multiply both.</li>
+        </ul></div>
+        <div class="check-col donts"><h3>✗ Don't</h3><ul>
+          <li>Don't build an agent for a task you can't describe in plain words.</li>
+          <li>Don't hand the agent full autonomy on day one — earn it with evidence.</li>
+          <li>Don't let the agent act on text it read from the open web as if it were your instruction.</li>
+          <li>Don't grant the agent broader permissions than the task needs.</li>
+          <li>Don't ship without a way to turn the agent off quickly.</li>
+          <li>Don't evaluate on two perfect demo inputs and call it tested.</li>
+          <li>Don't launch to all users with the same settings you used in testing.</li>
+          <li>Don't ignore cost until the invoice arrives — set budgets and alerts.</li>
+        </ul></div>
+      </div>
+    </div><!-- /#tab-checklist -->
+
+    <div class="tab-panel" id="tab-learn">
+      <div class="hub-essay">
+        <h2>Learn agentic AI, properly</h2>
+        <p>Want to go deeper than the demos? These are the resources the professionals actually use — courses, engineering guides and whitepapers from the labs and teams building agents in production. Start with one course and one guide; build something small alongside.</p>
+      </div>
+      <div class="res-group">
+        <h3>Courses</h3>
+        <div class="res-grid">
+          <div class="res-card">
+            <h4>Agentic AI</h4>
+            <div class="res-provider">DeepLearning.AI · Andrew Ng</div>
+            <p>The four agentic design patterns — reflection, tool use, planning, multi-agent — taught with evaluation and error analysis woven throughout.</p>
+            <div class="res-meta"><span class="res-badge mixed">Free to audit · Paid cert</span><a class="res-link" href="https://www.deeplearning.ai/courses/agentic-ai/" target="_blank" rel="noopener">Open resource ↗</a></div>
+          </div>
+          <div class="res-card">
+            <h4>AI Agents Course</h4>
+            <div class="res-provider">Hugging Face</div>
+            <p>Free and certified: build agents with smolagents, LlamaIndex and LangGraph, then ship your own to a public leaderboard.</p>
+            <div class="res-meta"><span class="res-badge free">Free</span><a class="res-link" href="https://huggingface.co/learn/agents-course" target="_blank" rel="noopener">Open resource ↗</a></div>
+          </div>
+          <div class="res-card">
+            <h4>LangChain Academy</h4>
+            <div class="res-provider">LangChain</div>
+            <p>Official courses on LangGraph agents, Deep Agents and LangSmith — straight from the team building the frameworks. Always free.</p>
+            <div class="res-meta"><span class="res-badge free">Free</span><a class="res-link" href="https://academy.langchain.com/" target="_blank" rel="noopener">Open resource ↗</a></div>
+          </div>
+          <div class="res-card">
+            <h4>AI Agents for Beginners</h4>
+            <div class="res-provider">Microsoft</div>
+            <p>18 open-source lessons: design patterns, tool use, planning, memory, MCP, security and deploying agents in production.</p>
+            <div class="res-meta"><span class="res-badge free">Free</span><a class="res-link" href="https://github.com/microsoft/ai-agents-for-beginners" target="_blank" rel="noopener">Open resource ↗</a></div>
+          </div>
+          <div class="res-card">
+            <h4>Agentic AI Program</h4>
+            <div class="res-provider">Stanford Online</div>
+            <p>Graduate-level agentic AI for working professionals: self-improving agents, tool use, reasoning, planning and evaluation.</p>
+            <div class="res-meta"><span class="res-badge paid">Paid</span><a class="res-link" href="https://online.stanford.edu/programs/agentic-ai" target="_blank" rel="noopener">Open resource ↗</a></div>
+          </div>
+          <div class="res-card">
+            <h4>5-Day AI Agents Intensive</h4>
+            <div class="res-provider">Google + Kaggle</div>
+            <p>Five days of whitepapers and hands-on codelabs covering agents, tools, memory, quality and getting to production.</p>
+            <div class="res-meta"><span class="res-badge free">Free</span><a class="res-link" href="https://www.kaggle.com/learn-guide/5-day-agents" target="_blank" rel="noopener">Open resource ↗</a></div>
+          </div>
+        </div>
+      </div>
+      <div class="res-group">
+        <h3>Guides & docs</h3>
+        <div class="res-grid">
+          <div class="res-card">
+            <h4>Building Effective Agents</h4>
+            <div class="res-provider">Anthropic</div>
+            <p>The canonical engineering guide: workflows vs agents, five composable patterns, and when agency is actually worth the cost.</p>
+            <div class="res-meta"><span class="res-badge free">Free</span><a class="res-link" href="https://www.anthropic.com/engineering/building-effective-agents" target="_blank" rel="noopener">Open resource ↗</a></div>
+          </div>
+          <div class="res-card">
+            <h4>A Practical Guide to Building Agents</h4>
+            <div class="res-provider">OpenAI</div>
+            <p>When to build an agent at all, design foundations, orchestration, tool design and guardrails — written for product and engineering teams.</p>
+            <div class="res-meta"><span class="res-badge free">Free PDF</span><a class="res-link" href="https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf" target="_blank" rel="noopener">Open resource ↗</a></div>
+          </div>
+          <div class="res-card">
+            <h4>Agent Patterns Cookbook</h4>
+            <div class="res-provider">Anthropic</div>
+            <p>Runnable code for every agent pattern from the Building Effective Agents guide.</p>
+            <div class="res-meta"><span class="res-badge free">Free</span><a class="res-link" href="https://github.com/anthropics/anthropic-cookbook/tree/main/patterns/agents" target="_blank" rel="noopener">Open resource ↗</a></div>
+          </div>
+        </div>
+      </div>
+      <div class="res-group">
+        <h3>Whitepapers</h3>
+        <div class="res-grid">
+          <div class="res-card">
+            <h4>Introduction to Agents</h4>
+            <div class="res-provider">Google</div>
+            <p>Google's agent architecture whitepaper: the model as the brain, tools as the hands, orchestration as the nervous system.</p>
+            <div class="res-meta"><span class="res-badge free">Free</span><a class="res-link" href="https://www.kaggle.com/whitepaper-introduction-to-agents" target="_blank" rel="noopener">Open resource ↗</a></div>
+          </div>
+          <div class="res-card">
+            <h4>Agent Quality</h4>
+            <div class="res-provider">Google</div>
+            <p>How to define, measure and build trust in agents: effectiveness, cost-efficiency, safety and user trust.</p>
+            <div class="res-meta"><span class="res-badge free">Free</span><a class="res-link" href="https://www.kaggle.com/whitepaper-agent-quality" target="_blank" rel="noopener">Open resource ↗</a></div>
+          </div>
+        </div>
+      </div>
+    </div><!-- /#tab-learn -->
+
     <section class="resource-cta">
       <span>WANT THESE DEMOS LIVE IN A SESSION?</span>
       <h2>Bring the <em>Agentic AI Workshop</em> to your team.</h2>
@@ -333,5 +530,26 @@
     <div><span>© 2026 Preet Mehta</span></div>
   </footer>
   <script src="assets/js/main.js"></script>
+
+  <script>
+    // Demos hub tabs: buttons carry data-tab, panels carry matching ids.
+    (function () {
+      var btns = document.querySelectorAll('.tab-btn[data-tab]');
+      function activate(id, push) {
+        btns.forEach(function (b) { b.classList.toggle('active', b.dataset.tab === id); });
+        document.querySelectorAll('.tab-panel').forEach(function (p) {
+          p.classList.toggle('active', p.id === id);
+        });
+        if (push && history.replaceState) history.replaceState(null, '', '#' + id);
+      }
+      btns.forEach(function (b) {
+        b.addEventListener('click', function () { activate(b.dataset.tab, true); });
+      });
+      var h = (location.hash || '').replace('#', '');
+      if (h && document.getElementById(h) && document.getElementById(h).classList.contains('tab-panel')) {
+        activate(h, false);
+      }
+    })();
+  </script>
 </body>
 </html>
