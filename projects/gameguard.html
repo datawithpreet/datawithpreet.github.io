@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GameGuard AI — Project Deep Dive | Preet Mehta</title>
+  <meta name="description" content="How an agentic AI investigates gaming safety: context over keywords, emoji and slang understanding, cross-conversation patterns, human-decided outcomes. Architecture, data engineering, agent workflow, and implementation.">
+  <link rel="icon" href="../assets/img/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .proj-hero { max-width: 880px; margin: 120px auto 0; padding: 40px 24px 10px; }
+    .proj-kicker { font-size: 13px; font-weight: 800; letter-spacing: .14em; color: var(--teal); text-transform: uppercase; margin-bottom: 18px; }
+    .proj-hero h1 { font-family: "Space Grotesk", sans-serif; font-size: clamp(32px, 5vw, 52px); line-height: 1.12; letter-spacing: -.02em; margin: 0 0 20px; color: var(--ink); }
+    .proj-hero .lede { font-size: 18px; line-height: 1.7; color: #3c4a68; max-width: 70ch; }
+    .proj-hero img.hero-img { width: 100%; border-radius: 16px; margin: 30px 0 8px; box-shadow: 0 18px 50px rgba(20,30,50,.14); }
+    .proof { background: rgba(42,161,152,.08); border: 1px solid rgba(42,161,152,.35); border-radius: 14px; padding: 20px 24px; margin: 26px 0; font-size: 16px; line-height: 1.65; color: #24324f; }
+    .proof a { color: #1b6f6a; font-weight: 700; }
+    .proj-body { max-width: 880px; margin: 0 auto; padding: 10px 24px 60px; }
+    .proj-body h2 { font-family: "Space Grotesk", sans-serif; font-size: 26px; margin: 48px 0 14px; color: var(--ink); letter-spacing: -.01em; }
+    .proj-body h3 { font-size: 18px; margin: 28px 0 10px; color: #1b2a4a; }
+    .proj-body p, .proj-body li { font-size: 16px; line-height: 1.75; color: #33415e; }
+    .proj-body ul, .proj-body ol { padding-left: 22px; }
+    .proj-body li { margin-bottom: 8px; }
+    .agent-flow { display: grid; gap: 0; margin: 20px 0; }
+    .agent-step { display: grid; grid-template-columns: 44px 1fr; gap: 16px; padding: 16px 0; border-bottom: 1px dashed rgba(27,42,74,.18); }
+    .agent-step:last-child { border-bottom: 0; }
+    .agent-num { width: 44px; height: 44px; border-radius: 50%; background: rgba(42,161,152,.14); border: 1.5px solid #2aa198; color: #1b6f6a; font-weight: 800; display: flex; align-items: center; justify-content: center; font-size: 17px; }
+    .agent-step b { color: #1b2a4a; }
+    .agent-step p { margin: 4px 0 0; font-size: 15px; }
+    table.spec { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 15px; }
+    table.spec th { text-align: left; padding: 10px 14px; background: rgba(27,42,74,.06); color: #1b2a4a; font-size: 12.5px; letter-spacing: .06em; text-transform: uppercase; border-bottom: 2px solid rgba(27,42,74,.14); }
+    table.spec td { padding: 10px 14px; border-bottom: 1px solid rgba(27,42,74,.1); color: #33415e; vertical-align: top; }
+    code.inline, .code-line { background: rgba(27,42,74,.07); padding: 2px 8px; border-radius: 6px; font-size: 14px; font-family: ui-monospace, Menlo, Consolas, monospace; }
+    .cta-row { display: flex; gap: 14px; flex-wrap: wrap; margin: 34px 0 10px; }
+    .btn { display: inline-block; padding: 14px 30px; border-radius: 12px; font-weight: 800; font-size: 16px; text-decoration: none; }
+    .btn-primary { background: #14b8a6; color: #04211c; }
+    .btn-ghost { border: 1.5px solid #2aa198; color: #1b6f6a; background: transparent; }
+    .back-link { display: inline-block; margin-bottom: 6px; color: #1b6f6a; font-weight: 700; text-decoration: none; font-size: 15px; }
+    .disclaimer { font-size: 13.5px; color: #7a8aa5; border-top: 1px solid rgba(27,42,74,.12); margin-top: 50px; padding-top: 20px; }
+    footer.site-footer { text-align: center; padding: 30px 20px 50px; color: #7a8aa5; font-size: 14px; }
+    footer.site-footer a { color: #1b6f6a; font-weight: 700; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <header class="site-header" id="top">
+    <a class="brand" href="../index.html#home" aria-label="Preet Mehta home">
+      <span class="brand-mark">PM</span>
+      <span class="brand-copy"><strong>PREET MEHTA</strong><small>AGENTIC AI WORKSHOP</small></span>
+    </a>
+    <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false"><span></span><span></span></button>
+    <nav class="nav resources-page-nav" aria-label="Workshop navigation">
+      <a href="../index.html#home">Home</a>
+      <a href="../resources.html">Resources</a>
+      <a class="active" href="../demos.html">Demos</a>
+      <a href="../index.html#writing">Writing</a>
+      <a href="../index.html#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="proj-hero">
+      <a class="back-link" href="../demos.html#demo-gameguard">&larr; All demos</a>
+      <div class="proj-kicker">07 · Gaming · Trust &amp; Safety · Multilingual AI</div>
+      <h1>Bad Actors Don&rsquo;t Always Use Bad Words. Can AI Recognize the Pattern?</h1>
+      <p class="lede">From suspicious links and requests for personal information to manipulative conversations with young players, harmful behavior can hide behind emojis, slang, misspellings, and seemingly innocent messages. GameGuard AI analyzes messages and conversation context to flag potential grooming, scams, harassment, and fraud for appropriate review.</p>
+      <img class="hero-img" src="../assets/demos/gameguard-outcome.webp" alt="Gaming trust and safety — suspicious link, inappropriate content, personal information, grooming behavior detection" loading="lazy">
+      <div class="proof">
+        <strong>Real-world proof:</strong> Supercell's games reach <strong>around 290 million monthly active players</strong> — a community scale that makes player safety a massive operational challenge, and the reason Supercell's Trust &amp; Safety team applies machine learning to detect and prevent player harm.<br>
+        <a href="https://www.youtube.com/watch?v=NCjC-cCZk6w" target="_blank" rel="noopener">How Supercell Uses Databricks to Serve Nearly 300M Monthly Players and Prevent Player Harm &#8599;</a>
+      </div>
+    </div>
+
+    <div class="proj-body">
+      <h2>The business outcome</h2>
+      <p>Traditional moderation asks, "Does this message contain a prohibited word?" GameGuard asks, <strong>"What might be happening across this interaction, and does it warrant intervention?"</strong> The outcome: fewer real harms buried in a backlog of false positives — flag-everything systems drown moderators in noise, and at platform scale a small false-positive rate is a backlog that buries the real P1 cases.</p>
+      <p>The old keyword filter flagged the word "password" wherever it appeared — including when a player <em>warned</em> others about a password scam — and missed the actual scammer, because the scammer never said anything offensive. He said "FREE gems 🎁", then "send me your password 🔑", in three friendly messages spread across an afternoon.</p>
+
+      <h2>How the agent works</h2>
+      <p>An orchestrator streams its plan and tool calls into an agent-trace panel, with case outcomes, evaluation metrics, and a session summary in cards below:</p>
+      <div class="agent-flow">
+        <div class="agent-step"><div class="agent-num">1</div><div><b>Read in context</b><p>Ingests messages with conversation history, emojis, slang, and misspellings — in three languages — instead of judging single messages.</p></div></div>
+        <div class="agent-step"><div class="agent-num">2</div><div><b>Detect signals</b><p>Suspicious links, personal-information requests, grooming patterns, harassment, fraud — scored as signals, not verdicts.</p></div></div>
+        <div class="agent-step"><div class="agent-num">3</div><div><b>Correlate across conversations</b><p>Connects repeated behavior across conversations and correlates chat with transaction history — the patterns keyword filters structurally cannot see.</p></div></div>
+        <div class="agent-step"><div class="agent-num">4</div><div><b>Two-tier escalation</b><p>Bare violent trash talk is logged but not auto-escalated; real-world credibility anchors (address, school, weapon context) escalate P2 to trust &amp; safety within 4 hours.</p></div></div>
+        <div class="agent-step"><div class="agent-num">5</div><div><b>Build the evidence case</b><p>Compiles a structured case — signals, context, history — for the right human team.</p></div></div>
+        <div class="agent-step"><div class="agent-num">6</div><div><b>Humans decide</b><p>GameGuard investigates; people decide. It never declares guilt and never suspends anyone.</p></div></div>
+      </div>
+
+      <h2>Data engineering</h2>
+      <p><strong>BattleSphere is a fictional multiplayer gaming company.</strong> Every player, message, account, transaction, and moderation case is synthetic — no real players, no real children, no real conversations. The corpus covers grooming sequences, scam scripts, harassment, fraud transactions, and adversarial cases (deliberate misspellings, emoji-coded rapport, multi-message slow burns) plus benign trash talk that must <em>not</em> escalate.</p>
+
+      <h2>Architecture</h2>
+      <table class="spec">
+        <tr><th>Layer</th><th>What it does</th></tr>
+        <tr><td>Orchestrator</td><td>Plans the investigation, streams plan + tool calls to the trace panel.</td></tr>
+        <tr><td>Signal detectors</td><td>Links, personal-info requests, grooming patterns, harassment, fraud — scored as evidence.</td></tr>
+        <tr><td>Context engine</td><td>Emojis, slang, coded language, three languages, cross-conversation correlation with transaction history.</td></tr>
+        <tr><td>Escalation policy</td><td>Two-tier: P4 logged trash talk vs P2 trust &amp; safety with credibility anchors (4h SLA).</td></tr>
+        <tr><td>Case builder</td><td>Structured evidence case for human moderators, fraud analysts, child-safety specialists.</td></tr>
+        <tr><td>Human decision</td><td>No auto-suspension, no guilt verdicts — investigates only.</td></tr>
+        <tr><td>Web UI</td><td><span class="code-line">app.py</span> over stdlib <span class="code-line">http.server</span>; fully deterministic runs.</td></tr>
+      </table>
+
+      <h2>Implementation</h2>
+      <ul>
+        <li><strong>Deterministic:</strong> stdlib only, offline, no API keys — identical runs; <span class="code-line">TEST-LOG.md</span> records the determinism gate, <span class="code-line">TEST-LOG-EDGE.md</span> an 8-case adversarial battery (passes).</li>
+        <li><strong>Honest boundaries:</strong> designed as a demonstration of AI-assisted trust &amp; safety, inspired by real industry challenges — not a claim that GameGuard is deployed by Supercell.</li>
+      </ul>
+
+      <h2>Technical details</h2>
+      <ul>
+        <li><strong>Run it:</strong> <span class="code-line">python3 app.py</span>, then open <span class="code-line">http://localhost:8007</span> in Chrome and click <strong>Run live demo</strong> (binds 127.0.0.1, port 8007).</li>
+        <li><strong>Repo:</strong> <a href="https://github.com/ynpreet/gameguard-ai" target="_blank" rel="noopener">ynpreet/gameguard-ai &#8599;</a></li>
+        <li><strong>Success criteria:</strong> multi-message grooming sequence escalated with evidence case; benign trash talk logged, not escalated; credibility-anchored threat hits P2; deterministic output.</li>
+      </ul>
+
+      <div class="cta-row">
+        <a class="btn btn-primary" href="https://github.com/ynpreet/gameguard-ai" target="_blank" rel="noopener">View the code on GitHub ↗</a>
+        <a class="btn btn-ghost" href="../demos.html#how-to-run-gameguard">How to run ↓</a>
+      </div>
+
+      <p class="disclaimer"><strong>Educational demo.</strong> BattleSphere is fictional; all players, messages, and cases are synthetic. The Supercell scale figure and Trust &amp; Safety example are from the linked Databricks Summit session — GameGuard is an independent demonstration, not Supercell software.</p>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div>© 2026 Preet Mehta · <a href="../demos.html">All demos</a> · <a href="https://github.com/ynpreet/gameguard-ai" target="_blank" rel="noopener">GitHub</a></div>
+  </footer>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>
