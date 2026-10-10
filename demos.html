@@ -134,6 +134,8 @@
     .res-badge.mixed { background:rgba(240,178,70,.18); color:#9a6b12; }
     .res-link { font-size:14px; font-weight:700; color:#1b2a4a; text-decoration:none; border-bottom:2px solid #2aa198; }
     .res-link:hover { color:#1b6f6a; }
+    .site-header { transition: transform .35s ease, opacity .35s ease; }
+    .site-header.nav-hidden { transform: translateX(-50%) translateY(-140%); opacity: 0; pointer-events: none; }
   </style>
 </head>
 <body>
@@ -591,6 +593,26 @@
       if (h && document.getElementById(h) && document.getElementById(h).classList.contains('tab-panel')) {
         activate(h, false);
       }
+    })();
+  </script>
+  <script>
+    (function () {
+      var header = document.querySelector('.site-header');
+      if (!header) return;
+      var lastY = window.scrollY || 0, ticking = false;
+      function onScroll() {
+        var y = window.scrollY || 0;
+        if (y <= 80) { header.classList.remove('nav-hidden'); }
+        else if (y > lastY + 4) { header.classList.add('nav-hidden'); }
+        else if (y < lastY - 4) { header.classList.remove('nav-hidden'); }
+        lastY = y; ticking = false;
+      }
+      window.addEventListener('scroll', function () {
+        if (!ticking) { window.requestAnimationFrame(onScroll); ticking = true; }
+      }, { passive: true });
+      document.addEventListener('mousemove', function (e) {
+        if (e.clientY < 90) header.classList.remove('nav-hidden');
+      });
     })();
   </script>
 </body>
