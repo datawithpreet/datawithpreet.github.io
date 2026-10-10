@@ -24,6 +24,11 @@
       margin-top: 18px;
       background: var(--paper);
     }
+    .demo-img {
+      width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 14px;
+      margin-bottom: 18px; border: 1px solid rgba(20,184,166,.25);
+      box-shadow: 0 8px 24px rgba(27,42,74,.18); display: block;
+    }
     .demo-card > p { color: var(--ink); font-size: 15.5px; line-height: 1.65; max-width: 78ch; margin-bottom: 18px; }
     .demo-compare {
       display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 20px;
@@ -92,6 +97,7 @@
     <section class="resource-library" id="demo-care">
       <div class="resource-library-heading"><span>01</span><div><h2>Personalized Care Management Agent</h2><p>From patient data chaos to a ready-to-review care plan.</p></div></div>
       <article class="demo-card">
+        <img class="demo-img" src="assets/demos/care-management.webp" alt="Personalized care messages reaching patients through email, text message, and phone call" loading="lazy">
         <p>Five small agents, one job each, working one patient at a time: Auth verifies login, Triage scores risk, Channel picks email / SMS / a call script, Care Plan builds the plan, and Message renders it. The story is a before/after — one generic blast email (<em>"Get yourself checked. Visit a physician."</em>) versus a personalized, risk-triaged care plan plus a tailored outreach message for every patient. Pure Python, zero dependencies, fully deterministic.</p>
         <div class="demo-compare">
           <div class="before"><b>BEFORE AI</b>One generic blast email to every patient: "Get yourself checked. Visit a physician." — no name, no condition, no next step.</div>
@@ -109,6 +115,7 @@
     <section class="resource-library" id="demo-hhv">
       <div class="resource-library-heading"><span>02 ★</span><div><h2>HHV Copilot — An Agentic AI System for Medicare Advantage In-Home Assessments</h2><p>Flagship demo: the full in-home assessment lifecycle, orchestrated end to end.</p></div></div>
       <article class="demo-card">
+        <img class="demo-img" src="assets/demos/hhv-copilot.webp" alt="Nurse conducting an in-home health assessment visit with a senior patient" loading="lazy">
         <p>The flagship demo. In-home health visits for Medicare Advantage run on manual lists, phone tag, paper notes, and spreadsheets — members slip through, care gaps stay open, and the data gets reconciled by hand before CMS submission. HHV Copilot orchestrates the whole lifecycle as agents: member identification → outreach and scheduling → assessment interpretation → care gap resolution → data validation and reconciliation → an outcome dashboard showing expected CMS revenue versus cost.</p>
         <div class="demo-compare">
           <div class="before"><b>BEFORE AI</b>Manual member lists, phone-tag scheduling, paper assessments, care gaps that stay open — and a hand-built spreadsheet standing between the program and its CMS revenue.</div>
@@ -126,6 +133,7 @@
     <section class="resource-library" id="demo-restaurant">
       <div class="resource-library-heading"><span>03</span><div><h2>Restaurant Location Agent</h2><p>Where should I open a Chinese restaurant?</p></div></div>
       <article class="demo-card">
+        <img class="demo-img" src="assets/demos/restaurant-location.webp" alt="Map-based analysis selecting the ideal location for a new restaurant" loading="lazy">
         <p>You want to open a Chinese restaurant — but where? This agent takes Yelp-style data — ratings, review counts, price bands, cuisine mix, hours — and scores neighborhoods against real business rules: too many competitors too close, rent vs. expected demand, cuisine gaps on the street. It answers one question: which location gives your restaurant the best shot at surviving year one?</p>
         <div class="demo-compare">
           <div class="before"><b>BEFORE AI</b>Weeks of gut feel: scrolling listings, driving around at dinner time, guessing where the customers are.</div>
@@ -143,6 +151,7 @@
     <section class="resource-library" id="demo-aeroyield">
       <div class="resource-library-heading"><span>04</span><div><h2>AeroYield AI — An Agentic AI Revenue Management System for Airlines</h2><p>Fixed vs. rule-based vs. agentic pricing on SFO → BOS.</p></div></div>
       <article class="demo-card">
+        <img class="demo-img" src="assets/demos/aeroyield.webp" alt="Airplane adjusting ticket prices dynamically as events drive demand" loading="lazy">
         <p>Airline-side pricing that watches the market. This agent runs revenue management on the SFO → BOS corridor: demand, competitor, and market intelligence feeding a demand-forecast pricing engine. The demo's centerpiece is a three-way baseline comparison — fixed tariffs vs. rule-based pricing vs. agentic pricing — so you can see exactly what the agent's decisions buy you, fare by fare.</p>
         <div class="demo-compare">
           <div class="before"><b>BEFORE AI</b>Fixed tariffs and static rules: seats sell too cheap on hot days and sit empty when demand dips — the market moves, the price doesn't.</div>
@@ -160,6 +169,7 @@
     <section class="resource-library" id="demo-music">
       <div class="resource-library-heading"><span>05</span><div><h2>Music Mood Agent</h2><p>Songs matched to your mood and moment.</p></div></div>
       <article class="demo-card">
+        <img class="demo-img" src="assets/demos/music-mood.webp" alt="Headphones suggesting music that lifts the listener's mood" loading="lazy">
         <p>Rainy Sunday, deadline Friday, post-workout glow — every moment wants a different sound, and your playlists are static. This agent takes your mood or situation in plain words and matches songs to it: energy, tempo, and vibe scored against what you asked for, so the first track is already right instead of the twentieth.</p>
         <div class="demo-compare">
           <div class="before"><b>BEFORE AI</b>Doom-scrolling playlists, skipping twenty songs to find the one that fits — then settling for close enough.</div>
@@ -177,6 +187,7 @@
     <section class="resource-library" id="demo-fixmate">
       <div class="resource-library-heading"><span>06</span><div><h2>FixMate AI — The Intelligent Equipment Maintenance Agent</h2><p>Diagnose faster. Fix smarter. Keep every store running.</p></div></div>
       <article class="demo-card">
+        <img class="demo-img" src="assets/demos/fixmate.webp" alt="Coffee machine diagnosed using its maintenance manual" loading="lazy">
         <p>BrewPoint Retail is a fictional convenience-store chain — and its coffee machines keep failing during the morning rush. FixMate AI takes it from the error code: it searches the internal manuals first, falls back to the web only when the manuals don't cover it, and walks the store employee through the fix. The demo runs three scenarios — including a knowledge-gap improvement loop, where every gap the agent hits becomes a new manual entry the next store inherits.</p>
         <div class="demo-compare">
           <div class="before"><b>BEFORE AI</b>The store manager sits on hold with the maintenance hotline, waits two days for a technician, and learns the fix was in the manual all along — while the knowledge stays locked in technicians' heads.</div>
@@ -194,6 +205,7 @@
     <section class="resource-library" id="demo-gameguard">
       <div class="resource-library-heading"><span>07</span><div><h2>GameGuard AI — An Agentic AI System for Gaming Safety and Fraud Detection</h2><p>Detect harmful behavior. Investigate the context. Protect the community.</p></div></div>
       <article class="demo-card">
+        <img class="demo-img" src="assets/demos/gameguard.webp" alt="Gaming chat protected by a safety shield filtering harmful messages" loading="lazy">
         <p>BattleSphere is a fictional online gaming company — and its chat never sleeps: trades, trash talk, team strategy, scams. Keyword filters flag "free" in a friendly giveaway while a real scammer slides by in slang, emoji, and a second language. GameGuard AI reads the full context across conversations — emoji, slang, multilingual patterns — and then investigates before it acts: evidence, history, confidence. It never auto-punishes. The demo runs three scenarios: the account scam case GG-1042, pattern-over-time escalation of a repeat offender, and a false positive it correctly lets go.</p>
         <div class="demo-compare">
           <div class="before"><b>BEFORE AI</b>Keyword filters + volunteer mods: real scams slip through written in slang and emoji, false positives punish innocent players, and banned scammers are back tomorrow on a new account.</div>
@@ -211,6 +223,7 @@
     <section class="resource-library" id="demo-guestfirst">
       <div class="resource-library-heading"><span>08</span><div><h2>GuestFirst AI — An Agentic AI System for Personalized Restaurant Experiences</h2><p>When satisfaction dips, find out why — fix it — and prove it's fixed.</p></div></div>
       <article class="demo-card">
+        <img class="demo-img" src="assets/demos/guestfirst.webp" alt="Restaurant resolving a guest's issue and earning back their smile" loading="lazy">
         <p>TastePoint is a fictional restaurant chain — and lunch satisfaction has started slipping. The surveys say "too slow," but nobody can prove why. GuestFirst AI does the manager's whole job: it investigates the <em>why</em> — cross-referencing guest feedback with order records and kitchen operations to pin the root cause — then determines the action, coordinates the response, and <em>verifies</em> the resolution actually worked. The live scenario runs the full loop: lunch-delay complaints → root-cause investigation → recommendation — then the twist: one kitchen station goes down mid-demo, and the agent revises its recommendation on the fly before running a verification simulation.</p>
         <div class="demo-compare">
           <div class="before"><b>BEFORE AI</b>Surveys say "too slow" — and that's all anybody knows. The manager guesses, tries a fix, and never measures whether it worked.</div>
