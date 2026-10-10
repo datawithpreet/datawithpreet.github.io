@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HHV Copilot — Project Deep Dive | Preet Mehta</title>
+  <meta name="description" content="How an AI agent runs the full Medicare Advantage in-home assessment lifecycle: member prioritization, outreach and scheduling, assessment interpretation, care gap resolution, data reconciliation, and program performance. Architecture, data engineering, agent workflow, and implementation.">
+  <link rel="icon" href="../assets/img/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .proj-hero { max-width: 880px; margin: 120px auto 0; padding: 40px 24px 10px; }
+    .proj-kicker { font-size: 13px; font-weight: 800; letter-spacing: .14em; color: var(--teal); text-transform: uppercase; margin-bottom: 18px; }
+    .proj-hero h1 { font-family: "Space Grotesk", sans-serif; font-size: clamp(32px, 5vw, 52px); line-height: 1.12; letter-spacing: -.02em; margin: 0 0 20px; color: var(--ink); }
+    .proj-hero .lede { font-size: 18px; line-height: 1.7; color: #3c4a68; max-width: 70ch; }
+    .proj-hero img.hero-img { width: 100%; border-radius: 16px; margin: 30px 0 8px; box-shadow: 0 18px 50px rgba(20,30,50,.14); }
+    .proof { background: rgba(42,161,152,.08); border: 1px solid rgba(42,161,152,.35); border-radius: 14px; padding: 20px 24px; margin: 26px 0; font-size: 16px; line-height: 1.65; color: #24324f; }
+    .proof a { color: #1b6f6a; font-weight: 700; }
+    .proj-body { max-width: 880px; margin: 0 auto; padding: 10px 24px 60px; }
+    .proj-body h2 { font-family: "Space Grotesk", sans-serif; font-size: 26px; margin: 48px 0 14px; color: var(--ink); letter-spacing: -.01em; }
+    .proj-body h3 { font-size: 18px; margin: 28px 0 10px; color: #1b2a4a; }
+    .proj-body p, .proj-body li { font-size: 16px; line-height: 1.75; color: #33415e; }
+    .proj-body ul, .proj-body ol { padding-left: 22px; }
+    .proj-body li { margin-bottom: 8px; }
+    .agent-flow { display: grid; gap: 0; margin: 20px 0; }
+    .agent-step { display: grid; grid-template-columns: 44px 1fr; gap: 16px; padding: 16px 0; border-bottom: 1px dashed rgba(27,42,74,.18); }
+    .agent-step:last-child { border-bottom: 0; }
+    .agent-num { width: 44px; height: 44px; border-radius: 50%; background: rgba(42,161,152,.14); border: 1.5px solid #2aa198; color: #1b6f6a; font-weight: 800; display: flex; align-items: center; justify-content: center; font-size: 17px; }
+    .agent-step b { color: #1b2a4a; }
+    .agent-step p { margin: 4px 0 0; font-size: 15px; }
+    .guard { background: rgba(251,191,36,.07); border: 1px solid rgba(251,191,36,.5); border-radius: 12px; padding: 18px 22px; margin: 20px 0; }
+    .guard h4 { margin: 0 0 8px; font-size: 14px; color: #9a6b12; letter-spacing: .05em; text-transform: uppercase; }
+    .guard p, .guard li { font-size: 15px; color: #4a3f28; }
+    table.spec { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 15px; }
+    table.spec th { text-align: left; padding: 10px 14px; background: rgba(27,42,74,.06); color: #1b2a4a; font-size: 12.5px; letter-spacing: .06em; text-transform: uppercase; border-bottom: 2px solid rgba(27,42,74,.14); }
+    table.spec td { padding: 10px 14px; border-bottom: 1px solid rgba(27,42,74,.1); color: #33415e; vertical-align: top; }
+    .code-line { background: rgba(27,42,74,.07); padding: 2px 8px; border-radius: 6px; font-size: 14px; font-family: ui-monospace, Menlo, Consolas, monospace; }
+    .code-block { background: #0e1626; color: #c9d6ea; border-radius: 12px; padding: 20px 22px; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 13.5px; line-height: 1.7; overflow-x: auto; margin: 16px 0; white-space: pre; }
+    .cta-row { display: flex; gap: 14px; flex-wrap: wrap; margin: 34px 0 10px; }
+    .btn { display: inline-block; padding: 14px 30px; border-radius: 12px; font-weight: 800; font-size: 16px; text-decoration: none; }
+    .btn-primary { background: #14b8a6; color: #04211c; }
+    .btn-ghost { border: 1.5px solid #2aa198; color: #1b6f6a; background: transparent; }
+    .back-link { display: inline-block; margin-bottom: 6px; color: #1b6f6a; font-weight: 700; text-decoration: none; font-size: 15px; }
+    .disclaimer { font-size: 13.5px; color: #7a8aa5; border-top: 1px solid rgba(27,42,74,.12); margin-top: 50px; padding-top: 20px; }
+    footer.site-footer { text-align: center; padding: 30px 20px 50px; color: #7a8aa5; font-size: 14px; }
+    footer.site-footer a { color: #1b6f6a; font-weight: 700; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <header class="site-header" id="top">
+    <a class="brand" href="../index.html#home" aria-label="Preet Mehta home">
+      <span class="brand-mark">PM</span>
+      <span class="brand-copy"><strong>PREET MEHTA</strong><small>AGENTIC AI WORKSHOP</small></span>
+    </a>
+    <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false"><span></span><span></span></button>
+    <nav class="nav resources-page-nav" aria-label="Workshop navigation">
+      <a href="../index.html#home">Home</a>
+      <a href="../resources.html">Resources</a>
+      <a class="active" href="../demos.html">Demos</a>
+      <a href="../index.html#writing">Writing</a>
+      <a href="../index.html#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="proj-hero">
+      <a class="back-link" href="../demos.html">← Back to all demos</a>
+      <div class="proj-kicker">02 · Medicare Advantage · Agentic AI</div>
+      <h1>A Nurse Can't Visit Every Member. Who Should Get the Visit First?</h1>
+      <p class="lede">Use predictive analytics and agentic AI to prioritize members for in-home assessments, uncover potential care gaps, and coordinate follow-up — helping health plans direct limited clinical resources where they may matter most.</p>
+      <img class="hero-img" src="../assets/demos/hhv-copilot-outcome.webp" alt="Home-health nurse smiling with an elderly patient during an in-home assessment visit" loading="lazy">
+      <div class="proof"><strong>Real-world proof:</strong> Signify Health disclosed that its analytics platform identifies high-priority members for in-home evaluations — and reported that, in 2019, more than 90% of evaluated members followed up with a primary care visit.<br>Explore the evidence: <a href="https://www.sec.gov/Archives/edgar/data/1828182/000182818221000006/signifyhealthinc10k_123120.htm" target="_blank" rel="noopener">Signify Health's SEC filing ↗</a> · <a href="https://oig.hhs.gov/reports/all/2024/medicare-advantage-questionable-use-of-health-risk-assessments-continues-to-drive-up-payments-to-plans-by-billions/" target="_blank" rel="noopener">HHS OIG report on assessment oversight ↗</a></div>
+    </div>
+
+    <div class="proj-body">
+      <h2>The business outcome</h2>
+      <p>A health plan can't send a clinician to every member — so it runs in-home health assessment visits for a targeted cohort. The question that decides the program's value is the first one: <strong>who should get the visit?</strong> Get it right and nurses find undiagnosed conditions, close care gaps, and reconnect members with primary care. Get it wrong and the program burns clinical hours on the already-healthy while high-need members stay invisible.</p>
+      <p>This demo runs the <strong>full assessment lifecycle as an agent</strong> — not just a prioritization model. Six stages from member identification to program performance, deep-diving on one featured member (Margaret Ellis, 78), with hard rules enforced in code and humans kept in the decision loop where they belong.</p>
+
+      <h2>How the agent works</h2>
+      <p>One orchestrating agent — <strong>HHV Copilot</strong> — prints its plan and calls specialized tools, with deterministic guardrails around every consequential step:</p>
+      <div class="agent-flow">
+        <div class="agent-step"><div class="agent-num">1</div><div><b>Member Identification</b><p>1,000 synthetic members → 265 identified for outreach, on need-based criteria. Never high-utilization-only; never revenue-optimized — revenue fields are provably unread.</p></div></div>
+        <div class="agent-step"><div class="agent-num">2</div><div><b>Outreach &amp; Scheduling</b><p>A cancel → rebook agentic loop: Margaret Ellis cancels (no ride) → the agent recalls the prior-cycle learning and rebooks with transportation bundled.</p></div></div>
+        <div class="agent-step"><div class="agent-num">3</div><div><b>Assessment Interpretation</b><p>10 findings extracted as <em>reported</em> vs <em>verified</em> vs <em>care gap</em>, with protocol validation and clinician-review flags. The agent never invents diagnoses — the guardrail raises on violation.</p></div></div>
+        <div class="agent-step"><div class="agent-num">4</div><div><b>Care Gap Resolution</b><p>3 tasks (PCP follow-up, medication reconciliation, transportation) tracked to completion. The agent never changes meds; only authorized humans complete tasks — the denial is demonstrated live.</p></div></div>
+        <div class="agent-step"><div class="agent-num">5</div><div><b>Data Validation &amp; Reconciliation</b><p>A 3-source discrepancy (scheduling ✓ / vendor ✓ / claims ✗) → investigate → classify <em>before</em> disposition. The dramatic center: the PCP follow-up record is missing from claims, and instead of closing the task or declaring the visit never happened, the agent investigates four checks, classifies it <span class="code-line">EXPECTED_PROCESSING_DELAY</span> (claim is 8 days old; normal lag is 30–45), marks the task <strong>UNRESOLVED</strong> — not failed — and re-checks when the updated claims file arrives. Then a human closes it. Absence of evidence is not evidence of absence.</p></div></div>
+        <div class="agent-step"><div class="agent-num">6</div><div><b>Program Performance</b><p>An operational dashboard: funnel, task rollup, bottlenecks. It never claims health outcomes improved — only what operations can honestly report.</p></div></div>
+      </div>
+
+      <div class="guard">
+        <h4>Why the guardrails are the point</h4>
+        <p>The HHS Office of Inspector General has warned that questionable use of health risk assessments drives billions in Medicare Advantage payments — assessments must support <strong>valid diagnoses and appropriate follow-up, not just payment capture</strong>. That's why this demo enforces its rules in code, not prose:</p>
+        <ul>
+          <li>The agent provably <strong>can't read revenue fields</strong> — prioritization is need-based by construction.</li>
+          <li>It <strong>can't invent diagnoses</strong> from ambiguous notes (assert/raise, not a suggestion).</li>
+          <li>It <strong>can't close tasks itself</strong> — only authorized humans complete them.</li>
+          <li>It <strong>never claims health outcomes</strong> from an operational dashboard.</li>
+        </ul>
+      </div>
+
+      <h2>Data engineering</h2>
+      <ul>
+        <li><strong>Member registry:</strong> 1,000 synthetic members generated in-code with a fixed seed — age, conditions, days-since-PCP, ER visits, meds, living situation, transportation need, missing screenings — plus revenue-adjacent fields that exist <em>only</em> to be excluded.</li>
+        <li><strong>Featured member override:</strong> Margaret Ellis, 78 — Type 2 Diabetes + Hypertension + Osteoarthritis, transportation need.</li>
+        <li><strong>Assessment inputs:</strong> 10 hand-authored assessment source lines; seeded prior-cycle memory (cancellation learnings, claims-lag learning).</li>
+        <li><strong>Reconciliation eval set:</strong> 8 hand-labeled discrepancy cases for precision/recall measurement.</li>
+        <li><strong>Determinism:</strong> fixed seed + fixed "today" → byte-identical output, 10/10 runs. In production, the registry becomes the plan's member data mart — claims, HEDIS gaps, and ADT feeds landing in governed tables with the same feature contract.</li>
+      </ul>
+
+      <h2>Architecture</h2>
+      <ul>
+        <li><strong>Orchestrator/tool split.</strong> HHV Copilot plans; specialized tools execute. In a real build, <span class="code-line">extract_findings</span> becomes an LLM call and the memory becomes a vector store — the contracts and guardrails stay the same. Students see <em>where</em> the AI goes and <em>where</em> deterministic rules must hold.</li>
+        <li><strong>Rules enforced in code.</strong> Guardrails are assert/raise statements, not prompt instructions — provably unbypassable in the demo.</li>
+        <li><strong>Zero-dependency runtime.</strong> Python 3 stdlib only, fully offline, no API keys. <span class="code-line">app.py</span> serves the live web UI on <span class="code-line">localhost:8002</span>; <span class="code-line">demo.py</span> runs the 6–7 minute canned lifecycle.</li>
+        <li><strong>Measured, not vibes.</strong> Five self-eval dimensions: prioritization precision 99.6% (264/265), extraction 10/10 with 0 invented diagnoses, reconciliation precision/recall 1.00 on 8/8 cases, routing 3/3 with 0 agent med changes, reliability 10/10 byte-identical runs.</li>
+      </ul>
+
+      <h2>Implementation</h2>
+      <div class="code-block">python3 app.py      # web UI → http://localhost:8002 (press ▶ Run live demo)
+python3 demo.py     # canned terminal run of the 7-step lifecycle</div>
+      <p>The run opens with the program charter, works the six stages on the full synthetic cohort, deep-dives on Margaret Ellis, resolves the claims discrepancy live, and closes with the operations dashboard plus the five-dimension self-evaluation.</p>
+
+      <div class="cta-row">
+        <a class="btn btn-primary" href="https://github.com/ynpreet/hhv-copilot" target="_blank" rel="noopener">View the code on GitHub ↗</a>
+        <a class="btn btn-ghost" href="../demos.html#how-to-run-hhv">How to run ↓</a>
+      </div>
+
+      <p class="disclaimer"><strong>Educational demo.</strong> All members, assessments, and data are synthetic. The Signify Health statistic is from the company's SEC 10-K filing linked above; the oversight context is from the HHS OIG report linked above. No financial outcomes are claimed for the demo.</p>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div>© 2026 Preet Mehta · <a href="../demos.html">All demos</a> · <a href="https://github.com/ynpreet/hhv-copilot" target="_blank" rel="noopener">GitHub</a></div>
+  </footer>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>
