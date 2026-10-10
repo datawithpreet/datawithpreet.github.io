@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Restaurant Location Agent — Project Deep Dive | Preet Mehta</title>
+  <meta name="description" content="How an agentic AI scores candidate locations for a new restaurant: demographics, demand, traffic, competitors, trade areas, and operating economics. Architecture, data engineering, agent workflow, and implementation.">
+  <link rel="icon" href="../assets/img/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .proj-hero { max-width: 880px; margin: 120px auto 0; padding: 40px 24px 10px; }
+    .proj-kicker { font-size: 13px; font-weight: 800; letter-spacing: .14em; color: var(--teal); text-transform: uppercase; margin-bottom: 18px; }
+    .proj-hero h1 { font-family: "Space Grotesk", sans-serif; font-size: clamp(32px, 5vw, 52px); line-height: 1.12; letter-spacing: -.02em; margin: 0 0 20px; color: var(--ink); }
+    .proj-hero .lede { font-size: 18px; line-height: 1.7; color: #3c4a68; max-width: 70ch; }
+    .proj-hero img.hero-img { width: 100%; border-radius: 16px; margin: 30px 0 8px; box-shadow: 0 18px 50px rgba(20,30,50,.14); }
+    .proof { background: rgba(42,161,152,.08); border: 1px solid rgba(42,161,152,.35); border-radius: 14px; padding: 20px 24px; margin: 26px 0; font-size: 16px; line-height: 1.65; color: #24324f; }
+    .proof a { color: #1b6f6a; font-weight: 700; }
+    .proj-body { max-width: 880px; margin: 0 auto; padding: 10px 24px 60px; }
+    .proj-body h2 { font-family: "Space Grotesk", sans-serif; font-size: 26px; margin: 48px 0 14px; color: var(--ink); letter-spacing: -.01em; }
+    .proj-body h3 { font-size: 18px; margin: 28px 0 10px; color: #1b2a4a; }
+    .proj-body p, .proj-body li { font-size: 16px; line-height: 1.75; color: #33415e; }
+    .proj-body ul, .proj-body ol { padding-left: 22px; }
+    .proj-body li { margin-bottom: 8px; }
+    .agent-flow { display: grid; gap: 0; margin: 20px 0; }
+    .agent-step { display: grid; grid-template-columns: 44px 1fr; gap: 16px; padding: 16px 0; border-bottom: 1px dashed rgba(27,42,74,.18); }
+    .agent-step:last-child { border-bottom: 0; }
+    .agent-num { width: 44px; height: 44px; border-radius: 50%; background: rgba(42,161,152,.14); border: 1.5px solid #2aa198; color: #1b6f6a; font-weight: 800; display: flex; align-items: center; justify-content: center; font-size: 17px; }
+    .agent-step b { color: #1b2a4a; }
+    .agent-step p { margin: 4px 0 0; font-size: 15px; }
+    table.spec { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 15px; }
+    table.spec th { text-align: left; padding: 10px 14px; background: rgba(27,42,74,.06); color: #1b2a4a; font-size: 12.5px; letter-spacing: .06em; text-transform: uppercase; border-bottom: 2px solid rgba(27,42,74,.14); }
+    table.spec td { padding: 10px 14px; border-bottom: 1px solid rgba(27,42,74,.1); color: #33415e; vertical-align: top; }
+    code.inline, .code-line { background: rgba(27,42,74,.07); padding: 2px 8px; border-radius: 6px; font-size: 14px; font-family: ui-monospace, Menlo, Consolas, monospace; }
+    .code-block { background: #0e1626; color: #c9d6ea; border-radius: 12px; padding: 20px 22px; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 13.5px; line-height: 1.7; overflow-x: auto; margin: 16px 0; white-space: pre; }
+    .cta-row { display: flex; gap: 14px; flex-wrap: wrap; margin: 34px 0 10px; }
+    .btn { display: inline-block; padding: 14px 30px; border-radius: 12px; font-weight: 800; font-size: 16px; text-decoration: none; }
+    .btn-primary { background: #14b8a6; color: #04211c; }
+    .btn-ghost { border: 1.5px solid #2aa198; color: #1b6f6a; background: transparent; }
+    .back-link { display: inline-block; margin-bottom: 6px; color: #1b6f6a; font-weight: 700; text-decoration: none; font-size: 15px; }
+    .disclaimer { font-size: 13.5px; color: #7a8aa5; border-top: 1px solid rgba(27,42,74,.12); margin-top: 50px; padding-top: 20px; }
+    footer.site-footer { text-align: center; padding: 30px 20px 50px; color: #7a8aa5; font-size: 14px; }
+    footer.site-footer a { color: #1b6f6a; font-weight: 700; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <header class="site-header" id="top">
+    <a class="brand" href="../index.html#home" aria-label="Preet Mehta home">
+      <span class="brand-mark">PM</span>
+      <span class="brand-copy"><strong>PREET MEHTA</strong><small>AGENTIC AI WORKSHOP</small></span>
+    </a>
+    <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false"><span></span><span></span></button>
+    <nav class="nav resources-page-nav" aria-label="Workshop navigation">
+      <a href="../index.html#home">Home</a>
+      <a href="../resources.html">Resources</a>
+      <a class="active" href="../demos.html">Demos</a>
+      <a href="../index.html#writing">Writing</a>
+      <a href="../index.html#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="proj-hero">
+      <a class="back-link" href="../demos.html#demo-restaurant">&larr; All demos</a>
+      <div class="proj-kicker">03 · Retail · Geospatial Analytics · Agentic AI</div>
+      <h1>The Wrong Location Can Sink a Great Restaurant. Find the Right One With Data.</h1>
+      <p class="lede">Opening a restaurant is one of the riskiest small-business bets there is — and location decides most of it. This agent evaluates candidate markets on demographics, demand, traffic, competitors, trade areas, and operating economics, then recommends where a restaurant has the strongest potential — before anyone signs a lease.</p>
+      <img class="hero-img" src="../assets/demos/restaurant-location-outcome.webp" alt="Location-intelligence view: restaurant storefront, glowing trade-area map with candidate pins, and scored factors — population, traffic, competition, demand" loading="lazy">
+      <div class="proof">
+        <strong>Real-world proof:</strong> Starbucks has used its Esri-based Atlas GIS platform for store planning — analyzing demographics, traffic, retail clusters, and transportation nodes. Chick-fil-A selected Esri's ArcGIS platform for site selection and market analytics, optimizing growth while minimizing competition impact and potential cannibalization.<br>
+        <a href="https://www.esri.com/content/dam/esrisites/en-us/media/pdf/chick-fil-a-case-study.pdf" target="_blank" rel="noopener">Esri: Chick-fil-A case study &#8599;</a> &middot;
+        <a href="https://d3.harvard.edu/platform-digit/submission/starbucks-brewing-up-a-data-storm/" target="_blank" rel="noopener">Starbucks' Atlas platform, summarized &#8599;</a>
+      </div>
+    </div>
+
+    <div class="proj-body">
+      <h2>The business outcome</h2>
+      <p>Today, a site decision runs on gut feel, broker anecdotes, and spreadsheets that never weigh the factors against each other. The outcome this project delivers: a <strong>ranked, explained recommendation</strong> across candidate ZIP codes — every area scored on the same five factors, with a plain-English reason for the winner and a memory-guided re-run when the owner's goal changes (e.g., "avoid heavy competition").</p>
+      <p>A promising ZIP code can still be a poor investment if rent, competition, accessibility, delivery coverage, or supply-chain costs make the economics unattractive. The agent evaluates <strong>more than customer demand</strong>: it weighs the operating economics that decide whether a location survives year one.</p>
+
+      <h2>How the agent works</h2>
+      <p>One <span class="code-line">LocationAgent</span> with a <span class="code-line">Planner</span> and a <span class="code-line">Synthesizer</span>, calling five evidence-gathering tools. The printed PLAN decomposes the goal into 13 steps — fetch per ZIP, analyze, score, synthesize — which you watch on screen.</p>
+      <div class="agent-flow">
+        <div class="agent-step"><div class="agent-num">1</div><div><b>Plan</b><p>Decomposes "where should I open a Chinese restaurant in Phoenix?" into per-ZIP evidence gathering, analysis, scoring, and synthesis steps.</p></div></div>
+        <div class="agent-step"><div class="agent-num">2</div><div><b>fetch_area_data</b><p>Pulls each candidate ZIP's profile: businesses, ratings, review counts, price bands, cuisine mix, hours, plus area economics (produce-cost index, rent index, foot-traffic score).</p></div></div>
+        <div class="agent-step"><div class="agent-num">3</div><div><b>analyze_review_quality</b><p>Reads review-quality signals for the cuisine in each area — are customers happy with the existing options, or is there an unmet bar to clear?</p></div></div>
+        <div class="agent-step"><div class="agent-num">4</div><div><b>analyze_competitors</b><p>Maps competitor proximity and cuisine saturation: too many competitors too close is a red flag, but a cluster of strong Chinese restaurants can also prove the cuisine's draw (Hotelling logic).</p></div></div>
+        <div class="agent-step"><div class="agent-num">5</div><div><b>estimate_economics</b><p>Weighs rent vs. expected demand — produce costs, rent index, and foot traffic turn a popular ZIP into an investable one, or rule it out.</p></div></div>
+        <div class="agent-step"><div class="agent-num">6</div><div><b>score_location</b><p>Combines quality, economics, audience, Hotelling, and demand-gap into a transparent weighted score per ZIP. Turn 1 recommends <strong>85012 (Uptown Phoenix)</strong>.</p></div></div>
+        <div class="agent-step"><div class="agent-num">7</div><div><b>Memory-guided re-plan</b><p>On the follow-up — "avoid heavy competition" — the agent finds the turn-1 scoring profile in memory, inverts the competitor rule (<span class="code-line">100 − 20·n</span>), and re-ranks: <strong>85003 (Downtown Phoenix)</strong>, 1 competitor, foot-traffic 92, big demand gap. Same agent, different memory-guided plan, different answer.</p></div></div>
+      </div>
+
+      <h2>Data engineering</h2>
+      <p>The demo runs on ~60 synthetic businesses across 8 Phoenix-area ZIP codes in the Yelp schema (<span class="code-line">business_id, name, city, state, postal_code, lat/lon, stars, review_count, categories</span>), with 24 synthetic reviews attached to Chinese competitors. Per-ZIP profiles (<span class="code-line">ZIP_PROFILES</span>) carry produce-cost index, rent index, and foot-traffic scores. Scoring weights: quality 0.25, economics 0.20, audience 0.20, Hotelling 0.15, demand gap 0.20.</p>
+      <p>This is the classroom-friendly, fully offline, 60-seconds-to-run version of a real analysis — the companion repo ran the same class of analysis on the <strong>real Yelp dataset for Phoenix, AZ</strong>: <a href="https://github.com/ynpreet/Predicting-Ideal-location-for-a-new-reastaurant-using-Yelp-dataset" target="_blank" rel="noopener">Predicting the ideal location for a new restaurant using the Yelp dataset &#8599;</a>.</p>
+
+      <h2>Architecture</h2>
+      <table class="spec">
+        <tr><th>Layer</th><th>What it does</th></tr>
+        <tr><td>Planner</td><td>Decomposes the goal into a 13-step investigation plan (fetch → analyze → score → synthesize).</td></tr>
+        <tr><td>Tool layer</td><td>Five deterministic evidence tools: fetch_area_data, analyze_review_quality, analyze_competitors, estimate_economics, score_location.</td></tr>
+        <tr><td>Synthesizer</td><td>Ranks every candidate ZIP and writes the plain-English "why" for the recommendation.</td></tr>
+        <tr><td>Memory</td><td>Seeded sessions (bubble-tea/Tempe, taco-truck/ASU) plus the turn-1 scoring profile; consulted on follow-up goals to re-plan.</td></tr>
+        <tr><td>Scoring model</td><td>Transparent weighted combination — no black box; every factor's contribution is printed.</td></tr>
+        <tr><td>Web UI</td><td><span class="code-line">app.py</span> serves the demo over stdlib <span class="code-line">http.server</span>; no installs, no API keys, fully offline.</td></tr>
+      </table>
+
+      <h2>Implementation</h2>
+      <ul>
+        <li><strong>Deterministic:</strong> stdlib only, no network, no API keys, no randomness — byte-identical output across runs; <span class="code-line">TEST-LOG.md</span> records a 10/10 determinism gate.</li>
+        <li><strong>Two turns:</strong> the ask ("where should I open a Chinese restaurant in Phoenix?"), then the follow-up ("avoid heavy competition") that reuses memory and inverts one rule.</li>
+        <li><strong>Outputs:</strong> turn 1 recommends 85012 with Hotelling 100 (3 strong Chinese competitors proving the cuisine's draw); turn 2 recommends 85003 with the inverted-competitor explanation; full printed trace of PLAN, memory note, every tool call, and the synthesizer ranking.</li>
+        <li><strong>Edge cases:</strong> <span class="code-line">TEST-LOG-EDGE.md</span> covers adversarial inputs — the agent never crashes, never invents businesses, and says when data is insufficient.</li>
+      </ul>
+
+      <h2>Technical details</h2>
+      <ul>
+        <li><strong>Run it:</strong> <span class="code-line">python3 app.py</span>, then open <span class="code-line">http://localhost:8003</span> in Chrome and click <strong>Run live demo</strong> (binds 127.0.0.1, port 8003).</li>
+        <li><strong>Repo:</strong> <a href="https://github.com/ynpreet/restaurant-location-agent" target="_blank" rel="noopener">ynpreet/restaurant-location-agent &#8599;</a></li>
+        <li><strong>Companion ML project:</strong> <a href="https://github.com/ynpreet/Predicting-Ideal-location-for-a-new-reastaurant-using-Yelp-dataset" target="_blank" rel="noopener">Yelp-dataset location prediction (real data) &#8599;</a></li>
+        <li><strong>Success criteria:</strong> turn 1 recommends 85012; turn 2 consults memory, inverts the competitor rule, and recommends 85003; the scoring formula matches the documented weights; both turns run in well under a second and exit 0.</li>
+      </ul>
+
+      <div class="cta-row">
+        <a class="btn btn-primary" href="https://github.com/ynpreet/restaurant-location-agent" target="_blank" rel="noopener">View the code on GitHub ↗</a>
+        <a class="btn btn-ghost" href="../demos.html#how-to-run-restaurant">How to run ↓</a>
+      </div>
+
+      <p class="disclaimer"><strong>Educational demo.</strong> All 60 businesses and reviews are synthetic sample data, clearly labeled in code and output. The Starbucks and Chick-fil-A examples are from the Esri case materials and summaries linked above; this demo does not represent their proprietary systems.</p>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div>© 2026 Preet Mehta · <a href="../demos.html">All demos</a> · <a href="https://github.com/ynpreet/restaurant-location-agent" target="_blank" rel="noopener">GitHub</a></div>
+  </footer>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>
