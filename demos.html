@@ -24,6 +24,12 @@
       margin-top: 18px;
       background: var(--paper);
     }
+    .run-paths { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin: 6px 0 14px; }
+    .run-path { background: rgba(27,42,74,.04); border: 1px solid rgba(27,42,74,.12); border-radius: 12px; padding: 16px 18px; }
+    .run-path h4 { margin: 0 0 8px; }
+    .run-path p { margin: 0 0 10px; font-size: 15px; }
+    .run-path .code-line { display: block; margin: 6px 0; }
+    @media (max-width: 760px) { .run-paths { grid-template-columns: 1fr; } }
     .run-steps { margin: 6px 0 14px 20px; line-height: 1.9; font-size: 15.5px; }
     .run-steps code, .run-web code { background: rgba(27,42,74,.07); padding: 2px 7px; border-radius: 6px; font-size: 13.5px; }
     .run-web { margin-top: 14px; }
@@ -318,78 +324,90 @@
       <div class="resource-library-heading"><span>★</span><div><h2>How to run</h2><p>No IT background needed — if you can open a web browser, you can run these. Each demo opens as a <b>website on your own computer</b>: you click through the story in Chrome, no coding required. Nothing is installed, no accounts, no API keys. The whole thing takes about 5 minutes the first time.</p></div></div>
       <div class="demo-card" style="margin-bottom:26px">
         <h3 style="margin-top:0">Run any demo in 5 steps</h3>
-        <ol class="run-steps">
-          <li><b>Install Python 3</b> (one time only) — download it free from <a href="https://www.python.org/downloads/" target="_blank" rel="noopener">python.org/downloads</a> and run the installer. To check it worked, open Terminal (Mac) or Command Prompt (Windows) and type <code>python3 --version</code> — you should see a version number like <code>Python 3.12</code>.</li>
-          <li><b>Get the demo files</b> — open the project's GitHub page (links below), click the green <b>&lt;&gt; Code</b> button, then <b>Download ZIP</b>. Unzip the file anywhere you like, e.g. your Desktop.</li>
-          <li><b>Open a terminal in that folder</b> — on Mac: right-click the unzipped folder → <i>New Terminal at Folder</i>. On Windows: click the address bar in the folder, type <code>cmd</code>, press Enter.</li>
-          <li><b>Start the demo</b> — type <code>python3 app.py</code> and press Enter. The terminal will print a web address. <b>Keep this terminal window open</b> — closing it stops the demo.</li>
-          <li><b>Open it in Chrome</b> — type the address shown (e.g. <code>http://localhost:8001</code>) into Chrome's address bar. Click through the demo story. When you're done, press <code>Ctrl+C</code> in the terminal to stop it.</li>
-        </ol>
-        <p style="margin-bottom:0"><b>Want all 8 open at once?</b> Start each demo's <code>app.py</code> in its own terminal window — each uses its own port (see the table below), so you can hop between them in Chrome just by changing the number at the end of the address. <i>Prefer the classic terminal version? Run <code>python3 demo.py</code> instead of <code>app.py</code> — same story, text only.</i></p>
+        <div class="run-paths">
+          <div class="run-path">
+            <h4>Option A — Fastest (3 commands)</h4>
+            <p>If you're comfortable with a terminal, this is all it takes. Pick a demo below, run its three commands, and open the address in Chrome.</p>
+            <span class="code-line">git clone https://github.com/ynpreet/&lt;demo-repo&gt;.git</span>
+            <span class="code-line">cd &lt;demo-repo&gt; &amp;&amp; python3 app.py</span>
+            <span class="code-line">open http://localhost:&lt;port&gt; in Chrome</span>
+          </div>
+          <div class="run-path">
+            <h4>Option B — No git needed (5 steps)</h4>
+            <ol class="run-steps">
+              <li><b>Install Python 3</b> (one time only) — download it free from <a href="https://www.python.org/downloads/" target="_blank" rel="noopener">python.org/downloads</a> and run the installer.</li>
+              <li><b>Get the demo files</b> — open the demo's GitHub page (links below), click the green <b>&lt;&gt; Code</b> button, then <b>Download ZIP</b>. Unzip it anywhere, e.g. your Desktop.</li>
+              <li><b>Open a terminal in that folder</b> — Mac: right-click the folder → <i>New Terminal at Folder</i>. Windows: click the folder's address bar, type <code>cmd</code>, press Enter.</li>
+              <li><b>Start the demo</b> — type <code>python3 app.py</code>, press Enter. <b>Keep this terminal open</b> — closing it stops the demo.</li>
+              <li><b>Open it in Chrome</b> — type the address shown (e.g. <code>http://localhost:8001</code>) into Chrome's address bar.</li>
+            </ol>
+          </div>
+        </div>
+        <p style="margin-bottom:0"><b>Want all 8 open at once?</b> Start each demo's <code>app.py</code> in its own terminal window — each uses its own port, so you can hop between them in Chrome just by changing the number at the end of the address. <i>Prefer the classic terminal version? Run <code>python3 demo.py</code> instead of <code>app.py</code> — same story, text only.</i></p>
       </div>
 
       <div class="run-block" id="how-to-run-care">
         <h3><a href="https://github.com/ynpreet/agentic-care-management" target="_blank" rel="noopener">Personalized Care Management Agent ↗</a></h3>
         <p>Five-agent care pipeline (auth → triage → channel → care plan → message). Canned mode is fully deterministic; try <code>--interactive</code> for the live Q&amp;A mode.</p>
-        <p class="run-web"><b>Web version (recommended):</b> download the ZIP from GitHub, unzip, open a terminal in the folder, run <code>python3 app.py</code>, then open <code>http://localhost:8001</code> in Chrome.</p>
-        <span class="code-line">python3 app.py  →  open http://localhost:8001 in Chrome</span>
-        <span class="code-line">python3 demo.py  →  terminal-only version</span>
+        <span class="code-line">git clone https://github.com/ynpreet/agentic-care-management.git</span>
+        <span class="code-line">cd agentic-care-management &amp;&amp; python3 app.py</span>
+        <span class="code-line">open http://localhost:8001 in Chrome &nbsp;·&nbsp; terminal-only: python3 demo.py</span>
       </div>
 
       <div class="run-block" id="how-to-run-hhv">
         <h3><a href="https://github.com/ynpreet/hhv-copilot" target="_blank" rel="noopener">HHV Copilot — Medicare Advantage In-Home Assessments ↗</a></h3>
         <p>Flagship demo: full in-home assessment lifecycle orchestrator — member identification through the outcome dashboard.</p>
-        <p class="run-web"><b>Web version (recommended):</b> download the ZIP from GitHub, unzip, open a terminal in the folder, run <code>python3 app.py</code>, then open <code>http://localhost:8002</code> in Chrome.</p>
-        <span class="code-line">python3 app.py  →  open http://localhost:8002 in Chrome</span>
-        <span class="code-line">python3 demo.py  →  terminal-only version</span>
+        <span class="code-line">git clone https://github.com/ynpreet/hhv-copilot.git</span>
+        <span class="code-line">cd hhv-copilot &amp;&amp; python3 app.py</span>
+        <span class="code-line">open http://localhost:8002 in Chrome &nbsp;·&nbsp; terminal-only: python3 demo.py</span>
       </div>
 
       <div class="run-block" id="how-to-run-restaurant">
         <h3><a href="https://github.com/ynpreet/restaurant-location-agent" target="_blank" rel="noopener">Restaurant Location Agent ↗</a></h3>
         <p>"Where should I open a Chinese restaurant?" — scores locations on Yelp-style data against business rules.</p>
-        <p class="run-web"><b>Web version (recommended):</b> download the ZIP from GitHub, unzip, open a terminal in the folder, run <code>python3 app.py</code>, then open <code>http://localhost:8003</code> in Chrome.</p>
-        <span class="code-line">python3 app.py  →  open http://localhost:8003 in Chrome</span>
-        <span class="code-line">python3 demo.py  →  terminal-only version</span>
+        <span class="code-line">git clone https://github.com/ynpreet/restaurant-location-agent.git</span>
+        <span class="code-line">cd restaurant-location-agent &amp;&amp; python3 app.py</span>
+        <span class="code-line">open http://localhost:8003 in Chrome &nbsp;·&nbsp; terminal-only: python3 demo.py</span>
       </div>
 
       <div class="run-block" id="how-to-run-aeroyield">
         <h3><a href="https://github.com/ynpreet/aeroyield-ai" target="_blank" rel="noopener">AeroYield AI — Agentic Revenue Management for Airlines ↗</a></h3>
         <p>Airline-side pricing for SFO → BOS: market intelligence, demand-forecast pricing engine, and a fixed-vs-rule-based-vs-agentic comparison.</p>
-        <p class="run-web"><b>Web version (recommended):</b> download the ZIP from GitHub, unzip, open a terminal in the folder, run <code>python3 app.py</code>, then open <code>http://localhost:8004</code> in Chrome.</p>
-        <span class="code-line">python3 app.py  →  open http://localhost:8004 in Chrome</span>
-        <span class="code-line">python3 demo.py  →  terminal-only version</span>
+        <span class="code-line">git clone https://github.com/ynpreet/aeroyield-ai.git</span>
+        <span class="code-line">cd aeroyield-ai &amp;&amp; python3 app.py</span>
+        <span class="code-line">open http://localhost:8004 in Chrome &nbsp;·&nbsp; terminal-only: python3 demo.py</span>
       </div>
 
       <div class="run-block" id="how-to-run-music">
         <h3><a href="https://github.com/ynpreet/music-mood-agent" target="_blank" rel="noopener">Music Mood Agent ↗</a></h3>
         <p>Songs matched to your mood and situation — describe the moment, get the setlist.</p>
-        <p class="run-web"><b>Web version (recommended):</b> download the ZIP from GitHub, unzip, open a terminal in the folder, run <code>python3 app.py</code>, then open <code>http://localhost:8005</code> in Chrome.</p>
-        <span class="code-line">python3 app.py  →  open http://localhost:8005 in Chrome</span>
-        <span class="code-line">python3 demo.py  →  terminal-only version</span>
+        <span class="code-line">git clone https://github.com/ynpreet/music-mood-agent.git</span>
+        <span class="code-line">cd music-mood-agent &amp;&amp; python3 app.py</span>
+        <span class="code-line">open http://localhost:8005 in Chrome &nbsp;·&nbsp; terminal-only: python3 demo.py</span>
       </div>
 
       <div class="run-block" id="how-to-run-fixmate">
         <h3><a href="https://github.com/ynpreet/fixmate-ai" target="_blank" rel="noopener">FixMate AI — The Intelligent Equipment Maintenance Agent ↗</a></h3>
         <p>Diagnose faster. Fix smarter. Keep every store running. The agent diagnoses coffee-machine errors for a fictional convenience-store chain — internal manuals first, the web second — across three scenarios, including a knowledge-gap improvement loop.</p>
-        <p class="run-web"><b>Web version (recommended):</b> download the ZIP from GitHub, unzip, open a terminal in the folder, run <code>python3 app.py</code>, then open <code>http://localhost:8006</code> in Chrome.</p>
-        <span class="code-line">python3 app.py  →  open http://localhost:8006 in Chrome</span>
-        <span class="code-line">python3 demo.py  →  terminal-only version</span>
+        <span class="code-line">git clone https://github.com/ynpreet/fixmate-ai.git</span>
+        <span class="code-line">cd fixmate-ai &amp;&amp; python3 app.py</span>
+        <span class="code-line">open http://localhost:8006 in Chrome &nbsp;·&nbsp; terminal-only: python3 demo.py</span>
       </div>
 
       <div class="run-block" id="how-to-run-gameguard">
         <h3><a href="https://github.com/ynpreet/gameguard-ai" target="_blank" rel="noopener">GameGuard AI — Gaming Safety and Fraud Detection ↗</a></h3>
         <p>Detect harmful behavior. Investigate the context. Protect the community. The agent investigates gaming-chat reports for the fictional BattleSphere company — three scenarios: the account scam case GG-1042, pattern-over-time escalation, and a false positive it correctly lets go.</p>
-        <p class="run-web"><b>Web version (recommended):</b> download the ZIP from GitHub, unzip, open a terminal in the folder, run <code>python3 app.py</code>, then open <code>http://localhost:8007</code> in Chrome.</p>
-        <span class="code-line">python3 app.py  →  open http://localhost:8007 in Chrome</span>
-        <span class="code-line">python3 demo.py  →  terminal-only version</span>
+        <span class="code-line">git clone https://github.com/ynpreet/gameguard-ai.git</span>
+        <span class="code-line">cd gameguard-ai &amp;&amp; python3 app.py</span>
+        <span class="code-line">open http://localhost:8007 in Chrome &nbsp;·&nbsp; terminal-only: python3 demo.py</span>
       </div>
 
       <div class="run-block" id="how-to-run-guestfirst">
         <h3><a href="https://github.com/ynpreet/guestfirst-ai" target="_blank" rel="noopener">GuestFirst AI — An Agentic AI System for Personalized Restaurant Experiences ↗</a></h3>
         <p>When satisfaction dips, find out why — fix it — and prove it's fixed. The agent investigates lunch-delay complaints for the fictional TastePoint restaurant chain: feedback → order records → operations → root cause → coordinated service recovery — then verifies the fix. Includes the mid-demo twist (a kitchen station goes down) and a verification simulation.</p>
-        <p class="run-web"><b>Web version (recommended):</b> download the ZIP from GitHub, unzip, open a terminal in the folder, run <code>python3 app.py</code>, then open <code>http://localhost:8008</code> in Chrome.</p>
-        <span class="code-line">python3 app.py  →  open http://localhost:8008 in Chrome</span>
-        <span class="code-line">python3 demo.py  →  terminal-only version</span>
+        <span class="code-line">git clone https://github.com/ynpreet/guestfirst-ai.git</span>
+        <span class="code-line">cd guestfirst-ai &amp;&amp; python3 app.py</span>
+        <span class="code-line">open http://localhost:8008 in Chrome &nbsp;·&nbsp; terminal-only: python3 demo.py</span>
       </div>
     </section>
 
