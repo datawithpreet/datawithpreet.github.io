@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Agentic AI Workshop — Demos | Preet Mehta</title>
+  <meta name="description" content="Eight hands-on agentic AI demos by Preet Mehta: a personalized care management agent, the flagship HHV Copilot for Medicare Advantage in-home assessments, a restaurant location finder, AeroYield AI (agentic airline revenue management), a music mood matcher, FixMate AI (intelligent equipment maintenance), GameGuard AI (gaming safety and fraud detection), and GuestFirst AI (personalized restaurant experiences — investigate, fix, verify). Open source on GitHub.">
+  <link rel="icon" href="assets/img/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <meta property="og:title" content="Agentic AI Workshop — Demos | Preet Mehta">
+  <meta property="og:description" content="Watch AI agents think: eight open-source agentic AI demos — care management, Medicare Advantage in-home assessments, restaurant site selection, airline revenue management, music mood matching, equipment maintenance, gaming safety, and personalized restaurant experiences.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://datawithpreet.github.io/assets/img/preet-creator.jpg">
+  <noscript><style>.reveal{opacity:1!important;transform:none!important}.section-title{clip-path:none!important}</style></noscript>
+  <style>
+    /* ---------- Agentic AI Workshop page — scoped additions ---------- */
+    .demo-card {
+      border: 1px solid var(--line-strong);
+      border-radius: var(--radius);
+      padding: 30px 32px;
+      margin-top: 18px;
+      background: var(--paper);
+    }
+    .demo-card > p { color: var(--ink); font-size: 15.5px; line-height: 1.65; max-width: 78ch; margin-bottom: 18px; }
+    .demo-compare {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 20px;
+    }
+    .demo-compare .before, .demo-compare .after {
+      border-radius: 14px; padding: 16px 18px; font-size: 14px; line-height: 1.55;
+    }
+    .demo-compare .before { background: #f3f0e8; color: #5a5546; }
+    .demo-compare .after { background: #eef4ec; color: #2f4a2c; }
+    .demo-compare b { display: block; font-size: 11px; letter-spacing: 0.18em; margin-bottom: 6px; }
+    .demo-compare .before b { color: #8a8272; }
+    .demo-compare .after b { color: #5a7a55; }
+    .demo-tech { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
+    .demo-tech span {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+      border: 1px solid var(--line-strong); border-radius: 999px; padding: 7px 14px; color: var(--gray);
+    }
+    .demo-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .demo-actions .btn { padding: 12px 24px; font-size: 13.5px; }
+    .run-block {
+      border: 1px solid var(--line-strong);
+      border-radius: var(--radius);
+      padding: 26px 28px; margin-top: 18px; margin-bottom: 26px;
+      scroll-margin-top: 120px;
+    }
+    .run-block h3 { font-family: var(--font-display); font-size: 20px; letter-spacing: -0.01em; margin-bottom: 4px; }
+    .run-block h3 a { color: inherit; text-decoration: none; }
+    .run-block > p { color: var(--gray); font-size: 14px; margin-bottom: 14px; }
+    .run-block ol { margin: 0 0 6px 20px; font-size: 14.5px; line-height: 1.7; }
+    .run-block code, .run-block .code-line {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px;
+      background: #f3f0e8; border-radius: 6px; padding: 2px 8px;
+    }
+    .run-block .code-line { display: block; padding: 10px 14px; margin: 6px 0; white-space: pre; overflow-x: auto; }
+    @media (max-width: 760px) {
+      .demo-compare { grid-template-columns: 1fr; }
+      .demo-card { padding: 22px 20px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header" id="top">
+    <a class="brand" href="index.html#home" aria-label="Preet Mehta home">
+      <span class="brand-mark">PM</span>
+      <span class="brand-copy"><strong>PREET MEHTA</strong><small>AGENTIC AI WORKSHOP</small></span>
+    </a>
+    <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false"><span></span><span></span></button>
+    <nav class="nav resources-page-nav" aria-label="Workshop navigation">
+      <a href="index.html#home">Home</a>
+      <a href="resources.html">Resources</a>
+      <a class="active" href="#demos">Demos</a>
+      <a href="index.html#writing">Writing</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main class="resources-page">
+    <section class="resources-hero" id="demos">
+      <div class="section-kicker">AGENTIC AI WORKSHOP</div>
+      <h1>AI agents that <em>do the work.</em></h1>
+      <p>Not chatbots that answer questions — agents that read, reason, and act. These eight demos are the hands-on core of the Agentic AI Workshop: each one takes a real-world workflow, breaks it into steps, and lets an AI agent run it end to end. Every demo is open source — read the code, run it, and make it your own.</p>
+      <div class="resources-hero-pills"><span>AGENTIC AI</span><span>OPEN SOURCE</span><span>PYTHON</span><span>HANDS-ON</span></div>
+    </section>
+
+    <!-- ================= DEMO 01 ================= -->
+    <section class="resource-library" id="demo-care">
+      <div class="resource-library-heading"><span>01</span><div><h2>Personalized Care Management Agent</h2><p>From patient data chaos to a ready-to-review care plan.</p></div></div>
+      <article class="demo-card">
+        <p>Five small agents, one job each, working one patient at a time: Auth verifies login, Triage scores risk, Channel picks email / SMS / a call script, Care Plan builds the plan, and Message renders it. The story is a before/after — one generic blast email (<em>"Get yourself checked. Visit a physician."</em>) versus a personalized, risk-triaged care plan plus a tailored outreach message for every patient. Pure Python, zero dependencies, fully deterministic.</p>
+        <div class="demo-compare">
+          <div class="before"><b>BEFORE AI</b>One generic blast email to every patient: "Get yourself checked. Visit a physician." — no name, no condition, no next step.</div>
+          <div class="after"><b>AFTER AI</b>A personalized care plan + tailored outreach message per patient: risk-triaged, condition-aware, delivered on the channel they prefer.</div>
+        </div>
+        <div class="demo-tech"><span>PYTHON</span><span>ZERO DEPENDENCIES</span><span>MULTI-AGENT PIPELINE</span><span>DETERMINISTIC</span></div>
+        <div class="demo-actions">
+          <a class="btn btn-primary" href="https://github.com/ynpreet/agentic-care-management" target="_blank" rel="noopener">View on GitHub ↗</a>
+          <a class="btn btn-ghost" href="#how-to-run-care">How to run ↓</a>
+        </div>
+      </article>
+    </section>
+
+    <!-- ================= DEMO 02 (FLAGSHIP) ================= -->
+    <section class="resource-library" id="demo-hhv">
+      <div class="resource-library-heading"><span>02 ★</span><div><h2>HHV Copilot — An Agentic AI System for Medicare Advantage In-Home Assessments</h2><p>Flagship demo: the full in-home assessment lifecycle, orchestrated end to end.</p></div></div>
+      <article class="demo-card">
+        <p>The flagship demo. In-home health visits for Medicare Advantage run on manual lists, phone tag, paper notes, and spreadsheets — members slip through, care gaps stay open, and the data gets reconciled by hand before CMS submission. HHV Copilot orchestrates the whole lifecycle as agents: member identification → outreach and scheduling → assessment interpretation → care gap resolution → data validation and reconciliation → an outcome dashboard showing expected CMS revenue versus cost.</p>
+        <div class="demo-compare">
+          <div class="before"><b>BEFORE AI</b>Manual member lists, phone-tag scheduling, paper assessments, care gaps that stay open — and a hand-built spreadsheet standing between the program and its CMS revenue.</div>
+          <div class="after"><b>AFTER AI</b>One orchestrator moves each member from identification to the outcome dashboard: prioritized outreach, interpreted assessments, closed care gaps, reconciled data — health outcomes and CMS revenue, side by side.</div>
+        </div>
+        <div class="demo-tech"><span>PYTHON</span><span>MEDICARE ADVANTAGE</span><span>FULL-LIFECYCLE ORCHESTRATOR</span><span>CARE-GAP CLOSURE</span><span>ZERO DEPENDENCIES</span></div>
+        <div class="demo-actions">
+          <a class="btn btn-primary" href="https://github.com/ynpreet/hhv-copilot" target="_blank" rel="noopener">View on GitHub ↗</a>
+          <a class="btn btn-ghost" href="#how-to-run-hhv">How to run ↓</a>
+        </div>
+      </article>
+    </section>
+
+    <!-- ================= DEMO 03 ================= -->
+    <section class="resource-library" id="demo-restaurant">
+      <div class="resource-library-heading"><span>03</span><div><h2>Restaurant Location Agent</h2><p>Where should I open a Chinese restaurant?</p></div></div>
+      <article class="demo-card">
+        <p>You want to open a Chinese restaurant — but where? This agent takes Yelp-style data — ratings, review counts, price bands, cuisine mix, hours — and scores neighborhoods against real business rules: too many competitors too close, rent vs. expected demand, cuisine gaps on the street. It answers one question: which location gives your restaurant the best shot at surviving year one?</p>
+        <div class="demo-compare">
+          <div class="before"><b>BEFORE AI</b>Weeks of gut feel: scrolling listings, driving around at dinner time, guessing where the customers are.</div>
+          <div class="after"><b>AFTER AI</b>The agent scores every candidate block on competition, demand, and rent — and tells you where to sign the lease.</div>
+        </div>
+        <div class="demo-tech"><span>PYTHON</span><span>YELP-STYLE DATA</span><span>BUSINESS RULES</span><span>SCORING AGENT</span></div>
+        <div class="demo-actions">
+          <a class="btn btn-primary" href="https://github.com/ynpreet/restaurant-location-agent" target="_blank" rel="noopener">View on GitHub ↗</a>
+          <a class="btn btn-ghost" href="#how-to-run-restaurant">How to run ↓</a>
+        </div>
+      </article>
+    </section>
+
+    <!-- ================= DEMO 04 ================= -->
+    <section class="resource-library" id="demo-aeroyield">
+      <div class="resource-library-heading"><span>04</span><div><h2>AeroYield AI — An Agentic AI Revenue Management System for Airlines</h2><p>Fixed vs. rule-based vs. agentic pricing on SFO → BOS.</p></div></div>
+      <article class="demo-card">
+        <p>Airline-side pricing that watches the market. This agent runs revenue management on the SFO → BOS corridor: demand, competitor, and market intelligence feeding a demand-forecast pricing engine. The demo's centerpiece is a three-way baseline comparison — fixed tariffs vs. rule-based pricing vs. agentic pricing — so you can see exactly what the agent's decisions buy you, fare by fare.</p>
+        <div class="demo-compare">
+          <div class="before"><b>BEFORE AI</b>Fixed tariffs and static rules: seats sell too cheap on hot days and sit empty when demand dips — the market moves, the price doesn't.</div>
+          <div class="after"><b>AFTER AI</b>The agent reads demand and competitor moves and prices the corridor continuously — with fixed and rule-based baselines side by side to prove the difference.</div>
+        </div>
+        <div class="demo-tech"><span>PYTHON</span><span>REVENUE MANAGEMENT</span><span>DEMAND FORECASTING</span><span>THREE-WAY BASELINE</span></div>
+        <div class="demo-actions">
+          <a class="btn btn-primary" href="https://github.com/ynpreet/aeroyield-ai" target="_blank" rel="noopener">View on GitHub ↗</a>
+          <a class="btn btn-ghost" href="#how-to-run-aeroyield">How to run ↓</a>
+        </div>
+      </article>
+    </section>
+
+    <!-- ================= DEMO 05 ================= -->
+    <section class="resource-library" id="demo-music">
+      <div class="resource-library-heading"><span>05</span><div><h2>Music Mood Agent</h2><p>Songs matched to your mood and moment.</p></div></div>
+      <article class="demo-card">
+        <p>Rainy Sunday, deadline Friday, post-workout glow — every moment wants a different sound, and your playlists are static. This agent takes your mood or situation in plain words and matches songs to it: energy, tempo, and vibe scored against what you asked for, so the first track is already right instead of the twentieth.</p>
+        <div class="demo-compare">
+          <div class="before"><b>BEFORE AI</b>Doom-scrolling playlists, skipping twenty songs to find the one that fits — then settling for close enough.</div>
+          <div class="after"><b>AFTER AI</b>Tell the agent your mood — it builds the setlist around the moment you're actually in.</div>
+        </div>
+        <div class="demo-tech"><span>PYTHON</span><span>MOOD MATCHING</span><span>CURATION AGENT</span><span>ZERO DEPENDENCIES</span></div>
+        <div class="demo-actions">
+          <a class="btn btn-primary" href="https://github.com/ynpreet/music-mood-agent" target="_blank" rel="noopener">View on GitHub ↗</a>
+          <a class="btn btn-ghost" href="#how-to-run-music">How to run ↓</a>
+        </div>
+      </article>
+    </section>
+
+    <!-- ================= DEMO 06 ================= -->
+    <section class="resource-library" id="demo-fixmate">
+      <div class="resource-library-heading"><span>06</span><div><h2>FixMate AI — The Intelligent Equipment Maintenance Agent</h2><p>Diagnose faster. Fix smarter. Keep every store running.</p></div></div>
+      <article class="demo-card">
+        <p>BrewPoint Retail is a fictional convenience-store chain — and its coffee machines keep failing during the morning rush. FixMate AI takes it from the error code: it searches the internal manuals first, falls back to the web only when the manuals don't cover it, and walks the store employee through the fix. The demo runs three scenarios — including a knowledge-gap improvement loop, where every gap the agent hits becomes a new manual entry the next store inherits.</p>
+        <div class="demo-compare">
+          <div class="before"><b>BEFORE AI</b>The store manager sits on hold with the maintenance hotline, waits two days for a technician, and learns the fix was in the manual all along — while the knowledge stays locked in technicians' heads.</div>
+          <div class="after"><b>AFTER AI</b>The agent reads the error code and solves it from the manual in minutes — and when the manual doesn't cover it, the web fallback is logged as a knowledge gap, written back into the manual for the next store.</div>
+        </div>
+        <div class="demo-tech"><span>PYTHON</span><span>KNOWLEDGE-FIRST DIAGNOSIS</span><span>MANUALS + WEB SOURCES</span><span>IMPROVEMENT LOOP</span></div>
+        <div class="demo-actions">
+          <a class="btn btn-primary" href="https://github.com/ynpreet/fixmate-ai" target="_blank" rel="noopener">View on GitHub ↗</a>
+          <a class="btn btn-ghost" href="#how-to-run-fixmate">How to run ↓</a>
+        </div>
+      </article>
+    </section>
+
+    <!-- ================= DEMO 07 ================= -->
+    <section class="resource-library" id="demo-gameguard">
+      <div class="resource-library-heading"><span>07</span><div><h2>GameGuard AI — An Agentic AI System for Gaming Safety and Fraud Detection</h2><p>Detect harmful behavior. Investigate the context. Protect the community.</p></div></div>
+      <article class="demo-card">
+        <p>BattleSphere is a fictional online gaming company — and its chat never sleeps: trades, trash talk, team strategy, scams. Keyword filters flag "free" in a friendly giveaway while a real scammer slides by in slang, emoji, and a second language. GameGuard AI reads the full context across conversations — emoji, slang, multilingual patterns — and then investigates before it acts: evidence, history, confidence. It never auto-punishes. The demo runs three scenarios: the account scam case GG-1042, pattern-over-time escalation of a repeat offender, and a false positive it correctly lets go.</p>
+        <div class="demo-compare">
+          <div class="before"><b>BEFORE AI</b>Keyword filters + volunteer mods: real scams slip through written in slang and emoji, false positives punish innocent players, and banned scammers are back tomorrow on a new account.</div>
+          <div class="after"><b>AFTER AI</b>The agent reads context across conversations — emoji, slang, multilingual patterns — and every alert carries evidence, history, and confidence. It never auto-punishes: false positives are dismissed, repeat offenders escalated.</div>
+        </div>
+        <div class="demo-tech"><span>PYTHON</span><span>CONTEXTUAL MODERATION</span><span>FRAUD DETECTION</span><span>INVESTIGATE BEFORE ACT</span></div>
+        <div class="demo-actions">
+          <a class="btn btn-primary" href="https://github.com/ynpreet/gameguard-ai" target="_blank" rel="noopener">View on GitHub ↗</a>
+          <a class="btn btn-ghost" href="#how-to-run-gameguard">How to run ↓</a>
+        </div>
+      </article>
+    </section>
+
+    <!-- ================= DEMO 08 ================= -->
+    <section class="resource-library" id="demo-guestfirst">
+      <div class="resource-library-heading"><span>08</span><div><h2>GuestFirst AI — An Agentic AI System for Personalized Restaurant Experiences</h2><p>When satisfaction dips, find out why — fix it — and prove it's fixed.</p></div></div>
+      <article class="demo-card">
+        <p>TastePoint is a fictional restaurant chain — and lunch satisfaction has started slipping. The surveys say "too slow," but nobody can prove why. GuestFirst AI does the manager's whole job: it investigates the <em>why</em> — cross-referencing guest feedback with order records and kitchen operations to pin the root cause — then determines the action, coordinates the response, and <em>verifies</em> the resolution actually worked. The live scenario runs the full loop: lunch-delay complaints → root-cause investigation → recommendation — then the twist: one kitchen station goes down mid-demo, and the agent revises its recommendation on the fly before running a verification simulation.</p>
+        <div class="demo-compare">
+          <div class="before"><b>BEFORE AI</b>Surveys say "too slow" — and that's all anybody knows. The manager guesses, tries a fix, and never measures whether it worked.</div>
+          <div class="after"><b>AFTER AI</b>The agent traces complaints to their root cause — feedback → order records → operations — prescribes a fix, coordinates it, and verifies the resolution. Closed-loop service recovery, with evidence.</div>
+        </div>
+        <div class="demo-tech"><span>PYTHON</span><span>ROOT-CAUSE ANALYSIS</span><span>SERVICE RECOVERY</span><span>CLOSED-LOOP VERIFICATION</span></div>
+        <div class="demo-actions">
+          <a class="btn btn-primary" href="https://github.com/ynpreet/guestfirst-ai" target="_blank" rel="noopener">View on GitHub ↗</a>
+          <a class="btn btn-ghost" href="#how-to-run-guestfirst">How to run ↓</a>
+        </div>
+      </article>
+    </section>
+
+    <!-- ================= HOW TO RUN ================= -->
+    <section class="resource-library" id="how-to-run">
+      <div class="resource-library-heading"><span>★</span><div><h2>How to run</h2><p>Each demo is a standard Python project. You need Python 3 and git — no API keys, no installs: clone the repo, step inside, and run <code>python3 demo.py</code>.</p></div></div>
+
+      <div class="run-block" id="how-to-run-care">
+        <h3><a href="https://github.com/ynpreet/agentic-care-management" target="_blank" rel="noopener">Personalized Care Management Agent ↗</a></h3>
+        <p>Five-agent care pipeline (auth → triage → channel → care plan → message). Canned mode is fully deterministic; try <code>--interactive</code> for the live Q&amp;A mode.</p>
+        <span class="code-line">git clone https://github.com/ynpreet/agentic-care-management.git</span>
+        <span class="code-line">cd agentic-care-management</span>
+        <span class="code-line">python3 demo.py</span>
+      </div>
+
+      <div class="run-block" id="how-to-run-hhv">
+        <h3><a href="https://github.com/ynpreet/hhv-copilot" target="_blank" rel="noopener">HHV Copilot — Medicare Advantage In-Home Assessments ↗</a></h3>
+        <p>Flagship demo: full in-home assessment lifecycle orchestrator — member identification through the outcome dashboard.</p>
+        <span class="code-line">git clone https://github.com/ynpreet/hhv-copilot.git</span>
+        <span class="code-line">cd hhv-copilot</span>
+        <span class="code-line">python3 demo.py</span>
+      </div>
+
+      <div class="run-block" id="how-to-run-restaurant">
+        <h3><a href="https://github.com/ynpreet/restaurant-location-agent" target="_blank" rel="noopener">Restaurant Location Agent ↗</a></h3>
+        <p>"Where should I open a Chinese restaurant?" — scores locations on Yelp-style data against business rules.</p>
+        <span class="code-line">git clone https://github.com/ynpreet/restaurant-location-agent.git</span>
+        <span class="code-line">cd restaurant-location-agent</span>
+        <span class="code-line">python3 demo.py</span>
+      </div>
+
+      <div class="run-block" id="how-to-run-aeroyield">
+        <h3><a href="https://github.com/ynpreet/aeroyield-ai" target="_blank" rel="noopener">AeroYield AI — Agentic Revenue Management for Airlines ↗</a></h3>
+        <p>Airline-side pricing for SFO → BOS: market intelligence, demand-forecast pricing engine, and a fixed-vs-rule-based-vs-agentic comparison.</p>
+        <span class="code-line">git clone https://github.com/ynpreet/aeroyield-ai.git</span>
+        <span class="code-line">cd aeroyield-ai</span>
+        <span class="code-line">python3 demo.py</span>
+      </div>
+
+      <div class="run-block" id="how-to-run-music">
+        <h3><a href="https://github.com/ynpreet/music-mood-agent" target="_blank" rel="noopener">Music Mood Agent ↗</a></h3>
+        <p>Songs matched to your mood and situation — describe the moment, get the setlist.</p>
+        <span class="code-line">git clone https://github.com/ynpreet/music-mood-agent.git</span>
+        <span class="code-line">cd music-mood-agent</span>
+        <span class="code-line">python3 demo.py</span>
+      </div>
+
+      <div class="run-block" id="how-to-run-fixmate">
+        <h3><a href="https://github.com/ynpreet/fixmate-ai" target="_blank" rel="noopener">FixMate AI — The Intelligent Equipment Maintenance Agent ↗</a></h3>
+        <p>Diagnose faster. Fix smarter. Keep every store running. The agent diagnoses coffee-machine errors for a fictional convenience-store chain — internal manuals first, the web second — across three scenarios, including a knowledge-gap improvement loop.</p>
+        <span class="code-line">git clone https://github.com/ynpreet/fixmate-ai.git</span>
+        <span class="code-line">cd fixmate-ai</span>
+        <span class="code-line">python3 demo.py</span>
+      </div>
+
+      <div class="run-block" id="how-to-run-gameguard">
+        <h3><a href="https://github.com/ynpreet/gameguard-ai" target="_blank" rel="noopener">GameGuard AI — Gaming Safety and Fraud Detection ↗</a></h3>
+        <p>Detect harmful behavior. Investigate the context. Protect the community. The agent investigates gaming-chat reports for the fictional BattleSphere company — three scenarios: the account scam case GG-1042, pattern-over-time escalation, and a false positive it correctly lets go.</p>
+        <span class="code-line">git clone https://github.com/ynpreet/gameguard-ai.git</span>
+        <span class="code-line">cd gameguard-ai</span>
+        <span class="code-line">python3 demo.py</span>
+      </div>
+
+      <div class="run-block" id="how-to-run-guestfirst">
+        <h3><a href="https://github.com/ynpreet/guestfirst-ai" target="_blank" rel="noopener">GuestFirst AI — An Agentic AI System for Personalized Restaurant Experiences ↗</a></h3>
+        <p>When satisfaction dips, find out why — fix it — and prove it's fixed. The agent investigates lunch-delay complaints for the fictional TastePoint restaurant chain: feedback → order records → operations → root cause → coordinated service recovery — then verifies the fix. Includes the mid-demo twist (a kitchen station goes down) and a verification simulation.</p>
+        <span class="code-line">git clone https://github.com/ynpreet/guestfirst-ai.git</span>
+        <span class="code-line">cd guestfirst-ai</span>
+        <span class="code-line">python3 demo.py</span>
+      </div>
+    </section>
+
+    <section class="resource-cta">
+      <span>WANT THESE DEMOS LIVE IN A SESSION?</span>
+      <h2>Bring the <em>Agentic AI Workshop</em> to your team.</h2>
+      <p>Hands-on builds, live agent walkthroughs, and patterns you can take back to your own projects — run through each demo together, step by step.</p>
+      <a class="btn btn-primary" href="index.html#contact">Get in touch ↗</a>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div><strong>PREET MEHTA</strong><span>Data Engineering • Healthcare • Community</span></div>
+    <div><span>© 2026 Preet Mehta</span></div>
+  </footer>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
