@@ -56,6 +56,11 @@
       border: 1px solid var(--line-strong); border-radius: 999px; padding: 7px 14px; color: var(--gray);
     }
     .demo-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .demo-kicker { font-size: 13px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--teal); margin-bottom: 14px; }
+    .demo-headline { font-family: "Space Grotesk", sans-serif; font-size: clamp(24px, 3.4vw, 34px); line-height: 1.18; letter-spacing: -.015em; margin: 20px 0 12px; color: var(--ink); }
+    .demo-desc { font-size: 16.5px; line-height: 1.7; color: #33415e; max-width: 72ch; margin: 0 0 16px; }
+    .demo-proof { background: rgba(42,161,152,.08); border: 1px solid rgba(42,161,152,.35); border-radius: 12px; padding: 16px 20px; font-size: 15.5px; line-height: 1.65; color: #24324f; margin: 0 0 20px; }
+    .demo-proof a { color: #1b6f6a; font-weight: 700; white-space: nowrap; }
     .demo-tagline { font-size: 17px; font-weight: 800; color: var(--teal); margin: 18px 0 0; line-height: 1.5; }
     .demo-value { font-size: 16.5px; font-weight: 600; color: var(--ink); margin: 18px 0 14px; padding-left: 14px; border-left: 3px solid var(--accent); line-height: 1.55; }
     .demo-note { margin: 0 0 18px; font-size: 14.5px; color: var(--muted); }
@@ -183,20 +188,15 @@
 
     <!-- ================= DEMO 01 ================= -->
     <section class="resource-library" id="demo-care">
-      <div class="resource-library-heading"><span>01</span><div><h2>Personalized Care Management Agent</h2><p>From patient data chaos to a ready-to-review care plan.</p></div></div>
+      <div class="demo-kicker">01 · Healthcare · Agentic AI</div>
       <article class="demo-card">
-        <img class="demo-img" src="assets/demos/care-management.webp" alt="Doctor showing a personalized care plan to a patient on a tablet" loading="lazy">
-        <p class="demo-tagline">The right care plan, for the right patient, before they have to ask.</p>
-        <p class="demo-value">Health plans spend billions on outreach patients ignore. Risk-triaged, personalized care plans get patients to act — closing care gaps instead of blasting generic emails.</p>
-        <p>Five small agents, one job each, working one patient at a time: Auth verifies login, Triage scores risk, Channel picks email / SMS / a call script, Care Plan builds the plan, and Message renders it. The story is a before/after — one generic blast email (<em>"Get yourself checked. Visit a physician."</em>) versus a personalized, risk-triaged care plan plus a tailored outreach message for every patient. Pure Python, zero dependencies, fully deterministic.</p>
-        <div class="demo-compare">
-          <div class="before"><b>BEFORE AI</b>One generic blast email to every patient: "Get yourself checked. Visit a physician." — no name, no condition, no next step.</div>
-          <div class="after"><b>AFTER AI</b>A personalized care plan + tailored outreach message per patient: risk-triaged, condition-aware, delivered on the channel they prefer.</div>
-        </div>
-        <div class="demo-tech"><span>PYTHON</span><span>ZERO DEPENDENCIES</span><span>MULTI-AGENT PIPELINE</span><span>DETERMINISTIC</span></div>
+        <img class="demo-img" src="assets/demos/care-management-outcome.webp" alt="Care coordinator using the Care Outreach Agent dashboard — personalized outreach, care gap closure, appointment scheduling, outcome tracking" loading="lazy">
+        <h3 class="demo-headline">Stop Sending Generic Messages. Start Driving Member Action.</h3>
+        <p class="demo-desc">Health plans don't just need to reach members&mdash;they need to motivate them to act. See how AI agents can personalize outreach, select appropriate communication channels, and coordinate follow-ups to help close care gaps.</p>
+        <p class="demo-proof"><strong>Real-world signal:</strong> Aetna reported an 80%+ increase in overall member engagement with its enhanced RCS messaging experience. <a href="https://www.cvshealth.com/news/company-news/aetna-launches-simplified-digital-first-benefits-onboarding-experience.html" target="_blank" rel="noopener">Source: CVS Health &#8599;</a></p>
         <div class="demo-actions">
-          <a class="btn btn-primary" href="https://github.com/ynpreet/agentic-care-management" target="_blank" rel="noopener">View on GitHub ↗</a>
-          <a class="btn btn-ghost" href="#how-to-run-care">How to run ↓</a>
+          <a class="btn btn-primary" href="projects/care-management.html">Explore the project &#8599;</a>
+          <a class="btn btn-ghost" href="https://github.com/ynpreet/agentic-care-management" target="_blank" rel="noopener">View on GitHub &#8599;</a>
         </div>
       </article>
     </section>

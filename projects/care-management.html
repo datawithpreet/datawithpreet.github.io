@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Personalized Care Management Agent — Project Deep Dive | Preet Mehta</title>
+  <meta name="description" content="How an AI agent pipeline personalizes member outreach for health plans: risk triage, channel selection, care plans, and message rendering. Architecture, data engineering, agent workflow, and implementation.">
+  <link rel="icon" href="../assets/img/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .proj-hero { max-width: 880px; margin: 120px auto 0; padding: 40px 24px 10px; }
+    .proj-kicker { font-size: 13px; font-weight: 800; letter-spacing: .14em; color: var(--teal); text-transform: uppercase; margin-bottom: 18px; }
+    .proj-hero h1 { font-family: "Space Grotesk", sans-serif; font-size: clamp(32px, 5vw, 52px); line-height: 1.12; letter-spacing: -.02em; margin: 0 0 20px; color: var(--ink); }
+    .proj-hero .lede { font-size: 18px; line-height: 1.7; color: #3c4a68; max-width: 70ch; }
+    .proj-hero img.hero-img { width: 100%; border-radius: 16px; margin: 30px 0 8px; box-shadow: 0 18px 50px rgba(20,30,50,.14); }
+    .proof { background: rgba(42,161,152,.08); border: 1px solid rgba(42,161,152,.35); border-radius: 14px; padding: 20px 24px; margin: 26px 0; font-size: 16px; line-height: 1.65; color: #24324f; }
+    .proof a { color: #1b6f6a; font-weight: 700; }
+    .proj-body { max-width: 880px; margin: 0 auto; padding: 10px 24px 60px; }
+    .proj-body h2 { font-family: "Space Grotesk", sans-serif; font-size: 26px; margin: 48px 0 14px; color: var(--ink); letter-spacing: -.01em; }
+    .proj-body h3 { font-size: 18px; margin: 28px 0 10px; color: #1b2a4a; }
+    .proj-body p, .proj-body li { font-size: 16px; line-height: 1.75; color: #33415e; }
+    .proj-body ul, .proj-body ol { padding-left: 22px; }
+    .proj-body li { margin-bottom: 8px; }
+    .agent-flow { display: grid; gap: 0; margin: 20px 0; }
+    .agent-step { display: grid; grid-template-columns: 44px 1fr; gap: 16px; padding: 16px 0; border-bottom: 1px dashed rgba(27,42,74,.18); }
+    .agent-step:last-child { border-bottom: 0; }
+    .agent-num { width: 44px; height: 44px; border-radius: 50%; background: rgba(42,161,152,.14); border: 1.5px solid #2aa198; color: #1b6f6a; font-weight: 800; display: flex; align-items: center; justify-content: center; font-size: 17px; }
+    .agent-step b { color: #1b2a4a; }
+    .agent-step p { margin: 4px 0 0; font-size: 15px; }
+    table.spec { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 15px; }
+    table.spec th { text-align: left; padding: 10px 14px; background: rgba(27,42,74,.06); color: #1b2a4a; font-size: 12.5px; letter-spacing: .06em; text-transform: uppercase; border-bottom: 2px solid rgba(27,42,74,.14); }
+    table.spec td { padding: 10px 14px; border-bottom: 1px solid rgba(27,42,74,.1); color: #33415e; vertical-align: top; }
+    code.inline, .code-line { background: rgba(27,42,74,.07); padding: 2px 8px; border-radius: 6px; font-size: 14px; font-family: ui-monospace, Menlo, Consolas, monospace; }
+    .code-block { background: #0e1626; color: #c9d6ea; border-radius: 12px; padding: 20px 22px; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 13.5px; line-height: 1.7; overflow-x: auto; margin: 16px 0; white-space: pre; }
+    .cta-row { display: flex; gap: 14px; flex-wrap: wrap; margin: 34px 0 10px; }
+    .btn { display: inline-block; padding: 14px 30px; border-radius: 12px; font-weight: 800; font-size: 16px; text-decoration: none; }
+    .btn-primary { background: #14b8a6; color: #04211c; }
+    .btn-ghost { border: 1.5px solid #2aa198; color: #1b6f6a; background: transparent; }
+    .back-link { display: inline-block; margin-bottom: 6px; color: #1b6f6a; font-weight: 700; text-decoration: none; font-size: 15px; }
+    .disclaimer { font-size: 13.5px; color: #7a8aa5; border-top: 1px solid rgba(27,42,74,.12); margin-top: 50px; padding-top: 20px; }
+    footer.site-footer { text-align: center; padding: 30px 20px 50px; color: #7a8aa5; font-size: 14px; }
+    footer.site-footer a { color: #1b6f6a; font-weight: 700; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <header class="site-header" id="top">
+    <a class="brand" href="../index.html#home" aria-label="Preet Mehta home">
+      <span class="brand-mark">PM</span>
+      <span class="brand-copy"><strong>PREET MEHTA</strong><small>AGENTIC AI WORKSHOP</small></span>
+    </a>
+    <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false"><span></span><span></span></button>
+    <nav class="nav resources-page-nav" aria-label="Workshop navigation">
+      <a href="../index.html#home">Home</a>
+      <a href="../resources.html">Resources</a>
+      <a class="active" href="../demos.html">Demos</a>
+      <a href="../index.html#writing">Writing</a>
+      <a href="../index.html#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="proj-hero">
+      <a class="back-link" href="../demos.html">← Back to all demos</a>
+      <div class="proj-kicker">01 · Healthcare · Agentic AI</div>
+      <h1>Stop Sending Generic Messages. Start Driving Member Action.</h1>
+      <p class="lede">Health plans don't just need to reach members — they need to motivate them to act. This agent personalizes outreach, selects the right communication channel, and coordinates follow-ups to help close care gaps.</p>
+      <img class="hero-img" src="../assets/demos/care-management-outcome.webp" alt="Care coordinator using the Care Outreach Agent dashboard showing personalized outreach, care gap closure, appointment scheduling, and outcome tracking" loading="lazy">
+      <div class="proof"><strong>Real-world signal:</strong> Aetna reported a more than 80% increase in overall member engagement after moving to enhanced RCS messaging. <a href="https://www.cvshealth.com/news/company-news/aetna-launches-simplified-digital-first-benefits-onboarding-experience.html" target="_blank" rel="noopener">Source: CVS Health ↗</a></div>
+    </div>
+
+    <div class="proj-body">
+      <h2>The business outcome</h2>
+      <p>Health plans spend billions on outreach that members ignore. The legacy tool is the generic blast — one message, <em>"Get yourself checked. Visit a physician,"</em> sent to every patient. No name, no condition, no next step, no channel choice. The patient with uncontrolled diabetes gets the exact same note as a healthy 45-year-old. It's cheap to send and nearly useless to receive.</p>
+      <p>This system replaces the blast with an agentic loop: <strong>risk-triaged, condition-aware, channel-aware outreach, executed per patient, automatically.</strong> Three fictional patients show the before/after — Priya Sharma (Type 2 Diabetes + Hypertension, prefers email), Maria Garcia (Type 2 Diabetes + Chronic Kidney Disease, prefers SMS), and James Carter (Hypertension only, prefers phone) — and why the same message fails all three while the agent reaches each one.</p>
+
+      <h2>How the agent works</h2>
+      <p>No single LLM call could do this reliably. The system chains <strong>five specialized agents</strong>, each with one input/output contract, per patient:</p>
+      <div class="agent-flow">
+        <div class="agent-step"><div class="agent-num">1</div><div><b>AuthAgent</b><p>Verifies the patient logs in via email lookup.</p></div></div>
+        <div class="agent-step"><div class="agent-num">2</div><div><b>TriageAgent</b><p>Scores clinical risk 0–100 from structured risk factors — A1C, systolic BP, eGFR, missed refills, ER visits, visit recency — and assigns a HIGH / MEDIUM / LOW tier.</p></div></div>
+        <div class="agent-step"><div class="agent-num">3</div><div><b>ChannelAgent</b><p>Picks the outreach channel: the patient's stated preference first, with a HIGH-risk urgency override toward a phone call (or an urgent follow-up CTA when the patient prefers email/SMS).</p></div></div>
+        <div class="agent-step"><div class="agent-num">4</div><div><b>CarePlanAgent</b><p>Assembles a personalized plan from condition-specific playbooks plus tier-based follow-ups — 7-day check-in for HIGH, 30-day for MEDIUM.</p></div></div>
+        <div class="agent-step"><div class="agent-num">5</div><div><b>MessageAgent</b><p>Renders the message in the channel's native shape: a full email with subject line, compressed SMS texts, or a care-manager call script with intro, talking points, risks to acknowledge, and a booking close.</p></div></div>
+      </div>
+      <p>The agents are deliberately rule-based functions with no framework and no LLM calls, so the <em>orchestration</em> pattern stays clean — each agent can later be swapped for an LLM call, a guardrail agent can be added, or steps parallelized, without restructuring anything.</p>
+
+      <h2>Data engineering</h2>
+      <p>All patient data lives in <span class="code-line">mock_patients.json</span> — fictional patients, local file, no network. Each record carries the features the pipeline needs:</p>
+      <table class="spec">
+        <tr><th>Field</th><th>What it feeds</th></tr>
+        <tr><td><span class="code-line">conditions</span></td><td>Selects the condition playbooks in CarePlanAgent</td></tr>
+        <tr><td><span class="code-line">risk_factors</span> (hba1c, systolic_bp, egfr, missed_refills, er_visits_last_6mo)</td><td>Inputs to the TriageAgent risk score</td></tr>
+        <tr><td><span class="code-line">last_visit</span></td><td>Visit-recency component of the risk score</td></tr>
+        <tr><td><span class="code-line">preferred_channel</span></td><td>Default choice for ChannelAgent (email / sms / phone)</td></tr>
+      </table>
+      <p>The pipeline is fully deterministic: a fixed <span class="code-line">DEMO_TODAY</span> date means the same inputs always produce the same outputs — the test log records 10/10 byte-identical runs. In production, this JSON becomes the plan's member data mart: claims, labs, pharmacy refills, and ADT feeds landing in a Delta table, with the same feature contract.</p>
+
+      <h2>Architecture</h2>
+      <ul>
+        <li><strong>Pipeline, not a prompt.</strong> Five single-purpose stages with explicit input/output contracts: authenticate → triage → choose channel → build plan → render message.</li>
+        <li><strong>Deterministic by design.</strong> Rule-based scoring, fixed reference date, no randomness — every run is reproducible and auditable, which is what a regulated health plan needs before any model goes near members.</li>
+        <li><strong>Zero-dependency runtime.</strong> Python 3.8+ standard library only — no frameworks, no API keys, no network. The web UI (<span class="code-line">app.py</span>) serves the interactive demo on <span class="code-line">localhost:8001</span>; <span class="code-line">demo.py</span> runs the canned terminal story and an interactive mode.</li>
+        <li><strong>Risk tiers drive everything downstream:</strong></li>
+      </ul>
+      <table class="spec">
+        <tr><th>Score</th><th>Tier</th><th>Follow-up</th></tr>
+        <tr><td>≥ 50</td><td>HIGH</td><td>Care-manager check-in within 7 days; urgent CTA in the message</td></tr>
+        <tr><td>25–49</td><td>MEDIUM</td><td>Check-in within 30 days</td></tr>
+        <tr><td>&lt; 25</td><td>LOW</td><td>Routine messaging</td></tr>
+      </table>
+
+      <h2>Implementation</h2>
+      <p>Two ways to run it:</p>
+      <div class="code-block">python3 app.py        # web UI → http://localhost:8001 (click "Run live demo")
+python3 demo.py       # canned terminal story
+python3 demo.py --interactive   # log in as a patient and get a plan, live</div>
+      <p>The canned demo runs the three fictional patients end-to-end: Priya triages HIGH (75) and gets an urgent email plan, Maria triages MEDIUM with an SMS plan, James triages LOW with a routine phone-script plan. Interactive mode lets an audience member log in by email and watch the same pipeline personalize for them — with graceful handling for unknown logins.</p>
+
+      <h2>Technical details</h2>
+      <ul>
+        <li><strong>Channel selection logic:</strong> patient preference wins by default; HIGH tier triggers an urgency override toward a phone call, or an urgent follow-up call-to-action when the patient prefers email/SMS.</li>
+        <li><strong>Message rendering:</strong> email (subject line + body), SMS (compressed multi-text), or a care-manager call script (intro, talking points, risks to acknowledge, booking close) — matched to the selected channel.</li>
+        <li><strong>Success criteria:</strong> correct tiers for all three patients (Priya HIGH 75, Maria MEDIUM, James LOW), three channel-correct messages, graceful unknown-login handling.</li>
+        <li><strong>Test evidence:</strong> <span class="code-line">TEST-LOG.md</span> and <span class="code-line">TEST-LOG-EDGE.md</span> in the repo record determinism and edge-case batteries.</li>
+      </ul>
+
+      <div class="cta-row">
+        <a class="btn btn-primary" href="https://github.com/ynpreet/agentic-care-management" target="_blank" rel="noopener">View the code on GitHub ↗</a>
+        <a class="btn btn-ghost" href="../demos.html#how-to-run-care">How to run ↓</a>
+      </div>
+
+      <p class="disclaimer"><strong>Educational demo.</strong> Condition playbooks are simplified teaching examples, not medical advice. All patients are fictional; all data is local. The Aetna engagement statistic is from the official CVS Health press release linked above.</p>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div>© 2026 Preet Mehta · <a href="../demos.html">All demos</a> · <a href="https://github.com/ynpreet/agentic-care-management" target="_blank" rel="noopener">GitHub</a></div>
+  </footer>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>
