@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FixMate AI — Project Deep Dive | Preet Mehta</title>
+  <meta name="description" content="How an agentic AI helps technicians diagnose equipment faster: internal docs first, safety-gated procedures, part recognition, honest escalation. Architecture, data engineering, agent workflow, and implementation.">
+  <link rel="icon" href="../assets/img/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .proj-hero { max-width: 880px; margin: 120px auto 0; padding: 40px 24px 10px; }
+    .proj-kicker { font-size: 13px; font-weight: 800; letter-spacing: .14em; color: var(--teal); text-transform: uppercase; margin-bottom: 18px; }
+    .proj-hero h1 { font-family: "Space Grotesk", sans-serif; font-size: clamp(32px, 5vw, 52px); line-height: 1.12; letter-spacing: -.02em; margin: 0 0 20px; color: var(--ink); }
+    .proj-hero .lede { font-size: 18px; line-height: 1.7; color: #3c4a68; max-width: 70ch; }
+    .proj-hero img.hero-img { width: 100%; border-radius: 16px; margin: 30px 0 8px; box-shadow: 0 18px 50px rgba(20,30,50,.14); }
+    .proof { background: rgba(42,161,152,.08); border: 1px solid rgba(42,161,152,.35); border-radius: 14px; padding: 20px 24px; margin: 26px 0; font-size: 16px; line-height: 1.65; color: #24324f; }
+    .proof a { color: #1b6f6a; font-weight: 700; }
+    .proj-body { max-width: 880px; margin: 0 auto; padding: 10px 24px 60px; }
+    .proj-body h2 { font-family: "Space Grotesk", sans-serif; font-size: 26px; margin: 48px 0 14px; color: var(--ink); letter-spacing: -.01em; }
+    .proj-body h3 { font-size: 18px; margin: 28px 0 10px; color: #1b2a4a; }
+    .proj-body p, .proj-body li { font-size: 16px; line-height: 1.75; color: #33415e; }
+    .proj-body ul, .proj-body ol { padding-left: 22px; }
+    .proj-body li { margin-bottom: 8px; }
+    .agent-flow { display: grid; gap: 0; margin: 20px 0; }
+    .agent-step { display: grid; grid-template-columns: 44px 1fr; gap: 16px; padding: 16px 0; border-bottom: 1px dashed rgba(27,42,74,.18); }
+    .agent-step:last-child { border-bottom: 0; }
+    .agent-num { width: 44px; height: 44px; border-radius: 50%; background: rgba(42,161,152,.14); border: 1.5px solid #2aa198; color: #1b6f6a; font-weight: 800; display: flex; align-items: center; justify-content: center; font-size: 17px; }
+    .agent-step b { color: #1b2a4a; }
+    .agent-step p { margin: 4px 0 0; font-size: 15px; }
+    table.spec { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 15px; }
+    table.spec th { text-align: left; padding: 10px 14px; background: rgba(27,42,74,.06); color: #1b2a4a; font-size: 12.5px; letter-spacing: .06em; text-transform: uppercase; border-bottom: 2px solid rgba(27,42,74,.14); }
+    table.spec td { padding: 10px 14px; border-bottom: 1px solid rgba(27,42,74,.1); color: #33415e; vertical-align: top; }
+    code.inline, .code-line { background: rgba(27,42,74,.07); padding: 2px 8px; border-radius: 6px; font-size: 14px; font-family: ui-monospace, Menlo, Consolas, monospace; }
+    .cta-row { display: flex; gap: 14px; flex-wrap: wrap; margin: 34px 0 10px; }
+    .btn { display: inline-block; padding: 14px 30px; border-radius: 12px; font-weight: 800; font-size: 16px; text-decoration: none; }
+    .btn-primary { background: #14b8a6; color: #04211c; }
+    .btn-ghost { border: 1.5px solid #2aa198; color: #1b6f6a; background: transparent; }
+    .back-link { display: inline-block; margin-bottom: 6px; color: #1b6f6a; font-weight: 700; text-decoration: none; font-size: 15px; }
+    .disclaimer { font-size: 13.5px; color: #7a8aa5; border-top: 1px solid rgba(27,42,74,.12); margin-top: 50px; padding-top: 20px; }
+    footer.site-footer { text-align: center; padding: 30px 20px 50px; color: #7a8aa5; font-size: 14px; }
+    footer.site-footer a { color: #1b6f6a; font-weight: 700; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <header class="site-header" id="top">
+    <a class="brand" href="../index.html#home" aria-label="Preet Mehta home">
+      <span class="brand-mark">PM</span>
+      <span class="brand-copy"><strong>PREET MEHTA</strong><small>AGENTIC AI WORKSHOP</small></span>
+    </a>
+    <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false"><span></span><span></span></button>
+    <nav class="nav resources-page-nav" aria-label="Workshop navigation">
+      <a href="../index.html#home">Home</a>
+      <a href="../resources.html">Resources</a>
+      <a class="active" href="../demos.html">Demos</a>
+      <a href="../index.html#writing">Writing</a>
+      <a href="../index.html#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="proj-hero">
+      <a class="back-link" href="../demos.html#demo-fixmate">&larr; All demos</a>
+      <div class="proj-kicker">06 · Retail · Equipment Maintenance · Agentic AI</div>
+      <h1>Every Minute a Coffee Machine Is Down Is a Missed Sales Opportunity.</h1>
+      <p class="lede">When revenue-generating equipment fails, technicians need answers — not hundreds of pages of manuals. FixMate AI helps them identify equipment issues, find the right troubleshooting steps, recognize parts from images, and resolve problems faster using internal documentation and relevant external sources.</p>
+      <img class="hero-img" src="../assets/demos/fixmate-outcome.webp" alt="AI maintenance assistant beside a coffee machine — check error code, find parts, troubleshooting steps, preventive maintenance" loading="lazy">
+      <div class="proof">
+        <strong>Real-world proof:</strong> 7-Eleven built a Technician's Maintenance Assistant with Databricks that <strong>cuts documentation search time from minutes or even hours to seconds</strong> and improves first-time-fix rates — adopted by more than 1,000 technicians.<br>
+        <a href="https://www.databricks.com/blog/how-7-eleven-transformed-maintenance-technician-knowledge-access-databricks-agent-bricks" target="_blank" rel="noopener">Databricks: How 7-Eleven Transformed Maintenance Technician Knowledge Access &#8599;</a> &middot;
+        <a href="https://www.youtube.com/watch?v=y-Dah_bzSUc" target="_blank" rel="noopener">Watch the Databricks Summit session &#8599;</a>
+      </div>
+    </div>
+
+    <div class="proj-body">
+      <h2>The business outcome</h2>
+      <p>It's 7 a.m. at a convenience store. The coffee machine is down, the display says <strong>Error E17</strong>, and customers are arriving. Today, the manager flips through a binder, calls a district supervisor, and loses the morning coffee rush. The outcome this project delivers: <strong>instant, cited, safety-gated maintenance answers</strong> — the right troubleshooting steps from the actual manual, the current version, with parts identified and technician-only procedures locked down.</p>
+      <p>Equipment downtime is lost revenue, but the bigger cost is <em>unsafe</em> fixes. FixMate's core principle — enforced in code, visible in output — is: <strong>internal documents FIRST, web SECOND. Never invent a maintenance procedure to fill a documentation gap.</strong></p>
+
+      <h2>How the agent works</h2>
+      <p>Plan → tool → observe trace, rendered in the web UI with highlighted plans, tool calls, and safety gates:</p>
+      <div class="agent-flow">
+        <div class="agent-step"><div class="agent-num">1</div><div><b>Diagnose</b><p>Takes the symptom (error code, description, or a photo of the part) and identifies the equipment model and likely issue class.</p></div></div>
+        <div class="agent-step"><div class="agent-num">2</div><div><b>Internal search first</b><p>Searches internal manuals, error-code tables, and parts catalogs. If the answer is supported: validate and guide with a citation to the manual and version.</p></div></div>
+        <div class="agent-step"><div class="agent-num">3</div><div><b>Prove the gap</b><p>If internal search finds nothing, the agent must <em>prove</em> the search was conclusive (right model? right doc version? fully indexed?) before looking anywhere else.</p></div></div>
+        <div class="agent-step"><div class="agent-num">4</div><div><b>External, labeled</b><p>Falls back to approved external sources (manufacturer docs first); external guidance is explicitly labeled EXTERNAL, never presented as approved procedure.</p></div></div>
+        <div class="agent-step"><div class="agent-num">5</div><div><b>Safety gate</b><p>Some procedures are technician-only, full stop. The agent refuses to walk an untrained employee through hazardous repairs and escalates instead.</p></div></div>
+        <div class="agent-step"><div class="agent-num">6</div><div><b>Close the loop</b><p>Recurring documentation gaps are flagged for the documentation team; an expert publishes a manual update, the new version is indexed, and the same question now resolves internally.</p></div></div>
+      </div>
+
+      <h2>Data engineering</h2>
+      <p>The demo runs on a synthetic equipment corpus for the fictional <strong>BrewPoint Retail</strong> chain (every machine, manual, error code, part, store, and person is synthetic): error-code tables, troubleshooting workflows, parts catalogs with annotated images, and manual versions. The retrieval layer mirrors the real 7-Eleven architecture pattern — document ingestion, embeddings, and hybrid search — scaled down to stdlib-only, fully offline.</p>
+
+      <h2>Architecture</h2>
+      <table class="spec">
+        <tr><th>Layer</th><th>What it does</th></tr>
+        <tr><td>Diagnosis</td><td>Maps symptoms, error codes, and part images to equipment model and issue class.</td></tr>
+        <tr><td>Internal retrieval</td><td>Manuals, error codes, parts catalogs — first and preferred source, with citations.</td></tr>
+        <tr><td>Gap prover</td><td>Verifies a "not found" is conclusive before any external lookup is allowed.</td></tr>
+        <tr><td>External retrieval</td><td>Approved manufacturer sources; always labeled EXTERNAL, never as approved procedure.</td></tr>
+        <tr><td>Safety gate</td><td>Technician-only procedures are hard-blocked for untrained users; honest escalation on uncertainty.</td></tr>
+        <tr><td>Feedback loop</td><td>Recurring gaps → documentation team → manual update → re-indexed corpus.</td></tr>
+        <tr><td>Web UI</td><td><span class="code-line">app.py</span> over stdlib <span class="code-line">http.server</span>; scored results table; byte-identical output.</td></tr>
+      </table>
+
+      <h2>Implementation</h2>
+      <ul>
+        <li><strong>Deterministic:</strong> stdlib only, offline, no API keys — identical runs; <span class="code-line">TEST-LOG.md</span> and <span class="code-line">TEST-LOG-EDGE.md</span> record determinism and adversarial edge cases (never invents a procedure, never crashes).</li>
+        <li><strong>Honest boundaries:</strong> when the manual lacks the answer, the agent says so and escalates instead of inventing a procedure.</li>
+        <li><strong>Real-world anchor:</strong> the demo is built around the real 7-Eleven use case demonstrated at Databricks Summit; it illustrates the approach rather than claiming to be 7-Eleven's production system.</li>
+      </ul>
+
+      <h2>Technical details</h2>
+      <ul>
+        <li><strong>Run it:</strong> <span class="code-line">python3 app.py</span>, then open <span class="code-line">http://localhost:8006</span> in Chrome and click <strong>Run live demo</strong> (binds 127.0.0.1, port 8006).</li>
+        <li><strong>Repo:</strong> <a href="https://github.com/ynpreet/fixmate-ai" target="_blank" rel="noopener">ynpreet/fixmate-ai &#8599;</a></li>
+        <li><strong>Success criteria:</strong> internal-first resolution with citations; safety gate blocks technician-only procedures; honest escalation on gaps; identical output across runs.</li>
+      </ul>
+
+      <div class="cta-row">
+        <a class="btn btn-primary" href="https://github.com/ynpreet/fixmate-ai" target="_blank" rel="noopener">View the code on GitHub ↗</a>
+        <a class="btn btn-ghost" href="../demos.html#how-to-run-fixmate">How to run ↓</a>
+      </div>
+
+      <p class="disclaimer"><strong>Educational demo.</strong> BrewPoint Retail is fictional; all machines, manuals, error codes, and parts are synthetic. The 7-Eleven example is from the Databricks materials linked above — this demo illustrates the approach, not 7-Eleven's production system. (Note: the Databricks article describes search-time and first-time-fix improvements qualitatively; exact percentages are not published there.)</p>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div>© 2026 Preet Mehta · <a href="../demos.html">All demos</a> · <a href="https://github.com/ynpreet/fixmate-ai" target="_blank" rel="noopener">GitHub</a></div>
+  </footer>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>
