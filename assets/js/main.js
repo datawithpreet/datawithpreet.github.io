@@ -789,3 +789,18 @@
   wrap.appendChild(s);
 })();
 
+/* ---------- download / resource click tracking (audit) ---------- */
+(function () {
+  function track(name) {
+    try { if (typeof gtag === 'function') gtag('event', 'resource_download', { resource: name }); } catch (e) {}
+    try {
+      if (window.goatcounter && typeof window.goatcounter.count === 'function') {
+        window.goatcounter.count({ path: 'download/' + name, title: name, event: true });
+      }
+    } catch (e) {}
+  }
+  document.addEventListener('click', function (ev) {
+    var a = ev.target && ev.target.closest ? ev.target.closest('a[data-track]') : null;
+    if (a) track(a.getAttribute('data-track'));
+  }, true);
+})();

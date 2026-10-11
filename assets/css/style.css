@@ -1504,3 +1504,16 @@ section[id] { scroll-margin-top: 92px; }
 .template-body p { color: var(--gray); font-size: 14.5px; line-height: 1.65; margin-bottom: 20px; max-width: 62ch; }
 .template-actions { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
 @media (max-width: 640px) { .template-card { flex-direction: column; } }
+
+/* ---------- book shelf ---------- */
+.book-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.book-card { border: 1px solid var(--line-strong); border-radius: var(--radius); background: var(--card); padding: 24px 22px; display: flex; flex-direction: column; }
+.book-badge { font-size: 10px; letter-spacing: 0.22em; font-weight: 700; color: var(--gray); margin-bottom: 14px; display: block; }
+.book-badge.free { display: inline-block; color: var(--paper); background: var(--ink); padding: 4px 10px; border-radius: 20px; align-self: flex-start; }
+.book-card h3 { font-family: var(--font-display); font-size: 20px; letter-spacing: -0.02em; line-height: 1.25; margin-bottom: 6px; }
+.book-author { font-size: 13px; color: var(--gray); margin-bottom: 10px; }
+.book-card p { font-size: 13.5px; color: var(--gray); line-height: 1.6; flex: 1; margin-bottom: 16px; }
+.book-link { font-size: 14px; font-weight: 700; color: var(--ink); text-decoration: none; }
+.book-link:hover { text-decoration: underline; text-underline-offset: 3px; }
+@media (max-width: 900px) { .book-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 600px) { .book-grid { grid-template-columns: 1fr; } }
