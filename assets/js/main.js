@@ -460,90 +460,62 @@
   onScroll();
 })();
 
-/* ---------- student feedback: star rating + FormSubmit ---------- */
+
+/* ---------- Did-you-know ticker: fresh fact every 60s ---------- */
 (function () {
-  var widget = document.getElementById('starWidget');
-  if (!widget) return;
-  var stars = Array.prototype.slice.call(widget.querySelectorAll('button'));
-  var hint = document.getElementById('starsHint');
-  var rating = 0;
-  var labels = ['', 'Poor', 'Okay', 'Good', 'Great', 'Excellent!'];
+  var el = document.getElementById('dykText');
+  if (!el) return;
+  var srcEl = document.getElementById('dykSrc');
+  var btn = document.getElementById('dykRefresh');
 
-  function paint(n) {
-    stars.forEach(function (s, i) { s.classList.toggle('lit', i < n); });
-    if (hint) hint.textContent = n ? labels[n] + ' — ' + n + ' of 5' : 'Tap a star';
-  }
-  stars.forEach(function (s, i) {
-    s.addEventListener('mouseenter', function () { paint(i + 1); });
-    s.addEventListener('focus', function () { paint(i + 1); });
-    s.addEventListener('click', function () { rating = i + 1; paint(rating); });
-    s.addEventListener('keydown', function (e) {
-      if (e.key === 'ArrowRight' && i < 4) { stars[i + 1].focus(); }
-      if (e.key === 'ArrowLeft' && i > 0) { stars[i - 1].focus(); }
-    });
-  });
-  widget.addEventListener('mouseleave', function () { paint(rating); });
+  var localFacts = [
+    'The first computer bug was a real moth, found taped into Harvard\u2019s Mark II logbook in 1947.',
+    'The job title \u201Cdata scientist\u201D was only coined in 2008.',
+    'Python is named after Monty Python, not the snake.',
+    'The first 1GB hard drive (IBM, 1980) was the size of a refrigerator and cost $40,000.',
+    'The QWERTY layout was designed in the 1870s to slow typists down and stop typewriter jams.',
+    'The first webcam was built at Cambridge to watch a coffee pot \u2014 so researchers wouldn\u2019t walk to an empty one.',
+    'The world creates roughly 400 million terabytes of new data every single day.',
+    'Google handles over 8 billion searches every day.',
+    'The Apollo 11 guidance computer had a fraction of the processing power of a modern phone.',
+    '\u201CWi-Fi\u201D doesn\u2019t stand for anything \u2014 it\u2019s a play on \u201Chi-fi\u201D.',
+    'The first domain ever registered, Symbolics.com, went live in 1985.',
+    'A large data center can use as much electricity as a small town.'
+  ];
+  var lastLocal = -1;
 
-  var form = document.getElementById('feedbackForm');
-  var status = document.getElementById('fbStatus');
-  var submitBtn = document.getElementById('fbSubmit');
-  function setStatus(msg, ok) {
-    status.hidden = false;
-    status.textContent = msg;
-    status.className = 'fb-status ' + (ok ? 'ok' : 'err');
+  function setFact(text, source) {
+    el.style.opacity = '0';
+    setTimeout(function () {
+      el.textContent = text;
+      if (srcEl) srcEl.textContent = source ? '\u00B7 ' + source : '';
+      el.style.opacity = '1';
+    }, 260);
   }
-  form.addEventListener('submit', function (ev) {
-    ev.preventDefault();
-    var name = document.getElementById('fbName').value.trim();
-    var comment = document.getElementById('fbComment').value.trim();
-    if (!rating) { setStatus('Please tap a star rating first.', false); widget.querySelector('button').focus(); return; }
-    if (!comment && !name) { setStatus('Add your name or a comment along with the rating.', false); return; }
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Sending…';
-    fetch('https://formsubmit.co/ajax/ynpreetinusa@gmail.com', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      mode: 'no-cors',
-      body: JSON.stringify({
-        _subject: 'Workshop feedback: ' + rating + '/5 stars' + (name ? ' from ' + name : ''),
-        _captcha: 'false',
-        _template: 'table',
-        name: name || '(anonymous)',
-        rating: rating + ' / 5',
-        comment: comment || '(no comment)'
+  function localFact() {
+    var i;
+    do { i = Math.floor(Math.random() * localFacts.length); } while (i === lastLocal);
+    lastLocal = i;
+    return { t: localFacts[i], s: 'from Preet\u2019s notebook' };
+  }
+  function apiFact() {
+    var ctrl = new AbortController();
+    var timer = setTimeout(function () { ctrl.abort(); }, 8000);
+    return fetch('https://uselessfacts.jsph.pl/api/v2/facts/random', { signal: ctrl.signal, cache: 'no-store' })
+      .then(function (r) { clearTimeout(timer); if (!r.ok) throw new Error('bad'); return r.json(); })
+      .then(function (j) {
+        if (!j || !j.text) throw new Error('empty');
+        return { t: j.text, s: 'uselessfacts.jsph.pl' };
       })
-    }).then(function () {
-      setStatus('Thanks! Your ' + rating + '-star feedback was sent to Preet.', true);
-      form.querySelectorAll('input, textarea').forEach(function (el) { el.value = ''; });
-      rating = 0; paint(0);
-    }).catch(function () {
-      setStatus('Could not send — please check your connection and try again.', false);
-    }).finally(function () {
-      submitBtn.disabled = false;
-      submitBtn.textContent = 'Send feedback →';
-    });
-  });
-})();
-
-/* ---------- giscus: persistent public comments via GitHub Discussions ---------- */
-(function () {
-  var wrap = document.getElementById('giscusWrap');
-  if (!wrap) return;
-  var s = document.createElement('script');
-  s.src = 'https://giscus.app/client.js';
-  s.async = true;
-  s.crossOrigin = 'anonymous';
-  s.setAttribute('data-repo', 'datawithpreet/datawithpreet.github.io');
-  s.setAttribute('data-repo-id', 'R_kgDOVBzKeg');
-  s.setAttribute('data-category', 'General');
-  s.setAttribute('data-category-id', 'DIC_kwDOVBzKes4DHLY8');
-  s.setAttribute('data-mapping', 'pathname');
-  s.setAttribute('data-strict', '0');
-  s.setAttribute('data-reactions-enabled', '1');
-  s.setAttribute('data-emit-metadata', '0');
-  s.setAttribute('data-input-position', 'top');
-  s.setAttribute('data-theme', 'light');
-  s.setAttribute('data-lang', 'en');
-  wrap.appendChild(s);
+      .catch(function () { clearTimeout(timer); return localFact(); });
+  }
+  function tick() {
+    // Mix the live API with on-brand data facts.
+    var p = Math.random() < 0.5 ? apiFact() : Promise.resolve().then(localFact);
+    p.then(function (f) { setFact(f.t, f.s); });
+  }
+  if (btn) btn.addEventListener('click', tick);
+  tick();
+  setInterval(tick, 60000);
 })();
 

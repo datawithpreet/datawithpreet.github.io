@@ -1439,33 +1439,26 @@ section[id] { scroll-margin-top: 92px; }
 }
 
 /* ============================================================
-   STUDENT FEEDBACK — star rating + giscus discussion
+   DID YOU KNOW — rotating fun-fact ticker
    ============================================================ */
-.feedback-grid { display: grid; grid-template-columns: minmax(300px, 380px) 1fr; gap: 22px; align-items: start; }
-@media (max-width: 900px) { .feedback-grid { grid-template-columns: 1fr; } }
-.feedback-card {
-  border: 1px solid var(--line-strong); border-radius: 22px; background: var(--card);
-  padding: 26px 24px; display: flex; flex-direction: column; gap: 10px;
+.dyk-ticker {
+  display: flex; align-items: center; gap: 14px;
+  border: 1px solid var(--line-strong); border-radius: 16px; background: var(--card);
+  padding: 13px 16px; margin: 18px 0 6px;
 }
-.feedback-card h3 { font-family: var(--font-display); font-size: 21px; letter-spacing: -0.01em; margin: 0 0 4px; }
-.stars { display: flex; gap: 6px; }
-.stars button {
-  background: none; border: none; padding: 2px; cursor: pointer;
-  font-size: 34px; line-height: 1; color: #d8d2c2; transition: color 0.15s, transform 0.15s;
+.dyk-label {
+  font-family: var(--font-display); font-weight: 700; font-size: 13.5px; letter-spacing: 0.05em;
+  background: var(--ink); color: var(--paper); border-radius: 999px; padding: 7px 15px; white-space: nowrap;
 }
-.stars button.lit { color: #e8a013; }
-.stars button:hover { transform: scale(1.15); }
-.stars-hint { font-size: 13px; color: var(--gray); margin: -4px 0 6px; min-height: 18px; }
-.fb-label { font-size: 13px; font-weight: 700; letter-spacing: 0.04em; }
-.fb-label span { font-weight: 400; color: var(--gray); }
-.fb-input {
-  width: 100%; box-sizing: border-box; font: inherit; font-size: 15px;
-  border: 1px solid var(--line-strong); border-radius: 12px; background: #fff;
-  padding: 11px 13px; color: var(--ink); resize: vertical;
+.dyk-text { flex: 1; margin: 0; font-size: 15px; line-height: 1.55; transition: opacity 0.25s ease; }
+.dyk-src { font-size: 11px; color: var(--gray); white-space: nowrap; }
+.dyk-refresh {
+  flex: 0 0 auto; width: 38px; height: 38px; border-radius: 50%;
+  border: 1px solid var(--line-strong); background: #fff; color: var(--ink);
+  font-size: 19px; cursor: pointer; transition: transform 0.4s var(--ease), background 0.2s;
 }
-.fb-input:focus { outline: 2px solid #2aa198; border-color: #2aa198; }
-.fb-note { font-size: 13px; color: var(--gray); margin: 4px 0 0; }
-.fb-status { font-size: 14px; font-weight: 600; margin: 6px 0 0; }
-.fb-status.ok { color: #1b6f6a; }
-.fb-status.err { color: #c0392b; }
-#giscusWrap { min-height: 200px; }
+.dyk-refresh:hover { transform: rotate(120deg); background: var(--ink); color: var(--paper); }
+@media (max-width: 640px) {
+  .dyk-ticker { flex-wrap: wrap; }
+  .dyk-src { display: none; }
+}
