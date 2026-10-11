@@ -65,10 +65,10 @@
       <a class="back-link" href="../demos.html#demo-music">&larr; All demos</a>
       <div class="proj-kicker">05 · Personalization · Recommender Systems · Agentic AI</div>
       <h1>Your Next Song Should Fit Your Moment — Not Just Your Listening History.</h1>
-      <p class="lede">Music can help shape how we feel, focus, and unwind. This agent combines listening preferences with optional context — time of day, activity, calendar commitments, and your stated mood — to recommend music for the moment, then adapts to your feedback.</p>
+      <p class="lede">Music can help shape how we feel, focus, and unwind. This agent combines a small session memory with your stated mood and chosen occasion to recommend music for the moment.</p>
       <img class="hero-img" src="../assets/demos/music-mood-outcome.webp" alt="Listener with eyes closed wearing headphones in warm golden light — music for the moment" loading="lazy">
       <div class="proof">
-        <strong>Real-world proof:</strong> Spotify reported that a conversational recommendation experience <strong>increased additional listening by 14%</strong> and <strong>reduced skip rates by 5%</strong> in a two-week A/B test involving approximately 15 million users. These are engagement results — not proof of improved mood or productivity.<br>
+        <strong>Real-world proof:</strong> Spotify reported that a conversational recommendation experience <strong>increased additional user listening by 14%</strong> and <strong>reduced skip rates by 5%</strong> in a two-week A/B test involving approximately 15 million users. These are engagement results — not proof of improved mood or productivity.<br>
         <a href="https://research.atspotify.com/2026/9/bootstrapping-conversational-recommendation-agents-at-spotify-synthetic-data-generation-and-self-improvement-loops" target="_blank" rel="noopener">Spotify Research, September 2026 &#8599;</a>
       </div>
     </div>
@@ -81,17 +81,17 @@
       <h2>How the agent works</h2>
       <p>Three agents, each printing its PLAN and numbered steps so you can see the agentic loop — interpret → target arc → retrieve → score → sequence → explain:</p>
       <div class="agent-flow">
-        <div class="agent-step"><div class="agent-num">1</div><div><b>Interpret</b><p>Reads your plain-words request ("I'm stressed after a long workday") plus optional context — time of day, activity, calendar — and infers the current mood and the target mood. Keyword-based mood detection; no black box.</p></div></div>
+        <div class="agent-step"><div class="agent-num">1</div><div><b>Interpret</b><p>Reads your plain-words request ("I'm stressed after a long workday") plus your chosen occasion (studying, workout, road trip…) — and infers the current mood and the target mood. Keyword-based mood detection; no black box.</p></div></div>
         <div class="agent-step"><div class="agent-num">2</div><div><b>Design the arc</b><p>Plans the emotional sequence: MATCH (meet you where you are) → LIFT (move you toward the goal) → SUSTAIN (hold the good mood). Every arc slot becomes a retrieval query.</p></div></div>
-        <div class="agent-step"><div class="agent-num">3</div><div><b>search_catalog</b><p>Filters the track catalog per arc slot on energy, valence, and tempo. Every pick comes from the real catalog through this tool — never hallucinated by an LLM.</p></div></div>
+        <div class="agent-step"><div class="agent-num">3</div><div><b>search_catalog</b><p>Filters the track catalog per arc slot on mood tags, energy, and valence (tempo shows up in each why-it-fits line). Every pick comes from the real catalog through this tool — never hallucinated by an LLM.</p></div></div>
         <div class="agent-step"><div class="agent-num">4</div><div><b>Score and sequence</b><p>Ranks candidates per slot; tracks that worked in past sessions get a <span class="code-line">[MEMORY-BOOSTED]</span> weight (+8 points) the next time you ask for the same goal.</p></div></div>
         <div class="agent-step"><div class="agent-num">5</div><div><b>Explain</b><p>Presents the playlist with one why-it-fits line per song — the honesty layer recommendation engines skip.</p></div></div>
-        <div class="agent-step"><div class="agent-num">6</div><div><b>Adapt</b><p>Skips, likes, or a changed mood feed back into the next recommendation; the arc re-plans around your feedback.</p></div></div>
+        <div class="agent-step"><div class="agent-num">6</div><div><b>Adapt</b><p>In a production build, skips, likes, or a changed mood would feed back into the next recommendation; in this demo, session memory is pre-seeded, not learned live.</p></div></div>
       </div>
       <p>Three situations play back-to-back in the demo: stressed after work, road trip with friends, can't focus while studying.</p>
 
       <h2>Data engineering</h2>
-      <p><span class="code-line">tracks.json</span> holds <strong>35 real, recognizable Spotify tracks — 5 per mood</strong> — every track ID verified through Spotify's oEmbed, with inline lazy-loaded 30-second preview players (no login needed). Each track carries approximate teaching values for energy, valence, and tempo — labeled as teaching values, not measured audio features. Session memory stores which tracks worked for which goals and biases future picks.</p>
+      <p><span class="code-line">tracks.json</span> holds <strong>35 real, recognizable Spotify tracks</strong> — every track ID verified through Spotify's oEmbed, with inline lazy-loaded 30-second preview players (no login needed). Each track carries approximate teaching values for energy, valence, and tempo — labeled as teaching values, not measured audio features. Session memory stores which tracks worked for which goals and biases future picks.</p>
       <p>The differentiator was inspired by real listening-data analysis: listening patterns follow mood patterns across time of day and activity — which is exactly what this agent automates.</p>
 
       <h2>Architecture</h2>

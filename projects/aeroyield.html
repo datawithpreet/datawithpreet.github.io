@@ -76,11 +76,11 @@
 
     <div class="proj-body">
       <h2>The business outcome</h2>
-      <p>Pricing mistakes are expensive in both directions: price too high and seats fly empty; price too low and you sell out cheap. The outcome this project demonstrates: an agent that runs the <strong>Observe → Analyze → Decide → Act → Verify</strong> loop a revenue manager runs — on live signals, out loud, with transparent arithmetic — and prices for <strong>profit, not just revenue</strong>. The centerpiece is a three-way baseline comparison (fixed tariffs vs. rule-based pricing vs. agentic pricing) on the same simulated scenarios, so you can see exactly what the agent's decisions buy you, fare by fare: agentic profit <strong>$30,050</strong> vs fixed <strong>$24,380</strong> (+23%), 110 seats sold vs 92, forecast error 25% vs 48%.</p>
+      <p>Pricing mistakes are expensive in both directions: price too high and seats fly empty; price too low and you sell out cheap. The outcome this project demonstrates: an agent that runs the <strong>Observe → Analyze → Decide → Act → Verify</strong> loop a revenue manager runs — on incoming signals, out loud, with transparent arithmetic — and prices for <strong>profit, not just revenue</strong>. The centerpiece is a three-way baseline comparison (fixed tariffs vs. rule-based pricing vs. agentic pricing) on the same simulated scenarios, so you can see exactly what the agent's decisions buy you, fare by fare: agentic profit <strong>$30,050</strong> vs fixed <strong>$24,380</strong> (+23%), 110 seats sold vs 92, forecast error 25% vs 48%.</p>
       <p>Positioned as <strong>airline revenue intelligence</strong>: passenger-airline pricing and seat inventory — not cargo freight forecasting.</p>
 
       <h2>How the agent works</h2>
-      <p>Setup: one airline, one route (<strong>SFO → BOS</strong>), 180 seats, current fare <strong>$320</strong>, 120 booked / 60 remaining, <strong>14 days to departure</strong>. A chatbot could <em>describe</em> revenue management. This system <em>runs the decision loop</em>, out loud, on live signals:</p>
+      <p>Setup: one airline, one route (<strong>SFO → BOS</strong>), 180 seats, current fare <strong>$320</strong>, 120 booked / 60 remaining, <strong>14 days to departure</strong>. A chatbot could <em>describe</em> revenue management. This system <em>runs the decision loop</em>, out loud, on incoming signals:</p>
       <div class="agent-flow">
         <div class="agent-step"><div class="agent-num">1</div><div><b>Observe</b><p>Three intelligence tools scan demand (festival announced, booking pace +7% ahead of baseline), competitors (comparability-verified fares), and market/cost signals (fuel +12%, confidence steady).</p></div></div>
         <div class="agent-step"><div class="agent-num">2</div><div><b>Analyze</b><p>The pricing decision engine evaluates candidate fares on transparent arithmetic: demand forecast D(p), expected revenue R(p), contribution (p − cost) × sold, capacity-capped at 60 seats.</p></div></div>
@@ -93,7 +93,7 @@
 
       <h2>Data engineering</h2>
       <p>All inputs are synthetic and hand-built: demand curves D(p) for baseline, festival, competitor-$270, and soft-market scenarios (hand-built anchors, linearly interpolated); signal set — Boston Harbor Music Festival announced (+24 must-fly pax, confidence 0.78), booking pace +7% ahead, competitor fares $340/$335 (verified comparable), jet fuel +12% ($55 → ~$58 cost/pax); decision constants — $750 change threshold, candidate fares [$280…$400].</p>
-      <p>External signals — holidays, events, competitor pricing, fuel-cost changes — <strong>influence forecasts and recommendations; they do not reliably predict an exact fare on their own</strong>. The demo prints an honest caveat under every comparison.</p>
+      <p>External signals — holidays, events, competitor pricing, fuel-cost changes — <strong>influence forecasts and recommendations; they do not reliably predict an exact fare on their own</strong>. The demo prints an honest caveat under the comparison.</p>
 
       <h2>Architecture</h2>
       <table class="spec">

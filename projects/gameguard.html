@@ -65,7 +65,7 @@
       <a class="back-link" href="../demos.html#demo-gameguard">&larr; All demos</a>
       <div class="proj-kicker">07 · Gaming · Trust &amp; Safety · Multilingual AI</div>
       <h1>Bad Actors Don&rsquo;t Always Use Bad Words. Can AI Recognize the Pattern?</h1>
-      <p class="lede">From suspicious links and requests for personal information to manipulative conversations with young players, harmful behavior can hide behind emojis, slang, misspellings, and seemingly innocent messages. GameGuard AI analyzes messages and conversation context to flag potential grooming, scams, harassment, and fraud for appropriate review.</p>
+      <p class="lede">From suspicious links and requests for personal information to manipulative conversations with young players, harmful behavior can hide behind emojis, slang, misspellings, and seemingly innocent messages. GameGuard AI analyzes messages and conversation context to flag potential grooming, scams, violent threats, and fraud for appropriate review.</p>
       <img class="hero-img" src="../assets/demos/gameguard-outcome.webp" alt="Gaming trust and safety — suspicious link, inappropriate content, personal information, grooming behavior detection" loading="lazy">
       <div class="proof">
         <strong>Real-world proof:</strong> Supercell's games reach <strong>around 290 million monthly active players</strong> — a community scale that makes player safety a massive operational challenge, and the reason Supercell's Trust &amp; Safety team applies machine learning to detect and prevent player harm.<br>
@@ -82,7 +82,7 @@
       <p>An orchestrator streams its plan and tool calls into an agent-trace panel, with case outcomes, evaluation metrics, and a session summary in cards below:</p>
       <div class="agent-flow">
         <div class="agent-step"><div class="agent-num">1</div><div><b>Read in context</b><p>Ingests messages with conversation history, emojis, slang, and misspellings — in three languages — instead of judging single messages.</p></div></div>
-        <div class="agent-step"><div class="agent-num">2</div><div><b>Detect signals</b><p>Suspicious links, personal-information requests, grooming patterns, harassment, fraud — scored as signals, not verdicts.</p></div></div>
+        <div class="agent-step"><div class="agent-num">2</div><div><b>Detect signals</b><p>Suspicious links, personal-information requests, grooming patterns, violent threats, fraud — scored as signals, not verdicts.</p></div></div>
         <div class="agent-step"><div class="agent-num">3</div><div><b>Correlate across conversations</b><p>Connects repeated behavior across conversations and correlates chat with transaction history — the patterns keyword filters structurally cannot see.</p></div></div>
         <div class="agent-step"><div class="agent-num">4</div><div><b>Two-tier escalation</b><p>Bare violent trash talk is logged but not auto-escalated; real-world credibility anchors (address, school, weapon context) escalate P2 to trust &amp; safety within 4 hours.</p></div></div>
         <div class="agent-step"><div class="agent-num">5</div><div><b>Build the evidence case</b><p>Compiles a structured case — signals, context, history — for the right human team.</p></div></div>
@@ -106,7 +106,7 @@
 
       <h2>Implementation</h2>
       <ul>
-        <li><strong>Deterministic:</strong> stdlib only, offline, no API keys — identical runs; <span class="code-line">TEST-LOG.md</span> records the determinism gate, <span class="code-line">TEST-LOG-EDGE.md</span> an 8-case adversarial battery (passes).</li>
+        <li><strong>Deterministic:</strong> stdlib only, offline, no API keys — identical runs; <span class="code-line">TEST-LOG.md</span> records the determinism gate, <span class="code-line">TEST-LOG-EDGE.md</span> a 20-case adversarial battery (passes).</li>
         <li><strong>Honest boundaries:</strong> designed as a demonstration of AI-assisted trust &amp; safety, inspired by real industry challenges — not a claim that GameGuard is deployed by Supercell.</li>
       </ul>
 

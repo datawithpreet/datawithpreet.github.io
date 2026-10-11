@@ -77,14 +77,14 @@
 
     <div class="proj-body">
       <h2>The business outcome</h2>
-      <p>Today, a site decision runs on gut feel, broker anecdotes, and spreadsheets that never weigh the factors against each other. The outcome this project delivers: a <strong>ranked, explained recommendation</strong> across candidate ZIP codes — every area scored on the same five factors, with a plain-English reason for the winner and a memory-guided re-run when the owner's goal changes (e.g., "avoid heavy competition").</p>
+      <p>Today, a site decision runs on gut feel, broker anecdotes, and spreadsheets that never weigh the factors against each other. The outcome this project delivers: a <strong>ranked recommendation with explanations</strong> across candidate ZIP codes — every area scored on the same five factors, with a plain-English reason for the winner and a memory-guided re-run when the owner's goal changes (e.g., "avoid heavy competition").</p>
       <p>A promising ZIP code can still be a poor investment if rent, competition, accessibility, delivery coverage, or supply-chain costs make the economics unattractive. The agent evaluates <strong>more than customer demand</strong>: it weighs the operating economics that decide whether a location survives year one.</p>
 
       <h2>How the agent works</h2>
       <p>One <span class="code-line">LocationAgent</span> with a <span class="code-line">Planner</span> and a <span class="code-line">Synthesizer</span>, calling five evidence-gathering tools. The printed PLAN decomposes the goal into 13 steps — fetch per ZIP, analyze, score, synthesize — which you watch on screen.</p>
       <div class="agent-flow">
         <div class="agent-step"><div class="agent-num">1</div><div><b>Plan</b><p>Decomposes "where should I open a Chinese restaurant in Phoenix?" into per-ZIP evidence gathering, analysis, scoring, and synthesis steps.</p></div></div>
-        <div class="agent-step"><div class="agent-num">2</div><div><b>fetch_area_data</b><p>Pulls each candidate ZIP's profile: businesses, ratings, review counts, price bands, cuisine mix, hours, plus area economics (produce-cost index, rent index, foot-traffic score).</p></div></div>
+        <div class="agent-step"><div class="agent-num">2</div><div><b>fetch_area_data</b><p>Pulls each candidate ZIP's profile: businesses, ratings, review counts, and categories, plus area economics (produce-cost index, rent index, foot-traffic score).</p></div></div>
         <div class="agent-step"><div class="agent-num">3</div><div><b>analyze_review_quality</b><p>Reads review-quality signals for the cuisine in each area — are customers happy with the existing options, or is there an unmet bar to clear?</p></div></div>
         <div class="agent-step"><div class="agent-num">4</div><div><b>analyze_competitors</b><p>Maps competitor proximity and cuisine saturation: too many competitors too close is a red flag, but a cluster of strong Chinese restaurants can also prove the cuisine's draw (Hotelling logic).</p></div></div>
         <div class="agent-step"><div class="agent-num">5</div><div><b>estimate_economics</b><p>Weighs rent vs. expected demand — produce costs, rent index, and foot traffic turn a popular ZIP into an investable one, or rule it out.</p></div></div>

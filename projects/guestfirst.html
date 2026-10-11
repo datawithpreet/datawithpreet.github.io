@@ -66,7 +66,7 @@
       <div class="proj-kicker">08 · Restaurants · Customer Intelligence · Agentic AI</div>
       <h1>A Great Restaurant Fixes the Order. An Exceptional One Fixes the Experience.</h1>
       <p class="lede">What if a restaurant could connect customer feedback, order history, kitchen operations, and loyalty data to understand what went wrong — and coordinate the right recovery? GuestFirst AI identifies service issues, recommends personalized responses, and tracks follow-up so restaurants can turn unhappy customers into an opportunity to rebuild trust.</p>
-      <img class="hero-img" src="../assets/demos/guestfirst-outcome.webp" alt="Warm restaurant counter — employee handing a drink to a customer, the hospitality moment data should protect" loading="lazy">
+      <img class="hero-img" src="../assets/demos/guestfirst-outcome.webp" alt="Warm restaurant counter — employee handing a drink to a customer, the hospitality moment that data should protect" loading="lazy">
       <div class="proof">
         <strong>Real-world proof:</strong> Chick-fil-A tested geofencing and predictive order wait times at 100 restaurants. Customers' wait times <strong>decreased by an average of one to two minutes</strong>, while estimated wait times were accurate <strong>more than 90% of the time</strong> — data improving hospitality, not replacing it.<br>
         <a href="https://www.qsrmagazine.com/news/chick-fil-deploy-geofencing-technology-app-update/" target="_blank" rel="noopener">QSR Magazine: Chick-fil-A to Deploy Geofencing Technology &#8599;</a>
@@ -81,23 +81,23 @@
       <h2>How the agent works</h2>
       <p>A free-text complaint box (with example chips) starts a real interactive loop — investigate → propose → approve → message → follow up:</p>
       <div class="agent-flow">
-        <div class="agent-step"><div class="agent-num">1</div><div><b>Listen</b><p>Takes the guest's complaint in free text — cold food, wrong order, long wait — and parses the issue type and severity.</p></div></div>
-        <div class="agent-step"><div class="agent-num">2</div><div><b>Connect</b><p>Pulls the order record, kitchen ticket timing, and loyalty history to find operational evidence behind the complaint.</p></div></div>
-        <div class="agent-step"><div class="agent-num">3</div><div><b>Diagnose</b><p>Identifies the likely root cause — a kitchen delay pattern, a recurring wrong-item error, a staffing gap at the Friday-lunch rush — thinking out loud so the manager sees the reasoning.</p></div></div>
-        <div class="agent-step"><div class="agent-num">4</div><div><b>Propose</b><p>Recommends a personalized recovery action proportionate to the issue and the guest's history.</p></div></div>
+        <div class="agent-step"><div class="agent-num">1</div><div><b>Listen</b><p>Takes the guest's complaint in free text — cold food, wrong order, long wait — and parses the issue type.</p></div></div>
+        <div class="agent-step"><div class="agent-num">2</div><div><b>Connect</b><p>Pulls the order record, kitchen ticket timing, and pickup records to find operational evidence behind the complaint.</p></div></div>
+        <div class="agent-step"><div class="agent-num">3</div><div><b>Diagnose</b><p>Identifies the likely root cause — a kitchen delay pattern, a recurring wrong-item error, a demand surge overwhelming the grill queue — thinking out loud so the manager sees the reasoning.</p></div></div>
+        <div class="agent-step"><div class="agent-num">4</div><div><b>Propose</b><p>Recommends a recovery action from the policy-approved playbook, proportionate to the issue.</p></div></div>
         <div class="agent-step"><div class="agent-num">5</div><div><b>Manager decides</b><p><strong>Approve / Adjust / Reject</strong> — nothing goes to the guest without a human decision.</p></div></div>
         <div class="agent-step"><div class="agent-num">6</div><div><b>Message + follow up</b><p>Drafts the customer message and schedules a 48-hour follow-up to verify the issue was resolved.</p></div></div>
       </div>
       <p>The research grounding: a fast-food service study found courteous, attentive service correlates most with satisfaction — the "why the recovery matters" section of the demo puts the manager in a second-person role-play of that finding.</p>
 
       <h2>Data engineering</h2>
-      <p>The demo runs on a synthetic restaurant dataset: complaints, order records, kitchen ticket timings, and loyalty histories — including the Friday-lunch rush scenario (28 complaints → pattern-chosen inspection → mechanism-tested root cause → staged recovery). Feedback is joined to operational evidence the way a real customer-data platform would join it.</p>
+      <p>The demo runs on a synthetic restaurant dataset: complaints, order records, kitchen ticket timings, and loyalty histories — including the Friday-lunch rush scenario (34 complaints → pattern-chosen inspection → mechanism-tested root cause → staged recovery). Feedback is joined to operational evidence the way a real customer-data platform would join it.</p>
 
       <h2>Architecture</h2>
       <table class="spec">
         <tr><th>Layer</th><th>What it does</th></tr>
-        <tr><td>Intake</td><td>Free-text complaint box with example chips; issue-type and severity parsing.</td></tr>
-        <tr><td>Evidence join</td><td>Connects the complaint to order, kitchen, and loyalty data.</td></tr>
+        <tr><td>Intake</td><td>Free-text complaint box with example chips; issue-type parsing.</td></tr>
+        <tr><td>Evidence join</td><td>Connects the complaint to order, kitchen, and pickup data.</td></tr>
         <tr><td>Diagnosis</td><td>Root-cause analysis with think-aloud reasoning the manager can audit.</td></tr>
         <tr><td>Recovery recommender</td><td>Personalized recovery action proportionate to issue and guest history.</td></tr>
         <tr><td>Approval gate</td><td>Manager Approve / Adjust / Reject — the load-bearing human decision.</td></tr>
