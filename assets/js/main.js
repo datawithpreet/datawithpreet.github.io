@@ -461,63 +461,81 @@
 })();
 
 
-/* ---------- Did-you-know ticker: fresh fact every 60s ---------- */
+/* ---------- Did-you-know ticker: data & engineering facts, fresh every 60s ---------- */
 (function () {
   var el = document.getElementById('dykText');
   if (!el) return;
   var srcEl = document.getElementById('dykSrc');
   var btn = document.getElementById('dykRefresh');
 
-  var localFacts = [
-    'The first computer bug was a real moth, found taped into Harvard\u2019s Mark II logbook in 1947.',
+  var facts = [
     'The job title \u201Cdata scientist\u201D was only coined in 2008.',
-    'Python is named after Monty Python, not the snake.',
-    'The first 1GB hard drive (IBM, 1980) was the size of a refrigerator and cost $40,000.',
-    'The QWERTY layout was designed in the 1870s to slow typists down and stop typewriter jams.',
-    'The first webcam was built at Cambridge to watch a coffee pot \u2014 so researchers wouldn\u2019t walk to an empty one.',
     'The world creates roughly 400 million terabytes of new data every single day.',
-    'Google handles over 8 billion searches every day.',
-    'The Apollo 11 guidance computer had a fraction of the processing power of a modern phone.',
+    'Apache Hadoop was named after its creator\u2019s child\u2019s toy elephant.',
+    'Apache Spark started as a research project at UC Berkeley\u2019s AMPLab in 2009.',
+    'SQL was developed at IBM in the 1970s \u2014 it was originally called SEQUEL.',
+    'Python is named after Monty Python, not the snake.',
+    'The first computer bug was a real moth, found taped into Harvard\u2019s Mark II logbook in 1947.',
+    'The term \u201Cdata lake\u201D was coined by James Dixon in 2010.',
+    'The \u201Cdata mesh\u201D concept was introduced by Zhamak Dehghani in 2019.',
+    'Apache Kafka is named after Franz Kafka \u2014 its creator thought the name fit a system optimized for writing.',
+    'Apache Airflow was created at Airbnb in 2014 to orchestrate its data pipelines.',
+    'The Parquet file format was created at Twitter in 2013 for efficient columnar storage.',
+    'Avro was created by Doug Cutting \u2014 the same person who created Hadoop.',
+    '\u201CData is the new oil\u201D was coined by Clive Humby back in 2006.',
+    'The 3 Vs of big data \u2014 volume, velocity, variety \u2014 were defined by Doug Laney in 2001.',
+    '\u201CData warehouse\u201D as a term was popularized by Bill Inmon in the 1990s.',
+    'The lakehouse architecture \u2014 combining data lakes and warehouses \u2014 was described by Databricks in 2020.',
+    'The first 1GB hard drive (IBM, 1980) was the size of a refrigerator and cost $40,000.',
+    'The first hard disk ever (IBM, 1956) held just 5MB and weighed over a ton.',
+    'IPv4\u2019s 4.3 billion addresses officially ran out at the global level in 2011.',
+    'Git was created by Linus Torvalds in 2005 to manage Linux kernel development.',
+    'Kubernetes is the Greek word for \u201Chelmsman\u201D or \u201Cpilot\u201D.',
+    'The first programmer was Ada Lovelace, who wrote an algorithm in the 1840s.',
+    'Grace Hopper popularized the term \u201Cdebugging\u201D after that famous moth incident.',
+    'Java was originally called Oak.',
+    'JavaScript was famously created in just 10 days in 1995.',
+    'COBOL, created in 1959, still powers a huge share of the world\u2019s financial transactions.',
+    'The QWERTY layout was designed in the 1870s to keep typewriter keys from jamming.',
+    'The first webcam was built at Cambridge to watch a coffee pot \u2014 so researchers wouldn\u2019t walk to an empty one.',
+    'The first domain ever registered, Symbolics.com, went live on March 15, 1985.',
+    'The \u201C@\u201D in email addresses was chosen by Ray Tomlinson in 1971 because it wasn\u2019t used in anyone\u2019s name.',
+    'Ethernet was invented at Xerox PARC in 1973.',
     '\u201CWi-Fi\u201D doesn\u2019t stand for anything \u2014 it\u2019s a play on \u201Chi-fi\u201D.',
-    'The first domain ever registered, Symbolics.com, went live in 1985.',
-    'A large data center can use as much electricity as a small town.'
+    'The name \u201CBluetooth\u201D comes from a 10th-century Viking king, Harald Bluetooth.',
+    'Moore\u2019s Law (1965) predicted transistors would double roughly every two years \u2014 and held for decades.',
+    'Your phone has roughly 100,000 times the processing power of the Apollo 11 guidance computer.',
+    'CAPTCHA stands for \u201CCompletely Automated Public Turing test to tell Computers and Humans Apart\u201D.',
+    'The first SMS ever sent, in 1992, simply said \u201CMerry Christmas\u201D.',
+    'A large data center can use as much electricity as a small town.',
+    'There are over 700 programming languages in existence.',
+    'The ETL-to-ELT shift happened because cheap cloud storage made transforming after loading practical.',
+    'dbt, the SQL-based transformation tool, started at a small consultancy in Philadelphia in 2016.',
+    'ENIAC, the first general-purpose computer (1945), weighed about 30 tons.',
+    'Fixing the Y2K bug cost the world an estimated few hundred billion dollars.',
+    'The first tweet ever, in 2006, was Jack Dorsey writing \u201Cjust setting up my twttr\u201D.'
   ];
-  var lastLocal = -1;
+  var last = -1;
 
-  function setFact(text, source) {
+  function setFact(text) {
     el.style.opacity = '0';
     setTimeout(function () {
       el.textContent = text;
-      if (srcEl) srcEl.textContent = source ? '\u00B7 ' + source : '';
       el.style.opacity = '1';
     }, 260);
   }
-  function localFact() {
+  function pick() {
     var i;
-    do { i = Math.floor(Math.random() * localFacts.length); } while (i === lastLocal);
-    lastLocal = i;
-    return { t: localFacts[i], s: 'from Preet\u2019s notebook' };
+    do { i = Math.floor(Math.random() * facts.length); } while (i === last);
+    last = i;
+    return facts[i];
   }
-  function apiFact() {
-    var ctrl = new AbortController();
-    var timer = setTimeout(function () { ctrl.abort(); }, 8000);
-    return fetch('https://uselessfacts.jsph.pl/api/v2/facts/random', { signal: ctrl.signal, cache: 'no-store' })
-      .then(function (r) { clearTimeout(timer); if (!r.ok) throw new Error('bad'); return r.json(); })
-      .then(function (j) {
-        if (!j || !j.text) throw new Error('empty');
-        return { t: j.text, s: 'uselessfacts.jsph.pl' };
-      })
-      .catch(function () { clearTimeout(timer); return localFact(); });
-  }
-  function tick() {
-    // Mix the live API with on-brand data facts.
-    var p = Math.random() < 0.5 ? apiFact() : Promise.resolve().then(localFact);
-    p.then(function (f) { setFact(f.t, f.s); });
-  }
+  function tick() { setFact(pick()); }
   if (btn) btn.addEventListener('click', tick);
-  tick();
+  // The HTML already shows a default fact, so only rotate on a timer / button.
   setInterval(tick, 60000);
 })();
+
 
 /* ---------- student feedback: star rating + FormSubmit ---------- */
 (function () {
