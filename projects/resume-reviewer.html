@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Resume Reviewer AI — Project Deep Dive | Preet Mehta</title>
+  <meta name="description" content="How an agentic AI scores resumes against 33 hiring-manager rules and the job description — instantly, privately, in the browser. Architecture, data engineering, agent workflow, and implementation.">
+  <link rel="icon" href="../assets/img/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .proj-hero { max-width: 880px; margin: 120px auto 0; padding: 40px 24px 10px; }
+    .proj-kicker { font-size: 13px; font-weight: 800; letter-spacing: .14em; color: var(--teal); text-transform: uppercase; margin-bottom: 18px; }
+    .proj-hero h1 { font-family: "Space Grotesk", sans-serif; font-size: clamp(32px, 5vw, 52px); line-height: 1.12; letter-spacing: -.02em; margin: 0 0 20px; color: var(--ink); }
+    .proj-hero .lede { font-size: 18px; line-height: 1.7; color: #3c4a68; max-width: 70ch; }
+    .proj-hero img.hero-img { width: 100%; border-radius: 16px; margin: 30px 0 8px; box-shadow: 0 18px 50px rgba(20,30,50,.14); }
+    .proof { background: rgba(42,161,152,.08); border: 1px solid rgba(42,161,152,.35); border-radius: 14px; padding: 20px 24px; margin: 26px 0; font-size: 16px; line-height: 1.65; color: #24324f; }
+    .proof a { color: #1b6f6a; font-weight: 700; }
+    .proj-body { max-width: 880px; margin: 0 auto; padding: 10px 24px 60px; }
+    .proj-body h2 { font-family: "Space Grotesk", sans-serif; font-size: 26px; margin: 48px 0 14px; color: var(--ink); letter-spacing: -.01em; }
+    .proj-body h3 { font-size: 18px; margin: 28px 0 10px; color: #1b2a4a; }
+    .proj-body p, .proj-body li { font-size: 16px; line-height: 1.75; color: #33415e; }
+    .proj-body ul, .proj-body ol { padding-left: 22px; }
+    .proj-body li { margin-bottom: 8px; }
+    .agent-flow { display: grid; gap: 0; margin: 20px 0; }
+    .agent-step { display: grid; grid-template-columns: 44px 1fr; gap: 16px; padding: 16px 0; border-bottom: 1px dashed rgba(27,42,74,.18); }
+    .agent-step:last-child { border-bottom: 0; }
+    .agent-num { width: 44px; height: 44px; border-radius: 50%; background: rgba(42,161,152,.14); border: 1.5px solid #2aa198; color: #1b6f6a; font-weight: 800; display: flex; align-items: center; justify-content: center; font-size: 17px; }
+    .agent-step b { color: #1b2a4a; }
+    .agent-step p { margin: 4px 0 0; font-size: 15px; }
+    table.spec { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 15px; }
+    table.spec th { text-align: left; padding: 10px 14px; background: rgba(27,42,74,.06); color: #1b2a4a; font-size: 12.5px; letter-spacing: .06em; text-transform: uppercase; border-bottom: 2px solid rgba(27,42,74,.14); }
+    table.spec td { padding: 10px 14px; border-bottom: 1px solid rgba(27,42,74,.1); color: #33415e; vertical-align: top; }
+    code.inline, .code-line { background: rgba(27,42,74,.07); padding: 2px 8px; border-radius: 6px; font-size: 14px; font-family: ui-monospace, Menlo, Consolas, monospace; }
+    .cta-row { display: flex; gap: 14px; flex-wrap: wrap; margin: 34px 0 10px; }
+    .btn { display: inline-block; padding: 14px 30px; border-radius: 12px; font-weight: 800; font-size: 16px; text-decoration: none; }
+    .btn-primary { background: #14b8a6; color: #04211c; }
+    .btn-ghost { border: 1.5px solid #2aa198; color: #1b6f6a; background: transparent; }
+    .back-link { display: inline-block; margin-bottom: 6px; color: #1b6f6a; font-weight: 700; text-decoration: none; font-size: 15px; }
+    .disclaimer { font-size: 13.5px; color: #7a8aa5; border-top: 1px solid rgba(27,42,74,.12); margin-top: 50px; padding-top: 20px; }
+    footer.site-footer { text-align: center; padding: 30px 20px 50px; color: #7a8aa5; font-size: 14px; }
+    footer.site-footer a { color: #1b6f6a; font-weight: 700; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <header class="site-header" id="top">
+    <a class="brand" href="../index.html#home" aria-label="Preet Mehta home">
+      <span class="brand-mark">PM</span>
+      <span class="brand-copy"><strong>PREET MEHTA</strong><small>AGENTIC AI WORKSHOP</small></span>
+    </a>
+    <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false"><span></span><span></span></button>
+    <nav class="nav resources-page-nav" aria-label="Workshop navigation">
+      <a href="../index.html#home">Home</a>
+      <a href="../resources.html">Resources</a>
+      <a class="active" href="../demos.html">Demos</a>
+      <a href="../index.html#writing">Writing</a>
+      <a href="../index.html#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="proj-hero">
+      <a class="back-link" href="../demos.html#demo-resumereviewer">&larr; All demos</a>
+      <div class="proj-kicker">09 · Hiring · Agentic AI</div>
+      <h1>Your Resume Gets 7 Seconds. Make Every One Count.</h1>
+      <p class="lede">Job seekers send resumes into a black box and never learn why they hear nothing back. Resume Reviewer AI is an agentic system that scores your resume against 33 explicit hiring-manager rules plus the actual job description &mdash; with evidence for every failure and a concrete fix &mdash; instantly, and privately in your browser.</p>
+      <img class="hero-img" src="../assets/demos/resume-reviewer.webp" alt="Magnifying glass over a resume revealing checkmarks and a score ring" loading="lazy">
+      <div class="proof">
+        <strong>Real-world signal:</strong> Ladders&rsquo; 2018 eye-tracking study found recruiters spend an average of just <strong>7.4 seconds</strong> on the initial resume screen &mdash; scanning for name, titles, dates, and education, not reading.<br>
+        <a href="https://www.hrdive.com/news/eye-tracking-study-shows-recruiters-look-at-resumes-for-7-seconds/541582/" target="_blank" rel="noopener">HR Dive: Eye-tracking study shows recruiters look at resumes for 7 seconds &#8599;</a>
+      </div>
+    </div>
+
+    <div class="proj-body">
+      <h2>The business outcome</h2>
+      <p>I get asked constantly: <em>&ldquo;Can you review my resume?&rdquo;</em> One-by-one reviews don&rsquo;t scale, and generic online checkers give vague advice (&ldquo;add more action verbs!&rdquo;) without checking the things hiring managers actually reject resumes for &mdash; a missing LinkedIn, two email addresses, a scanned PDF no ATS can read, or zero overlap with the job description&rsquo;s skills.</p>
+      <p>The outcome this project delivers: <strong>a checklist with teeth.</strong> Upload your resume (PDF or Word), paste the job description you&rsquo;re targeting, and the agent runs 33 hiring-manager rules &mdash; 15 for the header (contact block, LinkedIn, location) and 18 for the body and formatting (action verbs, quantified bullets, tense consistency, buzzwords, ATS-friendly layout) &mdash; plus a job-description skill match that names exactly which required skills are missing. Every failed rule comes with evidence from <em>your</em> resume and a concrete fix. And it&rsquo;s private by design: everything runs in your browser &mdash; the resume never leaves your tab.</p>
+
+      <h2>How the agent works</h2>
+      <p>One orchestrator, five capability groups &mdash; deliberately <strong>not</strong> five separate agents. One decision-maker, one audit trail, one score. The full loop:</p>
+      <div class="agent-flow">
+        <div class="agent-step"><div class="agent-num">1</div><div><b>Ingest &amp; validate</b><p>Name present, LinkedIn URL matches <span class="code-line">linkedin.com/in/...</span>, job description non-trivial, file is PDF or DOCX. Files over 5MB warn but proceed; scanned/image PDFs are rejected with a clear message instead of scoring garbage.</p></div></div>
+        <div class="agent-step"><div class="agent-num">2</div><div><b>Extract</b><p>PDF.js yields text plus line layout, font sizes, and embedded-image count; mammoth extracts DOCX text. Layout-aware rules (name prominence, photo detection, font size) gracefully degrade to &ldquo;manual check&rdquo; when the source can&rsquo;t provide the signal &mdash; the agent says what it <em>couldn&rsquo;t</em> verify instead of guessing.</p></div></div>
+        <div class="agent-step"><div class="agent-num">3</div><div><b>Verify</b><p>All 33 rules run, then the JD skill-match: a ~90-term skill lexicon (data-engineering heavy) is matched against the job description, and each JD skill is checked against the resume.</p></div></div>
+        <div class="agent-step"><div class="agent-num">4</div><div><b>Score &amp; explain</b><p>Score = 70% rules + 30% JD skill coverage, 0&ndash;100, graded Excellent / Strong / Fair / Needs work. Every failure prints <em>what was seen</em> (&ldquo;Found 2 emails: &hellip;&rdquo;) and <em>the fix</em> (&ldquo;Keep one email&hellip;&rdquo;). Missing JD skills are listed with an honesty rule: add the ones you truly have &mdash; never invent skills.</p></div></div>
+        <div class="agent-step"><div class="agent-num">5</div><div><b>Notify</b><p>Fire-and-forget POST of metadata only (name, LinkedIn, timestamp, score, JD title) to my inbox. Best-effort by design: a notification failure never blocks the user&rsquo;s report &mdash; and the resume itself is never sent.</p></div></div>
+      </div>
+
+      <h2>Data engineering</h2>
+      <p>The interesting data problem here isn&rsquo;t scale &mdash; it&rsquo;s <strong>determinism across two runtimes</strong>. The same rule engine exists twice: Python (<span class="code-line">rules_engine.py</span>) for the CLI and JavaScript (<span class="code-line">resume-reviewer.js</span>) for the browser. Both share identical rule semantics, verified byte-identical on fixtures: fixed <span class="code-line">CURRENT_YEAR</span> (2026), sorted iteration everywhere, no randomness, no timestamps in scoring. A 38-assertion test suite (<span class="code-line">test_rules.py</span>) gates every change &mdash; strong fixtures must score &ge; 85, weak fixtures &le; 55 with &ge; 12 rules failing, edge fixtures (no contact info, scanned PDFs) must never crash, and the JS&harr;Python parity check must pass.</p>
+
+      <h2>Architecture</h2>
+      <table class="spec">
+        <tr><th>Layer</th><th>Choice</th><th>Why</th></tr>
+        <tr><td>Orchestrator</td><td>Single agent, plan &rarr; act &rarr; observe &rarr; replan</td><td>One audit trail and one score; multi-agent adds coordination cost with no benefit at this scope</td></tr>
+        <tr><td>Rule engine</td><td>Deterministic rules, not an LLM</td><td>Same resume scores the same every time; zero API cost; every suggestion cites exact evidence</td></tr>
+        <tr><td>Web app</td><td>Static page, fully client-side</td><td>Privacy guarantee is architectural: resume bytes never leave the browser (verifiable in DevTools)</td></tr>
+        <tr><td>CLI</td><td>Python stdlib only, fully offline</td><td>Test harness and workshop fallback with zero dependencies</td></tr>
+        <tr><td>Notify</td><td>FormSubmit, metadata only</td><td>Zero backend, zero cost; resume content never transmitted</td></tr>
+      </table>
+
+      <h2>Implementation</h2>
+      <p>Run it locally in about a minute:</p>
+      <ul>
+        <li><span class="code-line">python3 app.py</span>, then open <span class="code-line">http://localhost:8009/resume-reviewer.html</span> in Chrome</li>
+        <li>Paste a job description, upload any PDF resume, click <strong>Review my resume</strong></li>
+        <li>Terminal fallback: <span class="code-line">python3 demo.py fixtures/strong.txt fixtures/sample-jd.txt</span></li>
+      </ul>
+      <p>Key files in <a href="https://github.com/ynpreet/resume-reviewer-agent" target="_blank" rel="noopener">ynpreet/resume-reviewer-agent</a>: <span class="code-line">web/resume-reviewer.html</span> (form + results UI), <span class="code-line">web/assets/js/resume-reviewer.js</span> (JS rule engine + PDF/DOCX extraction), <span class="code-line">rules_engine.py</span> (shared Python engine), <span class="code-line">demo.py</span> (stdlib CLI), <span class="code-line">test_rules.py</span> (38 assertions), <span class="code-line">fixtures/</span> (strong, weak, edge cases).</p>
+
+      <h2>Technical details</h2>
+      <ul>
+        <li><strong>Scoring:</strong> 0&ndash;100 = 70% rule pass rate + 30% JD skill coverage; grades Excellent / Strong / Fair / Needs work.</li>
+        <li><strong>Breakdown:</strong> Header x/15, Body &amp; Formatting x/18, JD skill match % &mdash; per-section bars show exactly where points were lost.</li>
+        <li><strong>Honesty rules:</strong> layout signals the parser can&rsquo;t verify become &ldquo;manual check&rdquo; flags for human eyes; the JD panel tells users to add only skills they truly have.</li>
+        <li><strong>Failure modes handled:</strong> scanned PDFs rejected with a clear message, DOCX without font data degrades gracefully, empty job descriptions blocked at ingest.</li>
+      </ul>
+
+      <div class="cta-row">
+        <a class="btn btn-primary" href="../resume-reviewer.html">Try it live &#8599;</a>
+        <a class="btn btn-ghost" href="https://github.com/ynpreet/resume-reviewer-agent" target="_blank" rel="noopener">View on GitHub &#8599;</a>
+      </div>
+
+      <div class="disclaimer">
+        <strong>Honest scope:</strong> this is a deterministic rule engine, not an LLM career coach &mdash; it checks the mechanics hiring managers scan for, not whether you&rsquo;re right for the role. Scores are heuristics, not predictions of interview outcomes. The 7.4-second figure describes recruiters&rsquo; initial screen in Ladders&rsquo; 2018 eye-tracking study, not total review time.
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../demos.html#demo-resumereviewer">&larr; Back to all demos</a> &middot; Built by <a href="../index.html#home">Preet Mehta</a>
+  </footer>
+</body>
+</html>
