@@ -336,27 +336,25 @@
     <section class="resource-library" id="how-to-run">
       <div class="resource-library-heading"><span>★</span><div><h2>How to run</h2><p>No IT background needed — if you can open a web browser, you can run these. Each demo opens as a <b>website on your own computer</b>: you click through the story in Chrome, no coding required. Nothing is installed, no accounts, no API keys. The whole thing takes about 5 minutes the first time.</p></div></div>
       <div class="demo-card" style="margin-bottom:26px">
-        <h3 style="margin-top:0">Run any demo in 5 steps</h3>
+        <h3 style="margin-top:0">Two ways to run</h3>
         <div class="run-paths">
           <div class="run-path">
-            <h4>Option A — Fastest (3 commands)</h4>
-            <p>If you're comfortable with a terminal, this is all it takes. Pick a demo below, run its three commands, and open the address in Chrome.</p>
+            <h4>Option A — Just one demo</h4>
+            <p>Pick a demo below, run its three commands, and open the address in Chrome. Each demo's exact commands and port are listed in its block.</p>
             <span class="code-line">git clone https://github.com/ynpreet/&lt;demo-repo&gt;.git</span>
             <span class="code-line">cd &lt;demo-repo&gt; &amp;&amp; python3 app.py</span>
             <span class="code-line">open http://localhost:&lt;port&gt; in Chrome</span>
           </div>
           <div class="run-path">
-            <h4>Option B — No git needed (5 steps)</h4>
-            <ol class="run-steps">
-              <li><b>Install Python 3</b> (one time only) — download it free from <a href="https://www.python.org/downloads/" target="_blank" rel="noopener">python.org/downloads</a> and run the installer.</li>
-              <li><b>Get the demo files</b> — open the demo's GitHub page (links below), click the green <b>&lt;&gt; Code</b> button, then <b>Download ZIP</b>. Unzip it anywhere, e.g. your Desktop.</li>
-              <li><b>Open a terminal in that folder</b> — Mac: right-click the folder → <i>New Terminal at Folder</i>. Windows: click the folder's address bar, type <code>cmd</code>, press Enter.</li>
-              <li><b>Start the demo</b> — type <code>python3 app.py</code>, press Enter. <b>Keep this terminal open</b> — closing it stops the demo.</li>
-              <li><b>Open it in Chrome</b> — type the address shown (e.g. <code>http://localhost:8001</code>) into Chrome's address bar.</li>
-            </ol>
+            <h4>Option B — All nine at once</h4>
+            <p>One command from the <a href="https://github.com/ynpreet/agentic-ai-demos" target="_blank" rel="noopener">agentic-ai-demos</a> repo clones anything you're missing and starts every demo on ports 8001–8009. Open any address — only the port number changes. <code>Ctrl+C</code> stops everything.</p>
+            <span class="code-line">git clone https://github.com/ynpreet/agentic-ai-demos.git</span>
+            <span class="code-line">cd agentic-ai-demos &amp;&amp; python3 run_all_demos.py</span>
+            <span class="code-line">open http://localhost:8001 … http://localhost:8009 in Chrome</span>
+            <p style="margin:8px 0 0;font-size:13.5px">Ports — 8001 Care · 8002 HHV · 8003 Restaurant · 8004 AeroYield · 8005 Music · 8006 FixMate · 8007 GameGuard · 8008 GuestFirst · 8009 Resume Reviewer</p>
           </div>
         </div>
-        <p style="margin-bottom:0"><b>Want all 8 open at once?</b> Start each demo's <code>app.py</code> in its own terminal window — each uses its own port, so you can hop between them in Chrome just by changing the number at the end of the address. <i>Prefer the classic terminal version? Run <code>python3 demo.py</code> instead of <code>app.py</code> — same story, text only.</i></p>
+        <p style="margin-bottom:0"><b>No git?</b> Open any demo's GitHub page below, click the green <b>&lt;&gt; Code</b> button → <b>Download ZIP</b>, unzip it, open a terminal in that folder, and run <code>python3 app.py</code> (keep the terminal open). Then open its <code>http://localhost:&lt;port&gt;</code> address in Chrome. <i>Prefer the classic terminal version? Run <code>python3 demo.py</code> instead of <code>app.py</code> — same story, text only.</i></p>
       </div>
 
       <div class="run-block" id="how-to-run-care">
