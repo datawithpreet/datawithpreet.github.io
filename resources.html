@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css?v=20261011g">
+  <link rel="stylesheet" href="assets/css/style.css?v=20261011h">
   <meta property="og:title" content="Free Resources | Preet Mehta">
   <meta property="og:image" content="https://datawithpreet.github.io/assets/img/preet-creator.jpg">
   <noscript><style>.reveal{opacity:1!important;transform:none!important}.section-title{clip-path:none!important}</style></noscript>
@@ -40,7 +40,71 @@
 
     <section class="resource-library" id="books">
       <div class="resource-library-heading"><span>01</span><div><h2>Data Engineering Books</h2><p>Books and reading lists that I use, recommend or find useful for building strong fundamentals.</p></div></div>
-      <div class="resource-empty">📚 <strong>Curated list coming here.</strong><span>I’ll keep adding books, reading notes and practical recommendations.</span></div>
+      <div class="book-grid">
+        <div class="book-card">
+          <span class="book-badge free">FREE</span>
+          <h3>The Data Engineering Cookbook</h3>
+          <div class="book-author">Andreas Kretz</div>
+          <p>A free, community-driven collection of the skills, tools and interview questions that actually matter in data engineering.</p>
+          <a class="book-link" data-track="book-de-cookbook" href="https://github.com/andkret/Cookbook" target="_blank" rel="noopener">Read free ↗</a>
+        </div>
+        <div class="book-card">
+          <span class="book-badge">O'REILLY</span>
+          <h3>Fundamentals of Data Engineering</h3>
+          <div class="book-author">Joe Reis & Matt Housley</div>
+          <p>The modern data engineering lifecycle end to end — generation, ingestion, orchestration, transformation, storage and governance.</p>
+          <a class="book-link" data-track="book-fundamentals-de" href="https://www.oreilly.com/library/view/fundamentals-of-data/9781098108298/" target="_blank" rel="noopener">Get the book ↗</a>
+        </div>
+        <div class="book-card">
+          <span class="book-badge">O'REILLY</span>
+          <h3>Designing Data-Intensive Applications</h3>
+          <div class="book-author">Martin Kleppmann</div>
+          <p>The bible of data systems: storage engines, replication, partitioning, transactions and stream processing, from first principles.</p>
+          <a class="book-link" data-track="book-ddia" href="https://dataintensive.net/" target="_blank" rel="noopener">Get the book ↗</a>
+        </div>
+        <div class="book-card">
+          <span class="book-badge">O'REILLY</span>
+          <h3>Learning Spark, 2nd Edition</h3>
+          <div class="book-author">Jules Damji, Brooke Wenig, Tathagata Das & Denny Lee</div>
+          <p>Apache Spark 3 from the ground up — DataFrames, Spark SQL, Structured Streaming and MLlib with hands-on examples.</p>
+          <a class="book-link" data-track="book-learning-spark" href="https://www.oreilly.com/library/view/learning-spark-2nd/9781492050032/" target="_blank" rel="noopener">Get the book ↗</a>
+        </div>
+        <div class="book-card">
+          <span class="book-badge free">FREE EBOOK</span>
+          <h3>Kafka: The Definitive Guide</h3>
+          <div class="book-author">Neha Narkhede, Gwen Shapira & Todd Palino</div>
+          <p>Everything Kafka: producers, consumers, internals, operations and stream processing. Free ebook from Confluent.</p>
+          <a class="book-link" data-track="book-kafka-guide" href="https://www.confluent.io/resources/kafka-the-definitive-guide/" target="_blank" rel="noopener">Get the free ebook ↗</a>
+        </div>
+        <div class="book-card">
+          <span class="book-badge">O'REILLY</span>
+          <h3>Python for Data Analysis, 3rd Edition</h3>
+          <div class="book-author">Wes McKinney</div>
+          <p>The definitive pandas, NumPy and Jupyter handbook — from the creator of pandas himself.</p>
+          <a class="book-link" data-track="book-python-data-analysis" href="https://www.oreilly.com/library/view/python-for-data/9781098104023/" target="_blank" rel="noopener">Get the book ↗</a>
+        </div>
+        <div class="book-card">
+          <span class="book-badge">O'REILLY</span>
+          <h3>Fluent Python, 2nd Edition</h3>
+          <div class="book-author">Luciano Ramalho</div>
+          <p>Write idiomatic, effective Python — data structures, functions, OOP, concurrency and metaprogramming done right.</p>
+          <a class="book-link" data-track="book-fluent-python" href="https://www.oreilly.com/library/view/fluent-python-2nd/9781492056348/" target="_blank" rel="noopener">Get the book ↗</a>
+        </div>
+        <div class="book-card">
+          <span class="book-badge free">FREE</span>
+          <h3>Python Data Science Handbook</h3>
+          <div class="book-author">Jake VanderPlas</div>
+          <p>IPython, NumPy, pandas, Matplotlib and scikit-learn — the full text, free as Jupyter notebooks.</p>
+          <a class="book-link" data-track="book-pyds-handbook" href="https://jakevdp.github.io/PythonDataScienceHandbook/" target="_blank" rel="noopener">Read free ↗</a>
+        </div>
+        <div class="book-card">
+          <span class="book-badge free">FREE</span>
+          <h3>Automate the Boring Stuff with Python</h3>
+          <div class="book-author">Al Sweigart</div>
+          <p>Learn Python by automating real tasks — files, Excel, web scraping, PDFs and more. Free to read online.</p>
+          <a class="book-link" data-track="book-automate-boring" href="https://automatetheboringstuff.com/" target="_blank" rel="noopener">Read free ↗</a>
+        </div>
+      </div>
     </section>
 
     <section class="resource-library" id="resume">
@@ -52,9 +116,9 @@
           <h3>Data Engineering Resume Template</h3>
           <p>The one-page format I recommend for data, analytics and engineering roles — clean structure, hiring-manager friendly, and built to pass ATS scans. Preview it in Google Docs, then use <em>File &rarr; Make a copy</em> to edit your own version.</p>
           <div class="template-actions">
-            <a class="btn btn-dark" href="https://docs.google.com/document/d/1izT-7qBWgau2EMpTWKyx6bhzueRdrl5M/export?format=docx">Download .docx</a>
-            <a class="btn btn-light" href="https://docs.google.com/document/d/1izT-7qBWgau2EMpTWKyx6bhzueRdrl5M/export?format=pdf">Download PDF</a>
-            <a class="text-link" href="https://docs.google.com/document/d/1izT-7qBWgau2EMpTWKyx6bhzueRdrl5M/edit?usp=sharing" target="_blank" rel="noopener">Preview in Google Docs <span>&rarr;</span></a>
+            <a class="btn btn-dark" data-track="resume-template-docx" href="https://docs.google.com/document/d/1izT-7qBWgau2EMpTWKyx6bhzueRdrl5M/export?format=docx">Download .docx</a>
+            <a class="btn btn-light" data-track="resume-template-pdf" href="https://docs.google.com/document/d/1izT-7qBWgau2EMpTWKyx6bhzueRdrl5M/export?format=pdf">Download PDF</a>
+            <a class="text-link" data-track="resume-template-preview" href="https://docs.google.com/document/d/1izT-7qBWgau2EMpTWKyx6bhzueRdrl5M/edit?usp=sharing" target="_blank" rel="noopener">Preview in Google Docs <span>&rarr;</span></a>
           </div>
         </div>
       </div>
