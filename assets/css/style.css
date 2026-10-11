@@ -1437,3 +1437,35 @@ section[id] { scroll-margin-top: 92px; }
   font-size: 13.5px; line-height: 1.62; color: var(--ink); margin-top: 6px;
   display: -webkit-box; -webkit-line-clamp: 6; -webkit-box-orient: vertical; overflow: hidden;
 }
+
+/* ============================================================
+   STUDENT FEEDBACK — star rating + giscus discussion
+   ============================================================ */
+.feedback-grid { display: grid; grid-template-columns: minmax(300px, 380px) 1fr; gap: 22px; align-items: start; }
+@media (max-width: 900px) { .feedback-grid { grid-template-columns: 1fr; } }
+.feedback-card {
+  border: 1px solid var(--line-strong); border-radius: 22px; background: var(--card);
+  padding: 26px 24px; display: flex; flex-direction: column; gap: 10px;
+}
+.feedback-card h3 { font-family: var(--font-display); font-size: 21px; letter-spacing: -0.01em; margin: 0 0 4px; }
+.stars { display: flex; gap: 6px; }
+.stars button {
+  background: none; border: none; padding: 2px; cursor: pointer;
+  font-size: 34px; line-height: 1; color: #d8d2c2; transition: color 0.15s, transform 0.15s;
+}
+.stars button.lit { color: #e8a013; }
+.stars button:hover { transform: scale(1.15); }
+.stars-hint { font-size: 13px; color: var(--gray); margin: -4px 0 6px; min-height: 18px; }
+.fb-label { font-size: 13px; font-weight: 700; letter-spacing: 0.04em; }
+.fb-label span { font-weight: 400; color: var(--gray); }
+.fb-input {
+  width: 100%; box-sizing: border-box; font: inherit; font-size: 15px;
+  border: 1px solid var(--line-strong); border-radius: 12px; background: #fff;
+  padding: 11px 13px; color: var(--ink); resize: vertical;
+}
+.fb-input:focus { outline: 2px solid #2aa198; border-color: #2aa198; }
+.fb-note { font-size: 13px; color: var(--gray); margin: 4px 0 0; }
+.fb-status { font-size: 14px; font-weight: 600; margin: 6px 0 0; }
+.fb-status.ok { color: #1b6f6a; }
+.fb-status.err { color: #c0392b; }
+#giscusWrap { min-height: 200px; }

@@ -460,3 +460,90 @@
   onScroll();
 })();
 
+/* ---------- student feedback: star rating + FormSubmit ---------- */
+(function () {
+  var widget = document.getElementById('starWidget');
+  if (!widget) return;
+  var stars = Array.prototype.slice.call(widget.querySelectorAll('button'));
+  var hint = document.getElementById('starsHint');
+  var rating = 0;
+  var labels = ['', 'Poor', 'Okay', 'Good', 'Great', 'Excellent!'];
+
+  function paint(n) {
+    stars.forEach(function (s, i) { s.classList.toggle('lit', i < n); });
+    if (hint) hint.textContent = n ? labels[n] + ' — ' + n + ' of 5' : 'Tap a star';
+  }
+  stars.forEach(function (s, i) {
+    s.addEventListener('mouseenter', function () { paint(i + 1); });
+    s.addEventListener('focus', function () { paint(i + 1); });
+    s.addEventListener('click', function () { rating = i + 1; paint(rating); });
+    s.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight' && i < 4) { stars[i + 1].focus(); }
+      if (e.key === 'ArrowLeft' && i > 0) { stars[i - 1].focus(); }
+    });
+  });
+  widget.addEventListener('mouseleave', function () { paint(rating); });
+
+  var form = document.getElementById('feedbackForm');
+  var status = document.getElementById('fbStatus');
+  var submitBtn = document.getElementById('fbSubmit');
+  function setStatus(msg, ok) {
+    status.hidden = false;
+    status.textContent = msg;
+    status.className = 'fb-status ' + (ok ? 'ok' : 'err');
+  }
+  form.addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    var name = document.getElementById('fbName').value.trim();
+    var comment = document.getElementById('fbComment').value.trim();
+    if (!rating) { setStatus('Please tap a star rating first.', false); widget.querySelector('button').focus(); return; }
+    if (!comment && !name) { setStatus('Add your name or a comment along with the rating.', false); return; }
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending…';
+    fetch('https://formsubmit.co/ajax/ynpreetinusa@gmail.com', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      mode: 'no-cors',
+      body: JSON.stringify({
+        _subject: 'Workshop feedback: ' + rating + '/5 stars' + (name ? ' from ' + name : ''),
+        _captcha: 'false',
+        _template: 'table',
+        name: name || '(anonymous)',
+        rating: rating + ' / 5',
+        comment: comment || '(no comment)'
+      })
+    }).then(function () {
+      setStatus('Thanks! Your ' + rating + '-star feedback was sent to Preet.', true);
+      form.querySelectorAll('input, textarea').forEach(function (el) { el.value = ''; });
+      rating = 0; paint(0);
+    }).catch(function () {
+      setStatus('Could not send — please check your connection and try again.', false);
+    }).finally(function () {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send feedback →';
+    });
+  });
+})();
+
+/* ---------- giscus: persistent public comments via GitHub Discussions ---------- */
+(function () {
+  var wrap = document.getElementById('giscusWrap');
+  if (!wrap) return;
+  var s = document.createElement('script');
+  s.src = 'https://giscus.app/client.js';
+  s.async = true;
+  s.crossOrigin = 'anonymous';
+  s.setAttribute('data-repo', 'datawithpreet/datawithpreet.github.io');
+  s.setAttribute('data-repo-id', 'R_kgDOVBzKeg');
+  s.setAttribute('data-category', 'General');
+  s.setAttribute('data-category-id', 'DIC_kwDOVBzKes4DHLY8');
+  s.setAttribute('data-mapping', 'pathname');
+  s.setAttribute('data-strict', '0');
+  s.setAttribute('data-reactions-enabled', '1');
+  s.setAttribute('data-emit-metadata', '0');
+  s.setAttribute('data-input-position', 'top');
+  s.setAttribute('data-theme', 'light');
+  s.setAttribute('data-lang', 'en');
+  wrap.appendChild(s);
+})();
+
