@@ -332,6 +332,32 @@
       </article>
     </section>
 
+    <!-- ================= STUDENT FEEDBACK ================= -->
+    <section class="resource-library" id="feedback">
+      <div class="resource-library-heading"><span>&#9733;</span><div><h2>Student feedback</h2><p>Tried a demo in the workshop? Rate it and tell Preet what landed &mdash; and what didn&rsquo;t.</p></div></div>
+      <div class="feedback-grid">
+        <form id="feedbackForm" class="feedback-card" novalidate>
+          <h3>Rate the workshop</h3>
+          <div class="stars" id="starWidget" role="radiogroup" aria-label="Your star rating">
+            <button type="button" data-v="1" aria-label="1 star">&#9733;</button><button type="button" data-v="2" aria-label="2 stars">&#9733;</button><button type="button" data-v="3" aria-label="3 stars">&#9733;</button><button type="button" data-v="4" aria-label="4 stars">&#9733;</button><button type="button" data-v="5" aria-label="5 stars">&#9733;</button>
+          </div>
+          <p class="stars-hint" id="starsHint">Tap a star</p>
+          <label class="fb-label" for="fbName">Your name <span>(optional)</span></label>
+          <input class="fb-input" type="text" id="fbName" name="name" maxlength="80" placeholder="e.g. Priya Shah" autocomplete="name">
+          <label class="fb-label" for="fbComment">Your feedback <span>(optional)</span></label>
+          <textarea class="fb-input" id="fbComment" name="comment" rows="4" maxlength="2000" placeholder="What did you try, what worked, what should improve&hellip;"></textarea>
+          <button class="btn btn-primary" type="submit" id="fbSubmit">Send feedback &rarr;</button>
+          <p class="fb-note">Your rating goes straight to Preet&rsquo;s inbox. Comments below stay public.</p>
+          <p class="fb-status" id="fbStatus" role="status" hidden></p>
+        </form>
+        <div class="feedback-card">
+          <h3>Discussion</h3>
+          <p class="fb-note" style="margin-top:0">Public comments from students &mdash; stored on GitHub, visible to everyone. Sign in with GitHub to join in.</p>
+          <div id="giscusWrap"></div>
+        </div>
+      </div>
+    </section>
+
     <!-- ================= HOW TO RUN ================= -->
     <section class="resource-library" id="how-to-run">
       <div class="resource-library-heading"><span>★</span><div><h2>How to run</h2><p>No IT background needed — if you can open a web browser, you can run these. Each demo opens as a <b>website on your own computer</b>: you click through the story in Chrome, no coding required. Nothing is installed, no accounts, no API keys. The whole thing takes about 5 minutes the first time.</p></div></div>
