@@ -107,6 +107,7 @@
       </ul>
       <table class="spec">
         <tr><th>Score</th><th>Tier</th><th>Follow-up</th></tr>
+        <tr><td>red-flag match</td><td>URGENT</td><td>Routine plan skipped; clinician/911 handoff with phone outreach</td></tr>
         <tr><td>≥ 50</td><td>HIGH</td><td>Care-manager check-in within 7 days; urgent CTA in the message</td></tr>
         <tr><td>25–49</td><td>MEDIUM</td><td>Check-in within 30 days</td></tr>
         <tr><td>&lt; 25</td><td>LOW</td><td>Routine messaging</td></tr>
@@ -124,6 +125,7 @@ python3 demo.py --interactive   # log in as a patient and get a plan, live</div>
         <li><strong>Channel selection logic:</strong> patient preference wins by default; HIGH tier triggers an urgency override toward a phone call, or an urgent follow-up call-to-action when the patient prefers email/SMS.</li>
         <li><strong>Message rendering:</strong> email (subject line + body), SMS (compressed multi-text), or a care-manager call script (intro, talking points, risks to acknowledge, booking close) — matched to the selected channel.</li>
         <li><strong>Success criteria:</strong> correct tiers for all three patients (Priya HIGH 75, Maria MEDIUM, James LOW), three channel-correct messages, graceful unknown-login handling.</li>
+        <li><strong>Safety gates:</strong> red-flag symptoms (chest pain, suicidal intent, threats to others) escalate to URGENT before scoring — routine planning is skipped for a clinician/911 handoff; PrivacyGuard explicitly refuses requests for other patients' data.</li>
         <li><strong>Test evidence:</strong> <span class="code-line">TEST-LOG.md</span> and <span class="code-line">TEST-LOG-EDGE.md</span> in the repo record determinism and edge-case batteries.</li>
       </ul>
 

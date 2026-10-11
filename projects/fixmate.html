@@ -82,7 +82,7 @@
       <h2>How the agent works</h2>
       <p>Plan → tool → observe trace, rendered in the web UI with highlighted plans, tool calls, and safety gates:</p>
       <div class="agent-flow">
-        <div class="agent-step"><div class="agent-num">1</div><div><b>Diagnose</b><p>Takes the symptom (error code, description, or a photo of the part) and identifies the equipment model and likely issue class.</p></div></div>
+        <div class="agent-step"><div class="agent-num">1</div><div><b>Diagnose</b><p>Takes the symptom (error code, description, or simulated photo metadata) and identifies the equipment model and likely issue class.</p></div></div>
         <div class="agent-step"><div class="agent-num">2</div><div><b>Internal search first</b><p>Searches internal manuals, error-code tables, and parts catalogs. If the answer is supported: validate and guide with a citation to the manual and version.</p></div></div>
         <div class="agent-step"><div class="agent-num">3</div><div><b>Prove the gap</b><p>If internal search finds nothing, the agent must <em>prove</em> the search was conclusive (right model? right doc version? fully indexed?) before looking anywhere else.</p></div></div>
         <div class="agent-step"><div class="agent-num">4</div><div><b>External, labeled</b><p>Falls back to approved external sources (manufacturer docs first); external guidance is explicitly labeled EXTERNAL, never presented as approved procedure.</p></div></div>
@@ -96,13 +96,13 @@
       <h2>Architecture</h2>
       <table class="spec">
         <tr><th>Layer</th><th>What it does</th></tr>
-        <tr><td>Diagnosis</td><td>Maps symptoms, error codes, and part images to equipment model and issue class.</td></tr>
+        <tr><td>Diagnosis</td><td>Maps symptoms, error codes, and simulated photo metadata to equipment model and issue class.</td></tr>
         <tr><td>Internal retrieval</td><td>Manuals, error codes, parts catalogs — first and preferred source, with citations.</td></tr>
         <tr><td>Gap prover</td><td>Verifies a "not found" is conclusive before any external lookup is allowed.</td></tr>
         <tr><td>External retrieval</td><td>Approved manufacturer sources; always labeled EXTERNAL, never as approved procedure.</td></tr>
         <tr><td>Safety gate</td><td>Technician-only procedures are hard-blocked for untrained users; honest escalation on uncertainty.</td></tr>
         <tr><td>Feedback loop</td><td>Recurring gaps → documentation team → manual update → re-indexed corpus.</td></tr>
-        <tr><td>Web UI</td><td><span class="code-line">app.py</span> over stdlib <span class="code-line">http.server</span>; scored results table; byte-identical output.</td></tr>
+        <tr><td>Web UI</td><td><span class="code-line">app.py</span> over stdlib <span class="code-line">http.server</span>; byte-identical output.</td></tr>
       </table>
 
       <h2>Implementation</h2>

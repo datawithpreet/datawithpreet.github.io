@@ -114,7 +114,7 @@
       <ul>
         <li><strong>Orchestrator/tool split.</strong> HHV Copilot plans; specialized tools execute. In a real build, <span class="code-line">extract_findings</span> becomes an LLM call and the memory becomes a vector store — the contracts and guardrails stay the same. Students see <em>where</em> the AI goes and <em>where</em> deterministic rules must hold.</li>
         <li><strong>Rules enforced in code.</strong> Guardrails are assert/raise statements, not prompt instructions — provably unbypassable in the demo.</li>
-        <li><strong>Zero-dependency runtime.</strong> Python 3 stdlib only, fully offline, no API keys. <span class="code-line">app.py</span> serves the live web UI on <span class="code-line">localhost:8002</span>; <span class="code-line">demo.py</span> runs the 6–7 minute canned lifecycle.</li>
+        <li><strong>Zero-dependency runtime.</strong> Python 3 stdlib only, fully offline, no API keys. <span class="code-line">app.py</span> serves the live web UI on <span class="code-line">localhost:8002</span>; <span class="code-line">demo.py</span> runs the canned lifecycle in seconds (~6–7 minutes narrated).</li>
         <li><strong>Measured, not vibes.</strong> Five self-eval dimensions: prioritization precision 99.6% (264/265), extraction 10/10 with 0 invented diagnoses, reconciliation precision/recall 1.00 on 8/8 cases, routing 3/3 with 0 agent med changes, reliability 10/10 byte-identical runs.</li>
       </ul>
 

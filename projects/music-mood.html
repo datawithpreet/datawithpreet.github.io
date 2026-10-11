@@ -75,7 +75,7 @@
 
     <div class="proj-body">
       <h2>The business outcome</h2>
-      <p>Recommendation engines optimize for the next click. Nobody builds the <strong>sequence</strong>: an arc with a beginning, a turn, and a landing — plus the honesty of saying <em>why</em> each song fits, and a memory of what worked for you last time. The outcome this project delivers: a playlist built as an <strong>emotional arc</strong> — MATCH the mood you're in (so it starts honest, not forced) → LIFT you toward where you want to be → SUSTAIN the good mood once you're there.</p>
+      <p>Recommendation engines optimize for the next click. Few build the <strong>sequence</strong>: an arc with a beginning, a turn, and a landing — plus the honesty of saying <em>why</em> each song fits, and a memory of what worked for you last time. The outcome this project delivers: a playlist built as an <strong>emotional arc</strong> — MATCH the mood you're in (so it starts honest, not forced) → LIFT you toward where you want to be → SUSTAIN the good mood once you're there.</p>
       <p>Mood is not reliably inferred from time or location alone. This demo treats contextual signals as clues, <strong>prioritizes your stated mood</strong>, and makes sensitive data optional.</p>
 
       <h2>How the agent works</h2>
@@ -100,7 +100,7 @@
         <tr><td>Interpreter agent</td><td>Parses the request + optional context into current mood and target mood; prints its PLAN.</td></tr>
         <tr><td>Arc designer</td><td>Builds the MATCH → LIFT → SUSTAIN sequence and turns each slot into a retrieval query.</td></tr>
         <tr><td>Retrieval tool</td><td><span class="code-line">search_catalog</span> — every song pick comes from the catalog via this tool; you see every tool call.</td></tr>
-        <tr><td>Memory</td><td>Past sessions bias future picks ([MEMORY-BOOSTED]); feedback (skips, likes, mood change) re-plans the arc.</td></tr>
+        <tr><td>Memory</td><td>Past sessions bias future picks ([MEMORY-BOOSTED]); session memory is pre-seeded, not learned live.</td></tr>
         <tr><td>Explainer</td><td>One why-it-fits line per song — transparent reasoning, not a black-box queue.</td></tr>
         <tr><td>Web UI</td><td><span class="code-line">app.py</span> over stdlib <span class="code-line">http.server</span>; no installs, no API keys, fully offline.</td></tr>
       </table>
