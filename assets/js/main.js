@@ -446,6 +446,51 @@
     });
   }
 
+  /* ---------- architecture lab: stage inspector ---------- */
+  const flowStages = document.querySelectorAll('.flow-stage[data-stage]');
+  const flowDetail = document.getElementById('flowDetail');
+  const stageData = {
+    sources: {
+      title: 'Sources',
+      decision: 'Land everything raw first (bronze). Never transform data you cannot re-read from the source.',
+      failure: 'A source changes its schema overnight \u2014 a renamed field, a new column, a shifted file format.',
+      control: 'Schema checks on landing; quarantine bad batches instead of failing the whole pipeline. Alert, never silently drop.'
+    },
+    lakehouse: {
+      title: 'Lakehouse',
+      decision: 'Medallion layers with explicit contracts \u2014 bronze is raw, silver is cleaned and conformed, gold is business-ready. No skipping layers.',
+      failure: 'Late-arriving data or duplicates quietly corrupt downstream aggregates.',
+      control: 'Idempotent incremental loads (merge on keys, not append); data-quality gates between every layer.'
+    },
+    governance: {
+      title: 'Governance',
+      decision: 'Access control at the table and column level \u2014 least privilege by default, especially for PHI.',
+      failure: 'Sensitive healthcare data exposed to the wrong audience.',
+      control: 'Column-level masking, audit logging on every access, lineage tracked end to end.'
+    },
+    outcomes: {
+      title: 'Outcomes',
+      decision: 'Gold tables serve BI and ML from the same definitions \u2014 one source of truth, no divergent metric logic.',
+      failure: 'A model trained on data that leaked the future \u2014 lookback and follow-up windows misaligned.',
+      control: 'Point-in-time correct features; snapshot dates respected; model inputs versioned with the data.'
+    }
+  };
+  function setStage(key) {
+    const d = stageData[key];
+    if (!d || !flowDetail) return;
+    flowDetail.querySelector('#fdTitle').textContent = d.title;
+    flowDetail.querySelector('#fdDecision').textContent = d.decision;
+    flowDetail.querySelector('#fdFailure').textContent = d.failure;
+    flowDetail.querySelector('#fdControl').textContent = d.control;
+    flowStages.forEach(s => s.classList.toggle('active', s.dataset.stage === key));
+  }
+  if (flowStages.length && flowDetail) {
+    flowStages.forEach(s => {
+      s.addEventListener('click', () => setStage(s.dataset.stage));
+    });
+    setStage('lakehouse');
+  }
+
   /* ---------- parallax + timeline draw (single rAF loop) ---------- */
   const parallaxEls = [...document.querySelectorAll('[data-parallax]')];
   const timelines = [...document.querySelectorAll('.timeline')];
