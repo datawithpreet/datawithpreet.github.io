@@ -35,13 +35,23 @@ layout: null
     <section class="section writing-section">
       <div class="section-kicker">01 / ALL DAILY POSTS</div>
       <div class="writing-grid">
-        {% for post in site.categories.daily %}
+        {% assign daily_posts = site.categories.daily %}
+        {% for post in daily_posts %}
+        {% if forloop.first %}
+        <a class="writing-card featured-writing" href="{{ post.url | relative_url }}">
+          <span>LATEST &mdash; {{ post.date | date: "%B %d, %Y" | upcase }}</span>
+          <h3>{{ post.title }}</h3>
+          <p>{{ post.description }}</p>
+          <strong>Read post ↗</strong>
+        </a>
+        {% else %}
         <a class="writing-card" href="{{ post.url | relative_url }}">
           <span>{{ post.date | date: "%B %d, %Y" | upcase }}</span>
           <h3>{{ post.title }}</h3>
           <p>{{ post.description }}</p>
           <strong>Read post ↗</strong>
         </a>
+        {% endif %}
         {% endfor %}
       </div>
     </section>
