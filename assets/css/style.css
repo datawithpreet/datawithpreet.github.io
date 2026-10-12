@@ -248,8 +248,11 @@ section[id] { scroll-margin-top: 92px; }
 }
 .talk-card img[hidden] { display: none; }
 .wc-outcome { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--line); font-size: 14px; }
+.talk-card { position: relative; }
+.talk-card video { position: relative; z-index: 1; }
 .talk-card canvas {
-  width: 100%; height: auto; aspect-ratio: 9 / 16; display: block;
+  position: absolute; inset: 0; z-index: 2;
+  width: 100%; height: 100%; display: block;
   filter: grayscale(1) contrast(1.05);
 }
 .talk-card video {
