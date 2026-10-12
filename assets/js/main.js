@@ -271,24 +271,6 @@
     });
   }
 
-  /* ---------- achievements infinite carousel ---------- */
-  const achTrack = document.getElementById('achTrack');
-  if (achTrack) {
-    // Duplicate the cards so the -50% loop is seamless.
-    achTrack.innerHTML += achTrack.innerHTML;
-    // Re-observe duplicated reveal cards (they start hidden until intersecting).
-    achTrack.querySelectorAll('.reveal:not(.in)').forEach(el => revealObserver.observe(el));
-    // Tap toggles the marquee on touch (there is no hover-to-pause there).
-    const achMarquee = achTrack.closest('.ach-marquee');
-    if (achMarquee) {
-      achMarquee.addEventListener('click', (e) => {
-        if (e.target.closest('a')) return;
-        const paused = achTrack.style.animationPlayState === 'paused';
-        achTrack.style.animationPlayState = paused ? '' : 'paused';
-      });
-    }
-  }
-
   /* ---------- recommendations infinite carousel ---------- */
   const recTrack = document.getElementById('recTrack');
   if (recTrack) {
