@@ -271,23 +271,6 @@
     });
   }
 
-  /* ---------- recommendations infinite carousel ---------- */
-  const recTrack = document.getElementById('recTrack');
-  if (recTrack) {
-    // Duplicate the cards so the -50% loop is seamless.
-    recTrack.innerHTML += recTrack.innerHTML;
-    // Re-observe duplicated reveal cards (they start hidden until intersecting).
-    recTrack.querySelectorAll('.reveal:not(.in)').forEach(el => revealObserver.observe(el));
-    // Tap toggles the marquee on touch (there is no hover-to-pause there).
-    const recMarquee = recTrack.closest('.rec-marquee');
-    if (recMarquee) {
-      recMarquee.addEventListener('click', (e) => {
-        if (e.target.closest('a')) return;
-        const paused = recTrack.style.animationPlayState === 'paused';
-        recTrack.style.animationPlayState = paused ? '' : 'paused';
-      });
-    }
-  }
 
   /* ---------- clients logo marquee ---------- */
   const clientTrack = document.getElementById('clientTrack');
