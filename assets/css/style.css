@@ -1406,8 +1406,11 @@ section[id] { scroll-margin-top: 92px; }
   display: grid; grid-template-columns: 1fr 1fr; gap: 44px; align-items: center;
   width: calc(100% - 12vw); max-width: 1280px; margin: 56px auto 0;
 }
+.substack-embed {
+  width: 100%; max-width: 440px; height: 220px; overflow: hidden;
+}
 .substack-embed iframe {
-  display: block; width: 100%; max-width: 440px; height: 200px; border: 0;
+  display: block; width: 100%; max-width: 440px; height: 360px; border: 0;
 }
 .newsletter-band h2 {
   font-family: var(--font-display);
