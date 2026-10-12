@@ -145,6 +145,7 @@
     .res-badge.mixed { background:rgba(240,178,70,.18); color:#9a6b12; }
     .res-link { font-size:14px; font-weight:700; color:#1b2a4a; text-decoration:none; border-bottom:2px solid #2aa198; }
     .res-link:hover { color:#1b6f6a; }
+    .video-toggle-placeholder { width: 34px; height: 34px; flex: 0 0 34px; visibility: hidden; }
     .site-header { transition: transform .35s ease, opacity .35s ease; }
     .site-header.nav-hidden { transform: translateX(-50%) translateY(-140%); opacity: 0; pointer-events: none; }
   </style>
@@ -166,6 +167,7 @@
       <a href="index.html#achievements">Achievements</a>
       <a class="active" href="demos.html#demos" aria-current="page">Demos</a>
       <a href="index.html#contact">Contact</a>
+      <span class="video-toggle-placeholder" aria-hidden="true"></span>
     </nav>
   </header>
 
