@@ -219,6 +219,9 @@ section[id] { scroll-margin-top: 92px; }
 .btn-dark:hover { transform: translateY(-2px); box-shadow: 0 14px 28px rgba(20,20,20,0.22); }
 .btn-light { background: transparent; color: var(--ink); }
 .btn-light:hover { background: var(--ink); color: var(--paper); transform: translateY(-2px); }
+.hero-demos-link { margin: 14px 0 0; font-size: 14px; }
+.hero-demos-link a { color: var(--gray); text-decoration: underline; text-underline-offset: 3px; }
+.hero-demos-link a:hover { color: var(--ink); }
 .hero-socials { display: flex; gap: 18px; margin-top: 28px; flex-wrap: wrap; }
 .hero-socials a {
   font-size: 13px;
