@@ -4,11 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>EXL Service — The Journey · Data with Preet</title>
-  <meta name="description" content="Preet Mehta at EXL Service — Manager, Healthcare Analytics: nephrology RCM on Databricks, a $$4M Medicaid churn model, and a Medicare Stars prediction model for Humana.">
+  <meta name="description" content="Preet Mehta at EXL Service — Manager, Healthcare Analytics: nephrology RCM on Databricks, a $4M Medicaid churn model, and a Medicare Stars prediction model for Humana.">
   <meta name="author" content="Preet Mehta">
   <meta name="theme-color" content="#faf8f2">
   <meta property="og:title" content="EXL Service — The Journey · Data with Preet">
-  <meta property="og:description" content="Preet Mehta at EXL Service — Manager, Healthcare Analytics: nephrology RCM on Databricks, a $$4M Medicaid churn model, and a Medicare Stars prediction model for Humana.">
+  <meta property="og:description" content="Preet Mehta at EXL Service — Manager, Healthcare Analytics: nephrology RCM on Databricks, a $4M Medicaid churn model, and a Medicare Stars prediction model for Humana.">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://datawithpreet.github.io/journey/exl-service.html">
   <link rel="icon" href="../assets/img/favicon.png">
@@ -45,7 +45,7 @@
           <button class="" role="tab" aria-selected="false" data-chapter="risk">Revenue Integrity</button>
           <button class="" role="tab" aria-selected="false" data-chapter="stars">Humana Stars</button>
       </div>
-      <div class="j-chapter is-active" data-chapter="rcm">
+      <div class="j-chapter is-active" id="rcm" data-chapter="rcm">
         <h4>One pipeline for every EMR</h4>
         <ul class="j-did">
       <li>Built the entire RCM (revenue cycle management) model for an integrated nephrology provider group</li>
@@ -61,7 +61,7 @@
         </div>
         <div class="j-tags"><span>Databricks</span><span>Snowflake</span><span>Azure Data Factory</span><span>SSIS</span><span>Azure DevOps</span><span>RCM</span></div>
       </div>
-      <div class="j-chapter " data-chapter="risk">
+      <div class="j-chapter " id="risk" data-chapter="risk">
         <h4>Risk adjustment at scale</h4>
         <ul class="j-did">
       <li>Built an Auto Loader pipeline ingesting vendor files (Ciox, Datavant, Cotiviti — TXT, ZIP, CSV) into per-line-of-business tables: Medicare, Medicaid, Dual, D-SNP</li>
@@ -69,12 +69,12 @@
       <li>Shipped a Medicaid member-churn ML model that told the team exactly which members to reach out to</li>
         </ul>
         <div class="j-metrics">
-      <div><b>$$4M</b><span>saved by the churn model</span></div>
+      <div><b>$4M</b><span>saved by the churn model</span></div>
       <div><b>4</b><span>lines of business</span></div>
         </div>
         <div class="j-tags"><span>Auto Loader</span><span>Risk Adjustment</span><span>Machine Learning</span><span>Dashboards</span></div>
       </div>
-      <div class="j-chapter " data-chapter="stars">
+      <div class="j-chapter " id="stars" data-chapter="stars">
         <h4>Predicting decline before it happens</h4>
         <ul class="j-did">
       <li>Building an ML model for Medicare Stars that flags members whose health is likely to decline over the next two years — so care teams can act early</li>
