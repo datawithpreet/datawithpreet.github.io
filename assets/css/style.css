@@ -1430,6 +1430,9 @@ section[id] { scroll-margin-top: 92px; }
 .newsletter-cta { display: flex; flex-direction: column; gap: 18px; align-items: flex-start; justify-content: center; }
 .newsletter-band .btn-light { border-color: var(--paper); color: var(--paper); }
 .newsletter-band .btn-light:hover { background: var(--paper); color: var(--ink); }
+.substack-embed iframe {
+  display: block; width: 100%; max-width: 440px; height: 320px; border: 0;
+}
 .newsletter-form { width: 100%; max-width: 440px; }
 .nl-label { display: block; font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--gray); margin-bottom: 10px; }
 .nl-row { display: flex; gap: 10px; }
