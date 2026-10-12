@@ -764,3 +764,28 @@
     if (a) track(a.getAttribute('data-track'));
   }, true);
 })();
+
+// Native newsletter form -> Substack in background
+(function(){
+  var form = document.querySelector('.newsletter-form');
+  if(!form) return;
+  var input = form.querySelector('.nl-input');
+  var success = form.querySelector('.nl-success');
+  var error = form.querySelector('.nl-error');
+  form.addEventListener('submit', function(e){
+    var email = (input.value || '').trim();
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+      e.preventDefault();
+      error.hidden = false; success.hidden = true;
+      input.focus();
+      return;
+    }
+    error.hidden = true;
+    // let the form post to the hidden iframe, then show success
+    setTimeout(function(){
+      form.querySelector('.nl-row').style.display = 'none';
+      form.querySelector('.nl-label').style.display = 'none';
+      success.hidden = false;
+    }, 800);
+  });
+})();
