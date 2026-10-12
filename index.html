@@ -452,7 +452,18 @@
         <p>The "Healthcare for Data Engineers" series — free, practical, one idea per post. Read the archive or get it in your inbox.</p>
       </div>
       <div class="newsletter-cta">
-        <div class="substack-embed"><iframe src="https://masterdataengineering.substack.com/embed" title="Subscribe to Preet's newsletter" loading="lazy"></iframe></div>
+        <form class="newsletter-form" action="https://masterdataengineering.substack.com/api/v1/free?nojs=true" method="post" target="substack-hidden-frame" novalidate>
+          <input type="hidden" name="source" value="embed">
+          <input type="hidden" name="current_url" value="https://datawithpreet.github.io/">
+          <label class="nl-label" for="nl-email">Get it in your inbox</label>
+          <div class="nl-row">
+            <input id="nl-email" class="nl-input" type="email" name="email" placeholder="you@example.com" required aria-label="Email address" autocomplete="email">
+            <button class="nl-btn" type="submit">Subscribe</button>
+          </div>
+          <p class="nl-success" hidden>You're in — check your inbox to confirm.</p>
+          <p class="nl-error" hidden>Please enter a valid email address.</p>
+        </form>
+        <iframe name="substack-hidden-frame" class="substack-hidden" title="" aria-hidden="true" tabindex="-1"></iframe>
         <span class="newsletter-note"><a href="https://masterdataengineering.substack.com" target="_blank" rel="noopener">Explore the newsletter archive ↗</a></span>
       </div>
     </div>
