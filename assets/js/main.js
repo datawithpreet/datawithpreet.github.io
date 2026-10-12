@@ -160,6 +160,81 @@
     useImageFallback();
   }
 
+  /* ---------- hero video: real-time white-background keying ----------
+     The HeyGen video has a baked-in white studio background. CSS blend modes
+     fail on mobile (iOS Safari composites video separately), so we key out
+     the white per-frame on a canvas. Flood-fill from the borders preserves
+     interior whites (e.g. sneakers). */
+  const canvas = document.getElementById('introCanvas');
+  if (video && canvas && hasVideo !== false) {
+    const ctx = canvas.getContext('2d', { alpha: true });
+    const W = 360, H = 640;
+    const proc = document.createElement('canvas');
+    proc.width = W; proc.height = H;
+    const pctx = proc.getContext('2d', { willReadFrequently: true });
+    const mask = new Uint8Array(W * H);
+    const stack = new Int32Array(W * H);
+
+    const isWhite = (d, i) => d[i] > 235 && d[i+1] > 235 && d[i+2] > 235;
+
+    function keyFrame() {
+      if (video.paused || video.ended || video.readyState < 2) {
+        requestAnimationFrame(keyFrame);
+        return;
+      }
+      try {
+        pctx.drawImage(video, 0, 0, W, H);
+        const img = pctx.getImageData(0, 0, W, H);
+        const d = img.data;
+        mask.fill(0);
+        let sp = 0;
+        // seed: all border pixels that are white
+        for (let x = 0; x < W; x++) {
+          const t = x * 4, b = ((H-1)*W + x) * 4;
+          if (isWhite(d, t) && !mask[x]) { mask[x] = 1; stack[sp++] = x; }
+          const bi = (H-1)*W + x;
+          if (isWhite(d, b) && !mask[bi]) { mask[bi] = 1; stack[sp++] = bi; }
+        }
+        for (let y = 0; y < H; y++) {
+          const l = y*W*4, r = (y*W + W-1)*4;
+          const li = y*W, ri = y*W + W-1;
+          if (isWhite(d, l) && !mask[li]) { mask[li] = 1; stack[sp++] = li; }
+          if (isWhite(d, r) && !mask[ri]) { mask[ri] = 1; stack[sp++] = ri; }
+        }
+        // flood fill through white
+        while (sp > 0) {
+          const p = stack[--sp];
+          const px = p % W, py = (p / W) | 0;
+          const neighbors = [];
+          if (px > 0) neighbors.push(p-1);
+          if (px < W-1) neighbors.push(p+1);
+          if (py > 0) neighbors.push(p-W);
+          if (py < H-1) neighbors.push(p+W);
+          for (const n of neighbors) {
+            if (!mask[n] && isWhite(d, n*4)) { mask[n] = 1; stack[sp++] = n; }
+          }
+        }
+        // apply: background -> transparent, feather edges
+        for (let p = 0; p < W*H; p++) {
+          const i = p*4;
+          if (mask[p]) {
+            d[i+3] = 0;
+          } else if (d[i] > 225 && d[i+1] > 225 && d[i+2] > 225) {
+            // near-white interior pixel: soften based on whiteness
+            const w = Math.min(d[i], d[i+1], d[i+2]);
+            d[i+3] = Math.round(((255 - w) / 30) * 255);
+          }
+        }
+        ctx.putImageData(img, 0, 0);
+      } catch (e) { /* canvas tainted or unavailable: leave last frame */ }
+      requestAnimationFrame(keyFrame);
+    }
+
+    // start keying once video can play; hide canvas until first keyed frame
+    video.addEventListener('canplay', () => { requestAnimationFrame(keyFrame); }, { once: true });
+    if (video.readyState >= 2) requestAnimationFrame(keyFrame);
+  }
+
   /* ---------- typewriter speech bubble ---------- */
   const tw = document.getElementById('typewriter');
   if (tw && !reduceMotion) {
