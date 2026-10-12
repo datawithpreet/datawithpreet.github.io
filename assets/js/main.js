@@ -166,7 +166,7 @@
      the white per-frame on a canvas. Flood-fill from the borders preserves
      interior whites (e.g. sneakers). */
   const canvas = document.getElementById('introCanvas');
-  if (video && canvas && hasVideo !== false) {
+  if (video && canvas) {
     const ctx = canvas.getContext('2d', { alpha: true });
     const W = 360, H = 640;
     const proc = document.createElement('canvas');
