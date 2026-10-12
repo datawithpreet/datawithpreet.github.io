@@ -768,24 +768,45 @@
 // Native newsletter form -> Substack in background
 (function(){
   var form = document.querySelector('.newsletter-form');
-  if(!form) return;
+  if (!form) return;
   var input = form.querySelector('.nl-input');
   var success = form.querySelector('.nl-success');
   var error = form.querySelector('.nl-error');
+  var row = form.querySelector('.nl-row');
+  var label = form.querySelector('.nl-label');
+  var submitting = false;
+
   form.addEventListener('submit', function(e){
     var email = (input.value || '').trim();
-    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+    input.value = email;
+    error.hidden = true;
+    success.hidden = true;
+
+    if (!input.checkValidity() || !/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email)) {
       e.preventDefault();
-      error.hidden = false; success.hidden = true;
+      error.hidden = false;
       input.focus();
       return;
     }
-    error.hidden = true;
-    // let the form post to the hidden iframe, then show success
-    setTimeout(function(){
-      form.querySelector('.nl-row').style.display = 'none';
-      form.querySelector('.nl-label').style.display = 'none';
+
+    if (submitting) {
+      e.preventDefault();
+      return;
+    }
+    submitting = true;
+    var button = form.querySelector('.nl-btn');
+    button.disabled = true;
+    button.textContent = 'Submitting…';
+
+    // The browser posts directly to Substack in a hidden iframe. Its cross-origin
+    // response cannot be inspected, so the message asks new readers to confirm by email.
+    window.setTimeout(function(){
+      row.hidden = true;
+      label.hidden = true;
       success.hidden = false;
-    }, 800);
+      button.disabled = false;
+      button.textContent = 'Subscribe';
+      submitting = false;
+    }, 1200);
   });
 })();
