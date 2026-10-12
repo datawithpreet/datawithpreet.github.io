@@ -329,6 +329,16 @@
     languages: 'LANGUAGES', platforms: 'PLATFORMS', databases: 'DATABASES',
     bi: 'BI & TOOLS', healthcare: 'HEALTHCARE', core: 'CORE'
   };
+  const familyDescs = {
+    all: 'Twenty-two elements across six families — pick one to see what it covers.',
+    languages: 'Python and SQL — the languages of pipelines, transformations and analysis.',
+    platforms: 'Databricks, Spark, Delta Lake — the lakehouse stack where the pipelines run.',
+    databases: 'BigQuery and SQL Server — warehouses where analytics-ready data lives.',
+    bi: 'Looker, Tableau, Power BI — the last mile from data to decisions.',
+    healthcare: 'Claims, clinical, HCC, HEDIS — the domain data that makes healthcare hard.',
+    core: 'Architecture, governance, modeling — the engineering discipline underneath it all.'
+  };
+  const familyDescEl = document.getElementById('familyDesc');
   const setDetail = (el) => {
     if (!detail || !el) return;
     detail.querySelector('#pdSym').textContent = el.querySelector('.el-sym').textContent;
@@ -422,6 +432,7 @@
         document.querySelectorAll('#familyFilters .family-btn').forEach(b => b.classList.remove('on'));
         btn.classList.add('on');
         const fam = btn.dataset.family;
+        if (familyDescEl && familyDescs[fam]) familyDescEl.textContent = familyDescs[fam];
         if (fam === 'all') {
           ptable.classList.remove('dimmed');
           ptable.querySelectorAll('.element').forEach(el => el.classList.remove('lit'));
