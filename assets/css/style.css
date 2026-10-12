@@ -244,6 +244,7 @@ section[id] { scroll-margin-top: 92px; }
   overflow: visible;
 }
 .talk-card img[hidden] { display: none; }
+.wc-outcome { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--line); font-size: 14px; }
 .talk-card video {
   width: 100%; height: auto; aspect-ratio: 9 / 16; object-fit: contain;
   filter: grayscale(1) contrast(1.05);
