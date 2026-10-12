@@ -307,6 +307,21 @@
     }
   }
 
+  /* ---------- clients logo marquee ---------- */
+  const clientTrack = document.getElementById('clientTrack');
+  if (clientTrack) {
+    // Duplicate the cards so the -50% loop is seamless.
+    clientTrack.innerHTML += clientTrack.innerHTML;
+    // Tap toggles the marquee on touch (there is no hover-to-pause there).
+    const clientMarquee = clientTrack.closest('.client-marquee');
+    if (clientMarquee) {
+      clientMarquee.addEventListener('click', () => {
+        const paused = clientTrack.style.animationPlayState === 'paused';
+        clientTrack.style.animationPlayState = paused ? '' : 'paused';
+      });
+    }
+  }
+
   /* ---------- periodic table: inspector + family light-up + tilt ---------- */
   const ptable = document.querySelector('#ptable');
   const detail = document.querySelector('#ptableDetail');
