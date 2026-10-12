@@ -1,0 +1,63 @@
+---
+layout: null
+---
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{{ page.title }} | Preet Mehta</title><meta name="description" content="{{ page.description }}">
+<meta property="og:title" content="{{ page.title }} | Preet Mehta"><meta property="og:description" content="{{ page.description }}">
+<meta property="og:image" content="https://datawithpreet.github.io/assets/img/preet-creator.jpg">
+<link rel="icon" href="{{ '/assets/img/favicon.png' | relative_url }}"><link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+.daily-body p{margin:0 0 1.5em}
+.daily-body p:last-child{margin-bottom:0}
+.daily-body strong{color:#142333}
+.daily-nav a{color:#405463;text-decoration:none;font-weight:600;font-size:15px}
+.daily-nav a:hover{color:#142333}
+</style>
+</head><body>
+<header class="site-header scrolled"><a class="brand" href="{{ '/' | relative_url }}"><span class="brand-mark">PM</span><span class="brand-copy"><strong>PREET MEHTA</strong><small>DAILY POSTS</small></span></a><nav class="nav" style="display:flex"><a href="{{ '/' | relative_url }}">Portfolio</a><a href="{{ '/blog/' | relative_url }}">Writing</a><a class="active" href="{{ '/daily/' | relative_url }}">Daily</a></nav></header>
+<main>
+<article class="section intro-section" style="padding-top:150px;max-width:860px;margin:0 auto">
+  <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+    <span style="display:inline-flex;align-items:center;gap:9px;background:#142333;color:#fff;font-size:11px;font-weight:700;letter-spacing:2.5px;padding:9px 18px;border-radius:999px"><span class="pulse" style="width:8px;height:8px;border-radius:50%;background:#4ade80;display:inline-block"></span>DAILY POST</span>
+    <span style="font-size:12px;color:#7a8ca3;letter-spacing:1.5px;font-weight:600">{{ page.date | date: "%B %d, %Y" | upcase }}</span>
+  </div>
+  <h1 style="font-size:clamp(38px,6vw,66px);margin:28px 0 18px;color:#142333;line-height:1.06;letter-spacing:-0.5px">{{ page.title }}</h1>
+  <p style="font-size:19px;color:#667887;max-width:700px;line-height:1.65">{{ page.description }}</p>
+  <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:26px">
+    {% for cat in page.categories %}{% unless cat == "daily" %}<span style="font-size:11px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:#405463;background:#eef2f7;padding:8px 16px;border-radius:999px">{{ cat }}</span>{% endunless %}{% endfor %}
+  </div>
+  <div style="margin:40px 0 0;height:2px;background:linear-gradient(90deg,#142333 0%,rgba(20,35,51,.06) 100%);border-radius:2px"></div>
+  <div class="daily-body" style="margin-top:44px;font-size:18px;line-height:1.9;color:#2c3e50">{{ content }}</div>
+
+  {% if page.source_url %}
+  <div style="margin-top:60px;padding:30px 32px;border:1px solid #e2e8f0;border-radius:18px;background:linear-gradient(180deg,#f8fafc,#f1f5f9)">
+    <div style="font-size:11px;font-weight:700;letter-spacing:2.5px;color:#7a8ca3;margin-bottom:12px">SOURCE</div>
+    <p style="margin:0 0 20px;font-size:16px;color:#405463;line-height:1.65">This post covers <em>{{ page.source_title }}</em>, originally published by Databricks.</p>
+    <a class="btn btn-primary" href="{{ page.source_url }}" target="_blank" rel="noopener">Read the original article <span>&#8599;</span></a>
+  </div>
+  {% endif %}
+
+  <div style="margin-top:36px;text-align:center;padding:32px 0 8px">
+    <p style="color:#667887;font-size:16px;margin:0 0 18px">Enjoying these daily notes? Let's connect.</p>
+    <a class="btn btn-ghost" href="https://www.linkedin.com/in/preetmehta/" target="_blank" rel="noopener">Follow me on LinkedIn <span>&#8599;</span></a>
+  </div>
+
+  {% assign dailies = site.categories.daily %}
+  {% assign current_idx = nil %}
+  {% for p in dailies %}{% if p.url == page.url %}{% assign current_idx = forloop.index0 %}{% endif %}{% endfor %}
+  {% if current_idx != nil %}
+  {% assign newer_idx = current_idx | minus: 1 %}
+  {% assign older_idx = current_idx | plus: 1 %}
+  <nav class="daily-nav" style="margin-top:56px;padding-top:32px;border-top:1px solid #e8eef4;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap">
+    <span>{% if newer_idx >= 0 %}{% assign newer_post = dailies[newer_idx] %}<a href="{{ newer_post.url | relative_url }}">&larr; {{ newer_post.title | truncate: 42 }}</a>{% endif %}</span>
+    <a href="{{ '/daily/' | relative_url }}" style="letter-spacing:1px;font-size:13px">ALL DAILY POSTS</a>
+    <span style="text-align:right">{% if older_idx < dailies.size %}{% assign older_post = dailies[older_idx] %}<a href="{{ older_post.url | relative_url }}">{{ older_post.title | truncate: 42 }} &rarr;</a>{% endif %}</span>
+  </nav>
+  {% endif %}
+</article>
+</main>
+<footer class="footer"><div><strong>PREET MEHTA</strong><span>Data Engineering • Healthcare • AI/ML</span></div><span>© <span id="year"></span> Preet Mehta</span></footer>
+<script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+</body></html>
