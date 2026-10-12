@@ -1139,7 +1139,7 @@ section[id] { scroll-margin-top: 92px; }
 
 /* ---------- reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
-  .talk-figure, .marquee-track, .rec-track, .client-track, .journey-track,
+  .talk-figure, .marquee-track, .client-track, .journey-track,
   .hero-eyebrow .dot,
   .speech-bubble .caret { animation: none !important; }
   .journey-marquee { overflow-x: auto; -webkit-mask-image: none; mask-image: none; }
@@ -1413,15 +1413,11 @@ section[id] { scroll-margin-top: 92px; }
 /* ============================================================
    RECOMMENDATIONS — LinkedIn wall marquee
    ============================================================ */
-.rec-marquee { overflow: hidden; padding: 10px 0 26px; margin: 0 -6vw; padding-left: 6vw; padding-right: 6vw; }
-.rec-track {
-  display: flex; gap: 18px; width: max-content; align-items: stretch;
-  animation: recScroll 200s linear infinite;
-}
-.rec-marquee:hover .rec-track { animation-play-state: paused; }
-@keyframes recScroll { to { transform: translateX(-50%); } }
+.rec-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 18px; padding: 10px 0 8px; }
+.rec-more { margin: 18px 0 26px; font-size: 15px; color: var(--gray); }
+.rec-more a { font-weight: 700; color: var(--teal); }
 .rec-card {
-  flex: 0 0 min(340px, 82vw);
+  min-width: 0;
   border: 1px solid var(--line-strong);
   border-radius: 22px;
   background: var(--card);
