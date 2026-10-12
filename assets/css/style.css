@@ -429,6 +429,7 @@ section[id] { scroll-margin-top: 92px; }
    SKILLS — periodic table
    ============================================================ */
 .ptable-toolbar { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 26px; align-items: center; }
+.family-desc { font-size: 14px; color: var(--gray); margin: 0 0 12px; min-height: 1.5em; }
 .ptable-families { display: flex; flex-wrap: wrap; gap: 8px; }
 .family-btn {
   font-family: var(--font-display);
