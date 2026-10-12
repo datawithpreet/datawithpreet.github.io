@@ -1422,7 +1422,7 @@ section[id] { scroll-margin-top: 92px; }
   width: 100%; max-width: 440px; height: 220px; overflow: hidden;
 }
 .substack-embed iframe {
-  display: block; width: 100%; max-width: 440px; height: 360px; border: 0;
+  display: block; width: 100%; max-width: 440px; height: 480px; border: 0;
 }
 .newsletter-band h2 {
   font-family: var(--font-display);
