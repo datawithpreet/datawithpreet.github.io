@@ -587,7 +587,8 @@ section[id] { scroll-margin-top: 92px; }
 }
 .work-card:hover { transform: translateY(-8px); box-shadow: 0 26px 50px rgba(20,20,20,0.14); }
 .work-card .wc-num { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.22em; color: var(--gray); }
-.work-card .wc-tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0; }
+.work-card .wc-prod { background: var(--ink); color: var(--paper); }
+.wc-tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0; }
 .work-card .wc-tags span { font-size: 10.5px; font-weight: 700; letter-spacing: 0.14em; background: var(--paper-2); border: 1px solid var(--line); padding: 5px 11px; border-radius: 999px; }
 .work-card h3 { font-family: var(--font-display); font-size: 30px; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 12px; }
 .work-card > p { font-size: 14.5px; color: var(--gray); margin-bottom: 16px; }
