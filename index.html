@@ -244,13 +244,22 @@
       <h2 class="section-title reveal">How I think about <span class="serif">a data platform.</span></h2>
       <p class="section-sub reveal">A practical view of the journey: source systems → ingestion → governed storage → transformation → quality → analytics and ML.</p>
       <div class="flow-board reveal">
-        <div class="flow-stage"><small>01</small><h3>Sources</h3><p>EMR • SQL Server • APIs • Claims • Files</p></div>
+        <button class="flow-stage" data-stage="sources"><small>01</small><h3>Sources</h3><p>EMR • SQL Server • APIs • Claims • Files</p></button>
         <div class="flow-arrow">→</div>
-        <div class="flow-stage active"><small>02</small><h3>Lakehouse</h3><p>Bronze → Silver → Gold • Delta</p></div>
+        <button class="flow-stage active" data-stage="lakehouse"><small>02</small><h3>Lakehouse</h3><p>Bronze → Silver → Gold • Delta</p></button>
         <div class="flow-arrow">→</div>
-        <div class="flow-stage"><small>03</small><h3>Governance</h3><p>Catalog • Access • Quality • Lineage</p></div>
+        <button class="flow-stage" data-stage="governance"><small>03</small><h3>Governance</h3><p>Catalog • Access • Quality • Lineage</p></button>
         <div class="flow-arrow">→</div>
-        <div class="flow-stage"><small>04</small><h3>Outcomes</h3><p>BI • ML • Products • Decisions</p></div>
+        <button class="flow-stage" data-stage="outcomes"><small>04</small><h3>Outcomes</h3><p>BI • ML • Products • Decisions</p></button>
+      </div>
+      <div class="flow-detail reveal" id="flowDetail" aria-live="polite">
+        <div class="fd-kicker">STAGE INSPECTOR</div>
+        <h4 id="fdTitle">Lakehouse</h4>
+        <div class="fd-grid">
+          <div><b>Design decision</b><p id="fdDecision"></p></div>
+          <div><b>Failure mode</b><p id="fdFailure"></p></div>
+          <div><b>Control</b><p id="fdControl"></p></div>
+        </div>
       </div>
     </section>
 
