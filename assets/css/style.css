@@ -1110,14 +1110,8 @@ section[id] { scroll-margin-top: 92px; }
 
 /* ---------- achievements auto-carousel ---------- */
 /* compact pass 2026-10-08: cards size to content, no stretch */
-.ach-marquee { overflow: hidden; padding: 10px 0 26px; margin: 0 -6vw; padding-left: 6vw; padding-right: 6vw; }
-.ach-track {
-  display: flex; gap: 18px; width: max-content; align-items: center;
-  animation: achScroll 36s linear infinite;
-}
-.ach-marquee:hover .ach-track { animation-play-state: paused; }
-@keyframes achScroll { to { transform: translateX(-50%); } }
-.ach-card { flex: 0 0 min(300px, 78vw); scroll-snap-align: unset; }
+.ach-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 18px; padding: 10px 0 26px; }
+.ach-card { min-width: 0; }
 
 /* ---------- title wipe reveal ---------- */
 /* QA fix: the wipe runs as an animation triggered by .in (added by the reveal
@@ -1145,7 +1139,7 @@ section[id] { scroll-margin-top: 92px; }
 
 /* ---------- reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
-  .talk-figure, .marquee-track, .ach-track, .rec-track, .client-track, .journey-track,
+  .talk-figure, .marquee-track, .rec-track, .client-track, .journey-track,
   .hero-eyebrow .dot,
   .speech-bubble .caret { animation: none !important; }
   .journey-marquee { overflow-x: auto; -webkit-mask-image: none; mask-image: none; }
