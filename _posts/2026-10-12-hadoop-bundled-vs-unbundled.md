@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: daily-post
 title: "Bundled vs Unbundled: What Hadoop Got Right for Its Era"
 description: "Hadoop coupled storage and compute for a good reason — slow networks. The trade flipped when object storage got cheap. Know which era you're building for."
 date: 2026-10-12
