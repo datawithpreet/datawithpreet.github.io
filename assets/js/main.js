@@ -782,7 +782,7 @@
     error.hidden = true;
     success.hidden = true;
 
-    if (!input.checkValidity() || !/^[^\s@]+@[^\\s@]+\.[^\\s@]+$/.test(email)) {
+    if (!input.checkValidity() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       e.preventDefault();
       error.hidden = false;
       input.focus();
