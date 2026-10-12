@@ -1419,7 +1419,7 @@ section[id] { scroll-margin-top: 92px; }
 .newsletter-band .btn-light { border-color: var(--paper); color: var(--paper); }
 .newsletter-band .btn-light:hover { background: var(--paper); color: var(--ink); }
 .newsletter-note { color: #a09a8a; font-size: 14px; }
-.newsletter-note a { color: var(--paper); text-decoration: underline; text-underline-offset: 4px; }
+.newsletter-note a { color: var(--ink); text-decoration: underline; text-underline-offset: 4px; font-weight: 700; }
 @media (max-width: 760px) {
   .newsletter-band { grid-template-columns: 1fr; }
 }
