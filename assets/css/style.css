@@ -1573,3 +1573,6 @@ section[id] { scroll-margin-top: 92px; }
 .book-call .btn { flex-shrink: 0; }
 @media (max-width: 640px) { .book-call { align-items: flex-start; } }
 .live-tag { font-size: 10px; letter-spacing: 0.26em; font-weight: 700; color: var(--gray); margin-bottom: 16px; display: block; }
+
+.cert-card-static { cursor: default; }
+.cert-card-static:hover { transform: none; box-shadow: none; }
