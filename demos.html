@@ -38,17 +38,29 @@
       margin-bottom: 18px; border: 1px solid rgba(20,184,166,.25);
       box-shadow: 0 8px 24px rgba(27,42,74,.18); display: block;
     }
-    /* ===== Horizontal scroll boxes (sergestudios-style) ===== */
-.boxes-scroll-wrap { height: 500vh; position: relative; width: 100vw; margin-left: calc(-50vw + 50%); }
-.boxes-sticky { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
-.boxes-track { display: flex; will-change: transform; height: 100%; }
-.demo-box { flex: 0 0 100vw; width: 100vw; height: 100vh; height: 100svh; overflow: hidden; position: relative; flex-shrink: 0; }
-.demo-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.demo-box-info { position: absolute; left: 0; right: 0; bottom: 0; padding: 40px 6vw 48px; background: linear-gradient(transparent, rgba(0,0,0,.82)); color: #fff; }
-.demo-box-info .demo-box-kicker { font-size: 13px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; opacity: .7; margin-bottom: 10px; }
-.demo-box-info h3 { margin: 0 0 8px; font-size: clamp(28px, 4vw, 56px); color: #fff; letter-spacing: -0.02em; }
-.demo-box-info p { margin: 0; font-size: 17px; opacity: .85; max-width: 56ch; }
-@media (hover: none) { .boxes-scroll-wrap { height: auto; } .boxes-sticky { position: relative; height: auto; display: block; padding: 40px 0; } .boxes-track { flex-wrap: nowrap; overflow-x: auto; transform: none !important; } }
+    /* ===== Work-style horizontal cards (sergestudios reference) ===== */
+.work-scroll-wrap { height: 520vh; position: relative; width: 100vw; margin-left: calc(-50vw + 50%); background: #000; }
+.work-sticky { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; display: flex; align-items: center; }
+.work-track { display: flex; gap: 22px; padding: 0 5vw; align-items: center; will-change: transform; }
+.work-intro { flex: 0 0 38vw; flex-shrink: 0; color: #fff; padding-right: 3vw; }
+.work-intro h2 { margin: 0 0 18px; font-size: clamp(56px, 8.5vw, 138px); line-height: .95; letter-spacing: -.03em; color: #fff; font-weight: 800; }
+.work-intro p { margin: 0; font-size: 15px; letter-spacing: .22em; text-transform: uppercase; opacity: .45; font-weight: 700; }
+.work-card { flex: 0 0 33vw; flex-shrink: 0; width: 33vw; height: 80vh; height: 80svh; min-height: 560px; background: var(--card-bg); border-radius: 24px; overflow: hidden; display: flex; flex-direction: column; }
+.work-card-img { flex: 0 0 50%; display: flex; align-items: center; justify-content: center; padding: 44px 44px 8px; min-height: 0; }
+.work-card-img img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; border-radius: 14px; display: block; }
+.work-card-text { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; text-align: center; padding: 12px 36px 40px; min-height: 0; }
+.work-card-text h3 { margin: 0 0 10px; font-size: clamp(30px, 2.9vw, 52px); line-height: 1; letter-spacing: -.02em; font-weight: 800; color: #111; }
+.work-card-tags { font-size: 14px; font-weight: 500; color: #111; opacity: .5; margin-bottom: 14px; }
+.work-card-desc { margin: 0 0 18px; font-size: 17px; line-height: 1.45; color: #111; opacity: 0; transform: translateY(14px); transition: opacity .45s ease, transform .45s ease; max-width: 34ch; }
+.work-card-explore { display: inline-flex; align-items: center; gap: 8px; padding: 12px 26px; border-radius: 200px; background: rgba(0,0,0,.12); color: #111; font-weight: 700; font-size: 16px; text-decoration: none; opacity: 0; transform: translateY(14px); transition: opacity .45s ease .06s, transform .45s ease .06s, background .25s ease; }
+.work-card-explore:hover { background: rgba(0,0,0,.22); }
+.work-card:hover .work-card-desc, .work-card:focus-within .work-card-desc { opacity: 1; transform: none; }
+.work-card:hover .work-card-explore, .work-card:focus-within .work-card-explore { opacity: 1; transform: none; }
+.work-card--dark .work-card-text h3, .work-card--dark .work-card-tags, .work-card--dark .work-card-desc { color: #fff; }
+.work-card--dark .work-card-explore { background: rgba(255,255,255,.16); color: #fff; }
+.work-card--dark .work-card-explore:hover { background: rgba(255,255,255,.28); }
+@media (max-width: 900px) { .work-intro { flex-basis: 70vw; } .work-card { flex-basis: 78vw; width: 78vw; height: 72svh; min-height: 0; } }
+@media (hover: none) { .work-scroll-wrap { height: auto; } .work-sticky { position: relative; height: auto; display: block; padding: 60px 0; } .work-track { flex-wrap: nowrap; overflow-x: auto; transform: none !important; } .work-intro { flex-basis: 80vw; } .work-card-desc, .work-card-explore { opacity: 1; transform: none; } }
 
     /* Kickpush-style hover overlay on demo images */
     .demo-img-link { position: relative; display: block; border-radius: 14px; overflow: hidden; margin-bottom: 18px; }
@@ -221,71 +233,91 @@
       </div>
 
     
-    <!-- ================= HORIZONTAL BOXES ================= -->
-    <div class="boxes-scroll-wrap" id="demoBoxes">
-      <div class="boxes-sticky">
-        <div class="boxes-track">
-          <article class="demo-box">
-            <img src="assets/demos/care-management-outcome.webp" alt="Care coordinator using the Care Outreach Agent dashboard — personalized outreach, care gap closure, appointment scheduling, outcome tracking" loading="lazy">
-            <div class="demo-box-info">
-              <div class="demo-box-kicker">01 · Healthcare · Agentic AI</div>
-              <h3>Stop Sending Generic Messages. Start Driving Member Action.</h3>
+    
+    <!-- ================= WORK-STYLE CARDS ================= -->
+    <div class="work-scroll-wrap" id="demoBoxes">
+      <div class="work-sticky">
+        <div class="work-track">
+          <div class="work-intro"><h2>Watch them<br>work.</h2><p>Scroll &mdash; nine demos</p></div>
+          <article class="work-card" style="--card-bg: #B097E3;">
+            <div class="work-card-img"><img src="assets/demos/care-management-outcome.webp" alt="Care coordinator using the Care Outreach Agent dashboard — personalized outreach, care gap closure, appointment scheduling, outcome tracking" loading="lazy"></div>
+            <div class="work-card-text">
+              <h3>Care Outreach Agent</h3>
+              <div class="work-card-tags">Healthcare · Agentic AI</div>
+              <p class="work-card-desc">Health plans don't just need to reach members&mdash;they need to motivate them to act. See how AI agents can personalize outreach, select appropriate communicat</p>
+              <a class="work-card-explore" href="projects/care-management.html">Explore &#8599;</a>
             </div>
           </article>
-          <article class="demo-box">
-            <img src="assets/demos/hhv-copilot-outcome.webp" alt="Home-health nurse smiling with an elderly patient during an in-home assessment visit" loading="lazy">
-            <div class="demo-box-info">
-              <div class="demo-box-kicker">02 · Medicare Advantage · Agentic AI</div>
-              <h3>A Nurse Can't Visit Every Member. Who Should Get the Visit First?</h3>
+          <article class="work-card" style="--card-bg: #FABD17;">
+            <div class="work-card-img"><img src="assets/demos/hhv-copilot-outcome.webp" alt="Home-health nurse smiling with an elderly patient during an in-home assessment visit" loading="lazy"></div>
+            <div class="work-card-text">
+              <h3>HHV Copilot</h3>
+              <div class="work-card-tags">Medicare Advantage · Agentic AI</div>
+              <p class="work-card-desc">Use predictive analytics and agentic AI to prioritize members for in-home assessments, uncover potential care gaps, and coordinate follow-up&mdash;helping healt</p>
+              <a class="work-card-explore" href="projects/hhv-copilot.html">Explore &#8599;</a>
             </div>
           </article>
-          <article class="demo-box">
-            <img src="assets/demos/restaurant-location-outcome.webp" alt="Location intelligence for restaurant site selection — storefront, glowing trade-area map with candidate pins, scored factors: population, traffic, competition, demand" loading="lazy">
-            <div class="demo-box-info">
-              <div class="demo-box-kicker">03 · Retail · Geospatial Analytics · Agentic AI</div>
-              <h3>The Wrong Location Can Sink a Great Restaurant. Find the Right One With Data.</h3>
+          <article class="work-card" style="--card-bg: #F2B5A4;">
+            <div class="work-card-img"><img src="assets/demos/restaurant-location-outcome.webp" alt="Location intelligence for restaurant site selection — storefront, glowing trade-area map with candidate pins, scored factors: population, traffic, competition, demand" loading="lazy"></div>
+            <div class="work-card-text">
+              <h3>Restaurant Location Agent</h3>
+              <div class="work-card-tags">Retail · Geospatial AI</div>
+              <p class="work-card-desc">Before signing a lease, evaluate the market. This agent combines demographics, ZIP-code demand, traffic, competitors, trade areas, and operating considerations </p>
+              <a class="work-card-explore" href="projects/restaurant-location.html">Explore &#8599;</a>
             </div>
           </article>
-          <article class="demo-box">
-            <img src="assets/demos/aeroyield-outcome.webp" alt="Commercial airliner climbing into a sunset sky — airline revenue intelligence" loading="lazy">
-            <div class="demo-box-info">
-              <div class="demo-box-kicker">04 · Aviation · Revenue Management · Agentic AI</div>
-              <h3>A $7 Profit per Passenger. One Bad Forecast Can Change the Economics of a Flight.</h3>
+          <article class="work-card" style="--card-bg: #E9E9E9;">
+            <div class="work-card-img"><img src="assets/demos/aeroyield-outcome.webp" alt="Commercial airliner climbing into a sunset sky — airline revenue intelligence" loading="lazy"></div>
+            <div class="work-card-text">
+              <h3>AeroYield AI</h3>
+              <div class="work-card-tags">Aviation · Forecasting</div>
+              <p class="work-card-desc">Airlines must price perishable inventory in a market that never stands still. AeroYield AI combines demand forecasts, competitor fares, seasonality, major event</p>
+              <a class="work-card-explore" href="projects/aeroyield.html">Explore &#8599;</a>
             </div>
           </article>
-          <article class="demo-box">
-            <img src="assets/demos/music-mood-outcome.webp" alt="Listener with eyes closed wearing headphones in warm golden light — music for the moment" loading="lazy">
-            <div class="demo-box-info">
-              <div class="demo-box-kicker">05 · Personalization · Recommender Systems · Agentic AI</div>
-              <h3>Your Next Song Should Fit Your Moment — Not Just Your Listening History.</h3>
+          <article class="work-card" style="--card-bg: #F85387;">
+            <div class="work-card-img"><img src="assets/demos/music-mood-outcome.webp" alt="Listener with eyes closed wearing headphones in warm golden light — music for the moment" loading="lazy"></div>
+            <div class="work-card-text">
+              <h3>Music Mood Agent</h3>
+              <div class="work-card-tags">Personalization · Recommenders</div>
+              <p class="work-card-desc">Music can help shape how we feel, focus, and unwind. This agent combines a small session memory with your stated mood and chosen occasion to recommend music for</p>
+              <a class="work-card-explore" href="projects/music-mood.html">Explore &#8599;</a>
             </div>
           </article>
-          <article class="demo-box">
-            <img src="assets/demos/fixmate-outcome.webp" alt="AI maintenance assistant beside a coffee machine — check error code, find parts, troubleshooting steps, preventive maintenance" loading="lazy">
-            <div class="demo-box-info">
-              <div class="demo-box-kicker">06 · Retail · Equipment Maintenance · Agentic AI</div>
-              <h3>Every Minute a Coffee Machine Is Down Is a Missed Sales Opportunity.</h3>
+          <article class="work-card" style="--card-bg: #FFD25C;">
+            <div class="work-card-img"><img src="assets/demos/fixmate-outcome.webp" alt="AI maintenance assistant beside a coffee machine — check error code, find parts, troubleshooting steps, preventive maintenance" loading="lazy"></div>
+            <div class="work-card-text">
+              <h3>FixMate AI</h3>
+              <div class="work-card-tags">Retail · Predictive Maintenance</div>
+              <p class="work-card-desc">When revenue-generating equipment fails, technicians need answers — not hundreds of pages of manuals. FixMate AI helps them identify equipment issues, find the </p>
+              <a class="work-card-explore" href="projects/fixmate.html">Explore &#8599;</a>
             </div>
           </article>
-          <article class="demo-box">
-            <img src="assets/demos/gameguard-outcome.webp" alt="Gaming trust and safety — suspicious link, inappropriate content, personal information, grooming behavior detection" loading="lazy">
-            <div class="demo-box-info">
-              <div class="demo-box-kicker">07 · Gaming · Trust &amp; Safety · Multilingual AI</div>
-              <h3>Bad Actors Don't Always Use Bad Words. Can AI Recognize the Pattern?</h3>
+          <article class="work-card work-card--dark" style="--card-bg: #062147;">
+            <div class="work-card-img"><img src="assets/demos/gameguard-outcome.webp" alt="Gaming trust and safety — suspicious link, inappropriate content, personal information, grooming behavior detection" loading="lazy"></div>
+            <div class="work-card-text">
+              <h3>GameGuard AI</h3>
+              <div class="work-card-tags">Gaming · Trust & Safety</div>
+              <p class="work-card-desc">From suspicious links and requests for personal information to manipulative conversations with young players, harmful behavior can hide behind emojis, slang, mi</p>
+              <a class="work-card-explore" href="projects/gameguard.html">Explore &#8599;</a>
             </div>
           </article>
-          <article class="demo-box">
-            <img src="assets/demos/guestfirst-outcome.webp" alt="Warm restaurant counter — employee handing a drink to a customer, the hospitality moment data should protect" loading="lazy">
-            <div class="demo-box-info">
-              <div class="demo-box-kicker">08 · Restaurants · Customer Intelligence · Agentic AI</div>
-              <h3>A Great Restaurant Fixes the Order. An Exceptional One Fixes the Experience.</h3>
+          <article class="work-card" style="--card-bg: #F2F2F2;">
+            <div class="work-card-img"><img src="assets/demos/guestfirst-outcome.webp" alt="Warm restaurant counter — employee handing a drink to a customer, the hospitality moment data should protect" loading="lazy"></div>
+            <div class="work-card-text">
+              <h3>GuestFirst AI</h3>
+              <div class="work-card-tags">Restaurants · Customer Intelligence</div>
+              <p class="work-card-desc">What if a restaurant could connect customer feedback, order history, kitchen operations, and loyalty data to understand what went wrong — and coordinate the rig</p>
+              <a class="work-card-explore" href="projects/guestfirst.html">Explore &#8599;</a>
             </div>
           </article>
-          <article class="demo-box">
-            <img src="assets/demos/resume-reviewer.webp" alt="Magnifying glass over a resume revealing checkmarks and a score ring" loading="lazy">
-            <div class="demo-box-info">
-              <div class="demo-box-kicker">09 · Hiring · Agentic AI</div>
-              <h3>Your Resume Gets 7 Seconds. Make Every One Count.</h3>
+          <article class="work-card" style="--card-bg: #E4E4E4;">
+            <div class="work-card-img"><img src="assets/demos/resume-reviewer.webp" alt="Magnifying glass over a resume revealing checkmarks and a score ring" loading="lazy"></div>
+            <div class="work-card-text">
+              <h3>Resume Reviewer AI</h3>
+              <div class="work-card-tags">Hiring · NLP</div>
+              <p class="work-card-desc">Job seekers send resumes into a black box and never learn why they hear nothing back. Resume Reviewer AI scores your resume against 33 hiring-manager rules and </p>
+              <a class="work-card-explore" href="projects/resume-reviewer.html">Explore &#8599;</a>
             </div>
           </article>
         </div>
@@ -796,7 +828,7 @@
 <script>
 (function(){
   var wrap = document.getElementById('demoBoxes');
-  var track = wrap && wrap.querySelector('.boxes-track');
+  var track = wrap && wrap.querySelector('.work-track');
   if(!wrap || !track) return;
   if(window.matchMedia('(hover: none)').matches) return;
   var ticking = false;
