@@ -70,6 +70,11 @@
 .work-progress { position: absolute; bottom: 52px; left: 50%; transform: translateX(-50%); width: min(320px, 40vw); height: 3px; background: rgba(255,255,255,.15); border-radius: 3px; z-index: 5; }
 .work-progress-fill { height: 100%; width: 0%; background: #fff; border-radius: 3px; }
 @media (max-width: 900px) { .work-intro { flex-basis: 70vw; } .work-card { flex-basis: 78vw; width: 78vw; height: 72svh; min-height: 0; } }
+@media (prefers-reduced-motion: reduce) {
+  .work-card, .work-card-img img, .work-card-desc, .work-card-explore { transition: none !important; }
+  .work-card:hover, .work-card:focus-within { transform: none !important; }
+  .work-card:hover .work-card-img img { transform: none !important; }
+}
 @media (hover: none) { .work-scroll-wrap { height: auto; } .work-sticky { position: relative; height: auto; display: block; padding: 60px 0; } .work-track { flex-wrap: nowrap; overflow-x: auto; transform: none !important; } .work-intro { flex-basis: 80vw; } .work-card-desc, .work-card-explore { opacity: 1; transform: none; } }
 
     /* Kickpush-style hover overlay on demo images */
@@ -848,7 +853,19 @@
   var wrap = document.getElementById('demoBoxes');
   var track = wrap && wrap.querySelector('.work-track');
   if(!wrap || !track) return;
-  if(window.matchMedia('(hover: none)').matches) return;
+  var isTouch = window.matchMedia('(hover: none)').matches;
+  function updateTouch(){
+    if(fill) fill.style.width = '0%';
+    var trackEl = track;
+    function syncTouch(){
+      var max = Math.max(1, trackEl.scrollWidth - trackEl.clientWidth);
+      if(fill) fill.style.width = (trackEl.scrollLeft / max * 100) + '%';
+    }
+    trackEl.addEventListener('scroll', syncTouch, {passive:true});
+    if(prevBtn) { prevBtn.disabled = false; prevBtn.addEventListener('click', function(){ trackEl.scrollBy({left: -trackEl.clientWidth * 0.8, behavior: 'smooth'}); }); }
+    if(nextBtn) { nextBtn.disabled = false; nextBtn.addEventListener('click', function(){ trackEl.scrollBy({left: trackEl.clientWidth * 0.8, behavior: 'smooth'}); }); }
+  }
+  if(isTouch){ updateTouch(); return; }
   var ticking = false;
   function update(){
     ticking = false;
@@ -875,7 +892,7 @@
   function scrollByCards(dir){
     var scrollable = wrap.offsetHeight - window.innerHeight;
     var targetTop = wrap.offsetTop + (currentP() + dir * 0.18) * scrollable;
-    window.scrollTo({top: Math.max(0, targetTop), behavior: 'smooth'});
+    window.scrollTo({top: Math.max(0, targetTop), behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'});
   }
   if(prevBtn) prevBtn.addEventListener('click', function(){ scrollByCards(-1); });
   if(nextBtn) nextBtn.addEventListener('click', function(){ scrollByCards(1); });
