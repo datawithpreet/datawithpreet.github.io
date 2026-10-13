@@ -18,7 +18,24 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Space+Grotesk:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css?v=20261013qa2">
   <link rel="stylesheet" href="assets/css/chatbot.css">
-  <noscript><style>.reveal{opacity:1!important;transform:none!important}.section-title{clip-path:none!important}</style></noscript>
+  <noscript><style>.reveal{opacity:1!important;transform:none!important}.section-title{clip-path:none!important}<style>
+/* ===== Sticky newsletter CTA ===== */
+.nl-cta { position: fixed; top: 92px; left: 50%; transform: translateX(-50%); z-index: 99;
+  display: flex; align-items: center; gap: 14px; padding: 12px 22px 12px 12px;
+  background: #1d1d1f; border: 1px solid rgba(255,255,255,.08); border-radius: 14px;
+  color: #fff; text-decoration: none; font-weight: 600; font-size: 17px; letter-spacing: -.01em;
+  box-shadow: 0 10px 30px rgba(0,0,0,.35); transition: background .25s ease, transform .25s ease;
+  max-width: calc(100vw - 32px); white-space: nowrap; }
+.nl-cta:hover { background: #2a2a2d; }
+.nl-cta:hover .nl-cta-icon svg { transform: translateX(3px); }
+.nl-cta:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+.nl-cta-icon { flex-shrink: 0; width: 40px; height: 40px; border-radius: 10px; background: rgba(255,255,255,.1);
+  display: grid; place-items: center; }
+.nl-cta-icon svg { width: 20px; height: 20px; stroke: #fff; transition: transform .25s ease; }
+@media (max-width: 640px) { .nl-cta { top: 84px; font-size: 15px; padding: 10px 16px 10px 10px; gap: 10px; }
+  .nl-cta-icon { width: 34px; height: 34px; } }
+@media (prefers-reduced-motion: reduce) { .nl-cta, .nl-cta-icon svg { transition: none; } }
+</style></noscript>
 </head>
 <body>
     <!-- Fixed social sidebar (left rail) -->
@@ -52,6 +69,10 @@
       <button class="video-toggle" id="videoToggle" aria-label="Pause intro video" title="Pause intro video">⏸</button>
     </nav>
   </header>
+  <a class="nl-cta" href="https://masterdataengineering.substack.com/" target="_blank" rel="noopener" aria-label="Subscribe to Newsletter on Substack (opens in new tab)">
+    <span class="nl-cta-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+    <span>Subscribe to Newsletter</span>
+  </a>
 
   <main>
 
