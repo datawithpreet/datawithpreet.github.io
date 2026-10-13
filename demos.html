@@ -39,17 +39,15 @@
       box-shadow: 0 8px 24px rgba(27,42,74,.18); display: block;
     }
     /* ===== Horizontal scroll boxes (sergestudios-style) ===== */
-.boxes-scroll-wrap { height: 450vh; position: relative; }
-.boxes-sticky { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; display: flex; align-items: center; background: #0e0e0e; }
-.boxes-track { display: flex; gap: 3vw; padding: 0 6vw; will-change: transform; align-items: center; }
-.demo-box { flex: 0 0 74vw; height: 74vh; height: 74svh; border-radius: 22px; overflow: hidden; position: relative; flex-shrink: 0; }
+.boxes-scroll-wrap { height: 500vh; position: relative; }
+.boxes-sticky { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
+.boxes-track { display: flex; will-change: transform; height: 100%; }
+.demo-box { flex: 0 0 100vw; width: 100vw; height: 100vh; height: 100svh; overflow: hidden; position: relative; flex-shrink: 0; }
 .demo-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.demo-box-info { position: absolute; left: 0; right: 0; bottom: 0; padding: 28px 30px; background: linear-gradient(transparent, rgba(0,0,0,.78)); color: #fff; }
-.demo-box-info .demo-box-kicker { font-size: 12px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; opacity: .75; margin-bottom: 8px; }
-.demo-box-info h3 { margin: 0 0 6px; font-size: clamp(20px, 2.4vw, 32px); color: #fff; }
-.demo-box-info p { margin: 0; font-size: 15px; opacity: .85; max-width: 52ch; }
-.boxes-hint { position: absolute; top: 26px; left: 0; right: 0; text-align: center; color: rgba(255,255,255,.55); font-size: 13px; letter-spacing: .18em; text-transform: uppercase; font-weight: 700; pointer-events: none; }
-@media (max-width: 760px) { .demo-box { flex-basis: 86vw; height: 62svh; } }
+.demo-box-info { position: absolute; left: 0; right: 0; bottom: 0; padding: 40px 6vw 48px; background: linear-gradient(transparent, rgba(0,0,0,.82)); color: #fff; }
+.demo-box-info .demo-box-kicker { font-size: 13px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; opacity: .7; margin-bottom: 10px; }
+.demo-box-info h3 { margin: 0 0 8px; font-size: clamp(28px, 4vw, 56px); color: #fff; letter-spacing: -0.02em; }
+.demo-box-info p { margin: 0; font-size: 17px; opacity: .85; max-width: 56ch; }
 @media (hover: none) { .boxes-scroll-wrap { height: auto; } .boxes-sticky { position: relative; height: auto; display: block; padding: 40px 0; } .boxes-track { flex-wrap: nowrap; overflow-x: auto; transform: none !important; } }
 
     /* Kickpush-style hover overlay on demo images */
