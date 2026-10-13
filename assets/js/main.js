@@ -842,5 +842,5 @@
       ring.classList.remove('is-hover'); ring.classList.remove('has-label');
     });
   }
-  document.querySelectorAll('a, button, .tab-btn, [role="button"]').forEach(bindHover);
+  document.querySelectorAll('a, button, .tab-btn, [role="button"], [data-cursor-label]').forEach(bindHover);
 })();
