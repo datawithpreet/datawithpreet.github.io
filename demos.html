@@ -48,17 +48,27 @@
 .work-card { flex: 0 0 33vw; flex-shrink: 0; width: 33vw; height: 80vh; height: 80svh; min-height: 560px; background: var(--card-bg); border-radius: 24px; overflow: hidden; display: flex; flex-direction: column; }
 .work-card-img { flex: 0 0 50%; display: flex; align-items: center; justify-content: center; padding: 44px 44px 8px; min-height: 0; }
 .work-card-img img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; border-radius: 14px; display: block; }
-.work-card-text { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; text-align: center; padding: 12px 36px 40px; min-height: 0; }
+.work-card-text { flex: 1; display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-end; text-align: left; padding: 12px 36px 40px; min-height: 0; }
 .work-card-text h3 { margin: 0 0 10px; font-size: clamp(30px, 2.9vw, 52px); line-height: 1; letter-spacing: -.02em; font-weight: 800; color: #111; }
 .work-card-tags { font-size: 14px; font-weight: 500; color: #111; opacity: .5; margin-bottom: 14px; }
 .work-card-desc { margin: 0 0 18px; font-size: 17px; line-height: 1.45; color: #111; opacity: 0; transform: translateY(14px); transition: opacity .45s ease, transform .45s ease; max-width: 34ch; }
 .work-card-explore { display: inline-flex; align-items: center; gap: 8px; padding: 12px 26px; border-radius: 200px; background: rgba(0,0,0,.12); color: #111; font-weight: 700; font-size: 16px; text-decoration: none; opacity: 0; transform: translateY(14px); transition: opacity .45s ease .06s, transform .45s ease .06s, background .25s ease; }
 .work-card-explore:hover { background: rgba(0,0,0,.22); }
+.work-card { transition: transform .35s cubic-bezier(.22,.8,.32,1), box-shadow .35s ease; }
+.work-card:hover, .work-card:focus-within { transform: translateY(-10px) scale(1.015); box-shadow: 0 30px 60px rgba(0,0,0,.35); z-index: 2; }
+.work-card-img img { transition: transform .45s cubic-bezier(.22,.8,.32,1); }
+.work-card:hover .work-card-img img { transform: scale(1.06); }
 .work-card:hover .work-card-desc, .work-card:focus-within .work-card-desc { opacity: 1; transform: none; }
 .work-card:hover .work-card-explore, .work-card:focus-within .work-card-explore { opacity: 1; transform: none; }
 .work-card--dark .work-card-text h3, .work-card--dark .work-card-tags, .work-card--dark .work-card-desc { color: #fff; }
 .work-card--dark .work-card-explore { background: rgba(255,255,255,.16); color: #fff; }
 .work-card--dark .work-card-explore:hover { background: rgba(255,255,255,.28); }
+.work-nav { position: absolute; bottom: 34px; left: 5vw; display: flex; align-items: center; gap: 14px; z-index: 5; }
+.work-nav button { width: 52px; height: 52px; border-radius: 50%; border: 1px solid rgba(255,255,255,.25); background: rgba(255,255,255,.08); color: #fff; font-size: 20px; cursor: pointer; display: grid; place-items: center; transition: background .25s; }
+.work-nav button:hover { background: rgba(255,255,255,.2); }
+.work-nav button:disabled { opacity: .3; cursor: default; }
+.work-progress { position: absolute; bottom: 52px; left: 50%; transform: translateX(-50%); width: min(320px, 40vw); height: 3px; background: rgba(255,255,255,.15); border-radius: 3px; z-index: 5; }
+.work-progress-fill { height: 100%; width: 0%; background: #fff; border-radius: 3px; }
 @media (max-width: 900px) { .work-intro { flex-basis: 70vw; } .work-card { flex-basis: 78vw; width: 78vw; height: 72svh; min-height: 0; } }
 @media (hover: none) { .work-scroll-wrap { height: auto; } .work-sticky { position: relative; height: auto; display: block; padding: 60px 0; } .work-track { flex-wrap: nowrap; overflow-x: auto; transform: none !important; } .work-intro { flex-basis: 80vw; } .work-card-desc, .work-card-explore { opacity: 1; transform: none; } }
 
@@ -324,6 +334,11 @@
             </div>
           </article>
         </div>
+        <div class="work-nav" aria-label="Card navigation">
+          <button id="workPrev" aria-label="Previous cards">&larr;</button>
+          <button id="workNext" aria-label="Next cards">&rarr;</button>
+        </div>
+        <div class="work-progress" aria-hidden="true"><div class="work-progress-fill" id="workProgressFill"></div></div>
       </div>
     </div>
 
@@ -848,6 +863,45 @@
   function onScroll(){ if(!ticking){ ticking = true; requestAnimationFrame(update); } }
   window.addEventListener('scroll', onScroll, {passive:true});
   window.addEventListener('resize', update);
+  var fill = document.getElementById('workProgressFill');
+  var prevBtn = document.getElementById('workPrev');
+  var nextBtn = document.getElementById('workNext');
+  function currentP(){
+    var rect = wrap.getBoundingClientRect();
+    var scrollable = wrap.offsetHeight - window.innerHeight;
+    if(scrollable <= 0) return 0;
+    return Math.max(0, Math.min(1, -rect.top / scrollable));
+  }
+  function scrollByCards(dir){
+    var scrollable = wrap.offsetHeight - window.innerHeight;
+    var targetTop = wrap.offsetTop + (currentP() + dir * 0.18) * scrollable;
+    window.scrollTo({top: Math.max(0, targetTop), behavior: 'smooth'});
+  }
+  if(prevBtn) prevBtn.addEventListener('click', function(){ scrollByCards(-1); });
+  if(nextBtn) nextBtn.addEventListener('click', function(){ scrollByCards(1); });
+  var dragging = false, dragStartX = 0, dragStartP = 0;
+  track.addEventListener('pointerdown', function(e){
+    if(window.matchMedia('(hover: none)').matches) return;
+    dragging = true; dragStartX = e.clientX; dragStartP = currentP();
+    try { track.setPointerCapture(e.pointerId); } catch(_){}
+  });
+  track.addEventListener('pointermove', function(e){
+    if(!dragging) return;
+    var maxX = Math.max(1, track.scrollWidth - window.innerWidth);
+    var dp = (dragStartX - e.clientX) / maxX;
+    var p = Math.max(0, Math.min(1, dragStartP + dp));
+    var scrollable = wrap.offsetHeight - window.innerHeight;
+    window.scrollTo(0, wrap.offsetTop + p * scrollable);
+  });
+  ['pointerup','pointercancel'].forEach(function(ev){ track.addEventListener(ev, function(){ dragging = false; }); });
+  var _update = update;
+  update = function(){
+    _update();
+    var p = currentP();
+    if(fill) fill.style.width = (p * 100) + '%';
+    if(prevBtn) prevBtn.disabled = p <= 0.01;
+    if(nextBtn) nextBtn.disabled = p >= 0.99;
+  };
   update();
 })();
 </script>
