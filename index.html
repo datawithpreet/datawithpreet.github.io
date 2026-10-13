@@ -28,6 +28,8 @@
   box-shadow: 0 10px 30px rgba(0,0,0,.35); transition: background .25s ease, transform .25s ease;
   max-width: calc(100vw - 32px); white-space: nowrap; }
 .nl-cta:hover { background: #2a2a2d; }
+.nl-cta-text { text-decoration: none; }
+.nl-cta:hover .nl-cta-text { text-decoration: underline; text-underline-offset: 4px; }
 .nl-cta:hover .nl-cta-icon svg { transform: translateX(3px); }
 .nl-cta:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
 .nl-cta-icon { flex-shrink: 0; width: 32px; height: 32px; border-radius: 8px; background: #c9a96a;
@@ -73,7 +75,7 @@
   </header>
   <a class="nl-cta" href="https://masterdataengineering.substack.com/" target="_blank" rel="noopener" aria-label="Subscribe to Newsletter on Substack (opens in new tab)">
     <span class="nl-cta-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-    <span style="text-decoration: underline; text-underline-offset: 4px;">Subscribe to Newsletter</span>
+    <span class="nl-cta-text">Subscribe to Newsletter</span>
   </a>
 
   <main>
