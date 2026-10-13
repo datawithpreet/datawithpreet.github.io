@@ -41,54 +41,56 @@
 @media (prefers-reduced-motion: reduce) { .nl-cta, .nl-cta-icon svg { transition: none; } }
 </style>
     <style>
-      /* ===== Substack / Field Notes — dark editorial band ===== */
-      .sn-band { background: #0B0B0D; color: #F2EFED; scroll-margin-top: 70px; }
+      /* ===== Substack / Field Notes — light editorial band ===== */
+      .sn-band { background: #f4f1e8; color: #1a1a1a; scroll-margin-top: 70px; }
       .sn-inner { max-width: 1280px; margin: 0 auto; padding: 110px 6vw; position: relative; }
-      .sn-kicker { font-family: 'Oswald', 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: .32em; text-transform: uppercase; color: #929092; margin: 0 0 18px; }
+      .sn-kicker { font-family: 'Oswald', 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: .32em; text-transform: uppercase; color: #8a8578; margin: 0 0 18px; }
       .sn-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; margin-bottom: 60px; }
-      .sn-title-main { font-family: 'Oswald', 'Space Grotesk', sans-serif; font-weight: 700; text-transform: uppercase; font-size: clamp(46px, 5.5vw, 78px); line-height: .95; letter-spacing: .01em; color: #F2EFED; margin: 0; }
+      .sn-title-main { font-family: 'Oswald', 'Space Grotesk', sans-serif; font-weight: 700; text-transform: uppercase; font-size: clamp(46px, 5.5vw, 78px); line-height: .95; letter-spacing: .01em; color: #1a1a1a; margin: 0; }
       .sn-head-right { display: flex; align-items: center; gap: 18px; padding-bottom: 6px; }
-      .sn-all { font-family: 'Oswald', 'Space Grotesk', sans-serif; font-weight: 600; font-size: 13px; letter-spacing: .24em; text-transform: uppercase; color: #F15A24; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; white-space: nowrap; }
+      .sn-all { font-family: 'Oswald', 'Space Grotesk', sans-serif; font-weight: 600; font-size: 13px; letter-spacing: .24em; text-transform: uppercase; color: #E0632A; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; white-space: nowrap; }
       .sn-all .sn-arrow { display: inline-block; transition: transform .25s ease; }
-      .sn-all:hover { color: #ff7043; }
+      .sn-all:hover { color: #F07840; }
       .sn-all:hover .sn-arrow { transform: translateX(6px); }
-      .sn-all:focus-visible { outline: 2px solid #F15A24; outline-offset: 4px; }
-      .sn-navbtn { width: 44px; height: 44px; border: 1px solid #252528; border-radius: 50%; background: transparent; color: #929092; font-size: 18px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; transition: color .25s ease, border-color .25s ease; }
-      .sn-navbtn:hover { color: #F15A24; border-color: #F15A24; }
-      .sn-navbtn:focus-visible { outline: 2px solid #F15A24; outline-offset: 3px; }
-      .sn-rail { display: flex; gap: 32px; overflow-x: auto; padding: 10px 4px 30px; scroll-snap-type: x proximity; scrollbar-width: thin; scrollbar-color: #252528 transparent; }
+      .sn-all:focus-visible { outline: 2px solid #E0632A; outline-offset: 4px; }
+      .sn-rail { display: flex; gap: 32px; overflow-x: auto; padding: 10px 4px 30px; scroll-snap-type: x proximity; scrollbar-width: thin; scrollbar-color: #d8d0bc transparent; }
       .sn-rail::-webkit-scrollbar { height: 8px; }
       .sn-rail::-webkit-scrollbar-track { background: transparent; }
-      .sn-rail::-webkit-scrollbar-thumb { background: #252528; border-radius: 4px; }
-      .sn-card { position: relative; flex: 0 0 320px; max-width: 86vw; min-height: 390px; background: #141416; border: 1px solid #252528; border-radius: 6px; padding: 46px 40px 40px; display: flex; flex-direction: column; overflow: hidden; scroll-snap-align: start; transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease; }
-      .sn-card:hover { transform: translateY(-4px); border-color: #F15A24; box-shadow: 0 18px 44px rgba(0,0,0,.5); }
-      .sn-card--latest { border-color: #F15A24; }
-      .sn-card--latest::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: #F15A24; }
-      .sn-card--latest:hover { box-shadow: 0 18px 44px rgba(0,0,0,.5), 0 0 26px rgba(241,90,36,.28); }
-      .sn-ribbon { position: absolute; top: 24px; left: -42px; transform: rotate(-45deg); background: #F15A24; color: #0B0B0D; font-family: 'Oswald', 'Space Grotesk', sans-serif; font-weight: 700; font-size: 10px; letter-spacing: .26em; text-transform: uppercase; padding: 6px 46px; }
-      .sn-date { font-family: 'Oswald', 'Space Grotesk', sans-serif; font-weight: 600; font-size: 12px; letter-spacing: .26em; text-transform: uppercase; color: #929092; margin-bottom: 16px; }
-      .sn-card--latest .sn-date { color: #F15A24; }
-      .sn-series { font-family: 'Oswald', 'Space Grotesk', sans-serif; font-weight: 500; font-size: 11px; letter-spacing: .3em; text-transform: uppercase; color: #6f6e70; margin: 0 0 10px; }
-      .sn-title { font-family: 'Oswald', 'Space Grotesk', sans-serif; font-weight: 600; text-transform: uppercase; font-size: 25px; line-height: 1.18; letter-spacing: .015em; color: #F2EFED; margin: 0 0 16px; transition: color .25s ease; }
-      .sn-card:hover .sn-title { color: #ffffff; }
-      .sn-excerpt { color: #929092; font-size: 15px; line-height: 1.65; margin: 0 0 26px; flex: 1 1 auto; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
-      .sn-read { margin-top: auto; font-family: 'Oswald', 'Space Grotesk', sans-serif; font-weight: 600; font-size: 12px; letter-spacing: .24em; text-transform: uppercase; color: #F15A24; display: inline-flex; align-items: center; gap: 8px; }
-      .sn-read .sn-arrow { display: inline-block; transition: transform .25s ease; }
-      .sn-card:hover .sn-read { color: #ff7043; }
-      .sn-card:hover .sn-read .sn-arrow { transform: translateX(5px); }
+      .sn-rail::-webkit-scrollbar-thumb { background: #d8d0bc; border-radius: 4px; }
+      .sn-card { position: relative; flex: 0 0 320px; max-width: 86vw; min-height: 390px; background: #ffffff; border: 1px solid #e8e2d4; border-radius: 6px; padding: 46px 40px 40px; display: flex; flex-direction: column; overflow: hidden; scroll-snap-align: start; transition: border-color .4s ease, transform .3s ease, box-shadow .4s ease; }
+      .sn-card:hover { transform: translateY(-4px); border-color: #E0632A; box-shadow: 0 12px 40px rgba(224,99,42,.10); }
+      .sn-accent { position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: linear-gradient(180deg, #E0632A, #F07840); transform: scaleY(0); transform-origin: top; transition: transform .5s cubic-bezier(.25,.46,.45,.94); pointer-events: none; }
+      .sn-card:hover .sn-accent { transform: scaleY(1); }
+      .sn-card--latest { border-color: #E0632A; }
+      .sn-card--latest .sn-accent { transform: scaleY(1); }
+      .sn-card--latest:hover { box-shadow: 0 12px 40px rgba(224,99,42,.10), 0 0 26px rgba(224,99,42,.22); }
+      .sn-ribbon { position: absolute; top: 24px; left: -42px; transform: rotate(-45deg); background: #E0632A; color: #fff; font-family: 'Oswald', 'Space Grotesk', sans-serif; font-weight: 700; font-size: 10px; letter-spacing: .26em; text-transform: uppercase; padding: 6px 46px; }
+      .sn-date { font-family: 'Oswald', 'Space Grotesk', sans-serif; font-weight: 600; font-size: 12px; letter-spacing: .26em; text-transform: uppercase; color: #6A6560; opacity: .3; margin-bottom: 16px; transition: color .4s ease, opacity .4s ease; }
+      .sn-card:hover .sn-date { opacity: 1; color: #E0632A; }
+      .sn-card--latest .sn-date { color: #E0632A; opacity: 1; }
+      .sn-series { font-family: 'Oswald', 'Space Grotesk', sans-serif; font-weight: 500; font-size: 11px; letter-spacing: .3em; text-transform: uppercase; color: #8a8578; margin: 0 0 10px; }
+      .sn-title { font-family: 'Oswald', 'Space Grotesk', sans-serif; font-weight: 600; text-transform: uppercase; font-size: 25px; line-height: 1.18; letter-spacing: .015em; color: #1a1a1a; margin: 0 0 16px; transition: color .4s ease; }
+      .sn-card:hover .sn-title { color: #000; }
+      .sn-excerpt { color: #6b6560; font-size: 15px; line-height: 1.65; margin: 0 0 26px; flex: 1 1 auto; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
+      .sn-read { margin-top: auto; font-family: 'Oswald', 'Space Grotesk', sans-serif; font-weight: 600; font-size: 12px; letter-spacing: .24em; text-transform: uppercase; color: #E0632A; display: inline-flex; align-items: center; gap: 8px; transition: gap .3s ease, color .3s ease; }
+      .sn-card:hover .sn-read { gap: 12px; color: #F07840; }
       .sn-hit { position: absolute; inset: 0; border-radius: 6px; }
-      .sn-hit:focus-visible { outline: 2px solid #F15A24; outline-offset: -2px; }
-      .sn-banner { margin-top: 76px; border: 1px solid #252528; border-radius: 8px; background: #0e0e10; padding: 64px 40px; text-align: center; }
-      .sn-banner p { color: #F2EFED; font-size: 18px; line-height: 1.6; margin: 0 0 30px; }
-      .sn-btn { display: inline-flex; align-items: center; gap: 12px; background: #F15A24; color: #0B0B0D; font-family: 'Oswald', 'Space Grotesk', sans-serif; font-weight: 700; font-size: 14px; letter-spacing: .22em; text-transform: uppercase; text-decoration: none; padding: 18px 38px; border-radius: 4px; transition: background .25s ease; }
+      .sn-hit:focus-visible { outline: 2px solid #E0632A; outline-offset: -2px; }
+      .sn-banner { margin-top: 76px; border: 1px solid #e8e2d4; border-radius: 8px; background: #ffffff; padding: 64px 40px; text-align: center; }
+      .sn-banner p { color: #1a1a1a; font-size: 18px; line-height: 1.6; margin: 0 0 30px; }
+      .sn-btn { display: inline-flex; align-items: center; gap: 12px; background: #E0632A; color: #fff; font-family: 'Oswald', 'Space Grotesk', sans-serif; font-weight: 700; font-size: 14px; letter-spacing: .22em; text-transform: uppercase; text-decoration: none; padding: 18px 38px; border-radius: 4px; transition: background .25s ease; }
       .sn-btn .sn-arrow { display: inline-block; transition: transform .25s ease; }
-      .sn-btn:hover { background: #ff7043; }
+      .sn-btn:hover { background: #F07840; }
       .sn-btn:hover .sn-arrow { transform: translateX(5px); }
-      .sn-btn:focus-visible { outline: 2px solid #F2EFED; outline-offset: 4px; }
+      .sn-btn:focus-visible { outline: 2px solid #E0632A; outline-offset: 4px; }
       .sn-more { display: flex; gap: 36px; justify-content: center; flex-wrap: wrap; margin-top: 44px; }
-      .sn-more a { color: #929092; font-family: 'Oswald', 'Space Grotesk', sans-serif; font-weight: 600; font-size: 12px; letter-spacing: .24em; text-transform: uppercase; text-decoration: none; transition: color .25s ease; }
-      .sn-more a:hover { color: #F15A24; }
-      .sn-more a:focus-visible { outline: 2px solid #F15A24; outline-offset: 4px; }
+      .sn-more a { color: #8a8578; font-family: 'Oswald', 'Space Grotesk', sans-serif; font-weight: 600; font-size: 12px; letter-spacing: .24em; text-transform: uppercase; text-decoration: none; transition: color .25s ease; }
+      .sn-more a:hover { color: #E0632A; }
+      .sn-more a:focus-visible { outline: 2px solid #E0632A; outline-offset: 4px; }
+      /* ===== Social rail — ember hover ===== */
+      .social-rail a { color: #6A6560; transition: color .3s ease, transform .3s ease; }
+      .social-rail a:hover { color: #E0632A; transform: scale(1.15); }
+      .social-rail a svg { width: 19px; height: 19px; display: block; }
       @media (max-width: 1240px) { }
       @media (max-width: 1024px) {
         .sn-card { flex: 0 0 calc(50% - 16px); padding: 40px 34px 34px; min-height: 370px; }
@@ -104,9 +106,9 @@
         .sn-btn { width: 100%; justify-content: center; }
       }
       @media (prefers-reduced-motion: reduce) {
-        .sn-card, .sn-all .sn-arrow, .sn-read .sn-arrow, .sn-btn .sn-arrow, .sn-navbtn, .sn-more a { transition: none; }
+        .sn-card, .sn-all .sn-arrow, .sn-read, .sn-btn .sn-arrow, .sn-more a, .sn-accent, .social-rail a { transition: none; }
         .sn-card:hover { transform: none; }
-        .sn-all:hover .sn-arrow, .sn-card:hover .sn-read .sn-arrow, .sn-btn:hover .sn-arrow { transform: none; }
+        .sn-all:hover .sn-arrow, .sn-btn:hover .sn-arrow { transform: none; }
       }
     </style>
 
@@ -114,12 +116,12 @@
 <body>
     <!-- Fixed social sidebar (left rail) -->
     <aside class="social-rail" aria-label="Social links">
-      <a href="https://www.linkedin.com/in/preetmehta/" target="_blank" rel="noopener" aria-label="LinkedIn"><img src="assets/img/logos/logo-linkedin.svg" alt="LinkedIn"></a>
-      <a href="https://github.com/ynpreet" target="_blank" rel="noopener" aria-label="GitHub"><img src="assets/img/logos/logo-github.svg" alt="GitHub"></a>
-      <a href="https://open.substack.com/pub/masterdataengineering" target="_blank" rel="noopener" aria-label="Substack"><img src="assets/img/logos/logo-substack.svg" alt="Substack"></a>
-      <a href="https://ynpreetmehta.medium.com/" target="_blank" rel="noopener" aria-label="Medium"><img src="assets/img/logos/logo-medium.svg" alt="Medium"></a>
-      <a href="https://whatsapp.com/channel/0029VayV6y57DAWsb6262g1o" target="_blank" rel="noopener" aria-label="WhatsApp"><img src="assets/img/logos/logo-whatsapp.svg" alt="WhatsApp"></a>
-      <a href="https://www.youtube.com/@PreetMehtaUSA" target="_blank" rel="noopener" aria-label="YouTube"><img src="assets/img/logos/logo-youtube.svg" alt="YouTube"></a>
+      <a href="https://www.linkedin.com/in/preetmehta/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg aria-hidden="true" focusable="false" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>LinkedIn</title><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+      <a href="https://github.com/ynpreet" target="_blank" rel="noopener" aria-label="GitHub"><svg aria-hidden="true" focusable="false" fill="currentColor" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a>
+      <a href="https://open.substack.com/pub/masterdataengineering" target="_blank" rel="noopener" aria-label="Substack"><svg aria-hidden="true" focusable="false" fill="currentColor" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Substack</title><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/></svg></a>
+      <a href="https://ynpreetmehta.medium.com/" target="_blank" rel="noopener" aria-label="Medium"><svg aria-hidden="true" focusable="false" fill="currentColor" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Medium</title><path d="M4.21 0A4.201 4.201 0 0 0 0 4.21v15.58A4.201 4.201 0 0 0 4.21 24h15.58A4.201 4.201 0 0 0 24 19.79v-1.093c-.137.013-.278.02-.422.02-2.577 0-4.027-2.146-4.09-4.832a7.592 7.592 0 0 1 .022-.708c.093-1.186.475-2.241 1.105-3.022a3.885 3.885 0 0 1 1.395-1.1c.468-.237 1.127-.367 1.664-.367h.023c.101 0 .202.004.303.01V4.211A4.201 4.201 0 0 0 19.79 0Zm.198 5.583h4.165l3.588 8.435 3.59-8.435h3.864v.146l-.019.004c-.705.16-1.063.397-1.063 1.254h-.003l.003 10.274c.06.676.424.885 1.063 1.03l.02.004v.145h-4.923v-.145l.019-.005c.639-.144.994-.353 1.054-1.03V7.267l-4.745 11.15h-.261L6.15 7.569v9.445c0 .857.358 1.094 1.063 1.253l.02.004v.147H4.405v-.147l.019-.004c.705-.16 1.065-.397 1.065-1.253V6.987c0-.857-.358-1.094-1.064-1.254l-.018-.004zm19.25 3.668c-1.086.023-1.733 1.323-1.813 3.124H24V9.298a1.378 1.378 0 0 0-.342-.047Zm-1.862 3.632c-.1 1.756.86 3.239 2.204 3.634v-3.634z"/></svg></a>
+      <a href="https://whatsapp.com/channel/0029VayV6y57DAWsb6262g1o" target="_blank" rel="noopener" aria-label="WhatsApp"><svg aria-hidden="true" focusable="false" fill="currentColor" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>WhatsApp</title><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a>
+      <a href="https://www.youtube.com/@PreetMehtaUSA" target="_blank" rel="noopener" aria-label="YouTube"><svg aria-hidden="true" focusable="false" fill="currentColor" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>YouTube</title><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
     </aside>
     <!-- Custom cursor -->
     <div class="cursor-dot" aria-hidden="true"></div>
@@ -559,12 +561,11 @@
             <h2 class="sn-title-main reveal">Field Notes</h2>
             <div class="sn-head-right reveal">
               <a class="sn-all" href="https://masterdataengineering.substack.com/" target="_blank" rel="noopener">All posts on Substack <span class="sn-arrow" aria-hidden="true">&rarr;</span></a>
-              <button class="sn-navbtn" id="sn-prev" type="button" aria-label="Scroll posts backward">&larr;</button>
-              <button class="sn-navbtn" id="sn-next" type="button" aria-label="Scroll posts forward">&rarr;</button>
             </div>
           </div>
           <div class="sn-rail" id="sn-rail">
         <article class="sn-card sn-card--latest reveal">
+          <span class="sn-accent" aria-hidden="true"></span>
           <span class="sn-ribbon" aria-hidden="true">Latest</span>
           <time class="sn-date" datetime="2026-10-05">05 Oct 2026</time>
           <p class="sn-series">Healthcare for Data Engineers</p>
@@ -574,6 +575,7 @@
           <a class="sn-hit" href="https://masterdataengineering.substack.com/p/healthcare-for-data-engineers-day-1f1" target="_blank" rel="noopener" aria-label="Read “Day 30: From Healthcare Data to a Churn ML Model” on Substack (opens in a new tab)"></a>
         </article>
         <article class="sn-card reveal">
+          <span class="sn-accent" aria-hidden="true"></span>
           <time class="sn-date" datetime="2026-10-04">04 Oct 2026</time>
           <p class="sn-series">Healthcare for Data Engineers</p>
           <h3 class="sn-title">Day 29: Building a Healthy Home Visit Member Churn Model</h3>
@@ -582,6 +584,7 @@
           <a class="sn-hit" href="https://masterdataengineering.substack.com/p/healthcare-for-data-engineers-day-d44" target="_blank" rel="noopener" aria-label="Read “Day 29: Building a Healthy Home Visit Member Churn Model” on Substack (opens in a new tab)"></a>
         </article>
         <article class="sn-card reveal">
+          <span class="sn-accent" aria-hidden="true"></span>
           <time class="sn-date" datetime="2026-10-03">03 Oct 2026</time>
           <p class="sn-series">Healthcare for Data Engineers</p>
           <h3 class="sn-title">Day 28: Line of Business (LOB) &amp; Populations</h3>
@@ -590,6 +593,7 @@
           <a class="sn-hit" href="https://masterdataengineering.substack.com/p/healthcare-for-data-engineers-day-ec2" target="_blank" rel="noopener" aria-label="Read “Day 28: Line of Business (LOB) &amp; Populations” on Substack (opens in a new tab)"></a>
         </article>
         <article class="sn-card reveal">
+          <span class="sn-accent" aria-hidden="true"></span>
           <time class="sn-date" datetime="2026-10-01">01 Oct 2026</time>
           <h3 class="sn-title">Interview questions- Soft skills</h3>
           <p class="sn-excerpt">Communication</p>
@@ -597,6 +601,7 @@
           <a class="sn-hit" href="https://masterdataengineering.substack.com/p/interview-questions-soft-skills" target="_blank" rel="noopener" aria-label="Read “Interview questions- Soft skills” on Substack (opens in a new tab)"></a>
         </article>
         <article class="sn-card reveal">
+          <span class="sn-accent" aria-hidden="true"></span>
           <time class="sn-date" datetime="2026-10-01">01 Oct 2026</time>
           <h3 class="sn-title">Interview General questions</h3>
           <p class="sn-excerpt">1.</p>
@@ -604,6 +609,7 @@
           <a class="sn-hit" href="https://masterdataengineering.substack.com/p/interview-general-questions" target="_blank" rel="noopener" aria-label="Read “Interview General questions” on Substack (opens in a new tab)"></a>
         </article>
         <article class="sn-card reveal">
+          <span class="sn-accent" aria-hidden="true"></span>
           <time class="sn-date" datetime="2026-10-01">01 Oct 2026</time>
           <h3 class="sn-title">The 25 most difficult questions you&#x27;ll be asked on a job interview</h3>
           <p class="sn-excerpt">Being prepared is half the battle.</p>
@@ -611,6 +617,7 @@
           <a class="sn-hit" href="https://masterdataengineering.substack.com/p/the-25-most-difficult-questions-youll" target="_blank" rel="noopener" aria-label="Read “The 25 most difficult questions you&#x27;ll be asked on a job interview” on Substack (opens in a new tab)"></a>
         </article>
         <article class="sn-card reveal">
+          <span class="sn-accent" aria-hidden="true"></span>
           <time class="sn-date" datetime="2026-10-01">01 Oct 2026</time>
           <p class="sn-series">Healthcare for Data Engineers</p>
           <h3 class="sn-title">Day 27 - Prospective Data: Healthy Home Visit and In-Office Assessment</h3>
@@ -619,6 +626,7 @@
           <a class="sn-hit" href="https://masterdataengineering.substack.com/p/healthcare-for-data-engineers-day-e83" target="_blank" rel="noopener" aria-label="Read “Day 27 - Prospective Data: Healthy Home Visit and In-Office Assessment” on Substack (opens in a new tab)"></a>
         </article>
         <article class="sn-card reveal">
+          <span class="sn-accent" aria-hidden="true"></span>
           <time class="sn-date" datetime="2026-09-30">30 Sep 2026</time>
           <p class="sn-series">Healthcare for Data Engineers</p>
           <h3 class="sn-title">Day 26 - Building the Data Engineering Pipeline for Vendor Files</h3>
@@ -640,15 +648,32 @@
         (function () {
           var rail = document.getElementById('sn-rail');
           if (!rail) return;
-          function step(dir) {
-            var card = rail.querySelector('.sn-card');
-            var w = card ? card.offsetWidth + 32 : 352;
-            rail.scrollBy({ left: dir * w, behavior: 'smooth' });
+          if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+          if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+          var target = rail.scrollLeft, current = rail.scrollLeft, raf = null;
+          function tick() {
+            current += (target - current) * 0.08;
+            if (Math.abs(target - current) < 0.5) { current = target; raf = null; rail.scrollLeft = current; return; }
+            rail.scrollLeft = current;
+            raf = requestAnimationFrame(tick);
           }
-          var prev = document.getElementById('sn-prev');
-          var next = document.getElementById('sn-next');
-          if (prev) prev.addEventListener('click', function () { step(-1); });
-          if (next) next.addEventListener('click', function () { step(1); });
+          function kick() { if (raf === null) raf = requestAnimationFrame(tick); }
+          rail.addEventListener('mousemove', function (e) {
+            var r = rail.getBoundingClientRect();
+            var x = (e.clientX - r.left) / r.width;
+            x = Math.max(0, Math.min(1, x));
+            var max = rail.scrollWidth - rail.clientWidth;
+            if (max <= 0) return;
+            current = rail.scrollLeft;
+            target = x * max;
+            kick();
+          }, { passive: true });
+          rail.addEventListener('mouseleave', function () {
+            target = rail.scrollLeft; current = rail.scrollLeft;
+            if (raf !== null) { cancelAnimationFrame(raf); raf = null; }
+          });
+          rail.addEventListener('wheel', function () { target = rail.scrollLeft; current = rail.scrollLeft; }, { passive: true });
+          rail.addEventListener('touchstart', function () { target = rail.scrollLeft; current = rail.scrollLeft; }, { passive: true });
         })();
         </script>
       </section>
@@ -897,7 +922,7 @@
     <span>© <span id="year"></span> Data with Preet</span>
     <a class="to-top" href="#home">Back to top ↑</a>
   </footer>
-  <script src="assets/js/main.js?v=20261013cursor"></script>
+  <script src="assets/js/main.js?v=20261013cursor3"></script>
   <script src="assets/js/chatbot.js"></script>
 </body>
 </html>

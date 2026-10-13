@@ -832,8 +832,21 @@
       requestAnimationFrame(loop);
     })();
   }
+  dot.style.transition = 'width .2s ease, height .2s ease, border-radius .2s ease, background-color .2s ease, opacity .2s ease';
+  function textOn(){
+    ring.classList.remove('is-hover'); ring.classList.remove('has-label');
+    dot.style.width = '2px'; dot.style.height = '28px';
+    dot.style.borderRadius = '1px'; dot.style.background = '#E0632A';
+    ring.style.opacity = '0';
+  }
+  function textOff(){
+    dot.style.width = ''; dot.style.height = '';
+    dot.style.borderRadius = ''; dot.style.background = '';
+    ring.style.opacity = '';
+  }
   function bindHover(el){
     el.addEventListener('mouseenter', function(){
+      textOff();
       var txt = el.getAttribute('data-cursor-label');
       if(txt && label){ label.textContent = txt; ring.classList.add('has-label'); }
       else { ring.classList.add('is-hover'); }
@@ -843,4 +856,12 @@
     });
   }
   document.querySelectorAll('a, button, .tab-btn, [role="button"], [data-cursor-label]').forEach(bindHover);
+  function bindText(el){
+    el.addEventListener('mouseenter', textOn);
+    el.addEventListener('mouseleave', textOff);
+  }
+  document.querySelectorAll('p, h1, h2, h3').forEach(function(el){
+    if(el.closest('[data-cursor-label], input, textarea')) return;
+    bindText(el);
+  });
 })();
