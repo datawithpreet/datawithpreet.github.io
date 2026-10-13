@@ -1609,11 +1609,12 @@ section[id] { scroll-margin-top: 92px; }
 .event-row a { font-size: 14px; font-weight: 700; white-space: nowrap; }
 
 /* ===== Social rail (fixed left) ===== */
-.social-rail { position: fixed; left: 18px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 14px; z-index: 90; }
-.social-rail a { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--line); background: var(--card); transition: transform .25s var(--ease), background .25s; }
-.social-rail a:hover { transform: translateX(3px); background: var(--ink); }
-.social-rail a:hover img { filter: invert(1); }
-.social-rail img { width: 17px; height: 17px; display: block; }
+.social-rail { position: fixed; left: 22px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; align-items: center; gap: 20px; z-index: 90; }
+.social-rail a { display: block; line-height: 0; transition: opacity .25s var(--ease), transform .25s var(--ease); }
+.social-rail a:hover { opacity: 1; transform: translateX(2px); }
+.social-rail img { width: 19px; height: 19px; display: block; filter: grayscale(1) brightness(.3); opacity: .6; transition: opacity .25s; }
+.social-rail a:hover img { opacity: 1; }
+.social-rail::after { content: ''; width: 1px; height: 72px; background: var(--line-strong); margin-top: 4px; }
 @media (max-width: 1100px) { .social-rail { display: none; } }
 /* ===== Custom cursor ===== */
 @media (hover: hover) and (pointer: fine) {
