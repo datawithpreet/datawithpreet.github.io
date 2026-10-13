@@ -543,9 +543,9 @@ section[id] { scroll-margin-top: 92px; }
 .flow-stage { font: inherit; color: inherit; background: none; border: none; padding: 0; cursor: pointer; text-align: inherit; }
 .flow-detail { margin-top: 22px; border: 1px solid var(--line-strong); border-radius: 18px; padding: 22px 24px; background: var(--card); max-width: 900px; }
 .fd-kicker { font-size: 11px; font-weight: 800; letter-spacing: .22em; color: var(--gray); margin-bottom: 8px; }
-.flow-detail h4 { font-family: var(--font-display); font-size: 22px; margin: 0 0 12px; }
+.flow-detail h4 { font-family: var(--font-display); font-size: 22px; margin: 0 0 12px; color: var(--ink); }
 .fd-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-.fd-grid b { display: block; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; margin-bottom: 6px; }
+.fd-grid b { display: block; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; margin-bottom: 6px; color: var(--ink); }
 .fd-grid p { font-size: 14px; line-height: 1.6; color: var(--gray); margin: 0; }
 @media (max-width: 760px) { .fd-grid { grid-template-columns: 1fr; } }
 .flow-board { display: flex; align-items: stretch; gap: 10px; margin-top: 10px; }
@@ -1564,7 +1564,7 @@ section[id] { scroll-margin-top: 92px; }
 @media (max-width: 600px) { .book-grid { grid-template-columns: 1fr; } }
 
 /* ---------- book a 1:1 band ---------- */
-.book-call { margin-top: 18px; border: 1px solid var(--line-strong); border-radius: var(--radius); background: var(--card); padding: clamp(26px, 4vw, 44px); display: flex; justify-content: space-between; align-items: center; gap: 28px; flex-wrap: wrap; }
+.book-call { margin: 18px auto 0; max-width: 1280px; border: 1px solid var(--line-strong); border-radius: var(--radius); background: var(--card); padding: clamp(26px, 4vw, 44px); display: flex; justify-content: space-between; align-items: center; gap: 28px; flex-wrap: wrap; }
 .book-call .live-tag { margin-bottom: 14px; }
 .book-call h3 { font-family: var(--font-display); font-size: clamp(24px, 3vw, 34px); letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 10px; }
 .book-call p { color: var(--gray); font-size: 15px; line-height: 1.65; max-width: 56ch; margin: 0; }
