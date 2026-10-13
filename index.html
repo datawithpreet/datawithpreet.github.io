@@ -112,7 +112,22 @@
       }
     </style>
 
-  </head>
+  
+  <style>
+  /* Bear Grylls nav underline hover — orange line sweeps in + text bolds on hover */
+  .nav a { position: relative; transition: font-weight .25s ease, color .25s ease, background .25s ease; }
+  .nav a::after {
+    content: ""; position: absolute; bottom: 2px; left: 14px; right: 14px; height: 2px;
+    background: #E0632A; transform: scaleX(0); transform-origin: right center;
+    transition: transform .25s ease-in; pointer-events: none;
+  }
+  .nav a:hover { background: transparent; font-weight: 700; color: var(--ink); }
+  .nav a:hover::after { transform: scaleX(1); transform-origin: left center; transition: transform .3s ease-out; }
+  @media (prefers-reduced-motion: reduce) {
+    .nav a, .nav a::after { transition: none; }
+  }
+  </style>
+</head>
 <body>
     <!-- Fixed social sidebar (left rail) -->
     <aside class="social-rail" aria-label="Social links">
