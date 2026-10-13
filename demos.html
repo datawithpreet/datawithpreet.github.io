@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css?v=20261012b">
+  <link rel="stylesheet" href="assets/css/style.css?v=20261013cursor">
   <meta property="og:title" content="Agentic AI Workshop — Demos | Preet Mehta">
   <meta property="og:description" content="Watch AI agents think: nine open-source agentic AI demos — care management, Medicare Advantage in-home assessments, restaurant site selection, airline revenue management, music mood matching, equipment maintenance, gaming safety, personalized restaurant experiences, and resume feedback.">
   <meta property="og:type" content="website">
@@ -202,7 +202,7 @@
 <body>
     <!-- Custom cursor -->
     <div class="cursor-dot" aria-hidden="true"></div>
-    <div class="cursor-ring" aria-hidden="true"></div>
+    <div class="cursor-ring" aria-hidden="true"><span class="cursor-label"></span></div>
   <header class="site-header" id="top">
     <a class="brand" href="index.html#home" aria-label="Data with Preet home">
       <span class="brand-mark">DwP</span>
@@ -311,7 +311,7 @@
               <a class="work-card-explore" href="projects/fixmate.html">Explore &#8599;</a>
             </div>
           </article>
-          <article class="work-card work-card--dark" style="--card-bg: #062147;">
+          <article data-cursor-label="Explore" class="work-card work-card--dark" style="--card-bg: #062147;">
             <div class="work-card-img"><img src="assets/demos/gameguard-outcome.webp" alt="Gaming trust and safety — suspicious link, inappropriate content, personal information, grooming behavior detection" loading="lazy"></div>
             <div class="work-card-text">
               <h3>GameGuard AI</h3>
@@ -350,7 +350,7 @@
 <!-- ================= DEMO 01 ================= -->
     <section class="resource-library" id="demo-care">
       <div class="demo-kicker">01 · Healthcare · Agentic AI</div>
-      <article class="demo-card">
+      <article class="demo-card" data-cursor-label="View Demo">
         <a class="demo-img-link" href="projects/care-management.html" aria-label="Explore the project"><img class="demo-img" src="assets/demos/care-management-outcome.webp" alt="Care coordinator using the Care Outreach Agent dashboard — personalized outreach, care gap closure, appointment scheduling, outcome tracking" loading="lazy"><span class="demo-img-overlay"><span>Explore the project →</span></span></a>
         <h3 class="demo-headline">Stop Sending Generic Messages. Start Driving Member Action.</h3>
         <p class="demo-desc">Health plans don't just need to reach members&mdash;they need to motivate them to act. See how AI agents can personalize outreach, select appropriate communication channels, and coordinate follow-ups to help close care gaps.</p>
@@ -372,7 +372,7 @@
     <!-- ================= DEMO 02 (FLAGSHIP) ================= -->
     <section class="resource-library" id="demo-hhv">
       <div class="demo-kicker">02 · Medicare Advantage · Agentic AI</div>
-      <article class="demo-card">
+      <article class="demo-card" data-cursor-label="View Demo">
         <a class="demo-img-link" href="projects/hhv-copilot.html" aria-label="Explore the project"><img class="demo-img" src="assets/demos/hhv-copilot-outcome.webp" alt="Home-health nurse smiling with an elderly patient during an in-home assessment visit" loading="lazy"><span class="demo-img-overlay"><span>Explore the project →</span></span></a>
         <h3 class="demo-headline">A Nurse Can&rsquo;t Visit Every Member. Who Should Get the Visit First?</h3>
         <p class="demo-desc">Use predictive analytics and agentic AI to prioritize members for in-home assessments, uncover potential care gaps, and coordinate follow-up&mdash;helping health plans direct limited clinical resources where they may matter most.</p>
@@ -394,7 +394,7 @@
     <!-- ================= DEMO 03 ================= -->
     <section class="resource-library" id="demo-restaurant">
       <div class="demo-kicker">03 · Retail · Geospatial Analytics · Agentic AI</div>
-      <article class="demo-card">
+      <article class="demo-card" data-cursor-label="View Demo">
         <a class="demo-img-link" href="projects/restaurant-location.html" aria-label="Explore the project"><img class="demo-img" src="assets/demos/restaurant-location-outcome.webp" alt="Location intelligence for restaurant site selection — storefront, glowing trade-area map with candidate pins, scored factors: population, traffic, competition, demand" loading="lazy"><span class="demo-img-overlay"><span>Explore the project →</span></span></a>
         <h3 class="demo-headline">The Wrong Location Can Sink a Great Restaurant. Find the Right One With Data.</h3>
         <p class="demo-desc">Before signing a lease, evaluate the market. This agent combines demographics, ZIP-code demand, traffic, competitors, trade areas, and operating considerations to compare candidate locations and recommend where a restaurant has the strongest potential.</p>
@@ -416,7 +416,7 @@
     <!-- ================= DEMO 04 ================= -->
     <section class="resource-library" id="demo-aeroyield">
       <div class="demo-kicker">04 · Aviation · Revenue Management · Agentic AI</div>
-      <article class="demo-card">
+      <article class="demo-card" data-cursor-label="View Demo">
         <a class="demo-img-link" href="projects/aeroyield.html" aria-label="Explore the project"><img class="demo-img" src="assets/demos/aeroyield-outcome.webp" alt="Commercial airliner climbing into a sunset sky — airline revenue intelligence" loading="lazy"><span class="demo-img-overlay"><span>Explore the project →</span></span></a>
         <h3 class="demo-headline">A $7 Profit per Passenger. One Bad Forecast Can Change the Economics of a Flight.</h3>
         <p class="demo-desc">Airlines must price perishable inventory in a market that never stands still. AeroYield AI combines demand forecasts, competitor fares, seasonality, major events, fuel costs, and market signals to recommend pricing and inventory decisions that support revenue and profitability.</p>
@@ -438,7 +438,7 @@
     <!-- ================= DEMO 05 ================= -->
     <section class="resource-library" id="demo-music">
       <div class="demo-kicker">05 · Personalization · Recommender Systems · Agentic AI</div>
-      <article class="demo-card">
+      <article class="demo-card" data-cursor-label="View Demo">
         <a class="demo-img-link" href="projects/music-mood.html" aria-label="Explore the project"><img class="demo-img" src="assets/demos/music-mood-outcome.webp" alt="Listener with eyes closed wearing headphones in warm golden light — music for the moment" loading="lazy"><span class="demo-img-overlay"><span>Explore the project →</span></span></a>
         <h3 class="demo-headline">Your Next Song Should Fit Your Moment — Not Just Your Listening History.</h3>
         <p class="demo-desc">Music can help shape how we feel, focus, and unwind. This agent combines a small session memory with your stated mood and chosen occasion to recommend music for the moment.</p>
@@ -460,7 +460,7 @@
     <!-- ================= DEMO 06 ================= -->
     <section class="resource-library" id="demo-fixmate">
       <div class="demo-kicker">06 · Retail · Equipment Maintenance · Agentic AI</div>
-      <article class="demo-card">
+      <article class="demo-card" data-cursor-label="View Demo">
         <a class="demo-img-link" href="projects/fixmate.html" aria-label="Explore the project"><img class="demo-img" src="assets/demos/fixmate-outcome.webp" alt="AI maintenance assistant beside a coffee machine — check error code, find parts, troubleshooting steps, preventive maintenance" loading="lazy"><span class="demo-img-overlay"><span>Explore the project →</span></span></a>
         <h3 class="demo-headline">Every Minute a Coffee Machine Is Down Is a Missed Sales Opportunity.</h3>
         <p class="demo-desc">When revenue-generating equipment fails, technicians need answers — not hundreds of pages of manuals. FixMate AI helps them identify equipment issues, find the right troubleshooting steps, recognize parts from images, and resolve problems faster using internal documentation and relevant external sources.</p>
@@ -482,7 +482,7 @@
     <!-- ================= DEMO 07 ================= -->
     <section class="resource-library" id="demo-gameguard">
       <div class="demo-kicker">07 · Gaming · Trust &amp; Safety · Multilingual AI</div>
-      <article class="demo-card">
+      <article class="demo-card" data-cursor-label="View Demo">
         <a class="demo-img-link" href="projects/gameguard.html" aria-label="Explore the project"><img class="demo-img" src="assets/demos/gameguard-outcome.webp" alt="Gaming trust and safety — suspicious link, inappropriate content, personal information, grooming behavior detection" loading="lazy"><span class="demo-img-overlay"><span>Explore the project →</span></span></a>
         <h3 class="demo-headline">Bad Actors Don&rsquo;t Always Use Bad Words. Can AI Recognize the Pattern?</h3>
         <p class="demo-desc">From suspicious links and requests for personal information to manipulative conversations with young players, harmful behavior can hide behind emojis, slang, misspellings, and seemingly innocent messages. GameGuard AI analyzes messages and conversation context to flag potential grooming, scams, violent threats, and fraud for appropriate review.</p>
@@ -504,7 +504,7 @@
     <!-- ================= DEMO 08 ================= -->
     <section class="resource-library" id="demo-guestfirst">
       <div class="demo-kicker">08 · Restaurants · Customer Intelligence · Agentic AI</div>
-      <article class="demo-card">
+      <article class="demo-card" data-cursor-label="View Demo">
         <a class="demo-img-link" href="projects/guestfirst.html" aria-label="Explore the project"><img class="demo-img" src="assets/demos/guestfirst-outcome.webp" alt="Warm restaurant counter — employee handing a drink to a customer, the hospitality moment data should protect" loading="lazy"><span class="demo-img-overlay"><span>Explore the project →</span></span></a>
         <h3 class="demo-headline">A Great Restaurant Fixes the Order. An Exceptional One Fixes the Experience.</h3>
         <p class="demo-desc">What if a restaurant could connect customer feedback, order history, kitchen operations, and loyalty data to understand what went wrong — and coordinate the right recovery? GuestFirst AI identifies service issues, recommends personalized responses, and tracks follow-up so restaurants can turn unhappy customers into an opportunity to rebuild trust.</p>
@@ -527,7 +527,7 @@
     <!-- ================= DEMO 09 ================= -->
     <section class="resource-library" id="demo-resumereviewer">
       <div class="demo-kicker">09 · Hiring · Agentic AI</div>
-      <article class="demo-card">
+      <article class="demo-card" data-cursor-label="View Demo">
         <a class="demo-img-link" href="projects/resume-reviewer.html" aria-label="Explore the project"><img class="demo-img" src="assets/demos/resume-reviewer.webp" alt="Magnifying glass over a resume revealing checkmarks and a score ring" loading="lazy"><span class="demo-img-overlay"><span>Explore the project →</span></span></a>
         <h3 class="demo-headline">Your Resume Gets 7 Seconds. Make Every One Count.</h3>
         <p class="demo-desc">Job seekers send resumes into a black box and never learn why they hear nothing back. Resume Reviewer AI scores your resume against 33 hiring-manager rules and the actual job description &mdash; so you fix what matters before you hit apply.</p>
@@ -806,7 +806,7 @@
     <div><strong>PREET MEHTA</strong><span>Data Engineering • Healthcare • Community</span></div>
     <div><span>© 2026 Preet Mehta</span></div>
   </footer>
-  <script src="assets/js/main.js?v=20261012b"></script>
+  <script src="assets/js/main.js?v=20261013cursor"></script>
 
   <script>
     // Demos hub tabs: buttons carry data-tab, panels carry matching ids.
