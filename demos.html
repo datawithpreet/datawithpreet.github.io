@@ -14,23 +14,7 @@
   <meta property="og:description" content="Watch AI agents think: nine open-source agentic AI demos — care management, Medicare Advantage in-home assessments, restaurant site selection, airline revenue management, music mood matching, equipment maintenance, gaming safety, personalized restaurant experiences, and resume feedback.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://datawithpreet.github.io/assets/img/preet-creator.jpg">
-  <noscript><style>.reveal{opacity:1!important;transform:none!important}.section-title{clip-path:none!important}
-    /* ===== Full-viewport scroll panels (sergestudios-style) ===== */
-    .demo-panel { position: relative; min-height: 100vh; min-height: 100svh; display: flex; align-items: flex-end; overflow: hidden; }
-    .demo-panel-bg { position: absolute; inset: 0; }
-    .demo-panel-bg img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
-    .demo-panel::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(8,8,8,.82) 0%, rgba(8,8,8,.25) 55%, rgba(8,8,8,.05) 100%); pointer-events: none; }
-    .demo-panel-content { position: relative; z-index: 1; width: 100%; max-width: 860px; padding: clamp(28px, 6vw, 72px); color: #fff; }
-    .demo-panel-kicker { font-size: 12px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.75); margin-bottom: 14px; }
-    .demo-panel-content h3 { font-family: var(--font-display); font-size: clamp(28px, 4vw, 52px); letter-spacing: -0.02em; line-height: 1.08; margin: 0 0 16px; color: #fff; }
-    .demo-panel-content p { font-size: clamp(15px, 1.6vw, 18px); line-height: 1.65; color: rgba(255,255,255,.85); max-width: 62ch; margin: 0 0 26px; }
-    .demo-panel-actions { display: flex; gap: 12px; flex-wrap: wrap; }
-    .btn-panel { display: inline-block; padding: 14px 30px; background: #fff; color: #111; border-radius: 999px; font-weight: 700; font-size: 15px; text-decoration: none; transition: transform .2s var(--ease); }
-    .btn-panel:hover { transform: translateY(-2px); }
-    .btn-panel-ghost { display: inline-block; padding: 14px 30px; border: 1.5px solid rgba(255,255,255,.7); color: #fff; border-radius: 999px; font-weight: 700; font-size: 15px; text-decoration: none; transition: border-color .2s, background .2s; }
-    .btn-panel-ghost:hover { border-color: #fff; background: rgba(255,255,255,.12); }
-    @media (prefers-reduced-motion: reduce) { .demo-panel-bg img { transform: none !important; } }
-  </style></noscript>
+  <noscript><style>.reveal{opacity:1!important;transform:none!important}.section-title{clip-path:none!important}</style></noscript>
   <style>
     /* ---------- Agentic AI Workshop page — scoped additions ---------- */
     .demo-card {
@@ -54,6 +38,20 @@
       margin-bottom: 18px; border: 1px solid rgba(20,184,166,.25);
       box-shadow: 0 8px 24px rgba(27,42,74,.18); display: block;
     }
+    /* ===== Horizontal scroll boxes (sergestudios-style) ===== */
+.boxes-scroll-wrap { height: 450vh; position: relative; }
+.boxes-sticky { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; display: flex; align-items: center; background: #0e0e0e; }
+.boxes-track { display: flex; gap: 3vw; padding: 0 6vw; will-change: transform; align-items: center; }
+.demo-box { flex: 0 0 74vw; height: 74vh; height: 74svh; border-radius: 22px; overflow: hidden; position: relative; flex-shrink: 0; }
+.demo-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.demo-box-info { position: absolute; left: 0; right: 0; bottom: 0; padding: 28px 30px; background: linear-gradient(transparent, rgba(0,0,0,.78)); color: #fff; }
+.demo-box-info .demo-box-kicker { font-size: 12px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; opacity: .75; margin-bottom: 8px; }
+.demo-box-info h3 { margin: 0 0 6px; font-size: clamp(20px, 2.4vw, 32px); color: #fff; }
+.demo-box-info p { margin: 0; font-size: 15px; opacity: .85; max-width: 52ch; }
+.boxes-hint { position: absolute; top: 26px; left: 0; right: 0; text-align: center; color: rgba(255,255,255,.55); font-size: 13px; letter-spacing: .18em; text-transform: uppercase; font-weight: 700; pointer-events: none; }
+@media (max-width: 760px) { .demo-box { flex-basis: 86vw; height: 62svh; } }
+@media (hover: none) { .boxes-scroll-wrap { height: auto; } .boxes-sticky { position: relative; height: auto; display: block; padding: 40px 0; } .boxes-track { flex-wrap: nowrap; overflow-x: auto; transform: none !important; } }
+
     /* Kickpush-style hover overlay on demo images */
     .demo-img-link { position: relative; display: block; border-radius: 14px; overflow: hidden; margin-bottom: 18px; }
     .demo-img-link .demo-img { margin-bottom: 0; border-radius: 0; border: none; box-shadow: none; }
@@ -177,8 +175,6 @@
   </style>
 </head>
 <body>
-    <div class="cursor-dot" aria-hidden="true"></div>
-    <div class="cursor-ring" aria-hidden="true"></div>
   <header class="site-header" id="top">
     <a class="brand" href="index.html#home" aria-label="Data with Preet home">
       <span class="brand-mark">DwP</span>
@@ -226,131 +222,277 @@
         <p>Eight demos run on your own computer — each one a complete agentic system, not a slide deck. The ninth, Resume Reviewer AI, runs entirely in your browser.</p>
       </div>
 
-    <!-- ================= DEMO 01 ================= -->
-        <section class="demo-panel" id="demo-care">
-      <div class="demo-panel-bg"><img src="assets/demos/care-management-outcome.webp" alt="Care coordinator using the Care Outreach Agent dashboard — personalized outreach, care gap closure, appointment scheduling, outcome tracking" loading="lazy"></div>
-      <div class="demo-panel-content">
-        <div class="demo-panel-kicker">01 · Healthcare · Agentic AI</div>
-        <h3>Stop Sending Generic Messages. Start Driving Member Action.</h3>
-        <p>Health plans don't just need to reach members&mdash;they need to motivate them to act. See how AI agents can personalize outreach, select appropriate communication channels, and coordinate follow-ups to help close care gaps.</p>
-        <div class="demo-panel-actions">
-          <a class="btn-panel" href="projects/care-management.html">Explore the project &#8599;</a>
-      <a class="btn-panel-ghost" href="https://github.com/ynpreet/agentic-care-management" target="_blank" rel="noopener">GitHub &#8599;</a>
+    
+    <!-- ================= HORIZONTAL BOXES ================= -->
+    <div class="boxes-scroll-wrap" id="demoBoxes">
+      <div class="boxes-sticky">
+        <div class="boxes-hint">Scroll &mdash; the work</div>
+        <div class="boxes-track">
+          <article class="demo-box">
+            <img src="assets/demos/care-management-outcome.webp" alt="Care coordinator using the Care Outreach Agent dashboard — personalized outreach, care gap closure, appointment scheduling, outcome tracking" loading="lazy">
+            <div class="demo-box-info">
+              <div class="demo-box-kicker">01 · Healthcare · Agentic AI</div>
+              <h3>Stop Sending Generic Messages. Start Driving Member Action.</h3>
+            </div>
+          </article>
+          <article class="demo-box">
+            <img src="assets/demos/hhv-copilot-outcome.webp" alt="Home-health nurse smiling with an elderly patient during an in-home assessment visit" loading="lazy">
+            <div class="demo-box-info">
+              <div class="demo-box-kicker">02 · Medicare Advantage · Agentic AI</div>
+              <h3>A Nurse Can't Visit Every Member. Who Should Get the Visit First?</h3>
+            </div>
+          </article>
+          <article class="demo-box">
+            <img src="assets/demos/restaurant-location-outcome.webp" alt="Location intelligence for restaurant site selection — storefront, glowing trade-area map with candidate pins, scored factors: population, traffic, competition, demand" loading="lazy">
+            <div class="demo-box-info">
+              <div class="demo-box-kicker">03 · Retail · Geospatial Analytics · Agentic AI</div>
+              <h3>The Wrong Location Can Sink a Great Restaurant. Find the Right One With Data.</h3>
+            </div>
+          </article>
+          <article class="demo-box">
+            <img src="assets/demos/aeroyield-outcome.webp" alt="Commercial airliner climbing into a sunset sky — airline revenue intelligence" loading="lazy">
+            <div class="demo-box-info">
+              <div class="demo-box-kicker">04 · Aviation · Revenue Management · Agentic AI</div>
+              <h3>A $7 Profit per Passenger. One Bad Forecast Can Change the Economics of a Flight.</h3>
+            </div>
+          </article>
+          <article class="demo-box">
+            <img src="assets/demos/music-mood-outcome.webp" alt="Listener with eyes closed wearing headphones in warm golden light — music for the moment" loading="lazy">
+            <div class="demo-box-info">
+              <div class="demo-box-kicker">05 · Personalization · Recommender Systems · Agentic AI</div>
+              <h3>Your Next Song Should Fit Your Moment — Not Just Your Listening History.</h3>
+            </div>
+          </article>
+          <article class="demo-box">
+            <img src="assets/demos/fixmate-outcome.webp" alt="AI maintenance assistant beside a coffee machine — check error code, find parts, troubleshooting steps, preventive maintenance" loading="lazy">
+            <div class="demo-box-info">
+              <div class="demo-box-kicker">06 · Retail · Equipment Maintenance · Agentic AI</div>
+              <h3>Every Minute a Coffee Machine Is Down Is a Missed Sales Opportunity.</h3>
+            </div>
+          </article>
+          <article class="demo-box">
+            <img src="assets/demos/gameguard-outcome.webp" alt="Gaming trust and safety — suspicious link, inappropriate content, personal information, grooming behavior detection" loading="lazy">
+            <div class="demo-box-info">
+              <div class="demo-box-kicker">07 · Gaming · Trust &amp; Safety · Multilingual AI</div>
+              <h3>Bad Actors Don't Always Use Bad Words. Can AI Recognize the Pattern?</h3>
+            </div>
+          </article>
+          <article class="demo-box">
+            <img src="assets/demos/guestfirst-outcome.webp" alt="Warm restaurant counter — employee handing a drink to a customer, the hospitality moment data should protect" loading="lazy">
+            <div class="demo-box-info">
+              <div class="demo-box-kicker">08 · Restaurants · Customer Intelligence · Agentic AI</div>
+              <h3>A Great Restaurant Fixes the Order. An Exceptional One Fixes the Experience.</h3>
+            </div>
+          </article>
+          <article class="demo-box">
+            <img src="assets/demos/resume-reviewer.webp" alt="Magnifying glass over a resume revealing checkmarks and a score ring" loading="lazy">
+            <div class="demo-box-info">
+              <div class="demo-box-kicker">09 · Hiring · Agentic AI</div>
+              <h3>Your Resume Gets 7 Seconds. Make Every One Count.</h3>
+            </div>
+          </article>
         </div>
       </div>
+    </div>
+
+<!-- ================= DEMO 01 ================= -->
+    <section class="resource-library" id="demo-care">
+      <div class="demo-kicker">01 · Healthcare · Agentic AI</div>
+      <article class="demo-card">
+        <a class="demo-img-link" href="projects/care-management.html" aria-label="Explore the project"><img class="demo-img" src="assets/demos/care-management-outcome.webp" alt="Care coordinator using the Care Outreach Agent dashboard — personalized outreach, care gap closure, appointment scheduling, outcome tracking" loading="lazy"><span class="demo-img-overlay"><span>Explore the project →</span></span></a>
+        <h3 class="demo-headline">Stop Sending Generic Messages. Start Driving Member Action.</h3>
+        <p class="demo-desc">Health plans don't just need to reach members&mdash;they need to motivate them to act. See how AI agents can personalize outreach, select appropriate communication channels, and coordinate follow-ups to help close care gaps.</p>
+    <dl class="demo-facts">
+      <div><dt>How it works</dt><dd>Five chained agents — identity check → clinical-risk scoring (0–100) → channel selection → care-plan assembly, each with one input/output contract.</dd></div>
+      <div><dt>Status</dt><dd>Runs locally — <code>python3 app.py</code> → localhost:8001</dd></div>
+      <div><dt>Data</dt><dd>Fictional — 3 synthetic patients in a local file; no network calls.</dd></div>
+      <div><dt>Human oversight</dt><dd>Urgent symptoms escalate to a clinician/911 handoff before scoring; a privacy guard blocks other patients’ data.</dd></div>
+    </dl>
+        <p class="demo-proof"><strong>Real-world signal:</strong> Aetna reported an 80%+ increase in overall member engagement with its enhanced RCS messaging experience. <a href="https://www.cvshealth.com/news/company-news/aetna-launches-simplified-digital-first-benefits-onboarding-experience.html" target="_blank" rel="noopener">Source: CVS Health &#8599;</a></p>
+        <div class="demo-actions">
+          <a class="btn btn-primary" href="projects/care-management.html">Explore the projecthref="projects/care-management.html" &#8599;</a>
+          <a class="btn btn-ghost" href="https://github.com/ynpreet/agentic-care-management" target="_blank" rel="noopener">View on GitHub &#8599;</a>
+          <a class="btn btn-ghost" href="#how-to-run-care">How to run &darr;</a>
+        </div>
+      </article>
     </section>
 
     <!-- ================= DEMO 02 (FLAGSHIP) ================= -->
-        <section class="demo-panel" id="demo-hhv">
-      <div class="demo-panel-bg"><img src="assets/demos/hhv-copilot-outcome.webp" alt="Home-health nurse smiling with an elderly patient during an in-home assessment visit" loading="lazy"></div>
-      <div class="demo-panel-content">
-        <div class="demo-panel-kicker">02 · Medicare Advantage · Agentic AI</div>
-        <h3>A Nurse Can&rsquo;t Visit Every Member. Who Should Get the Visit First?</h3>
-        <p>Use predictive analytics and agentic AI to prioritize members for in-home assessments, uncover potential care gaps, and coordinate follow-up&mdash;helping health plans direct limited clinical resources where they may matter most.</p>
-        <div class="demo-panel-actions">
-          <a class="btn-panel" href="projects/hhv-copilot.html">Explore the project &#8599;</a>
-      <a class="btn-panel-ghost" href="https://github.com/ynpreet/hhv-copilot" target="_blank" rel="noopener">GitHub &#8599;</a>
+    <section class="resource-library" id="demo-hhv">
+      <div class="demo-kicker">02 · Medicare Advantage · Agentic AI</div>
+      <article class="demo-card">
+        <a class="demo-img-link" href="projects/hhv-copilot.html" aria-label="Explore the project"><img class="demo-img" src="assets/demos/hhv-copilot-outcome.webp" alt="Home-health nurse smiling with an elderly patient during an in-home assessment visit" loading="lazy"><span class="demo-img-overlay"><span>Explore the project →</span></span></a>
+        <h3 class="demo-headline">A Nurse Can&rsquo;t Visit Every Member. Who Should Get the Visit First?</h3>
+        <p class="demo-desc">Use predictive analytics and agentic AI to prioritize members for in-home assessments, uncover potential care gaps, and coordinate follow-up&mdash;helping health plans direct limited clinical resources where they may matter most.</p>
+    <dl class="demo-facts">
+      <div><dt>How it works</dt><dd>One orchestrator runs six stages — member identification → outreach and scheduling → assessment interpretation → care-gap detection → follow-up coordination → program performance.</dd></div>
+      <div><dt>Status</dt><dd>Runs locally — <code>python3 app.py</code> → localhost:8002 (stdlib only, fully offline)</dd></div>
+      <div><dt>Data</dt><dd>Synthetic — 1,000 generated members; 265 identified for outreach on need-based criteria.</dd></div>
+      <div><dt>Human oversight</dt><dd>Deterministic guardrails at every consequential step; missing data is marked unresolved and re-checked, then closed by a human.</dd></div>
+    </dl>
+        <p class="demo-proof"><strong>Real-world proof:</strong> Signify Health disclosed that its analytics platform identifies high-priority members for in-home evaluations. It reported that, in 2019, more than 90% of evaluated members followed up with a primary care visit.<br>Explore the evidence: <a href="https://www.sec.gov/Archives/edgar/data/1828182/000182818221000006/signifyhealthinc10k_123120.htm" target="_blank" rel="noopener">Signify Health&rsquo;s SEC filing &#8599;</a> &middot; <a href="https://oig.hhs.gov/reports/all/2024/medicare-advantage-questionable-use-of-health-risk-assessments-continues-to-drive-up-payments-to-plans-by-billions/" target="_blank" rel="noopener">HHS OIG report on assessment oversight &#8599;</a></p>
+        <div class="demo-actions">
+          <a class="btn btn-primary" href="projects/hhv-copilot.html">Explore the projecthref="projects/hhv-copilot.html" &#8599;</a>
+          <a class="btn btn-ghost" href="https://github.com/ynpreet/hhv-copilot" target="_blank" rel="noopener">View on GitHub &#8599;</a>
+          <a class="btn btn-ghost" href="#how-to-run-hhv">How to run &darr;</a>
         </div>
-      </div>
+      </article>
     </section>
 
     <!-- ================= DEMO 03 ================= -->
-        <section class="demo-panel" id="demo-restaurant">
-      <div class="demo-panel-bg"><img src="assets/demos/restaurant-location-outcome.webp" alt="Location intelligence for restaurant site selection — storefront, glowing trade-area map with candidate pins, scored factors: population, traffic, competition, demand" loading="lazy"></div>
-      <div class="demo-panel-content">
-        <div class="demo-panel-kicker">03 · Retail · Geospatial Analytics · Agentic AI</div>
-        <h3>The Wrong Location Can Sink a Great Restaurant. Find the Right One With Data.</h3>
-        <p>Before signing a lease, evaluate the market. This agent combines demographics, ZIP-code demand, traffic, competitors, trade areas, and operating considerations to compare candidate locations and recommend where a restaurant has the strongest potential.</p>
-        <div class="demo-panel-actions">
-          <a class="btn-panel" href="projects/restaurant-location.html">Explore the project &#8599;</a>
-      <a class="btn-panel-ghost" href="https://github.com/ynpreet/restaurant-location-agent" target="_blank" rel="noopener">GitHub &#8599;</a>
+    <section class="resource-library" id="demo-restaurant">
+      <div class="demo-kicker">03 · Retail · Geospatial Analytics · Agentic AI</div>
+      <article class="demo-card">
+        <a class="demo-img-link" href="projects/restaurant-location.html" aria-label="Explore the project"><img class="demo-img" src="assets/demos/restaurant-location-outcome.webp" alt="Location intelligence for restaurant site selection — storefront, glowing trade-area map with candidate pins, scored factors: population, traffic, competition, demand" loading="lazy"><span class="demo-img-overlay"><span>Explore the project →</span></span></a>
+        <h3 class="demo-headline">The Wrong Location Can Sink a Great Restaurant. Find the Right One With Data.</h3>
+        <p class="demo-desc">Before signing a lease, evaluate the market. This agent combines demographics, ZIP-code demand, traffic, competitors, trade areas, and operating considerations to compare candidate locations and recommend where a restaurant has the strongest potential.</p>
+    <dl class="demo-facts">
+      <div><dt>How it works</dt><dd>A planner breaks the site-selection question into a 13-step plan → five evidence tools pull per-ZIP profiles → scores on quality, economics, audience and demand gap → ranked recommendation with explanations.</dd></div>
+      <div><dt>Status</dt><dd>Runs locally — <code>python3 app.py</code> → localhost:8003 (offline, deterministic)</dd></div>
+      <div><dt>Data</dt><dd>Synthetic — ~60 fictional businesses across 8 Phoenix-area ZIP codes.</dd></div>
+      <div><dt>Human oversight</dt><dd>The agent states when data is insufficient instead of guessing.</dd></div>
+    </dl>
+        <p class="demo-proof"><strong>Real-world proof:</strong> Starbucks has used its Atlas GIS platform for store planning, analyzing demographics, traffic, retail clusters, and transportation nodes. Chick-fil-A has also used GIS for site selection and market analytics to improve store performance and reduce competitive cannibalization. <a href="https://www.esri.com/content/dam/esrisites/en-us/media/pdf/chick-fil-a-case-study.pdf" target="_blank" rel="noopener">Source: Esri &#8599;</a></p>
+        <div class="demo-actions">
+          <a class="btn btn-primary" href="projects/restaurant-location.html">Explore the projecthref="projects/restaurant-location.html" &#8599;</a>
+          <a class="btn btn-ghost" href="https://github.com/ynpreet/restaurant-location-agent" target="_blank" rel="noopener">View on GitHub &#8599;</a>
+          <a class="btn btn-ghost" href="#how-to-run-restaurant">How to run &darr;</a>
         </div>
-      </div>
+      </article>
     </section>
 
     <!-- ================= DEMO 04 ================= -->
-        <section class="demo-panel" id="demo-aeroyield">
-      <div class="demo-panel-bg"><img src="assets/demos/aeroyield-outcome.webp" alt="Commercial airliner climbing into a sunset sky — airline revenue intelligence" loading="lazy"></div>
-      <div class="demo-panel-content">
-        <div class="demo-panel-kicker">04 · Aviation · Revenue Management · Agentic AI</div>
-        <h3>A $7 Profit per Passenger. One Bad Forecast Can Change the Economics of a Flight.</h3>
-        <p>Airlines must price perishable inventory in a market that never stands still. AeroYield AI combines demand forecasts, competitor fares, seasonality, major events, fuel costs, and market signals to recommend pricing and inventory decisions that support revenue and profitability.</p>
-        <div class="demo-panel-actions">
-          <a class="btn-panel" href="projects/aeroyield.html">Explore the project &#8599;</a>
-      <a class="btn-panel-ghost" href="https://github.com/ynpreet/aeroyield-ai" target="_blank" rel="noopener">GitHub &#8599;</a>
+    <section class="resource-library" id="demo-aeroyield">
+      <div class="demo-kicker">04 · Aviation · Revenue Management · Agentic AI</div>
+      <article class="demo-card">
+        <a class="demo-img-link" href="projects/aeroyield.html" aria-label="Explore the project"><img class="demo-img" src="assets/demos/aeroyield-outcome.webp" alt="Commercial airliner climbing into a sunset sky — airline revenue intelligence" loading="lazy"><span class="demo-img-overlay"><span>Explore the project →</span></span></a>
+        <h3 class="demo-headline">A $7 Profit per Passenger. One Bad Forecast Can Change the Economics of a Flight.</h3>
+        <p class="demo-desc">Airlines must price perishable inventory in a market that never stands still. AeroYield AI combines demand forecasts, competitor fares, seasonality, major events, fuel costs, and market signals to recommend pricing and inventory decisions that support revenue and profitability.</p>
+    <dl class="demo-facts">
+      <div><dt>How it works</dt><dd>Observe (demand and competitor signals) → Analyze (forecast, revenue arithmetic) → Decide (candidate fares scored transparently) → Act (staged to an approval queue) → Verify (72-hour check).</dd></div>
+      <div><dt>Status</dt><dd>Runs locally — <code>python3 app.py</code> → localhost:8004 (offline)</dd></div>
+      <div><dt>Data</dt><dd>Synthetic — hand-built demand scenarios; no real airline, booking, or revenue data.</dd></div>
+      <div><dt>Human oversight</dt><dd>Unusual market conditions are flagged for analyst approval; the agent never touches a live booking system.</dd></div>
+    </dl>
+        <p class="demo-proof"><strong>Real-world proof:</strong> IATA reports the global aviation profit margin is razor thin — just 3.7%, or a little above $7 per passenger per segment — which is why pricing and revenue management are, in IATA&rsquo;s words, &ldquo;the heartbeat of an airline.&rdquo; <a href="https://www.iata.org/en/publications/newsletters/iata-knowledge-hub/revenue-management-the-heartbeat-of-aviation/" target="_blank" rel="noopener">Source: IATA &#8599;</a></p>
+        <div class="demo-actions">
+          <a class="btn btn-primary" href="projects/aeroyield.html">Explore the projecthref="projects/aeroyield.html" &#8599;</a>
+          <a class="btn btn-ghost" href="https://github.com/ynpreet/aeroyield-ai" target="_blank" rel="noopener">View on GitHub &#8599;</a>
+          <a class="btn btn-ghost" href="#how-to-run-aeroyield">How to run &darr;</a>
         </div>
-      </div>
+      </article>
     </section>
 
     <!-- ================= DEMO 05 ================= -->
-        <section class="demo-panel" id="demo-music">
-      <div class="demo-panel-bg"><img src="assets/demos/music-mood-outcome.webp" alt="Listener with eyes closed wearing headphones in warm golden light — music for the moment" loading="lazy"></div>
-      <div class="demo-panel-content">
-        <div class="demo-panel-kicker">05 · Personalization · Recommender Systems · Agentic AI</div>
-        <h3>Your Next Song Should Fit Your Moment — Not Just Your Listening History.</h3>
-        <p>Music can help shape how we feel, focus, and unwind. This agent combines a small session memory with your stated mood and chosen occasion to recommend music for the moment.</p>
-        <div class="demo-panel-actions">
-          <a class="btn-panel" href="projects/music-mood.html">Explore the project &#8599;</a>
-      <a class="btn-panel-ghost" href="https://github.com/ynpreet/music-mood-agent" target="_blank" rel="noopener">GitHub &#8599;</a>
+    <section class="resource-library" id="demo-music">
+      <div class="demo-kicker">05 · Personalization · Recommender Systems · Agentic AI</div>
+      <article class="demo-card">
+        <a class="demo-img-link" href="projects/music-mood.html" aria-label="Explore the project"><img class="demo-img" src="assets/demos/music-mood-outcome.webp" alt="Listener with eyes closed wearing headphones in warm golden light — music for the moment" loading="lazy"><span class="demo-img-overlay"><span>Explore the project →</span></span></a>
+        <h3 class="demo-headline">Your Next Song Should Fit Your Moment — Not Just Your Listening History.</h3>
+        <p class="demo-desc">Music can help shape how we feel, focus, and unwind. This agent combines a small session memory with your stated mood and chosen occasion to recommend music for the moment.</p>
+    <dl class="demo-facts">
+      <div><dt>How it works</dt><dd>Interpret (mood and occasion from plain words) → design a listening arc (match → lift → sustain) → search, score, sequence and explain each pick; session memory biases future picks.</dd></div>
+      <div><dt>Status</dt><dd>Runs locally — <code>python3 app.py</code> → localhost:8005</dd></div>
+      <div><dt>Data</dt><dd>35 real, recognizable Spotify tracks; energy and valence values are teaching values, not measured audio features.</dd></div>
+      <div><dt>Human oversight</dt><dd>Entertainment, not therapy — keyword-based mood detection with honestly stated limits.</dd></div>
+    </dl>
+        <p class="demo-proof"><strong>Real-world proof:</strong> Spotify reported that a conversational recommendation experience increased additional listening by 14% and reduced skip rates by 5% in a two-week test involving approximately 15 million users. <a href="https://research.atspotify.com/2026/9/bootstrapping-conversational-recommendation-agents-at-spotify-synthetic-data-generation-and-self-improvement-loops" target="_blank" rel="noopener">Source: Spotify Research &#8599;</a></p>
+        <div class="demo-actions">
+          <a class="btn btn-primary" href="projects/music-mood.html">Explore the projecthref="projects/music-mood.html" &#8599;</a>
+          <a class="btn btn-ghost" href="https://github.com/ynpreet/music-mood-agent" target="_blank" rel="noopener">View on GitHub &#8599;</a>
+          <a class="btn btn-ghost" href="#how-to-run-music">How to run &darr;</a>
         </div>
-      </div>
+      </article>
     </section>
 
     <!-- ================= DEMO 06 ================= -->
-        <section class="demo-panel" id="demo-fixmate">
-      <div class="demo-panel-bg"><img src="assets/demos/fixmate-outcome.webp" alt="AI maintenance assistant beside a coffee machine — check error code, find parts, troubleshooting steps, preventive maintenance" loading="lazy"></div>
-      <div class="demo-panel-content">
-        <div class="demo-panel-kicker">06 · Retail · Equipment Maintenance · Agentic AI</div>
-        <h3>Every Minute a Coffee Machine Is Down Is a Missed Sales Opportunity.</h3>
-        <p>When revenue-generating equipment fails, technicians need answers — not hundreds of pages of manuals. FixMate AI helps them identify equipment issues, find the right troubleshooting steps, recognize parts from images, and resolve problems faster using internal documentation and relevant external sources.</p>
-        <div class="demo-panel-actions">
-          <a class="btn-panel" href="projects/fixmate.html">Explore the project &#8599;</a>
-      <a class="btn-panel-ghost" href="https://github.com/ynpreet/fixmate-ai" target="_blank" rel="noopener">GitHub &#8599;</a>
+    <section class="resource-library" id="demo-fixmate">
+      <div class="demo-kicker">06 · Retail · Equipment Maintenance · Agentic AI</div>
+      <article class="demo-card">
+        <a class="demo-img-link" href="projects/fixmate.html" aria-label="Explore the project"><img class="demo-img" src="assets/demos/fixmate-outcome.webp" alt="AI maintenance assistant beside a coffee machine — check error code, find parts, troubleshooting steps, preventive maintenance" loading="lazy"><span class="demo-img-overlay"><span>Explore the project →</span></span></a>
+        <h3 class="demo-headline">Every Minute a Coffee Machine Is Down Is a Missed Sales Opportunity.</h3>
+        <p class="demo-desc">When revenue-generating equipment fails, technicians need answers — not hundreds of pages of manuals. FixMate AI helps them identify equipment issues, find the right troubleshooting steps, recognize parts from images, and resolve problems faster using internal documentation and relevant external sources.</p>
+    <dl class="demo-facts">
+      <div><dt>How it works</dt><dd>Diagnose (error code and photo metadata → issue class) → search internal manuals first, with citations → web lookup only after proving the search was conclusive → guide with safety gates.</dd></div>
+      <div><dt>Status</dt><dd>Runs locally — <code>python3 app.py</code> → localhost:8006 (offline)</dd></div>
+      <div><dt>Data</dt><dd>Synthetic — fictional “BrewPoint Retail” chain; not 7-Eleven’s production system.</dd></div>
+      <div><dt>Human oversight</dt><dd>Technician-only procedures are hard-blocked for untrained users; uncertainty escalates honestly.</dd></div>
+    </dl>
+        <p class="demo-proof"><strong>Real-world proof:</strong> 7-Eleven built a Technician's Maintenance Assistant with Databricks that cuts documentation search time from minutes or even hours to seconds and improves first-time-fix rates — adopted by more than 1,000 technicians. <a href="https://www.databricks.com/blog/how-7-eleven-transformed-maintenance-technician-knowledge-access-databricks-agent-bricks" target="_blank" rel="noopener">Source: Databricks &#8599;</a></p>
+        <div class="demo-actions">
+          <a class="btn btn-primary" href="projects/fixmate.html">Explore the projecthref="projects/fixmate.html" &#8599;</a>
+          <a class="btn btn-ghost" href="https://github.com/ynpreet/fixmate-ai" target="_blank" rel="noopener">View on GitHub &#8599;</a>
+          <a class="btn btn-ghost" href="#how-to-run-fixmate">How to run &darr;</a>
         </div>
-      </div>
+      </article>
     </section>
 
     <!-- ================= DEMO 07 ================= -->
-        <section class="demo-panel" id="demo-gameguard">
-      <div class="demo-panel-bg"><img src="assets/demos/gameguard-outcome.webp" alt="Gaming trust and safety — suspicious link, inappropriate content, personal information, grooming behavior detection" loading="lazy"></div>
-      <div class="demo-panel-content">
-        <div class="demo-panel-kicker">07 · Gaming · Trust &amp; Safety · Multilingual AI</div>
-        <h3>Bad Actors Don&rsquo;t Always Use Bad Words. Can AI Recognize the Pattern?</h3>
-        <p>From suspicious links and requests for personal information to manipulative conversations with young players, harmful behavior can hide behind emojis, slang, misspellings, and seemingly innocent messages. GameGuard AI analyzes messages and conversation context to flag potential grooming, scams, violent threats, and fraud for appropriate review.</p>
-        <div class="demo-panel-actions">
-          <a class="btn-panel" href="projects/gameguard.html">Explore the project &#8599;</a>
-      <a class="btn-panel-ghost" href="https://github.com/ynpreet/gameguard-ai" target="_blank" rel="noopener">GitHub &#8599;</a>
+    <section class="resource-library" id="demo-gameguard">
+      <div class="demo-kicker">07 · Gaming · Trust &amp; Safety · Multilingual AI</div>
+      <article class="demo-card">
+        <a class="demo-img-link" href="projects/gameguard.html" aria-label="Explore the project"><img class="demo-img" src="assets/demos/gameguard-outcome.webp" alt="Gaming trust and safety — suspicious link, inappropriate content, personal information, grooming behavior detection" loading="lazy"><span class="demo-img-overlay"><span>Explore the project →</span></span></a>
+        <h3 class="demo-headline">Bad Actors Don&rsquo;t Always Use Bad Words. Can AI Recognize the Pattern?</h3>
+        <p class="demo-desc">From suspicious links and requests for personal information to manipulative conversations with young players, harmful behavior can hide behind emojis, slang, misspellings, and seemingly innocent messages. GameGuard AI analyzes messages and conversation context to flag potential grooming, scams, violent threats, and fraud for appropriate review.</p>
+    <dl class="demo-facts">
+      <div><dt>How it works</dt><dd>Reads messages in full context (history, slang, misspellings, 3 languages) → scores signals, not verdicts → correlates across conversations and transactions → recommends an intervention.</dd></div>
+      <div><dt>Status</dt><dd>Runs locally — <code>python3 app.py</code> → localhost:8007 (offline)</dd></div>
+      <div><dt>Data</dt><dd>Synthetic — fictional “BattleSphere” gaming company; every player, message and transaction is fictional.</dd></div>
+      <div><dt>Human oversight</dt><dd>Signals, not verdicts — people decide; the system never auto-suspends, and benign trash talk is logged, not escalated.</dd></div>
+    </dl>
+        <p class="demo-proof"><strong>Real-world proof:</strong> Supercell's games reach around 290 million monthly active players — a community scale that makes player safety a massive operational challenge, which is why Supercell's Trust &amp; Safety team applies machine learning to detect and prevent player harm. <a href="https://www.youtube.com/watch?v=NCjC-cCZk6w" target="_blank" rel="noopener">Source: Databricks Summit &#8599;</a></p>
+        <div class="demo-actions">
+          <a class="btn btn-primary" href="projects/gameguard.html">Explore the projecthref="projects/gameguard.html" &#8599;</a>
+          <a class="btn btn-ghost" href="https://github.com/ynpreet/gameguard-ai" target="_blank" rel="noopener">View on GitHub &#8599;</a>
+          <a class="btn btn-ghost" href="#how-to-run-gameguard">How to run &darr;</a>
         </div>
-      </div>
+      </article>
     </section>
 
     <!-- ================= DEMO 08 ================= -->
-        <section class="demo-panel" id="demo-guestfirst">
-      <div class="demo-panel-bg"><img src="assets/demos/guestfirst-outcome.webp" alt="Warm restaurant counter — employee handing a drink to a customer, the hospitality moment data should protect" loading="lazy"></div>
-      <div class="demo-panel-content">
-        <div class="demo-panel-kicker">08 · Restaurants · Customer Intelligence · Agentic AI</div>
-        <h3>A Great Restaurant Fixes the Order. An Exceptional One Fixes the Experience.</h3>
-        <p>What if a restaurant could connect customer feedback, order history, kitchen operations, and loyalty data to understand what went wrong — and coordinate the right recovery? GuestFirst AI identifies service issues, recommends personalized responses, and tracks follow-up so restaurants can turn unhappy customers into an opportunity to rebuild trust.</p>
-        <div class="demo-panel-actions">
-          <a class="btn-panel" href="projects/guestfirst.html">Explore the project &#8599;</a>
-      <a class="btn-panel-ghost" href="https://github.com/ynpreet/guestfirst-ai" target="_blank" rel="noopener">GitHub &#8599;</a>
+    <section class="resource-library" id="demo-guestfirst">
+      <div class="demo-kicker">08 · Restaurants · Customer Intelligence · Agentic AI</div>
+      <article class="demo-card">
+        <a class="demo-img-link" href="projects/guestfirst.html" aria-label="Explore the project"><img class="demo-img" src="assets/demos/guestfirst-outcome.webp" alt="Warm restaurant counter — employee handing a drink to a customer, the hospitality moment data should protect" loading="lazy"><span class="demo-img-overlay"><span>Explore the project →</span></span></a>
+        <h3 class="demo-headline">A Great Restaurant Fixes the Order. An Exceptional One Fixes the Experience.</h3>
+        <p class="demo-desc">What if a restaurant could connect customer feedback, order history, kitchen operations, and loyalty data to understand what went wrong — and coordinate the right recovery? GuestFirst AI identifies service issues, recommends personalized responses, and tracks follow-up so restaurants can turn unhappy customers into an opportunity to rebuild trust.</p>
+    <dl class="demo-facts">
+      <div><dt>How it works</dt><dd>Complaint → parse the issue → pull order and kitchen records → diagnose the root cause → propose a recovery → manager approves, adjusts or rejects → follow-up scheduled.</dd></div>
+      <div><dt>Status</dt><dd>Runs locally — <code>python3 app.py</code> → localhost:8008 (offline)</dd></div>
+      <div><dt>Data</dt><dd>Synthetic restaurant dataset, including a Friday-lunch-rush scenario (34 complaints).</dd></div>
+      <div><dt>Human oversight</dt><dd>Recovery stays a human decision — the agent never acts without manager approval.</dd></div>
+    </dl>
+        <p class="demo-proof"><strong>Real-world proof:</strong> Chick-fil-A tested geofencing and predictive order wait times at 100 restaurants. Customers' wait times decreased by an average of one to two minutes, while estimated wait times were accurate more than 90% of the time. <a href="https://www.qsrmagazine.com/news/chick-fil-deploy-geofencing-technology-app-update/" target="_blank" rel="noopener">Source: QSR Magazine &#8599;</a></p>
+        <div class="demo-actions">
+          <a class="btn btn-primary" href="projects/guestfirst.html">Explore the projecthref="projects/guestfirst.html" &#8599;</a>
+          <a class="btn btn-ghost" href="https://github.com/ynpreet/guestfirst-ai" target="_blank" rel="noopener">View on GitHub &#8599;</a>
+          <a class="btn btn-ghost" href="#how-to-run-guestfirst">How to run &darr;</a>
         </div>
-      </div>
+      </article>
     </section>
 
     <!-- ================= DEMO 09 ================= -->
     <!-- ================= DEMO 09 ================= -->
-        <section class="demo-panel" id="demo-resumereviewer">
-      <div class="demo-panel-bg"><img src="assets/demos/resume-reviewer.webp" alt="Magnifying glass over a resume revealing checkmarks and a score ring" loading="lazy"></div>
-      <div class="demo-panel-content">
-        <div class="demo-panel-kicker">09 · Hiring · Agentic AI</div>
-        <h3>Your Resume Gets 7 Seconds. Make Every One Count.</h3>
-        <p>Job seekers send resumes into a black box and never learn why they hear nothing back. Resume Reviewer AI scores your resume against 33 hiring-manager rules and the actual job description &mdash; so you fix what matters before you hit apply.</p>
-        <div class="demo-panel-actions">
-          <a class="btn-panel" href="projects/resume-reviewer.html">Explore the project &#8599;</a>
-      <a class="btn-panel-ghost" href="https://github.com/ynpreet/resume-reviewer-agent" target="_blank" rel="noopener">GitHub &#8599;</a>
+    <section class="resource-library" id="demo-resumereviewer">
+      <div class="demo-kicker">09 · Hiring · Agentic AI</div>
+      <article class="demo-card">
+        <a class="demo-img-link" href="projects/resume-reviewer.html" aria-label="Explore the project"><img class="demo-img" src="assets/demos/resume-reviewer.webp" alt="Magnifying glass over a resume revealing checkmarks and a score ring" loading="lazy"><span class="demo-img-overlay"><span>Explore the project →</span></span></a>
+        <h3 class="demo-headline">Your Resume Gets 7 Seconds. Make Every One Count.</h3>
+        <p class="demo-desc">Job seekers send resumes into a black box and never learn why they hear nothing back. Resume Reviewer AI scores your resume against 33 hiring-manager rules and the actual job description &mdash; so you fix what matters before you hit apply.</p>
+    <dl class="demo-facts">
+      <div><dt>How it works</dt><dd>Ingest and validate (name, LinkedIn URL, JD, PDF/DOCX) → extract text and layout in your browser → run 33 hiring-manager rules plus JD skill coverage → score with evidence and a concrete fix per failure.</dd></div>
+      <div><dt>Status</dt><dd>Runs in your browser — no backend; your resume never leaves your device.</dd></div>
+      <div><dt>Data</dt><dd>Your real uploads — PDF/DOCX parsed locally with PDF.js and Mammoth.js.</dd></div>
+      <div><dt>Human oversight</dt><dd>Advisory score, not a hiring guarantee; scanned PDFs are rejected with a clear message instead of scoring garbage.</dd></div>
+    </dl>
+        <p class="demo-proof"><strong>Real-world signal:</strong> Ladders&rsquo; 2018 eye-tracking study found recruiters spend an average of just 7.4 seconds on the initial resume screen. <a href="https://www.hrdive.com/news/eye-tracking-study-shows-recruiters-look-at-resumes-for-7-seconds/541582/" target="_blank" rel="noopener">Source: HR Dive &#8599;</a></p>
+        <div class="demo-actions">
+          <a class="btn btn-primary" href="projects/resume-reviewer.html">Explore the projecthref="projects/resume-reviewer.html" &#8599;</a>
+          <a class="btn btn-ghost" href="resume-reviewer.html">Try it live &#8599;</a>
+          <a class="btn btn-ghost" href="https://github.com/ynpreet/resume-reviewer-agent" target="_blank" rel="noopener">View on GitHub &#8599;</a>
+          <a class="btn btn-ghost" href="#how-to-run-resumereviewer">How to run &darr;</a>
         </div>
-      </div>
+      </article>
     </section>
 
     <!-- ================= STUDENT FEEDBACK ================= -->
@@ -654,5 +796,28 @@
       });
     })();
   </script>
+<script>
+(function(){
+  var wrap = document.getElementById('demoBoxes');
+  var track = wrap && wrap.querySelector('.boxes-track');
+  if(!wrap || !track) return;
+  if(window.matchMedia('(hover: none)').matches) return;
+  var ticking = false;
+  function update(){
+    ticking = false;
+    var rect = wrap.getBoundingClientRect();
+    var scrollable = wrap.offsetHeight - window.innerHeight;
+    if(scrollable <= 0) return;
+    var p = Math.max(0, Math.min(1, -rect.top / scrollable));
+    var maxX = Math.max(0, track.scrollWidth - window.innerWidth);
+    // boxes travel left -> right as you scroll down
+    track.style.transform = 'translateX(' + (-maxX + p * maxX) + 'px)';
+  }
+  function onScroll(){ if(!ticking){ ticking = true; requestAnimationFrame(update); } }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', update);
+  update();
+})();
+</script>
 </body>
 </html>
