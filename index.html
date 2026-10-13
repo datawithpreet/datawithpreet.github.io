@@ -20,18 +20,6 @@
   <link rel="stylesheet" href="assets/css/chatbot.css">
   <noscript><style>.reveal{opacity:1!important;transform:none!important}.section-title{clip-path:none!important}</style></noscript>
 <style>
-/* ===== Bear Grylls-style event row hover ===== */
-.event-row { position: relative; transition: background-color .25s ease, box-shadow .25s ease; }
-.event-row::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: #B5A568; opacity: 0; transition: opacity .25s ease; pointer-events: none; }
-.event-row:hover { background-color: rgba(181,165,104,.10); box-shadow: 0 -1px 0 rgba(120,100,60,.28), 0 1px 0 rgba(120,100,60,.28); }
-.event-row:hover::before { opacity: 1; }
-.event-row b { transition: color .25s ease; }
-.event-row:hover b { color: #0d0d0d; }
-.event-row p { transition: color .25s ease; }
-.event-row:hover p { color: #4a4a4a; }
-.event-row a { color: #B5A568; }
-@media (prefers-reduced-motion: reduce) { .event-row, .event-row::before, .event-row b, .event-row p { transition: none; } }
-
 /* ===== Sticky newsletter CTA ===== */
 .nl-cta { position: fixed; top: 92px; right: 24px; z-index: 99;
   display: flex; align-items: center; gap: 10px; padding: 8px 16px 8px 8px;
