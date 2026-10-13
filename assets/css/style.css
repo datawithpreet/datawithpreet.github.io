@@ -225,16 +225,14 @@ section[id] { scroll-margin-top: 92px; }
 .hero-demos-link a:hover { color: var(--ink); }
 .hero-socials { display: flex; gap: 18px; margin-top: 28px; flex-wrap: wrap; }
 .hero-socials a {
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-decoration: none;
-  color: var(--ink-soft);
-  border-bottom: 1px solid transparent;
-  padding-bottom: 2px;
-  transition: border-color 0.25s, color 0.25s;
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 40px; height: 40px; border-radius: 50%;
+  border: 1px solid var(--line-strong);
+  transition: transform 0.25s var(--ease), background 0.25s;
 }
-.hero-socials a:hover { color: var(--ink); border-color: var(--ink); }
+.hero-socials a:hover { transform: translateY(-3px); background: var(--ink); }
+.hero-socials a:hover img { filter: invert(1); }
+.hero-socials a img { width: 20px; height: 20px; display: block; }
 
 /* hero figure — de-boxed: the presenter blends straight into the page */
 .hero-visual { display: flex; justify-content: center; }
