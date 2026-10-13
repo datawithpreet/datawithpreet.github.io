@@ -53,8 +53,8 @@
       .sn-all:hover { color: #F07840; }
       .sn-all:hover .sn-arrow { transform: translateX(6px); }
       .sn-all:focus-visible { outline: 2px solid #E0632A; outline-offset: 4px; }
-      .sn-rail { display: flex; gap: 32px; overflow-x: auto; padding: 10px 4px 30px; scroll-snap-type: x proximity; scrollbar-width: thin; scrollbar-color: #d8d0bc transparent; }
-      .sn-rail::-webkit-scrollbar { height: 8px; }
+      .sn-rail { display: flex; gap: 32px; overflow-x: auto; padding: 10px 4px 30px; scroll-snap-type: x proximity; scrollbar-width: none; scrollbar-color: #d8d0bc transparent; }
+      .sn-rail::-webkit-scrollbar { display: none; }
       .sn-rail::-webkit-scrollbar-track { background: transparent; }
       .sn-rail::-webkit-scrollbar-thumb { background: #d8d0bc; border-radius: 4px; }
       .sn-card { position: relative; flex: 0 0 320px; max-width: 86vw; min-height: 390px; background: #ffffff; border: 1px solid #e8e2d4; border-radius: 6px; padding: 46px 40px 40px; display: flex; flex-direction: column; overflow: hidden; scroll-snap-align: start; transition: border-color .4s ease, transform .3s ease, box-shadow .4s ease; }
