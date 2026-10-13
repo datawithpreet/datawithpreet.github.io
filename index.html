@@ -25,9 +25,9 @@
   display: flex; align-items: center; gap: 10px; padding: 8px 16px 8px 8px;
   background: #1A1A1A; border: 1px solid rgba(255,255,255,.08); border-radius: 12px;
   color: #fff; text-decoration: none; font-weight: 600; font-size: 14px; letter-spacing: -.01em;
-  box-shadow: 0 10px 30px rgba(0,0,0,.35); transition: background .25s ease, transform .25s ease;
+  box-shadow: 0 10px 30px rgba(0,0,0,.35), 0 0 0 1px rgba(255,255,255,.14), 0 0 24px rgba(255,255,255,.12); transition: background .25s ease, transform .25s ease, box-shadow .25s ease;
   max-width: calc(100vw - 32px); white-space: nowrap; }
-.nl-cta:hover, .nl-cta.is-hover, .nl-cta:active { background: #2a2a2d; }
+.nl-cta:hover, .nl-cta.is-hover, .nl-cta:active { background: #000000; box-shadow: 0 10px 30px rgba(0,0,0,.35); }
 .nl-cta-text { text-decoration: none; }
 .nl-cta:hover .nl-cta-text, .nl-cta.is-hover .nl-cta-text, .nl-cta:active .nl-cta-text { text-decoration: underline; text-underline-offset: 4px; }
 .nl-cta:hover .nl-cta-icon svg, .nl-cta.is-hover .nl-cta-icon svg, .nl-cta:active .nl-cta-icon svg { transform: translateX(3px); stroke: #1A1A1A; }
