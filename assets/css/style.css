@@ -37,7 +37,7 @@ body {
   overflow-x: hidden;
 }
 
-::selection { background: var(--ink); color: var(--paper); }
+::selection { background: #ece7db; color: var(--ink); }
 
 /* Visible keyboard focus — the site is fully interactive (cards, panels, tiles) */
 :focus-visible {
