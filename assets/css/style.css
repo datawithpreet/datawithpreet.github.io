@@ -1624,3 +1624,8 @@ section[id] { scroll-margin-top: 92px; }
   .cursor-ring.is-hover { width: 52px; height: 52px; opacity: .6; }
 }
 @media (hover: none) { .cursor-dot, .cursor-ring { display: none; } }
+
+/* ===== QA: community/resources layout isolation (no overlap) ===== */
+#free-resources, #community { position: relative; z-index: 1; }
+#free-resources .resource-grid { position: relative; }
+#community .community-band { position: relative; z-index: 0; clear: both; }
