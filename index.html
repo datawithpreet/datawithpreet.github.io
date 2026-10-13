@@ -23,19 +23,19 @@
 /* ===== Sticky newsletter CTA ===== */
 .nl-cta { position: fixed; top: 92px; right: 24px; z-index: 99;
   display: flex; align-items: center; gap: 10px; padding: 8px 16px 8px 8px;
-  background: #1d1d1f; border: 1px solid rgba(255,255,255,.08); border-radius: 12px;
+  background: #1A1A1A; border: 1px solid rgba(255,255,255,.08); border-radius: 12px;
   color: #fff; text-decoration: none; font-weight: 600; font-size: 14px; letter-spacing: -.01em;
   box-shadow: 0 10px 30px rgba(0,0,0,.35); transition: background .25s ease, transform .25s ease;
   max-width: calc(100vw - 32px); white-space: nowrap; }
 .nl-cta:hover, .nl-cta.is-hover, .nl-cta:active { background: #2a2a2d; }
 .nl-cta-text { text-decoration: none; }
 .nl-cta:hover .nl-cta-text, .nl-cta.is-hover .nl-cta-text, .nl-cta:active .nl-cta-text { text-decoration: underline; text-underline-offset: 4px; }
-.nl-cta:hover .nl-cta-icon svg, .nl-cta.is-hover .nl-cta-icon svg, .nl-cta:active .nl-cta-icon svg { transform: translateX(3px); }
+.nl-cta:hover .nl-cta-icon svg, .nl-cta.is-hover .nl-cta-icon svg, .nl-cta:active .nl-cta-icon svg { transform: translateX(3px); stroke: #1A1A1A; }
 .nl-cta:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
-.nl-cta-icon { flex-shrink: 0; width: 32px; height: 32px; border-radius: 8px; background: #c9a96a;
+.nl-cta-icon { flex-shrink: 0; width: 32px; height: 32px; border-radius: 8px; background: #333333;
   display: grid; place-items: center; transition: background .25s ease; }
 .nl-cta-icon svg { width: 16px; height: 16px; stroke: #1d1d1f; transition: transform .25s ease; }
-.nl-cta:hover .nl-cta-icon, .nl-cta.is-hover .nl-cta-icon, .nl-cta:active .nl-cta-icon { background: #f5c445; box-shadow: 0 0 18px rgba(245,196,69,.55); }
+.nl-cta:hover .nl-cta-icon, .nl-cta.is-hover .nl-cta-icon, .nl-cta:active .nl-cta-icon { background: #B5A568; box-shadow: 0 0 18px rgba(181,165,104,.5); }
 @media (max-width: 640px) { .nl-cta { top: 84px; right: 12px; font-size: 13px; padding: 7px 12px 7px 7px; gap: 8px; }
   .nl-cta-icon { width: 28px; height: 28px; } }
 @media (prefers-reduced-motion: reduce) { .nl-cta, .nl-cta-icon svg { transition: none; } }
