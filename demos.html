@@ -808,7 +808,7 @@
     var p = Math.max(0, Math.min(1, -rect.top / scrollable));
     var maxX = Math.max(0, track.scrollWidth - window.innerWidth);
     // boxes travel left -> right as you scroll down
-    track.style.transform = 'translateX(' + (-maxX + p * maxX) + 'px)';
+    track.style.transform = 'translateX(' + (-p * maxX) + 'px)';
   }
   function onScroll(){ if(!ticking){ ticking = true; requestAnimationFrame(update); } }
   window.addEventListener('scroll', onScroll, {passive:true});
