@@ -810,3 +810,25 @@
     }, 1200);
   });
 })();
+
+// Custom cursor: dot follows instantly, ring trails
+(function(){
+  if(!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+  var dot = document.querySelector('.cursor-dot');
+  var ring = document.querySelector('.cursor-ring');
+  if(!dot || !ring) return;
+  var mx = -100, my = -100, rx = -100, ry = -100;
+  document.addEventListener('mousemove', function(e){
+    mx = e.clientX; my = e.clientY;
+    dot.style.left = mx + 'px'; dot.style.top = my + 'px';
+  });
+  (function loop(){
+    rx += (mx - rx) * 0.16; ry += (my - ry) * 0.16;
+    ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+    requestAnimationFrame(loop);
+  })();
+  document.querySelectorAll('a, button, .tab-btn, input').forEach(function(el){
+    el.addEventListener('mouseenter', function(){ ring.classList.add('is-hover'); });
+    el.addEventListener('mouseleave', function(){ ring.classList.remove('is-hover'); });
+  });
+})();
