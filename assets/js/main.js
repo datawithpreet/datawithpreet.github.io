@@ -817,8 +817,20 @@
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var dot = document.querySelector('.cursor-dot');
   var ring = document.querySelector('.cursor-ring');
-  var label = ring ? ring.querySelector('.cursor-label') : null;
-  if(!dot || !ring) return;
+  if(!dot){
+    dot = document.createElement('div');
+    dot.className = 'cursor-dot';
+    dot.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(dot);
+  }
+  if(!ring){
+    ring = document.createElement('div');
+    ring.className = 'cursor-ring';
+    ring.setAttribute('aria-hidden', 'true');
+    ring.innerHTML = '<span class="cursor-label"></span>';
+    document.body.appendChild(ring);
+  }
+  var label = ring.querySelector('.cursor-label');
   var mx = -100, my = -100, rx = -100, ry = -100;
   document.addEventListener('mousemove', function(e){
     mx = e.clientX; my = e.clientY;
