@@ -39,26 +39,74 @@
     .qa-item .qa-body { padding: 0 20px 18px; font-size: 14.5px; color: var(--gray); line-height: 1.7; }
     .qa-item .qa-body strong { color: var(--ink); }
     .qa-list-note { font-size: 13.5px; color: var(--gray); margin: 16px 0 0; }
-  </style>
+    /* ---- Consolidated nav dropdowns + metrics note (W1 overhaul, Oct 2026) ---- */
+  .nav .nav-drop { position: relative; }
+  .nav .nav-drop > button {
+    appearance: none; background: none; border: 0; cursor: pointer;
+    font: inherit; font-size: 13px; font-weight: 500; padding: 8px 14px; border-radius: 999px;
+    color: var(--ink-soft); white-space: nowrap; position: relative;
+    display: inline-flex; align-items: center; gap: 6px;
+    transition: font-weight .25s ease, color .25s ease, background .25s ease;
+  }
+  .nav .nav-drop > button .caret { font-size: 10px; line-height: 1; transition: transform .2s ease; }
+  .nav .nav-drop.open > button .caret { transform: rotate(180deg); }
+  .nav .nav-drop > button::after {
+    content: ""; position: absolute; bottom: 2px; left: 14px; right: 14px; height: 2px;
+    background: #E0632A; transform: scaleX(0); transform-origin: right center;
+    transition: transform .25s ease-in; pointer-events: none;
+  }
+  .nav .nav-drop > button:hover { background: transparent; font-weight: 700; color: var(--ink); }
+  .nav .nav-drop > button:hover::after { transform: scaleX(1); transform-origin: left center; transition: transform .3s ease-out; }
+  .nav .nav-drop > button.active { background: var(--ink); color: var(--paper); }
+  .nav .drop-menu {
+    display: none; position: absolute; top: calc(100% + 10px); left: 0; min-width: 200px;
+    margin: 0; padding: 8px; list-style: none;
+    background: var(--paper); border: 1px solid var(--line-strong); border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(20,20,20,0.14); z-index: 200;
+  }
+  .nav .nav-drop.open .drop-menu { display: block; }
+  .nav .drop-menu a { display: block; padding: 10px 14px; border-radius: 10px; }
+  .proof-note {
+    max-width: 960px; margin: 12px auto 0; padding: 0 24px;
+    font-size: 12px; line-height: 1.65; color: var(--gray); text-align: center;
+  }
+  @media (max-width: 940px) {
+    .nav .nav-drop { width: 100%; }
+    .nav .nav-drop > button { padding: 12px 16px; font-size: 14px; width: 100%; justify-content: space-between; }
+    .nav .drop-menu { position: static; border: 0; box-shadow: none; background: transparent; padding: 0 0 4px 16px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .nav .nav-drop > button, .nav .nav-drop > button::after, .nav .nav-drop > button .caret { transition: none; }
+  }
+</style>
 </head>
 <body>
-  <header class="site-header" id="top">
-    <a class="brand" href="index.html#home" aria-label="Preet Mehta home">
+    <header class="site-header" id="top">
+    <a class="brand" href="index.html" aria-label="Data with Preet home">
       <span class="brand-mark">DwP</span>
       <span class="brand-copy"><strong>DATA WITH PREET</strong><small>BY PREET MEHTA</small></span>
     </a>
     <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false"><span></span><span></span></button>
     <nav class="nav" aria-label="Primary navigation">
-      <a href="index.html#home">Home</a>
       <a href="index.html#about">About</a>
-      <a href="index.html#skills">Skills</a>
-      <a href="index.html#work">Work</a>
-      <a href="index.html#experience">Experience</a>
-      <a href="index.html#writing">Writing</a>       <a href="research.html">Research</a>
-      <a href="demos.html">Demos</a>
+      <div class="nav-drop">
+        <button type="button" aria-expanded="false" aria-haspopup="true">Work <span class="caret" aria-hidden="true">&#9662;</span></button>
+        <ul class="drop-menu" aria-label="Work sections">
+          <li><a href="index.html#work">Selected work</a></li>
+          <li><a href="index.html#skills">Skills</a></li>
+          <li><a href="index.html#experience">Experience</a></li>
+        </ul>
+      </div>
+      <div class="nav-drop">
+        <button type="button" aria-expanded="false" aria-haspopup="true">Writing <span class="caret" aria-hidden="true">&#9662;</span></button>
+        <ul class="drop-menu" aria-label="Writing sections">
+          <li><a href="index.html#writing">Articles</a></li>
+          <li><a href="research.html">Research</a></li>
+        </ul>
+      </div>
+      <a href="demos.html">AI Demos</a>
       <a class="active" href="resources.html">Resources</a>
       <a href="index.html#contact">Contact</a>
-      <span class="video-toggle-placeholder" aria-hidden="true"></span>
     </nav>
   </header>
 
@@ -253,5 +301,46 @@
     <div><span>© 2026 Preet Mehta</span></div>
   </footer>
   <script src="assets/js/main.js?v=20261015snrail"></script>
+  <script>
+  /* Consolidated-nav dropdowns (W1 canonical nav, propagated by W3): click/tap toggle, Escape, outside-click, focus-out; active parent when a submenu link is active */
+  (function(){
+    /* Consolidated-nav dropdowns: click/tap toggle, Escape, outside-click, focus-out; active parent when a submenu link is active */
+    var drops = Array.prototype.slice.call(document.querySelectorAll('.nav .nav-drop'));
+    function setOpen(drop, open) {
+      drop.classList.toggle('open', open);
+      drop.querySelector('button').setAttribute('aria-expanded', String(open));
+    }
+    function closeAll() { drops.forEach(function(d){ setOpen(d, false); }); }
+    drops.forEach(function(drop){
+      var btn = drop.querySelector('button');
+      btn.addEventListener('click', function(e){
+        e.stopPropagation();
+        var wasOpen = drop.classList.contains('open');
+        closeAll();
+        setOpen(drop, !wasOpen);
+      });
+      drop.addEventListener('keydown', function(e){
+        if (e.key === 'Escape') { setOpen(drop, false); btn.focus(); }
+      });
+      drop.addEventListener('focusout', function(e){
+        if (!drop.contains(e.relatedTarget)) setOpen(drop, false);
+      });
+    });
+    document.addEventListener('click', closeAll);
+    document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeAll(); });
+    var subLinks = document.querySelectorAll('.nav .drop-menu a');
+    if (subLinks.length && 'MutationObserver' in window) {
+      var syncActive = function(){
+        drops.forEach(function(drop){
+          var anyActive = !!drop.querySelector('.drop-menu a.active');
+          drop.querySelector('button').classList.toggle('active', anyActive);
+        });
+      };
+      var mo = new MutationObserver(syncActive);
+      Array.prototype.forEach.call(subLinks, function(a){ mo.observe(a, { attributes: true, attributeFilter: ['class'] }); });
+      syncActive();
+    }
+  })();
+  </script>
 </body>
 </html>
