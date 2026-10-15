@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Research, Publications &amp; Peer Review — Preet Mehta</title>
-  <meta name="description" content="Preet Mehta's academic footprint — verified researcher profiles, publications, and peer-review service in digital health, medical informatics, AI and data engineering.">
+  <title>Research — Preet Mehta</title>
+  <meta name="description" content="Research at the intersection of healthcare, AI and data — publications, research interests, peer review service and academic profiles of Preet Mehta.">
   <link rel="icon" href="assets/img/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -33,13 +33,25 @@
     .nav a, .nav a::after { transition: none; }
   }
   /* Research page extras */
-  .reviewer-list { list-style: none; margin: 18px 0 0; padding: 0; display: grid; gap: 10px; }
-  .reviewer-list li { display: flex; align-items: baseline; gap: 12px; font-size: 15px; }
-  .reviewer-list li::before { content: "→"; color: #E0632A; font-weight: 700; }
-  .reviewer-list small { color: var(--gray); }
+  .hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
+  .hero-ctas a { display: inline-flex; align-items: center; gap: 8px; padding: 13px 26px; border-radius: 999px; font-weight: 700; font-size: 14px; text-decoration: none; transition: transform .2s ease, background .2s ease, color .2s ease; }
+  .hero-ctas a.primary { background: var(--ink); color: var(--paper); }
+  .hero-ctas a.primary:hover { transform: translateY(-2px); }
+  .hero-ctas a.ghost { border: 1.5px solid var(--ink); color: var(--ink); background: transparent; }
+  .hero-ctas a.ghost:hover { background: var(--ink); color: var(--paper); }
+  .section-lead { font-size: 16px; line-height: 1.7; color: var(--ink); max-width: 72ch; margin: 0 0 20px; }
+  .jrnl-groups { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 6px; }
+  @media (max-width: 760px) { .jrnl-groups { grid-template-columns: 1fr; } }
+  .jrnl-group { border: 1px solid var(--line); border-radius: var(--radius); background: var(--card); padding: 20px 22px; }
+  .jrnl-group h3 { font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: #E0632A; margin: 0 0 12px; }
+  .jrnl-group ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+  .jrnl-group li { font-size: 14.5px; line-height: 1.5; }
+  .jrnl-group li span { display: block; font-size: 12.5px; color: var(--gray); }
   .integrity-note { margin-top: 22px; padding: 16px 18px; border-left: 3px solid #E0632A; background: rgba(224,99,42,.06); border-radius: 0 12px 12px 0; font-size: 14px; color: var(--ink); }
   .peer-review-body p { margin: 0 0 14px; font-size: 16px; line-height: 1.7; max-width: 68ch; }
   .peer-review-body p:last-child { margin-bottom: 0; }
+  .contact-card { border: 1px solid var(--line); border-radius: var(--radius); background: var(--card); padding: 28px; display: flex; flex-wrap: wrap; gap: 18px; align-items: center; justify-content: space-between; }
+  .contact-card p { margin: 0; font-size: 16px; max-width: 52ch; }
   </style>
 </head>
 <body>
@@ -65,14 +77,86 @@
 
   <main class="resources-page">
     <section class="resources-hero">
-      <div class="section-kicker">RESEARCH &amp; PEER REVIEW</div>
-      <h1>Research, Publications<br><em>&amp; Peer Review.</em></h1>
-      <p>My academic footprint — verified researcher profiles, published work, and service to the research community through peer review.</p>
-      <div class="resources-hero-pills"><span>ORCID VERIFIED</span><span>PEER REVIEWER</span><span>DIGITAL HEALTH</span><span>AI &amp; ML</span></div>
+      <div class="section-kicker">RESEARCH • HEALTHCARE • ARTIFICIAL INTELLIGENCE</div>
+      <h1>Research at the intersection<br><em>of healthcare, AI &amp; data.</em></h1>
+      <p>Exploring how machine learning, healthcare data systems, and digital technologies can solve real-world problems and improve decision-making.</p>
+      <div class="resources-hero-pills"><span>RESEARCH &amp; PUBLICATIONS</span><span>PEER REVIEW</span><span>HEALTHCARE AI</span></div>
+      <div class="hero-ctas">
+        <a class="primary" href="#publications">Explore Publications ↗</a>
+        <a class="ghost" href="#profiles">Academic Profiles ↗</a>
+      </div>
+    </section>
+
+    <section class="resource-library" id="publications">
+      <div class="resource-library-heading"><span>01</span><div><h2>Selected Research &amp; Publications</h2><p>Published work first. The full scholarly record, where available, is maintained on my Google Scholar profile.</p></div></div>
+      <div class="book-grid">
+        <div class="book-card">
+          <span class="book-badge">EXPRESS COMPUTER</span>
+          <h3>The $300 million lesson: Predict disenrollment before you knock on the door</h3>
+          <div class="book-author">Guest article · Oct 11, 2026</div>
+          <p>How predicting Medicaid disenrollment before scheduling home visits eliminated millions in wasted outreach — and the ethics of not knocking.</p>
+          <a class="book-link" href="https://www.expresscomputer.in/guest-blogs/the-300-million-lesson-predict-disenrollment-before-you-knock-on-the-door/139756/" target="_blank" rel="noopener">Read the article ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="resource-library" id="interests">
+      <div class="resource-library-heading"><span>02</span><div><h2>Research Interests</h2><p>Focus areas — including where I can evaluate manuscripts.</p></div></div>
+      <div class="resources-hero-pills">
+        <span>HEALTHCARE AI</span><span>MACHINE LEARNING</span><span>PREDICTIVE ANALYTICS</span><span>BIOMEDICAL INFORMATICS</span><span>DIGITAL HEALTH</span><span>HEALTHCARE DATA ENGINEERING</span><span>CLINICAL DATA INTEGRATION</span><span>DATA QUALITY &amp; GOVERNANCE</span><span>STATISTICAL MODELING</span><span>CLOUD DATA PLATFORMS</span>
+      </div>
+    </section>
+
+    <section class="resource-library" id="peer-review">
+      <div class="resource-library-heading"><span>03</span><div><h2>Peer Review &amp; Academic Service</h2><p>Service to the research community.</p></div></div>
+      <div class="peer-review-body">
+        <p>I contribute to the evaluation of scholarly research in digital health, medical informatics, artificial intelligence, machine learning, healthcare analytics, and data engineering.</p>
+        <p>My reviewing interests include digital health platforms, clinical decision support, healthcare data systems, predictive modeling, and technology-enabled care workflows.</p>
+        <p>I aim to support rigorous research by evaluating methodological soundness, reproducibility, interpretation of results, and the practical implications of new technologies.</p>
+      </div>
+      <p class="section-lead" style="margin-top:18px">I have established reviewer profiles across journals covering digital health, biomedical informatics, medical AI, and engineering. I welcome opportunities to contribute to suitable manuscripts aligned with my expertise.</p>
+      <div class="jrnl-groups">
+        <div class="jrnl-group">
+          <h3>Digital Health</h3>
+          <ul>
+            <li><strong>Journal of Medical Internet Research (JMIR)</strong><span>Reviewer profile registered</span></li>
+            <li><strong>JMIR AI</strong><span>Reviewer profile registered</span></li>
+            <li><strong>SAGE Digital Health</strong><span>Reviewer profile registered</span></li>
+            <li><strong>Frontiers in Digital Health</strong><span>Reviewer profile registered</span></li>
+          </ul>
+        </div>
+        <div class="jrnl-group">
+          <h3>Informatics</h3>
+          <ul>
+            <li><strong>Journal of the American Medical Informatics Association (JAMIA)</strong><span>Reviewer profile registered</span></li>
+            <li><strong>Journal of Biomedical Informatics</strong><span>Reviewer profile registered · via Elsevier</span></li>
+            <li><strong>International Journal of Medical Informatics</strong><span>Reviewer profile registered · via Elsevier</span></li>
+            <li><strong>BMC Medical Informatics and Decision Making</strong><span>Reviewer profile registered · via Springer Nature</span></li>
+          </ul>
+        </div>
+        <div class="jrnl-group">
+          <h3>Engineering &amp; AI</h3>
+          <ul>
+            <li><strong>NEJM AI</strong><span>Reviewer profile registered</span></li>
+            <li><strong>Artificial Intelligence in Medicine</strong><span>Reviewer profile registered · via Elsevier</span></li>
+            <li><strong>npj Digital Medicine</strong><span>Reviewer profile registered · via Springer Nature</span></li>
+          </ul>
+        </div>
+        <div class="jrnl-group">
+          <h3>General Science</h3>
+          <ul>
+            <li><strong>The Lancet Digital Health</strong><span>Reviewer profile registered · via Elsevier</span></li>
+            <li><strong>Scientific Reports</strong><span>Reviewer profile registered · via Springer Nature</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="integrity-note">
+        <strong>A note on disclosure.</strong> Journals above reflect reviewer registrations — I am registered as a potential reviewer and do not claim completed reviews or editorial-board roles I do not hold. I never disclose manuscript titles, author identities, or unpublished findings from confidential reviews.
+      </div>
     </section>
 
     <section class="resource-library" id="profiles">
-      <div class="resource-library-heading"><span>01</span><div><h2>Academic profiles</h2><p>Persistent, verifiable identifiers of my scholarly record.</p></div></div>
+      <div class="resource-library-heading"><span>04</span><div><h2>Academic Profiles</h2><p>Persistent, verifiable identifiers — independently check anything on this page.</p></div></div>
       <div class="book-grid">
         <div class="book-card">
           <span class="book-badge">IDENTIFIER</span>
@@ -105,41 +189,13 @@
       </div>
     </section>
 
-    <section class="resource-library" id="publications">
-      <div class="resource-library-heading"><span>02</span><div><h2>Publications</h2><p>Published work. The full scholarly record, where available, is maintained on my Google Scholar profile.</p></div></div>
-      <div class="book-grid">
-        <div class="book-card">
-          <span class="book-badge">EXPRESS COMPUTER</span>
-          <h3>The $300 million lesson: Predict disenrollment before you knock on the door</h3>
-          <div class="book-author">Guest article · Oct 11, 2026</div>
-          <p>How predicting Medicaid disenrollment before scheduling home visits eliminated millions in wasted outreach — and the ethics of not knocking.</p>
-          <a class="book-link" href="https://www.expresscomputer.in/guest-blogs/the-300-million-lesson-predict-disenrollment-before-you-knock-on-the-door/139756/" target="_blank" rel="noopener">Read the article ↗</a>
+    <section class="resource-library" id="collaborate">
+      <div class="resource-library-heading"><span>05</span><div><h2>Collaboration &amp; Contact</h2><p>For researchers, journal editors, and collaborators.</p></div></div>
+      <div class="contact-card">
+        <p><strong>Invite me to review.</strong> I welcome invitations to review manuscripts in healthcare AI, machine learning, biomedical informatics, predictive analytics, and data engineering — and to discuss research collaboration.</p>
+        <div class="hero-ctas" style="margin-top:0">
+          <a class="primary" href="mailto:preet.mehta.research@gmail.com">preet.mehta.research@gmail.com ↗</a>
         </div>
-      </div>
-    </section>
-
-    <section class="resource-library" id="peer-review">
-      <div class="resource-library-heading"><span>03</span><div><h2>Peer Review &amp; Academic Service</h2><p>Service to the research community.</p></div></div>
-      <div class="peer-review-body">
-        <p>I contribute to the evaluation of scholarly research in digital health, medical informatics, artificial intelligence, machine learning, healthcare analytics, and data engineering.</p>
-        <p>My reviewing interests include digital health platforms, clinical decision support, healthcare data systems, predictive modeling, and technology-enabled care workflows.</p>
-        <p>I aim to support rigorous research by evaluating methodological soundness, reproducibility, interpretation of results, and the practical implications of new technologies.</p>
-      </div>
-      <ul class="reviewer-list">
-        <li><span><strong>Journal of the American Medical Informatics Association (JAMIA)</strong><br><small>Registered reviewer</small></span></li>
-        <li><span><strong>SAGE Digital Health</strong><br><small>Registered reviewer</small></span></li>
-        <li><span><strong>NEJM AI</strong><br><small>Registered reviewer</small></span></li>
-        <li><span><strong>Elsevier Reviewer Hub</strong><br><small>Registered reviewer — The Lancet Digital Health, Journal of Biomedical Informatics, Artificial Intelligence in Medicine</small></span></li>
-      </ul>
-      <div class="integrity-note">
-        <strong>A note on disclosure.</strong> Journals above reflect reviewer registrations — I am registered as a potential reviewer and do not claim completed reviews or editorial-board roles I do not hold. I never disclose manuscript titles, author identities, or unpublished findings from confidential reviews.
-      </div>
-    </section>
-
-    <section class="resource-library" id="interests">
-      <div class="resource-library-heading"><span>04</span><div><h2>Research interests</h2><p>The problems I think about.</p></div></div>
-      <div class="resources-hero-pills">
-        <span>DIGITAL HEALTH PLATFORMS</span><span>CLINICAL DECISION SUPPORT</span><span>HEALTHCARE DATA SYSTEMS</span><span>PREDICTIVE MODELING</span><span>TECHNOLOGY-ENABLED CARE</span><span>MACHINE LEARNING</span><span>DATA ENGINEERING</span><span>MEDICAL INFORMATICS</span>
       </div>
     </section>
   </main>
