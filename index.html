@@ -136,6 +136,45 @@
   @media (prefers-reduced-motion: reduce) {
     .nav a, .nav a::after { transition: none; }
   }
+  /* ---- Consolidated nav dropdowns + metrics note (W1 overhaul, Oct 2026) ---- */
+  .nav .nav-drop { position: relative; }
+  .nav .nav-drop > button {
+    appearance: none; background: none; border: 0; cursor: pointer;
+    font: inherit; font-size: 13px; font-weight: 500; padding: 8px 14px; border-radius: 999px;
+    color: var(--ink-soft); white-space: nowrap; position: relative;
+    display: inline-flex; align-items: center; gap: 6px;
+    transition: font-weight .25s ease, color .25s ease, background .25s ease;
+  }
+  .nav .nav-drop > button .caret { font-size: 10px; line-height: 1; transition: transform .2s ease; }
+  .nav .nav-drop.open > button .caret { transform: rotate(180deg); }
+  .nav .nav-drop > button::after {
+    content: ""; position: absolute; bottom: 2px; left: 14px; right: 14px; height: 2px;
+    background: #E0632A; transform: scaleX(0); transform-origin: right center;
+    transition: transform .25s ease-in; pointer-events: none;
+  }
+  .nav .nav-drop > button:hover { background: transparent; font-weight: 700; color: var(--ink); }
+  .nav .nav-drop > button:hover::after { transform: scaleX(1); transform-origin: left center; transition: transform .3s ease-out; }
+  .nav .nav-drop > button.active { background: var(--ink); color: var(--paper); }
+  .nav .drop-menu {
+    display: none; position: absolute; top: calc(100% + 10px); left: 0; min-width: 200px;
+    margin: 0; padding: 8px; list-style: none;
+    background: var(--paper); border: 1px solid var(--line-strong); border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(20,20,20,0.14); z-index: 200;
+  }
+  .nav .nav-drop.open .drop-menu { display: block; }
+  .nav .drop-menu a { display: block; padding: 10px 14px; border-radius: 10px; }
+  .proof-note {
+    max-width: 960px; margin: 12px auto 0; padding: 0 24px;
+    font-size: 12px; line-height: 1.65; color: var(--gray); text-align: center;
+  }
+  @media (max-width: 940px) {
+    .nav .nav-drop { width: 100%; }
+    .nav .nav-drop > button { padding: 12px 16px; font-size: 14px; width: 100%; justify-content: space-between; }
+    .nav .drop-menu { position: static; border: 0; box-shadow: none; background: transparent; padding: 0 0 4px 16px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .nav .nav-drop > button, .nav .nav-drop > button::after, .nav .nav-drop > button .caret { transition: none; }
+  }
   </style>
 </head>
 <body>
@@ -158,13 +197,23 @@
     </a>
     <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false"><span></span><span></span></button>
     <nav class="nav" aria-label="Primary navigation">
-      <a class="active" href="#home">Home</a>
       <a href="#about">About</a>
-      <a href="#skills">Skills</a>
-      <a href="#work">Work</a>
-      <a href="#experience">Experience</a>
-      <a href="#writing">Writing</a>       <a href="research.html">Research</a>
-      <a href="demos.html">Demos</a>
+      <div class="nav-drop">
+        <button type="button" aria-expanded="false" aria-haspopup="true">Work <span class="caret" aria-hidden="true">&#9662;</span></button>
+        <ul class="drop-menu" aria-label="Work sections">
+          <li><a href="#work">Selected work</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#experience">Experience</a></li>
+        </ul>
+      </div>
+      <div class="nav-drop">
+        <button type="button" aria-expanded="false" aria-haspopup="true">Writing <span class="caret" aria-hidden="true">&#9662;</span></button>
+        <ul class="drop-menu" aria-label="Writing sections">
+          <li><a href="#writing">Articles</a></li>
+          <li><a href="research.html">Research</a></li>
+        </ul>
+      </div>
+      <a href="demos.html">AI Demos</a>
       <a href="resources.html">Resources</a>
       <a href="#contact">Contact</a>
       <button class="video-toggle" id="videoToggle" aria-label="Pause intro video" title="Pause intro video">⏸</button>
@@ -184,6 +233,44 @@
     cta.addEventListener('focus', function(){ cta.classList.add('is-hover'); });
     cta.addEventListener('blur', function(){ cta.classList.remove('is-hover'); });
   })();
+  (function(){
+    /* Consolidated-nav dropdowns: click/tap toggle, Escape, outside-click, focus-out; active parent when a submenu link is active */
+    var drops = Array.prototype.slice.call(document.querySelectorAll('.nav .nav-drop'));
+    function setOpen(drop, open) {
+      drop.classList.toggle('open', open);
+      drop.querySelector('button').setAttribute('aria-expanded', String(open));
+    }
+    function closeAll() { drops.forEach(function(d){ setOpen(d, false); }); }
+    drops.forEach(function(drop){
+      var btn = drop.querySelector('button');
+      btn.addEventListener('click', function(e){
+        e.stopPropagation();
+        var wasOpen = drop.classList.contains('open');
+        closeAll();
+        setOpen(drop, !wasOpen);
+      });
+      drop.addEventListener('keydown', function(e){
+        if (e.key === 'Escape') { setOpen(drop, false); btn.focus(); }
+      });
+      drop.addEventListener('focusout', function(e){
+        if (!drop.contains(e.relatedTarget)) setOpen(drop, false);
+      });
+    });
+    document.addEventListener('click', closeAll);
+    document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeAll(); });
+    var subLinks = document.querySelectorAll('.nav .drop-menu a');
+    if (subLinks.length && 'MutationObserver' in window) {
+      var syncActive = function(){
+        drops.forEach(function(drop){
+          var anyActive = !!drop.querySelector('.drop-menu a.active');
+          drop.querySelector('button').classList.toggle('active', anyActive);
+        });
+      };
+      var mo = new MutationObserver(syncActive);
+      Array.prototype.forEach.call(subLinks, function(a){ mo.observe(a, { attributes: true, attributeFilter: ['class'] }); });
+      syncActive();
+    }
+  })();
   </script>
 
   <main>
@@ -195,12 +282,13 @@
         <div class="hero-copy">
           <div class="hero-eyebrow reveal"><span class="dot"></span> DATA • ANALYTICS • AI/ML</div>
           <h1 class="reveal" style="--reveal-delay:.08s">Data Engineer<br><span class="serif">for high-stakes data.</span></h1>
-          <p class="hero-sub reveal" style="--reveal-delay:.16s">I&rsquo;m Preet Mehta — I build governed data platforms, model-ready pipelines, and applied AI systems for healthcare and beyond.</p>
+          <p class="hero-sub reveal" style="--reveal-delay:.16s">I&rsquo;m Preet Mehta, a healthcare analytics leader focused on building reliable data platforms, scalable pipelines, and data foundations for machine learning. I also teach data engineering and develop practical AI demos to help others learn by building.</p>
           <div class="hero-actions reveal" style="--reveal-delay:.24s">
-            <a class="btn btn-dark" href="#work">Explore selected work <span class="arr">→</span></a>
-            <a class="btn btn-light" href="#contact">Let&rsquo;s talk</a>
+            <!-- W1: primary CTA -> strongest case study (Model-Ready Data, most evidence-rich); choice needs Preet's input; coordinate with W2 on §3G-7 anchors -->
+            <a class="btn btn-dark" href="journey/exl-service.html">Explore selected work <span class="arr">→</span></a>
+            <a class="btn btn-light" href="#contact">Let&rsquo;s connect</a>
           </div>
-          <p class="hero-demos-link reveal" style="--reveal-delay:.28s"><a href="demos.html">Try the AI demos →</a></p>
+          <p class="hero-demos-link reveal" style="--reveal-delay:.28s"><a href="demos.html">Explore AI demos →</a></p>
           
         </div>
         <div class="hero-visual reveal" style="--reveal-delay:.2s">
@@ -220,11 +308,12 @@
     </section>
 
     <div class="proof-strip reveal" aria-label="Career highlights">
-      <span>10 yrs data engineering</span><i aria-hidden="true">&middot;</i>
-      <span>$4M saved via production ML</span><i aria-hidden="true">&middot;</i>
-      <span>3,000+ students mentored</span><i aria-hidden="true">&middot;</i>
+      <span>9+ yrs data engineering</span><i aria-hidden="true">&middot;</i>
+      <span>$4M saved*</span><i aria-hidden="true">&middot;</i>
+      <span>3,000+ learners reached*</span><i aria-hidden="true">&middot;</i>
       <span>20K+ LinkedIn followers</span>
     </div>
+    <p class="proof-note">* $4M is the reported outcome of the production Medicaid churn program &mdash; the exact baseline, measurement period, and attribution are pending Preet&rsquo;s confirmation (methodology in the case study). &ldquo;Learners reached&rdquo; spans direct teaching, mentoring, community events, and content; the direct-vs-community breakdown is pending his confirmation. LinkedIn follower count kept as last stated; currency unverified.</p>
 
 
 
@@ -233,9 +322,9 @@
       <h2 class="section-title reveal">Hi, I&rsquo;m <span class="serif">Preet.</span></h2>
       <div class="about-grid-3">
         <div class="about-copy reveal">
-          <p>I work at the intersection of <strong>data engineering, analytics and business outcomes</strong> — designing pipelines and platforms that make data usable, governed and ready for decisions.</p>
-          <p>The last six years have been in <strong>healthcare</strong> — claims, clinical, enrollment, survey and operational data — but the craft underneath is domain-agnostic: pipelines, platforms, product analytics and ML systems that people can trust.</p>
-          <p>Outside of work I teach, judge hackathons, mentor students and write <strong>Healthcare for Data Engineers</strong> — a practical series for people working with healthcare data.</p>
+          <p>I solve the problems that sit between raw data and decisions that can&rsquo;t be wrong: healthcare data fragmented across claims, clinical, enrollment, and operational systems; pipelines that teams quietly stop trusting; machine learning work that stalls because the data foundations were never built.</p>
+          <p>What&rsquo;s distinctive about my approach is that governance, quality, and lineage get designed in from the start &mdash; not bolted on after something breaks. I&rsquo;m problem-first and tool-agnostic: the same discipline applies whether the stack is Databricks or BigQuery, and the patterns that work in production become demos, architecture notes, and articles so others can learn from them.</p>
+          <p>Beyond the day job, I teach data engineering, judge hackathons, and mentor students &mdash; including through UMass Boston&rsquo;s AI programs. I organize the Boston Databricks User Group, run a 1,500-member data engineering community, and write <strong>Healthcare for Data Engineers</strong>, a practical series for people working with healthcare data.</p>
           <div class="about-cta">
             <a class="btn btn-dark" href="https://www.linkedin.com/in/preetmehta/" target="_blank" rel="noopener">LinkedIn <span class="arr">→</span></a>
             <a class="btn btn-light" href="https://github.com/ynpreet" target="_blank" rel="noopener">GitHub ↗</a>
@@ -252,7 +341,7 @@
                   <div class="id-photo"><img src="assets/img/preet-creator.jpg" alt="Preet Mehta"></div>
                   <div class="id-name"><b>PREET MEHTA</b><span>DATA ENGINEER</span></div>
                   <div class="id-meta">
-                    <div><span>ID</span><span>PM-0001</span></div>
+                    <div><span>SINCE</span><span>2017</span></div>
                     <div><span>FOCUS</span><span>Healthcare Data</span></div>
                     <div><span>VALID</span><span>∞</span></div>
                   </div>
@@ -266,7 +355,7 @@
                       <li><span>ROLE</span><span>Manager, Healthcare Analytics @ EXL</span></li>
                       <li><span>STACK</span><span>Databricks · Spark · SQL</span></li>
                       <li><span>WRITES</span><span>Healthcare for Data Engineers</span></li>
-                      <li><span>COMMUNITY</span><span>3,000+ mentored</span></li>
+                      <li><span>COMMUNITY</span><span>3,000+ learners reached</span></li>
                     </ul>
                     <p class="id-quote">&ldquo;Turning complex data into systems people can trust.&rdquo;</p>
                   </div>
