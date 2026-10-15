@@ -877,3 +877,46 @@
     bindText(el);
   });
 })();
+
+/* Cursor-move horizontal scroll for the Writing card rail (#sn-rail).
+   Mouse only: moving the cursor left/right across the rail glides the cards.
+   Touch devices keep native one-finger swipe. Clicks on cards still work. */
+(function () {
+  var rail = document.getElementById('sn-rail');
+  if (!rail) return;
+  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var target = 0, current = 0, raf = null, hovering = false;
+
+  function maxScroll() { return Math.max(0, rail.scrollWidth - rail.clientWidth); }
+  function tick() {
+    current += (target - current) * 0.1;
+    if (Math.abs(target - current) < 0.5) current = target;
+    rail.scrollLeft = current;
+    if (hovering && current !== target) raf = requestAnimationFrame(tick);
+    else raf = null;
+  }
+  function kick() { if (!raf) raf = requestAnimationFrame(tick); }
+
+  rail.addEventListener('mouseenter', function () {
+    hovering = true;
+    current = rail.scrollLeft;
+    target = current;
+  });
+  rail.addEventListener('mousemove', function (e) {
+    var rect = rail.getBoundingClientRect();
+    var ratio = (e.clientX - rect.left) / rect.width;
+    ratio = Math.min(1, Math.max(0, ratio));
+    target = ratio * maxScroll();
+    kick();
+  });
+  rail.addEventListener('mouseleave', function () {
+    hovering = false;
+    kick(); /* one last glide to settle */
+  });
+  /* Stay in sync if the user scrolls by wheel/keyboard instead. */
+  rail.addEventListener('scroll', function () {
+    if (!hovering) { current = rail.scrollLeft; target = current; }
+  }, { passive: true });
+})();
