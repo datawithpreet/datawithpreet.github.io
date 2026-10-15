@@ -69,9 +69,10 @@
       <li>Shipped a Medicaid member-churn ML model that told the team exactly which members to reach out to</li>
         </ul>
         <div class="j-metrics">
-      <div><b>$4M</b><span>saved by the churn model</span></div>
+      <div><b>$4M*</b><span>saved by the churn model</span></div>
       <div><b>4</b><span>lines of business</span></div>
         </div>
+        <p class="j-note">*$4M is the reported outcome of the production Medicaid churn program — the exact baseline, measurement period, and attribution are pending confirmation.</p>
         <div class="j-tags"><span>Auto Loader</span><span>Risk Adjustment</span><span>Machine Learning</span><span>Dashboards</span></div>
       </div>
       <div class="j-chapter " id="stars" data-chapter="stars">
@@ -113,5 +114,30 @@
     <a class="to-top" href="#top">Back to top &uarr;</a>
   </footer>
   <script src="../assets/js/main.js"></script>
+  <script>
+  /* Chapter tabs: bind buttons, support #rcm/#risk/#stars deep links */
+  (function () {
+    var btns = document.querySelectorAll('.j-subnav [data-chapter]');
+    var chapters = document.querySelectorAll('.j-chapter[data-chapter]');
+    if (!btns.length || !chapters.length) return;
+    function activate(name, push) {
+      btns.forEach(function (b) {
+        var on = b.dataset.chapter === name;
+        b.classList.toggle('is-active', on);
+        b.setAttribute('aria-selected', on ? 'true' : 'false');
+      });
+      chapters.forEach(function (ch) {
+        ch.classList.toggle('is-active', ch.dataset.chapter === name);
+      });
+      if (push) { try { history.replaceState(null, '', '#' + name); } catch (e) {} }
+    }
+    btns.forEach(function (b) {
+      b.addEventListener('click', function () { activate(b.dataset.chapter, true); });
+    });
+    var h = (location.hash || '').replace('#', '');
+    var valid = Array.prototype.some.call(chapters, function (ch) { return ch.dataset.chapter === h; });
+    if (valid) activate(h, false);
+  })();
+  </script>
 </body>
 </html>
