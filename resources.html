@@ -3,16 +3,43 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Free Resources | Preet Mehta</title>
-  <meta name="description" content="Free data engineering books, resume templates, videos and mock interview questions curated by Preet Mehta.">
+  <title>Resources | Preet Mehta</title>
+  <meta name="description" content="Data engineering books, resume templates, videos and interview questions curated by Preet Mehta.">
   <link rel="icon" href="assets/img/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css?v=20261015hdr">
-  <meta property="og:title" content="Free Resources | Preet Mehta">
+  <meta property="og:title" content="Resources | Preet Mehta">
   <meta property="og:image" content="https://datawithpreet.github.io/assets/img/preet-creator.jpg">
   <noscript><style>.reveal{opacity:1!important;transform:none!important}.section-title{clip-path:none!important}</style></noscript>
+  <style>
+    /* ---------- Resources page — scoped additions (overhaul §6) ---------- */
+    .book-badge.paid { display: inline-block; color: #1b6f6a; border: 1px solid rgba(42,161,152,.5);
+      background: rgba(42,161,152,.08); padding: 4px 10px; border-radius: 20px; align-self: flex-start; }
+    .paths-subhead { margin: 34px 0 18px; }
+    .paths-subhead h3 { font-family: var(--font-display); font-size: 19px; margin: 0 0 6px; letter-spacing: -.01em; }
+    .paths-subhead p { font-size: 14px; color: var(--gray); margin: 0; }
+    .template-meta { display: flex; flex-wrap: wrap; gap: 8px 22px; margin: 2px 0 18px; font-size: 13.5px; color: var(--gray); line-height: 1.6; }
+    .template-meta strong { color: var(--ink); }
+    .video-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 18px; }
+    .video-card { border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; display: flex; flex-direction: column; background: #fff; }
+    .video-badge { font-size: 10px; letter-spacing: 0.22em; font-weight: 700; color: var(--teal); margin-bottom: 12px; display: block; }
+    .video-card h3 { font-family: var(--font-display); font-size: 18px; letter-spacing: -.01em; line-height: 1.3; margin: 0 0 10px; }
+    .video-meta { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 12px; }
+    .video-meta span { font-size: 11px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase;
+      color: var(--gray); border: 1px solid var(--line); border-radius: 999px; padding: 5px 11px; }
+    .video-card p { font-size: 13.5px; color: var(--gray); line-height: 1.6; flex: 1; margin: 0 0 14px; }
+    .qa-item { border: 1px solid var(--line); border-radius: 12px; margin-bottom: 10px; background: #fff; }
+    .qa-item summary { cursor: pointer; padding: 16px 20px; font-size: 15px; font-weight: 600; line-height: 1.5; list-style: none; }
+    .qa-item summary::-webkit-details-marker { display: none; }
+    .qa-item summary .qa-tag { display: inline-block; font-size: 11px; font-weight: 800; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--teal); border: 1px solid rgba(42,161,152,.4);
+      border-radius: 999px; padding: 3px 10px; margin-right: 10px; vertical-align: 1px; }
+    .qa-item .qa-body { padding: 0 20px 18px; font-size: 14.5px; color: var(--gray); line-height: 1.7; }
+    .qa-item .qa-body strong { color: var(--ink); }
+    .qa-list-note { font-size: 13.5px; color: var(--gray); margin: 16px 0 0; }
+  </style>
 </head>
 <body>
   <header class="site-header" id="top">
@@ -37,10 +64,10 @@
 
   <main class="resources-page">
     <section class="resources-hero">
-      <div class="section-kicker">FREE RESOURCE LIBRARY</div>
+      <div class="section-kicker">RESOURCE LIBRARY</div>
       <h1>Learn something.<br><em>Build something.</em></h1>
       <p>A practical collection of resources for aspiring and working data engineers — books, career templates, videos and interview preparation.</p>
-      <div class="resources-hero-pills"><span>100% FREE</span><span>DATA ENGINEERING</span><span>CAREER</span><span>INTERVIEW PREP</span></div>
+      <div class="resources-hero-pills"><span>DATA ENGINEERING</span><span>CAREER</span><span>INTERVIEW PREP</span></div>
     </section>
 
     <section class="resource-library" id="books">
@@ -54,21 +81,21 @@
           <a class="book-link" data-track="book-de-cookbook" href="https://github.com/andkret/Cookbook" target="_blank" rel="noopener">Read free ↗</a>
         </div>
         <div class="book-card">
-          <span class="book-badge">O'REILLY</span>
+          <span class="book-badge paid">PAID · O&#8217;REILLY</span>
           <h3>Fundamentals of Data Engineering</h3>
           <div class="book-author">Joe Reis & Matt Housley</div>
           <p>The modern data engineering lifecycle end to end — generation, ingestion, orchestration, transformation, storage and governance.</p>
           <a class="book-link" data-track="book-fundamentals-de" href="https://www.oreilly.com/library/view/fundamentals-of-data/9781098108298/" target="_blank" rel="noopener">Get the book ↗</a>
         </div>
         <div class="book-card">
-          <span class="book-badge">O'REILLY</span>
+          <span class="book-badge paid">PAID · O&#8217;REILLY</span>
           <h3>Designing Data-Intensive Applications</h3>
           <div class="book-author">Martin Kleppmann</div>
           <p>The bible of data systems: storage engines, replication, partitioning, transactions and stream processing, from first principles.</p>
           <a class="book-link" data-track="book-ddia" href="https://dataintensive.net/" target="_blank" rel="noopener">Get the book ↗</a>
         </div>
         <div class="book-card">
-          <span class="book-badge">O'REILLY</span>
+          <span class="book-badge paid">PAID · O&#8217;REILLY</span>
           <h3>Learning Spark, 2nd Edition</h3>
           <div class="book-author">Jules Damji, Brooke Wenig, Tathagata Das & Denny Lee</div>
           <p>Apache Spark 3 from the ground up — DataFrames, Spark SQL, Structured Streaming and MLlib with hands-on examples.</p>
@@ -82,14 +109,14 @@
           <a class="book-link" data-track="book-kafka-guide" href="https://www.confluent.io/resources/kafka-the-definitive-guide/" target="_blank" rel="noopener">Get the free ebook ↗</a>
         </div>
         <div class="book-card">
-          <span class="book-badge">O'REILLY</span>
+          <span class="book-badge paid">PAID · O&#8217;REILLY</span>
           <h3>Python for Data Analysis, 3rd Edition</h3>
           <div class="book-author">Wes McKinney</div>
           <p>The definitive pandas, NumPy and Jupyter handbook — from the creator of pandas himself.</p>
           <a class="book-link" data-track="book-python-data-analysis" href="https://www.oreilly.com/library/view/python-for-data/9781098104023/" target="_blank" rel="noopener">Get the book ↗</a>
         </div>
         <div class="book-card">
-          <span class="book-badge">O'REILLY</span>
+          <span class="book-badge paid">PAID · O&#8217;REILLY</span>
           <h3>Fluent Python, 2nd Edition</h3>
           <div class="book-author">Luciano Ramalho</div>
           <p>Write idiomatic, effective Python — data structures, functions, OOP, concurrency and metaprogramming done right.</p>
@@ -110,6 +137,34 @@
           <a class="book-link" data-track="book-automate-boring" href="https://automatetheboringstuff.com/" target="_blank" rel="noopener">Read free ↗</a>
         </div>
       </div>
+          <div class="paths-subhead">
+        <h3>Beyond books: free learning paths</h3>
+        <p>Short, practical paths for going deeper — all free to start.</p>
+      </div>
+      <div class="book-grid">
+        <div class="book-card">
+          <span class="book-badge free">FREE TO AUDIT</span>
+          <h3>Agentic AI</h3>
+          <div class="book-author">DeepLearning.AI · Andrew Ng</div>
+          <p>The four agentic design patterns — reflection, tool use, planning, multi-agent — with evaluation and error analysis woven throughout. Free to audit; paid certificate optional.</p>
+          <a class="book-link" data-track="path-agentic-ai" href="https://www.deeplearning.ai/courses/agentic-ai/" target="_blank" rel="noopener">Open course ↗</a>
+        </div>
+        <div class="book-card">
+          <span class="book-badge free">FREE</span>
+          <h3>AI Agents Course</h3>
+          <div class="book-author">Hugging Face</div>
+          <p>Build agents with smolagents, LlamaIndex and LangGraph, then ship your own to a public leaderboard. Free and certified.</p>
+          <a class="book-link" data-track="path-hf-agents" href="https://huggingface.co/learn/agents-course" target="_blank" rel="noopener">Open course ↗</a>
+        </div>
+        <div class="book-card">
+          <span class="book-badge free">FREE</span>
+          <h3>LangChain Academy</h3>
+          <div class="book-author">LangChain</div>
+          <p>Official courses on LangGraph agents, Deep Agents and LangSmith — straight from the team building the frameworks. Always free.</p>
+          <a class="book-link" data-track="path-langchain-academy" href="https://academy.langchain.com/" target="_blank" rel="noopener">Open academy ↗</a>
+        </div>
+      </div>
+
     </section>
 
     <section class="resource-library" id="resume">
@@ -119,7 +174,11 @@
         <div class="template-body">
           <span class="template-badge">FREE DOWNLOAD</span>
           <h3>Data Engineering Resume Template</h3>
-          <p>The one-page format I recommend for data, analytics and engineering roles — clean structure, hiring-manager friendly, and built to pass ATS scans. Preview it in Google Docs, then use <em>File &rarr; Make a copy</em> to edit your own version.</p>
+          <p>The one-page format I recommend for data, analytics and engineering roles — clean structure, hiring-manager friendly, and designed with a clean, ATS-friendly structure. Preview it in Google Docs, then use <em>File &rarr; Make a copy</em> to edit your own version.</p>
+                    <div class="template-meta">
+            <span><strong>File types:</strong> .docx and PDF, exported from the live Google Doc</span>
+            <span><strong>Last updated:</strong> this is a living document — its full revision history is inside the Google Doc</span>
+          </div>
           <div class="template-actions">
             <a class="btn btn-dark" data-track="resume-template-docx" href="https://docs.google.com/document/d/1izT-7qBWgau2EMpTWKyx6bhzueRdrl5M/export?format=docx">Download .docx</a>
             <a class="btn btn-light" data-track="resume-template-pdf" href="https://docs.google.com/document/d/1izT-7qBWgau2EMpTWKyx6bhzueRdrl5M/export?format=pdf">Download PDF</a>
@@ -131,12 +190,54 @@
 
     <section class="resource-library" id="videos">
       <div class="resource-library-heading"><span>03</span><div><h2>Video Library</h2><p>Talks, workshops, tutorials and useful videos covering data engineering, Spark, Databricks and healthcare data.</p></div></div>
-      <div class="resource-empty">▶ <strong>Video collection coming here.</strong><span>Talks and educational videos will be organized by topic so you can learn without hunting across platforms.</span></div>
+            <div class="video-grid">
+        <div class="video-card">
+          <span class="video-badge">TALK</span>
+          <h3>Boston Databricks User Group — Kickoff Event</h3>
+          <div class="video-meta"><span>Medallion Architecture</span><span>Intermediate</span><span>≈60 min+ session</span></div>
+          <p>Preet&rsquo;s talk: implementing Medallion Architecture with Spark in healthcare, using a metadata-driven approach. Full kickoff session on his channel — two 30-minute talks plus Q&amp;A (per the published agenda), recorded September 19, 2026.</p>
+          <a class="book-link" data-track="video-kickoff" href="https://youtu.be/M9ePYWIrNo4" target="_blank" rel="noopener">Watch on YouTube ↗</a>
+        </div>
+        <div class="video-card">
+          <span class="video-badge">TALK</span>
+          <h3>Implementing Medallion Architecture using Spark</h3>
+          <div class="video-meta"><span>Medallion Architecture</span><span>Intermediate</span><span>Duration not listed</span></div>
+          <p>The same Medallion Architecture talk, on DataFlint&rsquo;s channel — Preet Mehta, EXL. Duration isn&rsquo;t listed on the video page.</p>
+          <a class="book-link" data-track="video-dataflint" href="https://youtu.be/LnMioyUWf1Q" target="_blank" rel="noopener">Watch on YouTube ↗</a>
+        </div>
+      </div>
+
     </section>
 
     <section class="resource-library" id="mock-interviews">
       <div class="resource-library-heading"><span>04</span><div><h2>Mock Interview Questions</h2><p>Interview practice across SQL, Python, Spark, Databricks, data modeling, system design and real-world scenarios.</p></div></div>
-      <div class="resource-empty">◎ <strong>Question bank coming here.</strong><span>I’ll keep expanding this with practical questions and scenario-based interview preparation.</span></div>
+            <div class="qa-list">
+        <details class="qa-item">
+          <summary><span class="qa-tag">SQL</span>Find the second-highest salary in each department — without using LIMIT or OFFSET.</summary>
+          <p class="qa-body"><strong>What a good answer covers:</strong> use <code>DENSE_RANK() OVER (PARTITION BY department ORDER BY salary DESC)</code> in a CTE, then filter for rank = 2. <code>DENSE_RANK</code> (not <code>ROW_NUMBER</code>) handles ties: if two people share the top salary, both are rank 1 and the next distinct salary is rank 2. Window functions run after <code>WHERE</code>/<code>GROUP BY</code>, which is why the ranking has to happen in a subquery or CTE.</p>
+        </details>
+        <details class="qa-item">
+          <summary><span class="qa-tag">Apache Spark</span>What&rsquo;s the difference between a narrow and a wide transformation, and why should you care?</summary>
+          <p class="qa-body"><strong>What a good answer covers:</strong> narrow transformations (<code>map</code>, <code>filter</code>) compute per partition with no data movement; wide ones (<code>groupBy</code>, <code>join</code>, <code>repartition</code>) force a shuffle — data moves across the network between executors. Fewer wide stages usually means a faster job: reduce before shuffling (map-side combine), avoid skewed keys, and prefer broadcast joins for small tables.</p>
+        </details>
+        <details class="qa-item">
+          <summary><span class="qa-tag">Data modeling</span>Explain the medallion (bronze / silver / gold) architecture and the quality rules you&rsquo;d apply at each layer.</summary>
+          <p class="qa-body"><strong>What a good answer covers:</strong> bronze is raw, append-only data as it arrived — no quality rules beyond capturing it. Silver is cleaned, deduplicated and typed: enforce not-null keys, valid ranges and a consistent grain here. Gold is aggregated, business-ready data with contract tests (row counts, freshness SLAs, reconciliation against silver). Each layer narrows who can depend on it.</p>
+        </details>
+        <details class="qa-item">
+          <summary><span class="qa-tag">Python</span>How would you process a 50&nbsp;GB CSV on a machine with 8&nbsp;GB of RAM?</summary>
+          <p class="qa-body"><strong>What a good answer covers:</strong> never load it all — stream in chunks (e.g. <code>read_csv</code> with <code>chunksize</code>, or a generator), aggregate per chunk and combine partial results. For joins or group-bys that don&rsquo;t fit, use disk-backed tools (DuckDB, Dask, Spark) or a two-pass sort-merge. The principle: bound your memory by the chunk, not the file.</p>
+        </details>
+        <details class="qa-item">
+          <summary><span class="qa-tag">Orchestration</span>What makes an Airflow pipeline idempotent, and why does it matter?</summary>
+          <p class="qa-body"><strong>What a good answer covers:</strong> re-running a task for the same date produces the same result — no duplicates, no partial writes. Achieve it with deterministic task boundaries (one logical date = one partition) and upserts or delete-and-rewrite on the target partition instead of in-place appends. It matters because Airflow retries and backfills constantly; a non-idempotent task doubles your data the first time it retries.</p>
+        </details>
+        <details class="qa-item">
+          <summary><span class="qa-tag">Scenario</span>Tell me about a data quality incident you found in production. How did you detect it, and what guardrails did you add?</summary>
+          <p class="qa-body"><strong>What a good answer covers:</strong> interviewers want structure — detection (dashboard, alert, or a downstream complaint), root cause (upstream schema change, late data, broken join), impact (who saw wrong numbers), and prevention: a data-quality check (dbt tests, Great Expectations, or a simple row-count/freshness alert) wired into the pipeline so it fails loudly next time. Close with what you&rsquo;d monitor, not just what you fixed.</p>
+        </details>
+      </div>
+      <p class="qa-list-note">Want more? Each demo on the <a href="demos.html">AI Demos</a> page ships with a guided build you can talk through in an interview.</p>
     </section>
 
     <section class="resource-cta">
