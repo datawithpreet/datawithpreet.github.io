@@ -141,6 +141,18 @@
       .demo-card { padding: 22px 20px; }
     }
 
+    /* ===== Compact status badges + honest disclosures (overhaul §5) ===== */
+    .demo-badges { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 16px; }
+    .demo-badge { font-size: 11.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+      border: 1px solid var(--line-strong); border-radius: 999px; padding: 6px 13px;
+      color: var(--ink); background: #fff; }
+    .demo-badge--live { border-color: rgba(37,99,235,.5); background: #eef4ff; color: #1d4ed8; }
+    .demo-badge--synth { border-color: rgba(180,83,9,.5); background: #fdf6e9; color: #92400e; }
+    .demo-disclaimer { margin: 0 0 18px; padding: 14px 18px; border-left: 4px solid var(--accent);
+      background: rgba(27,42,74,.045); border-radius: 0 12px 12px 0;
+      font-size: 14.5px; line-height: 1.65; color: #33415e; }
+    .demo-disclaimer strong { color: var(--ink); }
+
     /* ===== Demos hub: tab system ===== */
     /* ADDING A NEW TAB: add one <button class="tab-btn" data-tab="your-id"> in .tab-bar
        and one <div class="tab-panel" id="tab-your-id"> right after the other panels. */
@@ -238,7 +250,6 @@
       <button class="tab-btn active" data-tab="tab-agentic">Agentic AI</button>
       <button class="tab-btn" data-tab="tab-checklist">Builder's Checklist</button>
       <button class="tab-btn" data-tab="tab-learn">Learn Agentic AI</button>
-      <button class="tab-btn" data-tab="tab-soon" disabled>More collections soon</button>
     </nav>
 
     <div class="tab-panel active" id="tab-agentic">
@@ -348,9 +359,14 @@
 <!-- ================= DEMO 01 ================= -->
     <section class="resource-library" id="demo-care">
       <div class="demo-kicker">01 · Healthcare · Agentic AI</div>
-      <article class="demo-card" data-cursor-label="View Demo">
+      <article class="demo-card" data-cursor-label="Explore project">
         <a class="demo-img-link" href="projects/care-management.html" aria-label="Explore the project"><img class="demo-img" src="assets/demos/care-management-outcome.webp" alt="Care coordinator using the Care Outreach Agent dashboard — personalized outreach, care gap closure, appointment scheduling, outcome tracking" loading="lazy"><span class="demo-img-overlay"><span>Explore the project →</span></span></a>
         <h3 class="demo-headline">Stop Sending Generic Messages. Start Driving Member Action.</h3>
+        <div class="demo-badges" role="list" aria-label="How to access this demo">
+          <span class="demo-badge" role="listitem">Run locally</span>
+          <span class="demo-badge" role="listitem">Source code available</span>
+          <span class="demo-badge demo-badge--synth" role="listitem">Prototype using synthetic data</span>
+        </div>
         <p class="demo-desc">Health plans don't just need to reach members&mdash;they need to motivate them to act. See how AI agents can personalize outreach, select appropriate communication channels, and coordinate follow-ups to help close care gaps.</p>
     <dl class="demo-facts">
       <div><dt>How it works</dt><dd>Five chained agents — identity check → clinical-risk scoring (0–100) → channel selection → care-plan assembly, each with one input/output contract.</dd></div>
@@ -358,6 +374,7 @@
       <div><dt>Data</dt><dd>Fictional — 3 synthetic patients in a local file; no network calls.</dd></div>
       <div><dt>Human oversight</dt><dd>Urgent symptoms escalate to a clinician/911 handoff before scoring; a privacy guard blocks other patients’ data.</dd></div>
     </dl>
+        <p class="demo-disclaimer"><strong>Demo prototype — not a validated clinical system.</strong> The patients are fictional and the clinical-risk scoring is illustrative; this is built for learning how care agents work, not for making care decisions. In any real deployment, every decision that touches a member’s care must be made or reviewed by a qualified clinician — the demo’s clinician/911 escalation for urgent symptoms is the floor, not the standard.</p>
         <p class="demo-proof"><strong>Real-world signal:</strong> Aetna reported an 80%+ increase in overall member engagement with its enhanced RCS messaging experience. <a href="https://www.cvshealth.com/news/company-news/aetna-launches-simplified-digital-first-benefits-onboarding-experience.html" target="_blank" rel="noopener">Source: CVS Health &#8599;</a></p>
         <div class="demo-actions">
           <a class="btn btn-primary" href="projects/care-management.html">Explore the project &#8599;</a>
@@ -370,9 +387,14 @@
     <!-- ================= DEMO 02 (FLAGSHIP) ================= -->
     <section class="resource-library" id="demo-hhv">
       <div class="demo-kicker">02 · Medicare Advantage · Agentic AI</div>
-      <article class="demo-card" data-cursor-label="View Demo">
+      <article class="demo-card" data-cursor-label="Explore project">
         <a class="demo-img-link" href="projects/hhv-copilot.html" aria-label="Explore the project"><img class="demo-img" src="assets/demos/hhv-copilot-outcome.webp" alt="Home-health nurse smiling with an elderly patient during an in-home assessment visit" loading="lazy"><span class="demo-img-overlay"><span>Explore the project →</span></span></a>
         <h3 class="demo-headline">A Nurse Can&rsquo;t Visit Every Member. Who Should Get the Visit First?</h3>
+        <div class="demo-badges" role="list" aria-label="How to access this demo">
+          <span class="demo-badge" role="listitem">Run locally</span>
+          <span class="demo-badge" role="listitem">Source code available</span>
+          <span class="demo-badge demo-badge--synth" role="listitem">Prototype using synthetic data</span>
+        </div>
         <p class="demo-desc">Use predictive analytics and agentic AI to prioritize members for in-home assessments, uncover potential care gaps, and coordinate follow-up&mdash;helping health plans direct limited clinical resources where they may matter most.</p>
     <dl class="demo-facts">
       <div><dt>How it works</dt><dd>One orchestrator runs six stages — member identification → outreach and scheduling → assessment interpretation → care-gap detection → follow-up coordination → program performance.</dd></div>
@@ -380,6 +402,7 @@
       <div><dt>Data</dt><dd>Synthetic — 1,000 generated members; 265 identified for outreach on need-based criteria.</dd></div>
       <div><dt>Human oversight</dt><dd>Deterministic guardrails at every consequential step; missing data is marked unresolved and re-checked, then closed by a human.</dd></div>
     </dl>
+        <p class="demo-disclaimer"><strong>Demo prototype — not a validated clinical system.</strong> All 1,000 members are generated, and the assessment interpretations and care-gap flags are illustrative, not clinical guidance. Real in-home assessment programs need licensed clinicians, plan policies, and regulatory compliance; the demo keeps a human in the close-out loop as a design pattern, not as certification.</p>
         <p class="demo-proof"><strong>Real-world proof:</strong> Signify Health disclosed that its analytics platform identifies high-priority members for in-home evaluations. It reported that, in 2019, more than 90% of evaluated members followed up with a primary care visit.<br>Explore the evidence: <a href="https://www.sec.gov/Archives/edgar/data/1828182/000182818221000006/signifyhealthinc10k_123120.htm" target="_blank" rel="noopener">Signify Health&rsquo;s SEC filing &#8599;</a> &middot; <a href="https://oig.hhs.gov/reports/all/2024/medicare-advantage-questionable-use-of-health-risk-assessments-continues-to-drive-up-payments-to-plans-by-billions/" target="_blank" rel="noopener">HHS OIG report on assessment oversight &#8599;</a></p>
         <div class="demo-actions">
           <a class="btn btn-primary" href="projects/hhv-copilot.html">Explore the project &#8599;</a>
@@ -392,9 +415,14 @@
     <!-- ================= DEMO 03 ================= -->
     <section class="resource-library" id="demo-restaurant">
       <div class="demo-kicker">03 · Retail · Geospatial Analytics · Agentic AI</div>
-      <article class="demo-card" data-cursor-label="View Demo">
+      <article class="demo-card" data-cursor-label="Explore project">
         <a class="demo-img-link" href="projects/restaurant-location.html" aria-label="Explore the project"><img class="demo-img" src="assets/demos/restaurant-location-outcome.webp" alt="Location intelligence for restaurant site selection — storefront, glowing trade-area map with candidate pins, scored factors: population, traffic, competition, demand" loading="lazy"><span class="demo-img-overlay"><span>Explore the project →</span></span></a>
         <h3 class="demo-headline">The Wrong Location Can Sink a Great Restaurant. Find the Right One With Data.</h3>
+        <div class="demo-badges" role="list" aria-label="How to access this demo">
+          <span class="demo-badge" role="listitem">Run locally</span>
+          <span class="demo-badge" role="listitem">Source code available</span>
+          <span class="demo-badge demo-badge--synth" role="listitem">Prototype using synthetic data</span>
+        </div>
         <p class="demo-desc">Before signing a lease, evaluate the market. This agent combines demographics, ZIP-code demand, traffic, competitors, trade areas, and operating considerations to compare candidate locations and recommend where a restaurant has the strongest potential.</p>
     <dl class="demo-facts">
       <div><dt>How it works</dt><dd>A planner breaks the site-selection question into a 13-step plan → five evidence tools pull per-ZIP profiles → scores on quality, economics, audience and demand gap → ranked recommendation with explanations.</dd></div>
@@ -414,9 +442,14 @@
     <!-- ================= DEMO 04 ================= -->
     <section class="resource-library" id="demo-aeroyield">
       <div class="demo-kicker">04 · Aviation · Revenue Management · Agentic AI</div>
-      <article class="demo-card" data-cursor-label="View Demo">
+      <article class="demo-card" data-cursor-label="Explore project">
         <a class="demo-img-link" href="projects/aeroyield.html" aria-label="Explore the project"><img class="demo-img" src="assets/demos/aeroyield-outcome.webp" alt="Commercial airliner climbing into a sunset sky — airline revenue intelligence" loading="lazy"><span class="demo-img-overlay"><span>Explore the project →</span></span></a>
         <h3 class="demo-headline">A $7 Profit per Passenger. One Bad Forecast Can Change the Economics of a Flight.</h3>
+        <div class="demo-badges" role="list" aria-label="How to access this demo">
+          <span class="demo-badge" role="listitem">Run locally</span>
+          <span class="demo-badge" role="listitem">Source code available</span>
+          <span class="demo-badge demo-badge--synth" role="listitem">Prototype using synthetic data</span>
+        </div>
         <p class="demo-desc">Airlines must price perishable inventory in a market that never stands still. AeroYield AI combines demand forecasts, competitor fares, seasonality, major events, fuel costs, and market signals to recommend pricing and inventory decisions that support revenue and profitability.</p>
     <dl class="demo-facts">
       <div><dt>How it works</dt><dd>Observe (demand and competitor signals) → Analyze (forecast, revenue arithmetic) → Decide (candidate fares scored transparently) → Act (staged to an approval queue) → Verify (72-hour check).</dd></div>
@@ -436,9 +469,13 @@
     <!-- ================= DEMO 05 ================= -->
     <section class="resource-library" id="demo-music">
       <div class="demo-kicker">05 · Personalization · Recommender Systems · Agentic AI</div>
-      <article class="demo-card" data-cursor-label="View Demo">
+      <article class="demo-card" data-cursor-label="Explore project">
         <a class="demo-img-link" href="projects/music-mood.html" aria-label="Explore the project"><img class="demo-img" src="assets/demos/music-mood-outcome.webp" alt="Listener with eyes closed wearing headphones in warm golden light — music for the moment" loading="lazy"><span class="demo-img-overlay"><span>Explore the project →</span></span></a>
         <h3 class="demo-headline">Your Next Song Should Fit Your Moment — Not Just Your Listening History.</h3>
+        <div class="demo-badges" role="list" aria-label="How to access this demo">
+          <span class="demo-badge" role="listitem">Run locally</span>
+          <span class="demo-badge" role="listitem">Source code available</span>
+        </div>
         <p class="demo-desc">Music can help shape how we feel, focus, and unwind. This agent combines a small session memory with your stated mood and chosen occasion to recommend music for the moment.</p>
     <dl class="demo-facts">
       <div><dt>How it works</dt><dd>Interpret (mood and occasion from plain words) → design a listening arc (match → lift → sustain) → search, score, sequence and explain each pick; session memory biases future picks.</dd></div>
@@ -458,9 +495,14 @@
     <!-- ================= DEMO 06 ================= -->
     <section class="resource-library" id="demo-fixmate">
       <div class="demo-kicker">06 · Retail · Equipment Maintenance · Agentic AI</div>
-      <article class="demo-card" data-cursor-label="View Demo">
+      <article class="demo-card" data-cursor-label="Explore project">
         <a class="demo-img-link" href="projects/fixmate.html" aria-label="Explore the project"><img class="demo-img" src="assets/demos/fixmate-outcome.webp" alt="AI maintenance assistant beside a coffee machine — check error code, find parts, troubleshooting steps, preventive maintenance" loading="lazy"><span class="demo-img-overlay"><span>Explore the project →</span></span></a>
         <h3 class="demo-headline">Every Minute a Coffee Machine Is Down Is a Missed Sales Opportunity.</h3>
+        <div class="demo-badges" role="list" aria-label="How to access this demo">
+          <span class="demo-badge" role="listitem">Run locally</span>
+          <span class="demo-badge" role="listitem">Source code available</span>
+          <span class="demo-badge demo-badge--synth" role="listitem">Prototype using synthetic data</span>
+        </div>
         <p class="demo-desc">When revenue-generating equipment fails, technicians need answers — not hundreds of pages of manuals. FixMate AI helps them identify equipment issues, find the right troubleshooting steps, recognize parts from images, and resolve problems faster using internal documentation and relevant external sources.</p>
     <dl class="demo-facts">
       <div><dt>How it works</dt><dd>Diagnose (error code and photo metadata → issue class) → search internal manuals first, with citations → web lookup only after proving the search was conclusive → guide with safety gates.</dd></div>
@@ -480,9 +522,14 @@
     <!-- ================= DEMO 07 ================= -->
     <section class="resource-library" id="demo-gameguard">
       <div class="demo-kicker">07 · Gaming · Trust &amp; Safety · Multilingual AI</div>
-      <article class="demo-card" data-cursor-label="View Demo">
+      <article class="demo-card" data-cursor-label="Explore project">
         <a class="demo-img-link" href="projects/gameguard.html" aria-label="Explore the project"><img class="demo-img" src="assets/demos/gameguard-outcome.webp" alt="Gaming trust and safety — suspicious link, inappropriate content, personal information, grooming behavior detection" loading="lazy"><span class="demo-img-overlay"><span>Explore the project →</span></span></a>
         <h3 class="demo-headline">Bad Actors Don&rsquo;t Always Use Bad Words. Can AI Recognize the Pattern?</h3>
+        <div class="demo-badges" role="list" aria-label="How to access this demo">
+          <span class="demo-badge" role="listitem">Run locally</span>
+          <span class="demo-badge" role="listitem">Source code available</span>
+          <span class="demo-badge demo-badge--synth" role="listitem">Prototype using synthetic data</span>
+        </div>
         <p class="demo-desc">From suspicious links and requests for personal information to manipulative conversations with young players, harmful behavior can hide behind emojis, slang, misspellings, and seemingly innocent messages. GameGuard AI analyzes messages and conversation context to flag potential grooming, scams, violent threats, and fraud for appropriate review.</p>
     <dl class="demo-facts">
       <div><dt>How it works</dt><dd>Reads messages in full context (history, slang, misspellings, 3 languages) → scores signals, not verdicts → correlates across conversations and transactions → recommends an intervention.</dd></div>
@@ -490,6 +537,7 @@
       <div><dt>Data</dt><dd>Synthetic — fictional “BattleSphere” gaming company; every player, message and transaction is fictional.</dd></div>
       <div><dt>Human oversight</dt><dd>Signals, not verdicts — people decide; the system never auto-suspends, and benign trash talk is logged, not escalated.</dd></div>
     </dl>
+        <p class="demo-disclaimer"><strong>Demo prototype for learning — not a production safety system.</strong> BattleSphere, its players, messages, and transactions are all fictional. Real safety and moderation systems need human reviewers, clear escalation paths, and ongoing evaluation: this demo surfaces signals for a person to judge — a person must decide.</p>
         <p class="demo-proof"><strong>Real-world proof:</strong> Supercell's games reach around 290 million monthly active players — a community scale that makes player safety a massive operational challenge, which is why Supercell's Trust &amp; Safety team applies machine learning to detect and prevent player harm. <a href="https://www.youtube.com/watch?v=NCjC-cCZk6w" target="_blank" rel="noopener">Source: Databricks Summit &#8599;</a></p>
         <div class="demo-actions">
           <a class="btn btn-primary" href="projects/gameguard.html">Explore the project &#8599;</a>
@@ -502,9 +550,14 @@
     <!-- ================= DEMO 08 ================= -->
     <section class="resource-library" id="demo-guestfirst">
       <div class="demo-kicker">08 · Restaurants · Customer Intelligence · Agentic AI</div>
-      <article class="demo-card" data-cursor-label="View Demo">
+      <article class="demo-card" data-cursor-label="Explore project">
         <a class="demo-img-link" href="projects/guestfirst.html" aria-label="Explore the project"><img class="demo-img" src="assets/demos/guestfirst-outcome.webp" alt="Warm restaurant counter — employee handing a drink to a customer, the hospitality moment data should protect" loading="lazy"><span class="demo-img-overlay"><span>Explore the project →</span></span></a>
         <h3 class="demo-headline">A Great Restaurant Fixes the Order. An Exceptional One Fixes the Experience.</h3>
+        <div class="demo-badges" role="list" aria-label="How to access this demo">
+          <span class="demo-badge" role="listitem">Run locally</span>
+          <span class="demo-badge" role="listitem">Source code available</span>
+          <span class="demo-badge demo-badge--synth" role="listitem">Prototype using synthetic data</span>
+        </div>
         <p class="demo-desc">What if a restaurant could connect customer feedback, order history, kitchen operations, and loyalty data to understand what went wrong — and coordinate the right recovery? GuestFirst AI identifies service issues, recommends personalized responses, and tracks follow-up so restaurants can turn unhappy customers into an opportunity to rebuild trust.</p>
     <dl class="demo-facts">
       <div><dt>How it works</dt><dd>Complaint → parse the issue → pull order and kitchen records → diagnose the root cause → propose a recovery → manager approves, adjusts or rejects → follow-up scheduled.</dd></div>
@@ -528,6 +581,11 @@
       <article class="demo-card" data-cursor-label="View Demo">
         <a class="demo-img-link" href="projects/resume-reviewer.html" aria-label="Explore the project"><img class="demo-img" src="assets/demos/resume-reviewer.webp" alt="Magnifying glass over a resume revealing checkmarks and a score ring" loading="lazy"><span class="demo-img-overlay"><span>Explore the project →</span></span></a>
         <h3 class="demo-headline">Your Resume Gets 7 Seconds. Make Every One Count.</h3>
+        <div class="demo-badges" role="list" aria-label="How to access this demo">
+          <span class="demo-badge demo-badge--live" role="listitem">Live in browser</span>
+          <span class="demo-badge" role="listitem">Run locally</span>
+          <span class="demo-badge" role="listitem">Source code available</span>
+        </div>
         <p class="demo-desc">Job seekers send resumes into a black box and never learn why they hear nothing back. Resume Reviewer AI scores your resume against 33 hiring-manager rules and the actual job description &mdash; so you fix what matters before you hit apply.</p>
     <dl class="demo-facts">
       <div><dt>How it works</dt><dd>Ingest and validate (name, LinkedIn URL, JD, PDF/DOCX) → extract text and layout in your browser → run 33 hiring-manager rules plus JD skill coverage → score with evidence and a concrete fix per failure.</dd></div>
@@ -535,6 +593,7 @@
       <div><dt>Data</dt><dd>Your real uploads — PDF/DOCX parsed locally with PDF.js and Mammoth.js.</dd></div>
       <div><dt>Human oversight</dt><dd>Advisory score, not a hiring guarantee; scanned PDFs are rejected with a clear message instead of scoring garbage.</dd></div>
     </dl>
+        <p class="demo-disclaimer"><strong>Advisory tool, not a hiring decision-maker.</strong> The 33 rules encode one builder’s set of hiring-manager heuristics — they are not a validated selection standard. Never use the score to screen real candidates without human review; a human must verify.</p>
         <p class="demo-proof"><strong>Real-world signal:</strong> Ladders&rsquo; 2018 eye-tracking study found recruiters spend an average of just 7.4 seconds on the initial resume screen. <a href="https://www.hrdive.com/news/eye-tracking-study-shows-recruiters-look-at-resumes-for-7-seconds/541582/" target="_blank" rel="noopener">Source: HR Dive &#8599;</a></p>
         <div class="demo-actions">
           <a class="btn btn-primary" href="projects/resume-reviewer.html">Explore the project &#8599;</a>
