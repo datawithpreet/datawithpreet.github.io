@@ -1041,6 +1041,7 @@ section[id] { scroll-margin-top: 92px; }
   transition: transform 0.25s var(--ease);
 }
 .video-toggle:hover { transform: scale(1.1); }
+.video-toggle-placeholder { width: 34px; height: 34px; flex: 0 0 auto; }
 
 /* ---------- ID card pendulum ---------- */
 .id-swing {
