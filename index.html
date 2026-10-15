@@ -49,6 +49,29 @@
 @media (max-width: 640px) { .nl-cta { top: 84px; right: 12px; font-size: 13px; padding: 7px 12px 7px 7px; gap: 8px; }
   .nl-cta-icon { width: 28px; height: 28px; } }
 @media (prefers-reduced-motion: reduce) { .nl-cta, .nl-cta-icon svg { transition: none; } }
+/* ===== W2: skills view toggle + plain summary ===== */
+.skills-view-toggle { display: flex; gap: 10px; margin: 22px 0 30px; flex-wrap: wrap; }
+.view-btn { font-family: var(--font-display); font-size: 12px; font-weight: 600; letter-spacing: 0.08em; padding: 11px 18px; border-radius: 999px; border: 1px solid var(--line-strong); background: transparent; color: var(--ink); cursor: pointer; transition: all 0.25s var(--ease); }
+.view-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(20,20,20,0.12); }
+.view-btn.on { background: var(--ink); color: var(--paper); }
+.view-btn:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+.skills-periodic[hidden], .skills-plain[hidden] { display: none; }
+.cap-eyebrow { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em; color: var(--gray); margin-bottom: 12px; }
+.capability .cap-link { display: inline-block; margin-top: 18px; font-weight: 600; font-size: 14px; color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--line-strong); padding-bottom: 2px; }
+.capability.featured .cap-link { color: var(--paper); }
+.capability .cap-link:hover { border-bottom-color: currentColor; }
+.skills-tools { margin-top: 26px; padding: 20px 24px; border: 1px dashed var(--line-strong); border-radius: var(--radius); font-size: 14px; line-height: 1.9; color: var(--gray); }
+.skills-tools b { display: block; font-size: 11px; letter-spacing: 0.18em; color: var(--ink); margin-bottom: 8px; font-family: var(--font-mono); font-weight: 400; }
+/* ===== W2: case-study anatomy ===== */
+.wc-anatomy { margin: 18px 0 20px; display: grid; gap: 12px; }
+.wc-anatomy > div { display: grid; grid-template-columns: 150px 1fr; gap: 14px; align-items: baseline; }
+.wc-anatomy dt { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray); }
+.wc-anatomy dd { margin: 0; font-size: 14px; line-height: 1.65; }
+.wc-note { font-size: 12.5px; line-height: 1.6; color: var(--gray); border-left: 2px solid var(--line-strong); padding-left: 12px; margin: 0 0 18px; max-width: 60ch; }
+.panel.open .panel-body { overflow-y: auto; }
+#fdLink { color: var(--ink); font-weight: 600; }
+@media (max-width: 640px) { .wc-anatomy > div { grid-template-columns: 1fr; gap: 4px; } }
+@media (prefers-reduced-motion: reduce) { .view-btn { transition: none; } }
 </style>
     <style>
       /* ===== Substack / Field Notes — light editorial band ===== */
@@ -284,8 +307,8 @@
           <h1 class="reveal" style="--reveal-delay:.08s">Data Engineer<br><span class="serif">for high-stakes data.</span></h1>
           <p class="hero-sub reveal" style="--reveal-delay:.16s">I&rsquo;m Preet Mehta, a healthcare analytics leader focused on building reliable data platforms, scalable pipelines, and data foundations for machine learning. I also teach data engineering and develop practical AI demos to help others learn by building.</p>
           <div class="hero-actions reveal" style="--reveal-delay:.24s">
-            <!-- W1: primary CTA -> strongest case study (Model-Ready Data, most evidence-rich); choice needs Preet's input; coordinate with W2 on §3G-7 anchors -->
-            <a class="btn btn-dark" href="journey/exl-service.html">Explore selected work <span class="arr">→</span></a>
+            <!-- W2 (§3G-7): primary CTA -> Model-Ready Data card destination (journey/exl-service.html#risk); strongest-case-study call still needs Preet's input -->
+            <a class="btn btn-dark" href="journey/exl-service.html#risk">Explore selected work <span class="arr">→</span></a>
             <a class="btn btn-light" href="#contact">Let&rsquo;s connect</a>
           </div>
           <p class="hero-demos-link reveal" style="--reveal-delay:.28s"><a href="demos.html">Explore AI demos →</a></p>
@@ -370,8 +393,53 @@
 
 <section class="section" id="skills">
       <div class="kicker reveal" data-num="02">SKILLS</div>
-      <h2 class="section-title reveal">The periodic table <span class="serif">of my stack.</span></h2>
-      <p class="section-sub reveal">Twenty-two elements in six families. Hover a tile to inspect it — or pick a family to light it up.</p>
+      <h2 class="section-title reveal">Skills, <span class="serif">in plain language.</span></h2>
+      <p class="section-sub reveal">Organized by what I do — tools, technical capabilities, and domain knowledge. Each group links to the case study where it was used. Prefer the interactive view? Switch to the periodic table below.</p>
+      <div class="skills-view-toggle reveal" role="group" aria-label="Skills view">
+        <button type="button" class="view-btn on" data-view="plain" aria-pressed="true">Plain list</button>
+        <button type="button" class="view-btn" data-view="periodic" aria-pressed="false">Periodic table</button>
+      </div>
+      <div id="skillsPlain" class="skills-plain">
+      <div class="capability-grid">
+        <article class="capability featured reveal">
+          <div class="cap-eyebrow">TECHNICAL CAPABILITY</div>
+          <div class="cap-number">01</div><div class="cap-icon">&#x2317;</div>
+          <h3>Data engineering</h3>
+          <p>Pipelines that teams trust: batch and incremental ETL/ELT, orchestration, data quality, and performance engineering.</p>
+          <div class="tags"><span>Python</span><span>SQL</span><span>PySpark</span><span>ETL/ELT</span><span>Orchestration</span><span>Data quality</span></div>
+          <a class="cap-link" href="journey/exl-service.html#rcm">See it in practice &rarr;</a>
+        </article>
+        <article class="capability reveal" style="--reveal-delay:.08s">
+          <div class="cap-eyebrow">TECHNICAL CAPABILITY</div>
+          <div class="cap-number">02</div><div class="cap-icon">&#x25C8;</div>
+          <h3>Data platforms &amp; governance</h3>
+          <p>Lakehouse architecture on Databricks: medallion patterns, Delta Lake, Unity Catalog governance, and cloud data architecture.</p>
+          <div class="tags"><span>Databricks</span><span>Delta Lake</span><span>Unity Catalog</span><span>Cloud data architecture</span></div>
+          <a class="cap-link" href="journey/exl-service.html#rcm">See it in practice &rarr;</a>
+        </article>
+        <article class="capability reveal" style="--reveal-delay:.16s">
+          <div class="cap-eyebrow">DOMAIN KNOWLEDGE</div>
+          <div class="cap-number">03</div><div class="cap-icon">&#x232C;</div>
+          <h3>Healthcare analytics</h3>
+          <p>The domain that makes healthcare data hard: claims, clinical integration, quality measures, and risk.</p>
+          <div class="tags"><span>Claims</span><span>EMR integration</span><span>HEDIS</span><span>Risk adjustment</span><span>Member analytics</span></div>
+          <a class="cap-link" href="journey/exl-service.html#risk">See it in practice &rarr;</a>
+        </article>
+        <article class="capability reveal">
+          <div class="cap-eyebrow">TECHNICAL CAPABILITY</div>
+          <div class="cap-number">04</div><div class="cap-icon">&#x25CE;</div>
+          <h3>Machine learning data foundations</h3>
+          <p>Data foundations that make models work: feature engineering, temporal correctness, and model-ready pipelines.</p>
+          <div class="tags"><span>Feature engineering</span><span>Temporal datasets</span><span>Model-ready pipelines</span><span>Predictive analytics</span></div>
+          <a class="cap-link" href="journey/exl-service.html#risk">See it in practice &rarr;</a>
+        </article>
+      </div>
+      <div class="skills-tools reveal">
+        <b>TOOLS</b>
+        Python &middot; SQL &middot; PySpark &middot; Databricks &middot; Delta Lake &middot; Unity Catalog &middot; Azure Data Factory &middot; BigQuery &middot; SQL Server &middot; Power BI &middot; Looker &middot; Tableau &middot; Git
+      </div>
+      </div>
+      <div id="skillsPeriodic" class="skills-periodic" hidden>
       <div class="ptable-toolbar reveal">
         <p class="family-desc" id="familyDesc" aria-live="polite">Twenty-two elements across six families — pick one to see what it covers.</p>
         <div class="ptable-families" id="familyFilters">
@@ -386,28 +454,28 @@
       </div>
       <div class="ptable-layout">
         <div class="ptable reveal" id="ptable">
-          <div class="element" data-family="languages" data-name="Python" data-desc="Primary language for pipelines, transformations and ML feature work." style="--es:#1a1a1a;--et:#faf8f2"><span class="el-num">01</span><span class="el-sym">Py</span><span class="el-name">Python</span></div>
-          <div class="element" data-family="languages" data-name="SQL" data-desc="Analytical SQL across warehouses — modeling, optimization, complex joins." style="--es:#1a1a1a;--et:#faf8f2"><span class="el-num">02</span><span class="el-sym">Sq</span><span class="el-name">SQL</span></div>
-          <div class="element" data-family="platforms" data-name="Databricks" data-desc="Lakehouse development: notebooks, jobs, Delta Live Tables." style="--es:#3d3d3d;--et:#faf8f2"><span class="el-num">03</span><span class="el-sym">Db</span><span class="el-name">Databricks</span></div>
-          <div class="element" data-family="platforms" data-name="Apache Spark / PySpark" data-desc="Distributed batch and incremental processing at scale." style="--es:#3d3d3d;--et:#faf8f2"><span class="el-num">04</span><span class="el-sym">Sp</span><span class="el-name">PySpark</span></div>
-          <div class="element" data-family="platforms" data-name="Delta Lake" data-desc="Bronze → Silver → Gold medallion architecture, ACID on the lake." style="--es:#3d3d3d;--et:#faf8f2"><span class="el-num">05</span><span class="el-sym">Dl</span><span class="el-name">Delta Lake</span></div>
-          <div class="element" data-family="platforms" data-name="Unity Catalog" data-desc="Governance, lineage and fine-grained access control." style="--es:#3d3d3d;--et:#faf8f2"><span class="el-num">06</span><span class="el-sym">Uc</span><span class="el-name">Unity Catalog</span></div>
-          <div class="element" data-family="platforms" data-name="Azure Data Factory" data-desc="Cloud orchestration for ingestion and ELT pipelines." style="--es:#3d3d3d;--et:#faf8f2"><span class="el-num">07</span><span class="el-sym">Ad</span><span class="el-name">ADF</span></div>
-          <div class="element" data-family="databases" data-name="SQL Server" data-desc="Enterprise relational modeling and stored-procedure ETL roots." style="--es:#6b6b6b;--et:#faf8f2"><span class="el-num">08</span><span class="el-sym">Ss</span><span class="el-name">SQL Server</span></div>
-          <div class="element" data-family="databases" data-name="BigQuery" data-desc="Serverless analytics warehouse on Google Cloud." style="--es:#6b6b6b;--et:#faf8f2"><span class="el-num">09</span><span class="el-sym">Bq</span><span class="el-name">BigQuery</span></div>
-          <div class="element" data-family="bi" data-name="Power BI" data-desc="Dashboards and self-service analytics on governed datasets." style="--es:#a8a29a;--et:#141414"><span class="el-num">10</span><span class="el-sym">Pb</span><span class="el-name">Power BI</span></div>
-          <div class="element" data-family="bi" data-name="Looker" data-desc="LookML modeling — certified LookML Developer." style="--es:#a8a29a;--et:#141414"><span class="el-num">11</span><span class="el-sym">Lk</span><span class="el-name">Looker</span></div>
-          <div class="element" data-family="bi" data-name="Tableau" data-desc="Visual analytics and storytelling with data." style="--es:#a8a29a;--et:#141414"><span class="el-num">12</span><span class="el-sym">Tb</span><span class="el-name">Tableau</span></div>
-          <div class="element" data-family="bi" data-name="Git" data-desc="Version control for pipelines, notebooks and IaC." style="--es:#a8a29a;--et:#141414"><span class="el-num">13</span><span class="el-sym">Gt</span><span class="el-name">Git</span></div>
-          <div class="element" data-family="healthcare" data-name="Claims Data" data-desc="Medical &amp; pharmacy claims — the backbone of payer analytics." style="--es:#d8d2c4;--et:#141414"><span class="el-num">14</span><span class="el-sym">Cl</span><span class="el-name">Claims</span></div>
-          <div class="element" data-family="healthcare" data-name="EMR / Clinical" data-desc="Electronic medical records and clinical data concepts." style="--es:#d8d2c4;--et:#141414"><span class="el-num">15</span><span class="el-sym">Em</span><span class="el-name">EMR</span></div>
-          <div class="element" data-family="healthcare" data-name="HEDIS" data-desc="Quality measures for health plan performance." style="--es:#d8d2c4;--et:#141414"><span class="el-num">16</span><span class="el-sym">Hd</span><span class="el-name">HEDIS</span></div>
-          <div class="element" data-family="healthcare" data-name="HCC / Risk Adjustment" data-desc="Hierarchical condition categories and risk scoring." style="--es:#d8d2c4;--et:#141414"><span class="el-num">17</span><span class="el-sym">Hc</span><span class="el-name">HCC Risk</span></div>
-          <div class="element" data-family="core" data-name="Data Modeling" data-desc="Dimensional, Data Vault and lakehouse modeling patterns." style="--es:#efe9db;--et:#141414"><span class="el-num">18</span><span class="el-sym">Dm</span><span class="el-name">Modeling</span></div>
-          <div class="element" data-family="core" data-name="ETL / ELT" data-desc="Batch and incremental ingestion frameworks, metadata-driven." style="--es:#efe9db;--et:#141414"><span class="el-num">19</span><span class="el-sym">Et</span><span class="el-name">ETL/ELT</span></div>
-          <div class="element" data-family="core" data-name="Data Governance" data-desc="Cataloging, quality, lineage and access management." style="--es:#efe9db;--et:#141414"><span class="el-num">20</span><span class="el-sym">Gv</span><span class="el-name">Governance</span></div>
-          <div class="element" data-family="core" data-name="Machine Learning" data-desc="Feature pipelines and model-ready temporal datasets." style="--es:#efe9db;--et:#141414"><span class="el-num">21</span><span class="el-sym">Ml</span><span class="el-name">ML</span></div>
-          <div class="element" data-family="core" data-name="Data Architecture" data-desc="Platform design, migration planning and stakeholder alignment." style="--es:#efe9db;--et:#141414"><span class="el-num">22</span><span class="el-sym">Ar</span><span class="el-name">Architecture</span></div>
+          <div class="element" tabindex="0" data-family="languages" data-name="Python" data-desc="Primary language for pipelines, transformations and ML feature work." style="--es:#1a1a1a;--et:#faf8f2"><span class="el-num">01</span><span class="el-sym">Py</span><span class="el-name">Python</span></div>
+          <div class="element" tabindex="0" data-family="languages" data-name="SQL" data-desc="Analytical SQL across warehouses — modeling, optimization, complex joins." style="--es:#1a1a1a;--et:#faf8f2"><span class="el-num">02</span><span class="el-sym">Sq</span><span class="el-name">SQL</span></div>
+          <div class="element" tabindex="0" data-family="platforms" data-name="Databricks" data-desc="Lakehouse development: notebooks, jobs, Delta Live Tables." style="--es:#3d3d3d;--et:#faf8f2"><span class="el-num">03</span><span class="el-sym">Db</span><span class="el-name">Databricks</span></div>
+          <div class="element" tabindex="0" data-family="platforms" data-name="Apache Spark / PySpark" data-desc="Distributed batch and incremental processing at scale." style="--es:#3d3d3d;--et:#faf8f2"><span class="el-num">04</span><span class="el-sym">Sp</span><span class="el-name">PySpark</span></div>
+          <div class="element" tabindex="0" data-family="platforms" data-name="Delta Lake" data-desc="Bronze → Silver → Gold medallion architecture, ACID on the lake." style="--es:#3d3d3d;--et:#faf8f2"><span class="el-num">05</span><span class="el-sym">Dl</span><span class="el-name">Delta Lake</span></div>
+          <div class="element" tabindex="0" data-family="platforms" data-name="Unity Catalog" data-desc="Governance, lineage and fine-grained access control." style="--es:#3d3d3d;--et:#faf8f2"><span class="el-num">06</span><span class="el-sym">Uc</span><span class="el-name">Unity Catalog</span></div>
+          <div class="element" tabindex="0" data-family="platforms" data-name="Azure Data Factory" data-desc="Cloud orchestration for ingestion and ELT pipelines." style="--es:#3d3d3d;--et:#faf8f2"><span class="el-num">07</span><span class="el-sym">Ad</span><span class="el-name">ADF</span></div>
+          <div class="element" tabindex="0" data-family="databases" data-name="SQL Server" data-desc="Enterprise relational modeling and stored-procedure ETL roots." style="--es:#6b6b6b;--et:#faf8f2"><span class="el-num">08</span><span class="el-sym">Ss</span><span class="el-name">SQL Server</span></div>
+          <div class="element" tabindex="0" data-family="databases" data-name="BigQuery" data-desc="Serverless analytics warehouse on Google Cloud." style="--es:#6b6b6b;--et:#faf8f2"><span class="el-num">09</span><span class="el-sym">Bq</span><span class="el-name">BigQuery</span></div>
+          <div class="element" tabindex="0" data-family="bi" data-name="Power BI" data-desc="Dashboards and self-service analytics on governed datasets." style="--es:#a8a29a;--et:#141414"><span class="el-num">10</span><span class="el-sym">Pb</span><span class="el-name">Power BI</span></div>
+          <div class="element" tabindex="0" data-family="bi" data-name="Looker" data-desc="LookML modeling — certified LookML Developer." style="--es:#a8a29a;--et:#141414"><span class="el-num">11</span><span class="el-sym">Lk</span><span class="el-name">Looker</span></div>
+          <div class="element" tabindex="0" data-family="bi" data-name="Tableau" data-desc="Visual analytics and storytelling with data." style="--es:#a8a29a;--et:#141414"><span class="el-num">12</span><span class="el-sym">Tb</span><span class="el-name">Tableau</span></div>
+          <div class="element" tabindex="0" data-family="bi" data-name="Git" data-desc="Version control for pipelines, notebooks and IaC." style="--es:#a8a29a;--et:#141414"><span class="el-num">13</span><span class="el-sym">Gt</span><span class="el-name">Git</span></div>
+          <div class="element" tabindex="0" data-family="healthcare" data-name="Claims Data" data-desc="Medical &amp; pharmacy claims — the backbone of payer analytics." style="--es:#d8d2c4;--et:#141414"><span class="el-num">14</span><span class="el-sym">Cl</span><span class="el-name">Claims</span></div>
+          <div class="element" tabindex="0" data-family="healthcare" data-name="EMR / Clinical" data-desc="Electronic medical records and clinical data concepts." style="--es:#d8d2c4;--et:#141414"><span class="el-num">15</span><span class="el-sym">Em</span><span class="el-name">EMR</span></div>
+          <div class="element" tabindex="0" data-family="healthcare" data-name="HEDIS" data-desc="Quality measures for health plan performance." style="--es:#d8d2c4;--et:#141414"><span class="el-num">16</span><span class="el-sym">Hd</span><span class="el-name">HEDIS</span></div>
+          <div class="element" tabindex="0" data-family="healthcare" data-name="HCC / Risk Adjustment" data-desc="Hierarchical condition categories and risk scoring." style="--es:#d8d2c4;--et:#141414"><span class="el-num">17</span><span class="el-sym">Hc</span><span class="el-name">HCC Risk</span></div>
+          <div class="element" tabindex="0" data-family="core" data-name="Data Modeling" data-desc="Dimensional, Data Vault and lakehouse modeling patterns." style="--es:#efe9db;--et:#141414"><span class="el-num">18</span><span class="el-sym">Dm</span><span class="el-name">Modeling</span></div>
+          <div class="element" tabindex="0" data-family="core" data-name="ETL / ELT" data-desc="Batch and incremental ingestion frameworks, metadata-driven." style="--es:#efe9db;--et:#141414"><span class="el-num">19</span><span class="el-sym">Et</span><span class="el-name">ETL/ELT</span></div>
+          <div class="element" tabindex="0" data-family="core" data-name="Data Governance" data-desc="Cataloging, quality, lineage and access management." style="--es:#efe9db;--et:#141414"><span class="el-num">20</span><span class="el-sym">Gv</span><span class="el-name">Governance</span></div>
+          <div class="element" tabindex="0" data-family="core" data-name="Machine Learning" data-desc="Feature pipelines and model-ready temporal datasets." style="--es:#efe9db;--et:#141414"><span class="el-num">21</span><span class="el-sym">Ml</span><span class="el-name">ML</span></div>
+          <div class="element" tabindex="0" data-family="core" data-name="Data Architecture" data-desc="Platform design, migration planning and stakeholder alignment." style="--es:#efe9db;--et:#141414"><span class="el-num">22</span><span class="el-sym">Ar</span><span class="el-name">Architecture</span></div>
         </div>
         <aside class="ptable-detail reveal" id="ptableDetail" aria-live="polite">
           <div class="pd-kicker">ELEMENT INSPECTOR</div>
@@ -419,46 +487,9 @@
             <div class="pd-proj-kicker">BUILT WITH THIS</div>
             <ul id="pdProjList"></ul>
           </div>
-          <p class="pd-hint">Hover any tile to inspect it.</p>
+          <p class="pd-hint">Hover, tap, or focus a tile to inspect it.</p>
         </aside>
       </div>
-      <div class="capability-grid">
-        <article class="capability featured reveal">
-          <div class="cap-number">01</div><div class="cap-icon">⌁</div>
-          <h3>Data Engineering</h3>
-          <p>Batch and incremental pipelines, ETL/ELT, metadata-driven frameworks, orchestration, data quality and performance engineering.</p>
-          <div class="tags"><span>PySpark</span><span>SQL</span><span>Python</span><span>ADF</span></div>
-        </article>
-        <article class="capability reveal" style="--reveal-delay:.08s">
-          <div class="cap-number">02</div><div class="cap-icon">◈</div>
-          <h3>Modern Data Platforms</h3>
-          <p>Lakehouse architecture, medallion patterns, Delta Lake, governance, cataloging and cloud-native analytics.</p>
-          <div class="tags"><span>Databricks</span><span>Delta Lake</span><span>Unity Catalog</span></div>
-        </article>
-        <article class="capability reveal" style="--reveal-delay:.16s">
-          <div class="cap-number">03</div><div class="cap-icon">⌬</div>
-          <h3>Healthcare Analytics</h3>
-          <p>Healthcare data concepts, claims, clinical data, HEDIS, HCC/risk adjustment, Medicare and member analytics.</p>
-          <div class="tags"><span>Claims</span><span>EMR</span><span>Risk</span></div>
-        </article>
-        <article class="capability reveal">
-          <div class="cap-number">04</div><div class="cap-icon">◎</div>
-          <h3>AI / ML Data Foundations</h3>
-          <p>Feature pipelines, temporal data preparation, model-ready datasets, experimentation and analytics delivery.</p>
-          <div class="tags"><span>ML</span><span>Feature Engineering</span><span>Python</span></div>
-        </article>
-        <article class="capability reveal" style="--reveal-delay:.08s">
-          <div class="cap-number">05</div><div class="cap-icon">▦</div>
-          <h3>Analytics &amp; BI</h3>
-          <p>Turning governed datasets into dashboards, self-service analytics and decision-ready experiences.</p>
-          <div class="tags"><span>Power BI</span><span>Looker</span><span>BigQuery</span></div>
-        </article>
-        <article class="capability reveal" style="--reveal-delay:.16s">
-          <div class="cap-number">06</div><div class="cap-icon">↗</div>
-          <h3>Data Strategy</h3>
-          <p>Architecture, migration planning, stakeholder alignment, governance and adoption across teams.</p>
-          <div class="tags"><span>Architecture</span><span>Governance</span><span>Delivery</span></div>
-        </article>
       </div>
     </section>
 
@@ -481,8 +512,10 @@
         <h4 id="fdTitle">Lakehouse</h4>
         <div class="fd-grid">
           <div><b>Design decision</b><p id="fdDecision"></p></div>
+          <div><b>Why this choice</b><p id="fdWhy"></p></div>
           <div><b>Failure mode</b><p id="fdFailure"></p></div>
           <div><b>Control</b><p id="fdControl"></p></div>
+          <div><b>See it in practice</b><p><a id="fdLink" href="journey/exl-service.html">Case study &rarr;</a></p></div>
         </div>
       </div>
     </section>
@@ -491,7 +524,7 @@
     <section class="section" id="work">
       <div class="kicker reveal" data-num="03">WORK</div>
       <h2 class="section-title reveal">Things I&rsquo;ve <span class="serif">built.</span></h2>
-      <p class="section-sub reveal">Three case studies across healthcare platforms, ML foundations and cloud modernization. Hover a panel to open it.</p>
+      <p class="section-sub reveal">Three case studies across healthcare platforms, ML foundations, and cloud modernization. Each one opens its full story — problem, decisions, and results.</p>
       <div class="panels reveal" id="workPanels">
           <article class="panel open reveal" tabindex="0" role="button" aria-expanded="true" aria-label="Open Healthcare Data Platform case study">
             <div class="panel-collapsed-label"><span class="p-num">01</span><span class="p-vtitle">Healthcare Data Platform</span><span class="p-plus">+</span></div>
@@ -499,14 +532,15 @@
             <span class="wc-num">01</span>
             <div class="wc-tags"><span>HEALTHCARE</span><span>DATA PLATFORM</span><span class="wc-prod">PRODUCTION</span></div>
             <h3>Healthcare Data Platform</h3>
-            <p>Modernizing fragmented healthcare data into a governed, scalable platform for analytics and downstream ML.</p>
-            <ul>
-              <li>Medallion architecture for claims &amp; clinical data</li>
-              <li>Governance-first design with lineage</li>
-              <li>Analytics-ready gold layer for BI and ML</li>
-            </ul>
+            <dl class="wc-anatomy">
+              <div><dt>Problem</dt><dd>A nephrology provider group&rsquo;s revenue data lived across three EMRs — Athena, AdvancedMD, and Epic — with no unified model. Every analysis started from scratch.</dd></div>
+              <div><dt>Context</dt><dd>Revenue-cycle data on a legacy Azure stack (Data Factory, SSMS, SSIS). No lakehouse footprint — Databricks was stood up from networking to production.</dd></div>
+              <div><dt>My contribution</dt><dd>Built the entire RCM data model, unified the three EMRs into one business-logic-agnostic pipeline, and led the migration with a team of 6.</dd></div>
+              <div><dt>Design decisions</dt><dd>Chose Databricks + Snowflake over extending SSIS: a lakehouse for scale, a warehouse for analyst access — accepting the cost of retraining the team and refactoring the whole codebase.</dd></div>
+              <div><dt>Results</dt><dd>One pipeline for every EMR — any future EMR plugs in the same way. Delivered in 6 months.</dd></div>
+            </dl>
             <div class="wc-tech"><span>Databricks</span><span>Delta Lake</span><span>PySpark</span><span>Unity Catalog</span></div>
-            <a class="btn btn-dark" href="journey/exl-service.html">Read the EXL case study <span class="arr">→</span></a>
+            <a class="btn btn-dark" href="journey/exl-service.html#rcm">Read the Nephrology RCM platform story <span class="arr">&rarr;</span></a>
           
             </div>
           </article>
@@ -516,15 +550,16 @@
             <span class="wc-num">02</span>
             <div class="wc-tags"><span>ML</span><span>FEATURE ENGINEERING</span><span class="wc-prod">PRODUCTION</span></div>
             <h3>Model-Ready Data</h3>
-            <p>Building temporal feature pipelines that respect snapshot dates, lookback windows and follow-up periods.</p>
-            <p class="wc-outcome"><strong>Outcome:</strong> $4M in annual savings from a production Medicaid churn model.</p>
-            <ul>
-              <li>Point-in-time correct feature engineering</li>
-              <li>Reusable feature definitions across models</li>
-              <li>Experimentation-ready datasets</li>
-            </ul>
+            <dl class="wc-anatomy">
+              <div><dt>Problem</dt><dd>A Medicaid program was losing ~$4M a year on wasted healthy-home visits — outreach reached the wrong members because no model identified who was likely to churn.</dd></div>
+              <div><dt>Context</dt><dd>Vendor claims files (Ciox, Datavant, Cotiviti — TXT, ZIP, CSV) ingested via Auto Loader into per-line-of-business tables: Medicare, Medicaid, Dual, D-SNP.</dd></div>
+              <div><dt>My contribution</dt><dd>Shipped the Medicaid member-churn ML model and the temporal feature pipelines behind it — point-in-time correct features with snapshot dates, lookback windows, and follow-up periods.</dd></div>
+              <div><dt>Design decisions</dt><dd>Built reusable feature definitions instead of one-off model tables — a slower first build, but every future model starts from the same governed features.</dd></div>
+              <div><dt>Results</dt><dd class="wc-outcome"><strong>Outcome:</strong> $4M in annual savings from a production Medicaid churn model.</dd></div>
+            </dl>
+            <p class="wc-note">$4M is the reported outcome of the production Medicaid churn program — the exact baseline, measurement period, and attribution are pending Preet&rsquo;s confirmation (methodology in the case study).</p>
             <div class="wc-tech"><span>Python</span><span>Spark</span><span>SQL</span><span>ML</span></div>
-            <a class="btn btn-dark" href="journey/exl-service.html">See the ML work <span class="arr">→</span></a>
+            <a class="btn btn-dark" href="journey/exl-service.html#risk">See the Medicaid churn model work <span class="arr">&rarr;</span></a>
           
             </div>
           </article>
@@ -534,14 +569,15 @@
             <span class="wc-num">03</span>
             <div class="wc-tags"><span>CLOUD</span><span>MIGRATION</span><span class="wc-prod">PRODUCTION</span></div>
             <h3>Data Platform Modernization</h3>
-            <p>Moving legacy pipelines toward cloud-native architectures with stronger governance, reliability and observability.</p>
-            <ul>
-              <li>Legacy ETL → cloud-native ELT migration</li>
-              <li>Observability and data quality gates</li>
-              <li>Stakeholder-aligned rollout planning</li>
-            </ul>
-            <div class="wc-tech"><span>ADF</span><span>BigQuery</span><span>Looker</span><span>Cloud</span></div>
-            <a class="btn btn-dark" href="journey/exl-service.html">See the platform work <span class="arr">→</span></a>
+            <dl class="wc-anatomy">
+              <div><dt>Problem</dt><dd>Legacy ETL — SSIS packages and SSMS stored procedures — couldn&rsquo;t keep up, and the organization had no lakehouse at all.</dd></div>
+              <div><dt>Context</dt><dd>An Azure shop moving to Databricks + Snowflake; Databricks stood up from scratch; deployments through Azure DevOps across multiple environments.</dd></div>
+              <div><dt>My contribution</dt><dd>Led the migration from Azure Data Factory / SSMS / SSIS to Databricks + Snowflake — refactored the whole codebase and stood up the platform.</dd></div>
+              <div><dt>Design decisions</dt><dd>Incremental cutover instead of a big-bang rewrite: both stacks ran during the transition — trading speed for safety on revenue-critical data.</dd></div>
+              <div><dt>Results</dt><dd>The full migration delivered in 6 months; the team now runs on the lakehouse.</dd></div>
+            </dl>
+            <div class="wc-tech"><span>Databricks</span><span>Snowflake</span><span>ADF</span><span>Azure DevOps</span></div>
+            <a class="btn btn-dark" href="journey/exl-service.html#rcm">See the legacy-to-lakehouse migration <span class="arr">&rarr;</span></a>
           
             </div>
           </article>
@@ -550,15 +586,15 @@
 
     <section class="section" id="ventures">
       <div class="kicker reveal" data-num="03B">ECOSYSTEM</div>
-      <h2 class="section-title reveal">One person, <span class="serif">many doors.</span></h2>
-      <p class="section-sub reveal">Everything I build and run — pick the door you need.</p>
+      <h2 class="section-title reveal">Work with me, <span class="serif">learn with me, or explore my projects.</span></h2>
+      <p class="section-sub reveal">Six ways to engage — each card says exactly what happens when you click.</p>
       <div class="ventures-grid reveal">
-        <a class="venture-card" href="#contact"><b>Consulting</b><p>Healthcare data platforms, ML systems, architecture reviews.</p><span>Book a call →</span></a>
-        <a class="venture-card" href="#speaking"><b>Speaking & Workshops</b><p>Keynotes, corporate training, university sessions.</p><span>Book Preet →</span></a>
-        <a class="venture-card" href="#community"><b>Community</b><p>1,500+ data engineers learning together daily.</p><span>Join →</span></a>
-        <a class="venture-card" href="#writing"><b>Newsletter</b><p>Healthcare for Data Engineers — practical, no fluff.</p><span>Subscribe →</span></a>
-        <a class="venture-card" href="demos.html"><b>AI Demos</b><p>Nine working prototypes, most running in your browser.</p><span>Try them →</span></a>
-        <a class="venture-card" href="#contact"><b>Mentoring</b><p>1:1 guidance for data engineers leveling up.</p><span>Reach out →</span></a>
+        <a class="venture-card" href="#contact"><b>Consulting</b><p>Have a data-platform or analytics challenge? This opens the contact section — LinkedIn is fastest, or book a call directly.</p><span>Start the conversation →</span></a>
+        <a class="venture-card" href="#speaking"><b>Speaking &amp; Workshops</b><p>Invite Preet for a keynote, workshop, or university session. This opens the speaking section with booking and upcoming events.</p><span>Request Preet →</span></a>
+        <a class="venture-card" href="#community"><b>Community</b><p>Join 1,500+ data engineers learning together daily. This opens the community section with the free invite link.</p><span>See how to join →</span></a>
+        <a class="venture-card" href="#writing"><b>Newsletter</b><p>Read Healthcare for Data Engineers — practical, no fluff. This opens the latest issues, with a subscribe link to Substack.</p><span>Read the latest →</span></a>
+        <a class="venture-card" href="demos.html"><b>AI Demos</b><p>Explore nine working prototypes, most running in your browser. This opens the demos page.</p><span>Try the demos →</span></a>
+        <a class="venture-card" href="https://cal.com/datawithpreet/introcall" target="_blank" rel="noopener"><b>Mentoring</b><p>Book a 15-minute career or technical conversation. This opens the booking calendar directly — students and community members welcome.</p><span>Book a time →</span></a>
       </div>
     </section>
 
@@ -1019,6 +1055,40 @@
     <a class="to-top" href="#home">Back to top ↑</a>
   </footer>
   <script src="assets/js/main.js?v=20261015snrail"></script>
+  <script>
+  /* W2: skills view toggle + architecture-lab extras (why + case-study link per stage). */
+  (function(){
+    var btns = document.querySelectorAll('.view-btn');
+    var plain = document.getElementById('skillsPlain');
+    var periodic = document.getElementById('skillsPeriodic');
+    btns.forEach(function(b){
+      b.addEventListener('click', function(){
+        btns.forEach(function(x){
+          var on = (x === b);
+          x.classList.toggle('on', on);
+          x.setAttribute('aria-pressed', on ? 'true' : 'false');
+        });
+        if (plain) plain.hidden = (b.dataset.view !== 'plain');
+        if (periodic) periodic.hidden = (b.dataset.view !== 'periodic');
+      });
+    });
+    var stageInfo = {
+      sources: { why: 'You cannot reprocess what you never stored. Landing data raw first turns every downstream bug into a re-read instead of a data-loss incident.', href: 'journey/cvs-health.html', label: 'See daily ingestion at 340M-member scale \u2192' },
+      lakehouse: { why: 'Layers with contracts keep raw mess out of business metrics. Skip a layer and every consumer invents their own cleaning logic \u2014 then argues about whose numbers are right.', href: 'journey/exl-service.html#rcm', label: 'See the Nephrology RCM lakehouse \u2192' },
+      governance: { why: 'In healthcare, the wrong audience seeing the wrong column is a breach, not a bug. Least-privilege access and lineage are cheaper than incident response.', href: 'journey/exl-service.html#risk', label: 'See governed claims pipelines \u2192' },
+      outcomes: { why: 'When BI and ML read from the same gold definitions, the dashboard and the model can never disagree about what a metric means.', href: 'journey/exl-service.html#risk', label: 'See the Medicaid churn model \u2192' }
+    };
+    function setStageExtra(key){
+      var info = stageInfo[key]; if(!info) return;
+      var w = document.getElementById('fdWhy'); if(w) w.textContent = info.why;
+      var l = document.getElementById('fdLink'); if(l){ l.setAttribute('href', info.href); l.textContent = info.label; }
+    }
+    document.querySelectorAll('.flow-stage[data-stage]').forEach(function(s){
+      s.addEventListener('click', function(){ setStageExtra(s.dataset.stage); });
+    });
+    setStageExtra('lakehouse');
+  })();
+  </script>
   <script src="assets/js/chatbot.js"></script>
 
   <script>
