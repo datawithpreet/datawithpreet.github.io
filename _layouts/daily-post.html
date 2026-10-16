@@ -29,6 +29,41 @@ layout: null
   display: grid; place-items: center; transition: background .25s ease; }
 .nl-cta-icon svg { width: 16px; height: 16px; stroke: #1d1d1f; transition: transform .25s ease; }
 .nl-cta:hover .nl-cta-icon, .nl-cta.is-hover .nl-cta-icon, .nl-cta:active .nl-cta-icon { background: #B5A568; box-shadow: 0 0 18px rgba(181,165,104,.5); }
+  /* ---- Global nav dropdowns (copied from homepage inline styles; .nav-drop/.drop-menu are NOT in shared style.css) ---- */
+  .nav .nav-drop { position: relative; }
+  .nav .nav-drop > button {
+    appearance: none; background: none; border: 0; cursor: pointer;
+    font: inherit; font-size: 13px; font-weight: 500; padding: 8px 14px; border-radius: 999px;
+    color: var(--ink-soft); white-space: nowrap; position: relative;
+    display: inline-flex; align-items: center; gap: 6px;
+    transition: font-weight .25s ease, color .25s ease, background .25s ease;
+  }
+  .nav .nav-drop > button .caret { font-size: 10px; line-height: 1; transition: transform .2s ease; }
+  .nav .nav-drop.open > button .caret { transform: rotate(180deg); }
+  .nav .nav-drop > button::after {
+    content: ""; position: absolute; bottom: 2px; left: 14px; right: 14px; height: 2px;
+    background: #E0632A; transform: scaleX(0); transform-origin: right center;
+    transition: transform .25s ease-in; pointer-events: none;
+  }
+  .nav .nav-drop > button:hover { background: transparent; font-weight: 700; color: var(--ink); }
+  .nav .nav-drop > button:hover::after { transform: scaleX(1); transform-origin: left center; transition: transform .3s ease-out; }
+  .nav .nav-drop > button.active { background: var(--ink); color: var(--paper); }
+  .nav .drop-menu {
+    display: none; position: absolute; top: calc(100% + 10px); left: 0; min-width: 200px;
+    margin: 0; padding: 8px; list-style: none;
+    background: var(--paper); border: 1px solid var(--line-strong); border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(20,20,20,0.14); z-index: 200;
+  }
+  .nav .nav-drop.open .drop-menu { display: block; }
+  .nav .drop-menu a { display: block; padding: 10px 14px; border-radius: 10px; }
+  @media (max-width: 940px) {
+    .nav .nav-drop { width: 100%; }
+    .nav .nav-drop > button { padding: 12px 16px; font-size: 14px; width: 100%; justify-content: space-between; }
+    .nav .drop-menu { position: static; border: 0; box-shadow: none; background: transparent; padding: 0 0 4px 16px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .nav .nav-drop > button, .nav .nav-drop > button::after, .nav .nav-drop > button .caret { transition: none; }
+  }
 </style>
 </head><body>
 <aside class="social-rail" aria-label="Social links">
@@ -118,4 +153,44 @@ layout: null
 </main>
 <footer class="footer"><div><strong>PREET MEHTA</strong><span>Data Engineering • Analytics • AI/ML</span></div><span>© <span id="year"></span> Data with Preet</span><a class="to-top" href="#top">Back to top ↑</a></footer>
 <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+<script>
+  (function(){
+    /* Consolidated-nav dropdowns (copied from homepage inline script): click/tap toggle, Escape, outside-click, focus-out */
+    var drops = Array.prototype.slice.call(document.querySelectorAll('.nav .nav-drop'));
+    function setOpen(drop, open) {
+      drop.classList.toggle('open', open);
+      drop.querySelector('button').setAttribute('aria-expanded', String(open));
+    }
+    function closeAll() { drops.forEach(function(d){ setOpen(d, false); }); }
+    drops.forEach(function(drop){
+      var btn = drop.querySelector('button');
+      btn.addEventListener('click', function(e){
+        e.stopPropagation();
+        var wasOpen = drop.classList.contains('open');
+        closeAll();
+        setOpen(drop, !wasOpen);
+      });
+      drop.addEventListener('keydown', function(e){
+        if (e.key === 'Escape') { setOpen(drop, false); btn.focus(); }
+      });
+      drop.addEventListener('focusout', function(e){
+        if (!drop.contains(e.relatedTarget)) setOpen(drop, false);
+      });
+    });
+    document.addEventListener('click', closeAll);
+    document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeAll(); });
+    var subLinks = document.querySelectorAll('.nav .drop-menu a');
+    if (subLinks.length && 'MutationObserver' in window) {
+      var syncActive = function(){
+        drops.forEach(function(drop){
+          var anyActive = !!drop.querySelector('.drop-menu a.active');
+          drop.querySelector('button').classList.toggle('active', anyActive);
+        });
+      };
+      var mo = new MutationObserver(syncActive);
+      Array.prototype.forEach.call(subLinks, function(a){ mo.observe(a, { attributes: true, attributeFilter: ['class'] }); });
+      syncActive();
+    }
+  })();
+</script>
 </body></html>
