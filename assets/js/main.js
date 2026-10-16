@@ -47,7 +47,7 @@
   const nav = document.querySelector('.nav');
   const toggle = document.querySelector('.menu-toggle');
   const links = [...document.querySelectorAll('.nav a')];
-  const sections = links.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+  const sections = links.map(a => { const h = a.getAttribute('href'); return h && h.startsWith('#') ? document.querySelector(h) : null; }).filter(Boolean);
 
   const updateHeader = () => header && header.classList.toggle('scrolled', window.scrollY > 24);
   updateHeader();
