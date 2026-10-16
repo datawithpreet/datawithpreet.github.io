@@ -14,8 +14,21 @@ layout: null
 .daily-body strong{color:#142333}
 .daily-nav a{color:#405463;text-decoration:none;font-weight:600;font-size:15px}
 .daily-nav a:hover{color:#142333}
-.daily-subscribe{background:#142333;color:#fff!important;font-weight:700;font-size:14px;padding:10px 22px;border-radius:999px;text-decoration:none;white-space:nowrap;transition:transform .2s}
-.daily-subscribe:hover{transform:translateY(-1px)}
+.nl-cta { position: fixed; top: 92px; right: 24px; z-index: 99;
+  display: flex; align-items: center; gap: 10px; padding: 8px 16px 8px 8px;
+  background: #1A1A1A; border: 1px solid rgba(255,255,255,.08); border-radius: 12px;
+  color: #fff; text-decoration: none; font-weight: 600; font-size: 14px; letter-spacing: -.01em;
+  box-shadow: 0 10px 30px rgba(0,0,0,.35), 0 0 0 1px rgba(255,255,255,.14), 0 0 24px rgba(255,255,255,.12); transition: background .25s ease, transform .25s ease, box-shadow .25s ease;
+  max-width: calc(100vw - 32px); white-space: nowrap; }
+.nl-cta:hover, .nl-cta.is-hover, .nl-cta:active { background: #000000; box-shadow: 0 10px 30px rgba(0,0,0,.35); }
+.nl-cta-text { text-decoration: none; }
+.nl-cta:hover .nl-cta-text, .nl-cta.is-hover .nl-cta-text, .nl-cta:active .nl-cta-text { text-decoration: underline; text-underline-offset: 4px; }
+.nl-cta:hover .nl-cta-icon svg, .nl-cta.is-hover .nl-cta-icon svg, .nl-cta:active .nl-cta-icon svg { transform: translateX(3px); stroke: #1A1A1A; }
+.nl-cta:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+.nl-cta-icon { flex-shrink: 0; width: 32px; height: 32px; border-radius: 8px; background: #333333;
+  display: grid; place-items: center; transition: background .25s ease; }
+.nl-cta-icon svg { width: 16px; height: 16px; stroke: #1d1d1f; transition: transform .25s ease; }
+.nl-cta:hover .nl-cta-icon, .nl-cta.is-hover .nl-cta-icon, .nl-cta:active .nl-cta-icon { background: #B5A568; box-shadow: 0 0 18px rgba(181,165,104,.5); }
 </style>
 </head><body>
 <aside class="social-rail" aria-label="Social links">
@@ -26,7 +39,39 @@ layout: null
       <a href="https://whatsapp.com/channel/0029VayV6y57DAWsb6262g1o" target="_blank" rel="noopener" aria-label="WhatsApp"><svg aria-hidden="true" focusable="false" fill="currentColor" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>WhatsApp</title><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a>
 <a href="https://www.youtube.com/@PreetMehtaUSA" target="_blank" rel="noopener" aria-label="YouTube"><svg aria-hidden="true" focusable="false" fill="currentColor" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>YouTube</title><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
     </aside>
-<header class="site-header scrolled" id="top"><a class="brand" href="{{ '/' | relative_url }}"><span class="brand-mark">PM</span><span class="brand-copy"><strong>PREET MEHTA</strong><small>DAILY POSTS</small></span></a><nav class="nav" style="display:flex"><a href="{{ '/' | relative_url }}">Portfolio</a><a href="{{ '/blog/' | relative_url }}">Writing</a><a class="active" href="{{ '/daily/' | relative_url }}">Daily</a></nav><a class="daily-subscribe" href="https://masterdataengineering.substack.com/subscribe" target="_blank" rel="noopener">Subscribe</a></header>
+<header class="site-header" id="top">
+    <a class="brand" href="{{ '/' | relative_url }}" aria-label="Data with Preet home">
+      <span class="brand-mark">DwP</span>
+      <span class="brand-copy"><strong>DATA WITH PREET</strong><small>BY PREET MEHTA</small></span>
+    </a>
+    <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false"><span></span><span></span></button>
+    <nav class="nav" aria-label="Primary navigation">
+      <a href="{{ '/' | relative_url }}#about">About</a>
+      <div class="nav-drop">
+        <button type="button" aria-expanded="false" aria-haspopup="true">Work <span class="caret" aria-hidden="true">&#9662;</span></button>
+        <ul class="drop-menu" aria-label="Work sections">
+          <li><a href="{{ '/' | relative_url }}#work">Selected work</a></li>
+          <li><a href="{{ '/' | relative_url }}#skills">Skills</a></li>
+          <li><a href="{{ '/' | relative_url }}#experience">Experience</a></li>
+        </ul>
+      </div>
+      <div class="nav-drop">
+        <button type="button" aria-expanded="false" aria-haspopup="true">Insights <span class="caret" aria-hidden="true">&#9662;</span></button>
+        <ul class="drop-menu" aria-label="Insights sections">
+          <li><a href="{{ '/' | relative_url }}#writing">Articles &amp; Insights</a></li>
+          <li><a href="{{ '/research.html' | relative_url }}">Research &amp; Publications</a></li>
+        </ul>
+      </div>
+      <a href="{{ '/demos.html' | relative_url }}">AI Demos</a>
+      <a href="{{ '/resources.html' | relative_url }}">Resources</a>
+      <a href="{{ '/' | relative_url }}#contact">Contact</a>
+      <span class="video-toggle-placeholder" aria-hidden="true"></span>
+    </nav>
+  </header>
+  <a class="nl-cta" href="https://masterdataengineering.substack.com/" target="_blank" rel="noopener" aria-label="Subscribe to Newsletter on Substack (opens in new tab)">
+    <span class="nl-cta-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+    <span class="nl-cta-text">Subscribe to Newsletter</span>
+  </a>
 <main>
 <article class="section intro-section" style="padding-top:150px;max-width:860px;margin:0 auto">
   <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap">
