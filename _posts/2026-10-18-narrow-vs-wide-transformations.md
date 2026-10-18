@@ -8,8 +8,6 @@ categories: [daily, databricks-edu-series]
 
 *Part of my daily Databricks series — the hardest topics, explained simply. Also published on [Substack](https://masterdataengineering.substack.com/) and in my LinkedIn newsletter, Master Data Engineering.*
 
----
-
 A pipeline runs in twelve minutes. Someone adds one line — a `groupBy` to compute per-user totals — and it runs in four hours. No bug. No skew. No bad config. The new line is correct Spark, written the way the docs show it. And it just made the job twenty times slower.
 
 The difference between the fast version and the slow version is a single word: narrow vs. wide. It is the most useful distinction in Spark, and almost nobody learns it first. Every slow job I've ever debugged traces back to it — not to the cluster size, not to the code style, to which kind of transformation the code actually is.
