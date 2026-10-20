@@ -15,6 +15,15 @@ layout: null
 .book-hero{display:grid;grid-template-columns:1.05fr .95fr;align-items:center;column-gap:56px}
 .book-cover-media{display:flex;justify-content:center}
 .book-cover-img{width:min(470px,90vw);height:auto;border-radius:20px;box-shadow:0 34px 64px rgba(20,35,51,.26),0 6px 18px rgba(20,35,51,.16)}
+.bs-posts .writing-card{position:relative}
+.bs-posts .writing-card>*{position:relative;z-index:1}
+.bs-posts .writing-card::before{content:'';position:absolute;inset:0;border-radius:inherit;background:radial-gradient(340px circle at var(--mx,50%) var(--my,50%),rgba(224,99,42,.17),transparent 65%);opacity:0;transition:opacity .35s ease;pointer-events:none;z-index:0}
+.bs-posts .writing-card::after{content:'';position:absolute;inset:0;border-radius:inherit;padding:1.5px;background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%),rgba(224,99,42,.95),transparent 70%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;opacity:0;transition:opacity .35s ease;pointer-events:none;z-index:2}
+.bs-posts .writing-card:hover::before,.bs-posts .writing-card:hover::after{opacity:1}
+.bs-posts .writing-card>span{transition:color .3s ease}
+.bs-posts .writing-card:hover>span{color:#E0632A}
+.bs-posts .writing-card.featured-writing:hover>span{color:#FF8B4D}
+@media (prefers-reduced-motion: reduce){.bs-posts .writing-card::before,.bs-posts .writing-card::after{transition:none}}
 @media (max-width:1100px){.book-hero{grid-template-columns:1fr}.book-cover-media{margin-top:48px;justify-content:flex-start}}
 </style>
   <meta property="og:title" content="Book Series: Fundamentals of Data Engineering | Preet Mehta">
@@ -42,7 +51,7 @@ layout: null
       </div>
     </section>
 
-    <section class="section writing-section" id="all-posts">
+    <section class="section writing-section bs-posts" id="all-posts">
       <div class="section-kicker">01 / EVERY POST, IN ONE PLACE</div>
       <div class="writing-grid">
         {% assign series_posts = site.categories.book-series %}
@@ -68,5 +77,17 @@ layout: null
   </main>
   <footer class="footer"><div><strong>PREET MEHTA</strong><span>Data Engineering • Healthcare • AI/ML</span></div><span>© <span id="year"></span> Preet Mehta</span></footer>
   <script src="/assets/js/main.js"></script>
+<script>
+(function(){
+  var cards = document.querySelectorAll('.bs-posts .writing-card');
+  Array.prototype.forEach.call(cards, function(card){
+    card.addEventListener('pointermove', function(e){
+      var r = card.getBoundingClientRect();
+      card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    });
+  });
+})();
+</script>
 </body>
 </html>
