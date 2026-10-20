@@ -10,8 +10,55 @@ layout: null
   <link rel="icon" href="/assets/img/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/style.css?v=20261015hdr">
 <style>
+  /* Bear Grylls nav underline hover — orange line sweeps in + text bolds on hover */
+  .nav a { position: relative; transition: font-weight .25s ease, color .25s ease, background .25s ease; }
+  .nav a::after {
+    content: ""; position: absolute; bottom: 2px; left: 14px; right: 14px; height: 2px;
+    background: #E0632A; transform: scaleX(0); transform-origin: right center;
+    transition: transform .25s ease-in; pointer-events: none;
+  }
+  .nav a:hover { background: transparent; font-weight: 700; color: var(--ink); }
+  .nav a:hover::after { transform: scaleX(1); transform-origin: left center; transition: transform .3s ease-out; }
+  @media (prefers-reduced-motion: reduce) {
+    .nav a, .nav a::after { transition: none; }
+  }
+  /* Consolidated nav dropdowns (W1 canonical nav) */
+  .nav .nav-drop { position: relative; }
+  .nav .nav-drop > button {
+    appearance: none; background: none; border: 0; cursor: pointer;
+    font: inherit; font-size: 13px; font-weight: 500; padding: 8px 14px; border-radius: 999px;
+    color: var(--ink-soft); white-space: nowrap; position: relative;
+    display: inline-flex; align-items: center; gap: 6px;
+    transition: font-weight .25s ease, color .25s ease, background .25s ease;
+  }
+  .nav .nav-drop > button .caret { font-size: 10px; line-height: 1; transition: transform .2s ease; }
+  .nav .nav-drop.open > button .caret { transform: rotate(180deg); }
+  .nav .nav-drop > button::after {
+    content: ""; position: absolute; bottom: 2px; left: 14px; right: 14px; height: 2px;
+    background: #E0632A; transform: scaleX(0); transform-origin: right center;
+    transition: transform .25s ease-in; pointer-events: none;
+  }
+  .nav .nav-drop > button:hover { background: transparent; font-weight: 700; color: var(--ink); }
+  .nav .nav-drop > button:hover::after { transform: scaleX(1); transform-origin: left center; transition: transform .3s ease-out; }
+  .nav .nav-drop > button.active { background: var(--ink); color: var(--paper); }
+  .nav .drop-menu {
+    display: none; position: absolute; top: calc(100% + 10px); left: 0; min-width: 200px;
+    margin: 0; padding: 8px; list-style: none;
+    background: var(--paper); border: 1px solid var(--line-strong); border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(20,20,20,0.14); z-index: 200;
+  }
+  .nav .nav-drop.open .drop-menu { display: block; }
+  .nav .drop-menu a { display: block; padding: 10px 14px; border-radius: 10px; }
+  @media (max-width: 940px) {
+    .nav .nav-drop { width: 100%; }
+    .nav .nav-drop > button { padding: 12px 16px; font-size: 14px; width: 100%; justify-content: space-between; }
+    .nav .drop-menu { position: static; border: 0; box-shadow: none; background: transparent; padding: 0 0 4px 16px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .nav .nav-drop > button, .nav .nav-drop > button::after, .nav .nav-drop > button .caret { transition: none; }
+  }
 .book-hero{display:grid;grid-template-columns:1.05fr .95fr;align-items:center;column-gap:56px}
 .book-cover-media{display:flex;justify-content:center}
 .book-cover-img{width:min(470px,90vw);height:auto;border-radius:20px;box-shadow:0 34px 64px rgba(20,35,51,.26),0 6px 18px rgba(20,35,51,.16)}
@@ -49,10 +96,35 @@ layout: null
   <noscript><style>.reveal{opacity:1!important;transform:none!important}.section-title{clip-path:none!important}</style></noscript>
 </head>
 <body>
-  <header class="site-header scrolled">
-    <a class="brand" href="/"><span class="brand-mark">PM</span><span class="brand-copy"><strong>PREET MEHTA</strong><small>BOOK SERIES</small></span></a>
+  <header class="site-header" id="top">
+    <a class="brand" href="/" aria-label="Data with Preet home">
+      <span class="brand-mark">DwP</span>
+      <span class="brand-copy"><strong>DATA WITH PREET</strong><small>BY PREET MEHTA</small></span>
+    </a>
     <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false"><span></span><span></span></button>
-    <nav class="nav" aria-label="Primary navigation"><a href="/blog/">Writing</a><a href="/daily/">Daily</a><a class="active" href="/book-series/">Book Series</a><a href="/#skills">Expertise</a><a href="/#experience">Experience</a><a href="/#community">Community</a><a href="/#contact">Contact</a></nav>
+    <nav class="nav" aria-label="Primary navigation">
+      <a href="/#about">About</a>
+      <div class="nav-drop">
+        <button type="button" aria-expanded="false" aria-haspopup="true">Work <span class="caret" aria-hidden="true">&#9662;</span></button>
+        <ul class="drop-menu" aria-label="Work sections">
+          <li><a href="/#work">Selected work</a></li>
+          <li><a href="/#skills">Skills</a></li>
+          <li><a href="/#experience">Experience</a></li>
+        </ul>
+      </div>
+      <div class="nav-drop">
+        <button type="button" aria-expanded="false" aria-haspopup="true">Insights <span class="caret" aria-hidden="true">&#9662;</span></button>
+        <ul class="drop-menu" aria-label="Insights sections">
+          <li><a href="/#writing">Articles &amp; Insights</a></li>
+          <li><a class="active" href="/book-series/">Book Series</a></li>
+          <li><a href="/research.html">Research &amp; Publications</a></li>
+        </ul>
+      </div>
+      <a href="/demos.html">AI Demos</a>
+      <a href="/resources.html">Resources</a>
+      <a href="/#contact">Contact</a>
+      <span class="video-toggle-placeholder" aria-hidden="true"></span>
+    </nav>
   </header>
   <main>
     <section class="hero section book-hero" style="min-height:62vh;padding-top:155px">
@@ -108,7 +180,7 @@ layout: null
     </section>
   </main>
   <footer class="footer"><div><strong>PREET MEHTA</strong><span>Data Engineering • Healthcare • AI/ML</span></div><span>© <span id="year"></span> Preet Mehta</span></footer>
-  <script src="/assets/js/main.js"></script>
+  <script src="/assets/js/main.js?v=20261015snrail"></script>
 <script>
 (function(){
   var input = document.getElementById('bs-search');
@@ -133,5 +205,45 @@ layout: null
 })();
 </script>
 
+<script>
+  /* Consolidated-nav dropdowns (W1 canonical nav): click/tap toggle, Escape, outside-click, focus-out; active parent when a submenu link is active */
+  (function(){
+    var drops = Array.prototype.slice.call(document.querySelectorAll('.nav .nav-drop'));
+    function setOpen(drop, open) {
+      drop.classList.toggle('open', open);
+      drop.querySelector('button').setAttribute('aria-expanded', String(open));
+    }
+    function closeAll() { drops.forEach(function(d){ setOpen(d, false); }); }
+    drops.forEach(function(drop){
+      var btn = drop.querySelector('button');
+      btn.addEventListener('click', function(e){
+        e.stopPropagation();
+        var wasOpen = drop.classList.contains('open');
+        closeAll();
+        setOpen(drop, !wasOpen);
+      });
+      drop.addEventListener('keydown', function(e){
+        if (e.key === 'Escape') { setOpen(drop, false); btn.focus(); }
+      });
+      drop.addEventListener('focusout', function(e){
+        if (!drop.contains(e.relatedTarget)) setOpen(drop, false);
+      });
+    });
+    document.addEventListener('click', closeAll);
+    document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeAll(); });
+    var subLinks = document.querySelectorAll('.nav .drop-menu a');
+    if (subLinks.length && 'MutationObserver' in window) {
+      var syncActive = function(){
+        drops.forEach(function(drop){
+          var anyActive = !!drop.querySelector('.drop-menu a.active');
+          drop.querySelector('button').classList.toggle('active', anyActive);
+        });
+      };
+      var mo = new MutationObserver(syncActive);
+      Array.prototype.forEach.call(subLinks, function(a){ mo.observe(a, { attributes: true, attributeFilter: ['class'] }); });
+      syncActive();
+    }
+  })();
+  </script>
 </body>
 </html>
