@@ -14,6 +14,16 @@ layout: null
 .daily-body strong{color:#142333}
 .daily-nav a{color:#405463;text-decoration:none;font-weight:600;font-size:15px}
 .daily-nav a:hover{color:#142333}
+.social-rail a { color: #6A6560; transition: color .3s ease, transform .3s ease; }
+.social-rail a:hover { color: #E0632A; transform: scale(1.15); }
+.social-rail a svg { width: 19px; height: 19px; display: block; fill: currentColor; }
+@media (prefers-reduced-motion: reduce) { .social-rail a { transition: none; } }
+.series-banner{display:flex;align-items:center;justify-content:space-between;gap:20px;margin:38px 0 0;padding:20px 24px;border:1.5px solid #142333;border-radius:16px;background:#fff;text-decoration:none;transition:transform .2s ease,box-shadow .2s ease}
+.series-banner:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(20,35,51,.13)}
+.series-banner-kicker{display:block;font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#E0632A;margin-bottom:5px}
+.series-banner-title{display:block;font-size:17px;font-weight:600;color:#142333;line-height:1.4}
+.series-banner-cta{flex:0 0 auto;background:#142333;color:#fff;font-weight:700;font-size:14.5px;padding:12px 22px;border-radius:999px;white-space:nowrap}
+@media (max-width:640px){.series-banner{flex-direction:column;align-items:flex-start}.series-banner-cta{width:100%;text-align:center;box-sizing:border-box}}
 .nl-cta { position: fixed; top: 92px; right: 24px; z-index: 99;
   display: flex; align-items: center; gap: 10px; padding: 8px 16px 8px 8px;
   background: #1A1A1A; border: 1px solid rgba(255,255,255,.08); border-radius: 12px;
@@ -119,6 +129,15 @@ layout: null
     {% for cat in page.categories %}{% unless cat == "daily" %}<span style="font-size:11px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:#405463;background:#eef2f7;padding:8px 16px;border-radius:999px">{{ cat }}</span>{% endunless %}{% endfor %}
   </div>
   <div style="margin:40px 0 0;height:2px;background:linear-gradient(90deg,#142333 0%,rgba(20,35,51,.06) 100%);border-radius:2px"></div>
+  {% if page.categories contains "book-series" %}
+  <a class="series-banner" href="{{ '/book-series/' | relative_url }}" aria-label="Read the whole Fundamentals of Data Engineering series">
+    <span>
+      <span class="series-banner-kicker">Book Series</span>
+      <span class="series-banner-title">Reading <em>Fundamentals of Data Engineering</em> cover to cover — one post a day</span>
+    </span>
+    <span class="series-banner-cta">Read the whole series →</span>
+  </a>
+  {% endif %}
   <div class="daily-body" style="margin-top:44px;font-size:18px;line-height:1.9;color:#2c3e50">{{ content }}</div>
 
   {% if page.source_url %}
