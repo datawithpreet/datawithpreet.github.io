@@ -15,7 +15,7 @@ layout: null
 .book-hero{display:grid;grid-template-columns:1.05fr .95fr;align-items:center;column-gap:56px}
 .book-cover-media{display:flex;justify-content:center}
 .book-cover-img{width:min(470px,90vw);height:auto;border-radius:20px;box-shadow:0 34px 64px rgba(20,35,51,.26),0 6px 18px rgba(20,35,51,.16)}
-.bs-posts .writing-card{overflow:hidden}
+.bs-posts .writing-card{position:relative;overflow:hidden}
 .bs-posts .writing-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:linear-gradient(180deg,#E0632A,#F07840);transform:scaleY(0);transform-origin:top;transition:transform .5s cubic-bezier(.25,.46,.45,.94);pointer-events:none;z-index:2}
 .bs-posts .writing-card:hover{border-color:#E0632A;box-shadow:0 20px 40px rgba(224,99,42,.12)}
 .bs-posts .writing-card:hover::before{transform:scaleY(1)}
@@ -29,7 +29,19 @@ layout: null
 .bs-posts .writing-card.featured-writing strong{color:#F07840}
 .bs-posts .writing-card.featured-writing:hover{box-shadow:0 20px 40px rgba(224,99,42,.12),0 0 26px rgba(224,99,42,.22)}
 .bs-posts .writing-card.featured-writing::after{content:'LATEST';position:absolute;top:24px;left:-42px;transform:rotate(-45deg);background:#E0632A;color:#fff;font-family:'Oswald','Space Grotesk',sans-serif;font-weight:700;font-size:10px;letter-spacing:.26em;text-transform:uppercase;padding:6px 46px;z-index:3;pointer-events:none}
-@media (prefers-reduced-motion: reduce){.bs-posts .writing-card::before{transition:none}}}
+@media (prefers-reduced-motion: reduce){.bs-posts .writing-card::before{transition:none}}
+.bs-index-lede{color:#6B6560;font-size:16px;line-height:1.65;max-width:640px;margin:0 0 22px}
+.bs-search{width:100%;max-width:520px;padding:14px 20px;border:1px solid #DAD3C2;border-radius:999px;background:#fff;font:inherit;font-size:15px;color:#1A1A1A}
+.bs-search:focus{outline:2px solid #E0632A;outline-offset:2px;border-color:#E0632A}
+.bs-count{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#8A8578;margin:16px 0 6px}
+.bs-row{display:flex;align-items:baseline;gap:18px;padding:15px 20px;background:#fff;border:1px solid #E8E2D4;border-radius:12px;margin-top:10px;text-decoration:none;transition:border-color .3s ease,transform .3s ease}
+.bs-row:hover{border-color:#E0632A;transform:translateX(4px)}
+.bs-row-num{font-family:'Oswald','Space Grotesk',sans-serif;font-weight:700;color:#E0632A;font-size:15px;min-width:34px}
+.bs-row-date{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#8A8578;min-width:112px}
+.bs-row-title{font-weight:600;color:#1A1A1A;font-size:16px;flex:1}
+.bs-row-arrow{color:#E0632A;font-weight:700}
+.bs-empty{padding:22px;border:1px dashed #DAD3C2;border-radius:12px;color:#6B6560;margin-top:10px}
+@media (max-width:640px){.bs-row{gap:10px;padding:13px 16px}.bs-row-date{min-width:0}.bs-row-title{font-size:15px}}}
 @media (max-width:1100px){.book-hero{grid-template-columns:1fr}.book-cover-media{margin-top:48px;justify-content:flex-start}}
 </style>
   <meta property="og:title" content="Book Series: Fundamentals of Data Engineering | Preet Mehta">
@@ -58,10 +70,10 @@ layout: null
     </section>
 
     <section class="section writing-section bs-posts" id="all-posts">
-      <div class="section-kicker">01 / EVERY POST, IN ONE PLACE</div>
+      <div class="section-kicker">01 / THE LATEST POSTS</div>
       <div class="writing-grid">
         {% assign series_posts = site.categories.book-series %}
-        {% for post in series_posts %}
+        {% for post in series_posts limit:6 %}
         {% if forloop.first %}
         <a class="writing-card featured-writing" href="{{ post.url | relative_url }}">
           <span>LATEST &mdash; {{ post.date | date: "%B %d, %Y" | upcase }}</span>
@@ -80,9 +92,46 @@ layout: null
         {% endfor %}
       </div>
     </section>
+
+    <section class="section bs-index-section" id="full-index">
+      <div class="section-kicker">02 / EVERY POST — THE FULL INDEX</div>
+      <p class="bs-index-lede">Every post in the series, in reading order — Post 00 first. The newest six are the big cards above; the whole series lives here as a one-line index, so this page stays short no matter how long the series runs.</p>
+      <input class="bs-search" id="bs-search" type="search" placeholder="Search the series — try “lifecycle” or “SQL”" aria-label="Search the book series posts">
+      <div class="bs-count" id="bs-count"></div>
+      <div class="bs-rows">
+        {% assign ordered_posts = site.categories.book-series | reverse %}
+        {% for post in ordered_posts %}
+        <a class="bs-row" href="{{ post.url | relative_url }}"><span class="bs-row-num">{% if forloop.index0 < 10 %}0{% endif %}{{ forloop.index0 }}</span><span class="bs-row-date">{{ post.date | date: "%b %d, %Y" }}</span><span class="bs-row-title">{{ post.title }}</span><span class="bs-row-arrow">&rarr;</span></a>
+        {% endfor %}
+      </div>
+      <div class="bs-empty" id="bs-empty" style="display:none">No posts match that search yet. Try a shorter word.</div>
+    </section>
   </main>
   <footer class="footer"><div><strong>PREET MEHTA</strong><span>Data Engineering • Healthcare • AI/ML</span></div><span>© <span id="year"></span> Preet Mehta</span></footer>
   <script src="/assets/js/main.js"></script>
+<script>
+(function(){
+  var input = document.getElementById('bs-search');
+  if(!input) return;
+  var rows = Array.prototype.slice.call(document.querySelectorAll('.bs-row'));
+  var count = document.getElementById('bs-count');
+  var empty = document.getElementById('bs-empty');
+  var total = rows.length;
+  function apply(){
+    var q = input.value.trim().toLowerCase();
+    var shown = 0;
+    rows.forEach(function(r){
+      var hit = !q || r.textContent.toLowerCase().indexOf(q) !== -1;
+      r.style.display = hit ? '' : 'none';
+      if(hit) shown++;
+    });
+    if(count) count.textContent = q ? (shown + ' of ' + total + ' posts') : (total + ' posts, in reading order');
+    if(empty) empty.style.display = shown ? 'none' : '';
+  }
+  input.addEventListener('input', apply);
+  apply();
+})();
+</script>
 
 </body>
 </html>
