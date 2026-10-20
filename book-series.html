@@ -11,6 +11,12 @@ layout: null
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/css/style.css">
+<style>
+.book-hero{display:grid;grid-template-columns:1.05fr .95fr;align-items:center;column-gap:56px}
+.book-cover-media{display:flex;justify-content:center}
+.book-cover-img{width:min(320px,78vw);height:auto;border-radius:8px;box-shadow:0 34px 64px rgba(20,35,51,.30),0 6px 18px rgba(20,35,51,.20);transform:rotate(2.5deg)}
+@media (max-width:1100px){.book-hero{grid-template-columns:1fr}.book-cover-media{margin-top:48px;justify-content:flex-start}}
+</style>
   <meta property="og:title" content="Book Series: Fundamentals of Data Engineering | Preet Mehta">
   <meta property="og:image" content="https://datawithpreet.github.io/assets/img/preet-creator.jpg">
   <noscript><style>.reveal{opacity:1!important;transform:none!important}.section-title{clip-path:none!important}</style></noscript>
@@ -22,13 +28,16 @@ layout: null
     <nav class="nav" aria-label="Primary navigation"><a href="/blog/">Writing</a><a href="/daily/">Daily</a><a class="active" href="/book-series/">Book Series</a><a href="/#skills">Expertise</a><a href="/#experience">Experience</a><a href="/#community">Community</a><a href="/#contact">Contact</a></nav>
   </header>
   <main>
-    <section class="hero section" style="min-height:62vh;grid-template-columns:1fr;padding-top:155px">
+    <section class="hero section book-hero" style="min-height:62vh;padding-top:155px">
       <div class="hero-grid"></div>
       <div class="hero-content">
         <div class="eyebrow"><span class="pulse"></span> BOOK SERIES / ONE POST EVERY DAY</div>
         <h1>Fundamentals of<br><span>Data Engineering.</span></h1>
         <p class="hero-lede">I'm reading <em>Fundamentals of Data Engineering</em> by Joe Reis and Matt Housley cover to cover — and turning every chapter into plain-language posts, tied to real experience from the field. New post every day. If books feel like a lot, start here.</p>
         <div class="hero-actions"><a class="btn btn-primary" href="#all-posts">Read the series <span>↗</span></a><a class="btn btn-ghost" href="https://www.linkedin.com/in/preetmehta/" target="_blank" rel="noopener">Follow on LinkedIn ↗</a></div>
+      </div>
+      <div class="book-cover-media">
+        <img class="book-cover-img" src="/assets/img/book-series/fundamentals-of-data-engineering-cover.svg" alt="Fundamentals of Data Engineering by Joe Reis and Matt Housley — O'Reilly book cover" width="296" height="388" loading="eager" decoding="async">
       </div>
     </section>
 
