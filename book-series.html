@@ -34,7 +34,8 @@ layout: null
         <div class="eyebrow"><span class="pulse"></span> BOOK SERIES / ONE POST EVERY DAY</div>
         <h1>Fundamentals of<br><span>Data Engineering.</span></h1>
         <p class="hero-lede">I'm reading <em>Fundamentals of Data Engineering</em> by Joe Reis and Matt Housley cover to cover — and turning every chapter into plain-language posts, tied to real experience from the field. New post every day. If books feel like a lot, start here.</p>
-        <div class="hero-actions"><a class="btn btn-primary" href="#all-posts">Read the series <span>↗</span></a><a class="btn btn-ghost" href="https://www.linkedin.com/in/preetmehta/" target="_blank" rel="noopener">Follow on LinkedIn ↗</a></div>
+        {% assign first_post = site.categories.book-series | last %}
+        <div class="hero-actions"><a class="btn btn-primary" href="{{ first_post.url | relative_url }}">Start from the beginning <span>↗</span></a><a class="btn btn-ghost" href="#all-posts">See all posts</a><a class="btn btn-ghost" href="https://www.linkedin.com/in/preetmehta/" target="_blank" rel="noopener">Follow on LinkedIn ↗</a></div>
       </div>
       <div class="book-cover-media">
         <img class="book-cover-img" src="/assets/img/book-series/fundamentals-of-data-engineering-cover.svg" alt="Fundamentals of Data Engineering by Joe Reis and Matt Housley — O'Reilly book cover" width="296" height="388" loading="eager" decoding="async">
