@@ -15,15 +15,21 @@ layout: null
 .book-hero{display:grid;grid-template-columns:1.05fr .95fr;align-items:center;column-gap:56px}
 .book-cover-media{display:flex;justify-content:center}
 .book-cover-img{width:min(470px,90vw);height:auto;border-radius:20px;box-shadow:0 34px 64px rgba(20,35,51,.26),0 6px 18px rgba(20,35,51,.16)}
-.bs-posts .writing-card{position:relative}
-.bs-posts .writing-card>*{position:relative;z-index:1}
-.bs-posts .writing-card::before{content:'';position:absolute;inset:0;border-radius:inherit;background:radial-gradient(340px circle at var(--mx,50%) var(--my,50%),rgba(224,99,42,.17),transparent 65%);opacity:0;transition:opacity .35s ease;pointer-events:none;z-index:0}
-.bs-posts .writing-card::after{content:'';position:absolute;inset:0;border-radius:inherit;padding:1.5px;background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%),rgba(224,99,42,.95),transparent 70%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;opacity:0;transition:opacity .35s ease;pointer-events:none;z-index:2}
-.bs-posts .writing-card:hover::before,.bs-posts .writing-card:hover::after{opacity:1}
-.bs-posts .writing-card>span{transition:color .3s ease}
-.bs-posts .writing-card:hover>span{color:#E0632A}
-.bs-posts .writing-card.featured-writing:hover>span{color:#FF8B4D}
-@media (prefers-reduced-motion: reduce){.bs-posts .writing-card::before,.bs-posts .writing-card::after{transition:none}}
+.bs-posts .writing-card{overflow:hidden}
+.bs-posts .writing-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:linear-gradient(180deg,#E0632A,#F07840);transform:scaleY(0);transform-origin:top;transition:transform .5s cubic-bezier(.25,.46,.45,.94);pointer-events:none;z-index:2}
+.bs-posts .writing-card:hover{border-color:#E0632A;box-shadow:0 20px 40px rgba(224,99,42,.12)}
+.bs-posts .writing-card:hover::before{transform:scaleY(1)}
+.bs-posts .writing-card>span{color:#6A6560;opacity:.3;transition:color .4s ease,opacity .4s ease}
+.bs-posts .writing-card:hover>span{opacity:1;color:#E0632A}
+.bs-posts .writing-card strong{color:#E0632A;transition:color .3s ease}
+.bs-posts .writing-card:hover strong{color:#F07840}
+.bs-posts .writing-card.featured-writing{border-color:#E0632A}
+.bs-posts .writing-card.featured-writing::before{transform:scaleY(1)}
+.bs-posts .writing-card.featured-writing>span{opacity:1;color:#F07840}
+.bs-posts .writing-card.featured-writing strong{color:#F07840}
+.bs-posts .writing-card.featured-writing:hover{box-shadow:0 20px 40px rgba(224,99,42,.12),0 0 26px rgba(224,99,42,.22)}
+.bs-posts .writing-card.featured-writing::after{content:'LATEST';position:absolute;top:24px;left:-42px;transform:rotate(-45deg);background:#E0632A;color:#fff;font-family:'Oswald','Space Grotesk',sans-serif;font-weight:700;font-size:10px;letter-spacing:.26em;text-transform:uppercase;padding:6px 46px;z-index:3;pointer-events:none}
+@media (prefers-reduced-motion: reduce){.bs-posts .writing-card::before{transition:none}}}
 @media (max-width:1100px){.book-hero{grid-template-columns:1fr}.book-cover-media{margin-top:48px;justify-content:flex-start}}
 </style>
   <meta property="og:title" content="Book Series: Fundamentals of Data Engineering | Preet Mehta">
@@ -77,17 +83,6 @@ layout: null
   </main>
   <footer class="footer"><div><strong>PREET MEHTA</strong><span>Data Engineering • Healthcare • AI/ML</span></div><span>© <span id="year"></span> Preet Mehta</span></footer>
   <script src="/assets/js/main.js"></script>
-<script>
-(function(){
-  var cards = document.querySelectorAll('.bs-posts .writing-card');
-  Array.prototype.forEach.call(cards, function(card){
-    card.addEventListener('pointermove', function(e){
-      var r = card.getBoundingClientRect();
-      card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
-      card.style.setProperty('--my', (e.clientY - r.top) + 'px');
-    });
-  });
-})();
-</script>
+
 </body>
 </html>
