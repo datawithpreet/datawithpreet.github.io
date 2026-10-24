@@ -63,8 +63,6 @@ summary = (
 summary.write.saveAsTable("events_by_customer")
 ```
 
-![Salting splits, then combines](/assets/img/databricks-edu-series/diagram-9-3-salting.svg)
-
 Nothing in that code says "make one task huge." The code just asks for a count per customer.
 
 If one customer has a far larger share of the rows than any other, that customer's task will be far larger than any other. Adding more workers does not help, because the extra workers cannot take rows away from that one task. The work cannot be split if the key cannot be split.
@@ -134,6 +132,8 @@ summary = (
 
 summary.write.saveAsTable("events_by_customer")
 ```
+
+![Salting splits, then combines](/assets/img/databricks-edu-series/diagram-9-3-salting.svg)
 
 Read that slowly, because the idea is doing all the work.
 
