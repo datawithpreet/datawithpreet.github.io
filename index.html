@@ -524,7 +524,7 @@
     <section class="section" id="work">
       <div class="kicker reveal" data-num="03">WORK</div>
       <h2 class="section-title reveal">Things I&rsquo;ve <span class="serif">built.</span></h2>
-      <p class="section-sub reveal">Three case studies across healthcare platforms, ML foundations, and cloud modernization. Each one opens its full story — problem, decisions, and results.</p>
+      <p class="section-sub reveal">Four case studies across healthcare platforms, ML foundations, cloud modernization, and open-source governance. Each one opens its full story — problem, decisions, and results.</p>
       <div class="panels reveal" id="workPanels">
           <article class="panel open reveal" tabindex="0" role="button" aria-expanded="true" aria-label="Open Healthcare Data Platform case study">
             <div class="panel-collapsed-label"><span class="p-num">01</span><span class="p-vtitle">Healthcare Data Platform</span><span class="p-plus">+</span></div>
@@ -579,6 +579,25 @@
             <div class="wc-tech"><span>Databricks</span><span>Snowflake</span><span>ADF</span><span>Azure DevOps</span></div>
             <a class="btn btn-dark" href="journey/exl-service.html#rcm">See the legacy-to-lakehouse migration <span class="arr">&rarr;</span></a>
           
+            </div>
+          </article>
+          <article class="panel reveal" tabindex="0" role="button" aria-expanded="false" aria-label="Open HIPAA-Ready Data Pipeline Framework case study">
+            <div class="panel-collapsed-label"><span class="p-num">04</span><span class="p-vtitle">HIPAA-Ready Data Pipeline</span><span class="p-plus">+</span></div>
+            <div class="panel-body">
+            <span class="wc-num">04</span>
+            <div class="wc-tags"><span>HEALTHCARE</span><span>GOVERNANCE</span><span>OPEN SOURCE</span></div>
+            <h3>HIPAA-Ready Data Pipeline Framework</h3>
+            <dl class="wc-anatomy">
+              <div><dt>Problem</dt><dd>Healthcare data needs governance before it can be used — messy, incomplete records must be caught, explained, and quarantined, not silently passed through.</dd></div>
+              <div><dt>Context</dt><dd>Open-source framework built as a proper package, with deidentification, data quality, and audit. The demo uses synthetic data only — no client or employer data.</dd></div>
+              <div><dt>My contribution</dt><dd>Built the framework and its synthetic-data demo, including the governed / quarantined split and a reason for every quarantined record.</dd></div>
+              <div><dt>Design decisions</dt><dd>Quarantine with reasons instead of dropping bad records silently — every rejected record carries a reason, so the governed data stays trustworthy.</dd></div>
+              <div><dt>Results</dt><dd>Synthetic demo: 10,000 records in &rarr; 1,589 governed, 8,411 quarantined, in 0.143s. Quarantine reasons: missing field 3,557 / unparseable date 3,198 / invalid amount 1,646 / duplicate 10.</dd></div>
+            </dl>
+            <p class="wc-note">Synthetic-data demo only — these numbers are from the demo, not a client system.</p>
+            <div class="wc-tech"><span>Python</span><span>Deidentification</span><span>Data Quality</span><span>Audit</span></div>
+            <a class="btn btn-dark" href="https://github.com/ynpreet/hipaa-pipeline-framework" target="_blank" rel="noopener">View the open-source framework <span class="arr">&rarr;</span></a>
+
             </div>
           </article>
       </div>
@@ -962,9 +981,6 @@
       </div>
       <div id="events" class="events-list reveal">
         <h3>Upcoming</h3>
-        <p><b>Today (Oct 15):</b> Databricks DevConnect Boston — BASE-X, Boston (organizer). <a href="https://events.databricks.com/devconnect-boston-26" target="_blank" rel="noopener">Details ↗</a></p>
-        <div class="event-row"><span class="event-date">OCT 20</span><div><b>Purdue Data Mine</b><p>Virtual student session</p></div></div>
-        <div class="event-row"><span class="event-date">OCT 23</span><div><b>UMass Boston</b><p>AI agent demo + breakout</p></div></div>
         <div class="event-row"><span class="event-date">OCT 29</span><div><b>UMass Boston</b><p>Hackathon finals judging</p></div></div>
       </div>
     </section>
