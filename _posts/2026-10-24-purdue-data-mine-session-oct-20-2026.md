@@ -8,7 +8,6 @@ categories: [events]
 
 ![Purdue Data Mine session](/assets/img/purdue-data-mine-session-oct-20-2026.svg)
 
-![Purdue Data Mine session screenshot](/assets/img/purdue-framed-preet-visible.svg)
 
 On Oct 20, I had the opportunity to talk with around 70 undergraduate students at Purdue Data Mine, with Professor Mark Ward.
 
