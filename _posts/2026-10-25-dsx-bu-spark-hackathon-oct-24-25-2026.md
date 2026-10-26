@@ -62,11 +62,3 @@ These are the Health & BioTech projects I judged on Sunday, and what made them s
 What I will remember is not one winner. It is the honesty of the best teams. The teams that impressed me most were not the ones with the smoothest pitch — they were the ones who could say, plainly, "this is simulated, this is not validated yet, this is what would break first." That is a professional habit, not just a student habit, and it is exactly what data work in healthcare demands: if you cannot say what your model does not know, you should not be near patient data.
 
 It is also why I take judging seriously as a contribution, not as a favour. Judging 20 projects, reading their code, and scoring them on a public rubric is work that shapes what those students build next. That is the contribution I am recording here.
-
-## For EB-1A reviewers
-
-- **Criterion — Judging:** Technical Judge, Health & BioTech, Sunday Oct 25, 2026, scoring 20 projects on the official six-criterion rubric (Idea 25%, Data Science 25%, Technical Implementation 20%, Design 10%, Responsibility & Ethics 10%, Presentation 10%).
-- **Criterion — Mentoring / Teaching:** Mentor, Saturday Oct 24, 2026, table-to-table mentoring of participating teams, plus Workshop Facilitator role as confirmed by the organisers.
-- **Event:** BU Spark! DS+X, Boston University, Center for Computing and Data Sciences, 665 Commonwealth Ave, Boston, MA 02215, in person, Oct 24–25, 2026. Second edition; first edition Oct 25–26, 2025, nearly 200 hackers, two dozen mentors and judges, over $5,000 in prizes.
-- **Organisers:** Lydia Holck, Ziba Cranmer, Alena Patel, Karina Palos, and the BU Spark! team (hackbu@bu.edu).
-- **Evidence on this page:** the judges and mentors photo above — one photo only, by design, not a set of near-duplicates. Judge certification was confirmed as forthcoming by the organisers on Oct 24, 2026; it will be added here when received.

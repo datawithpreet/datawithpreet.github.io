@@ -37,10 +37,3 @@ The audience is the PyData Boston community: data scientists, data engineers, an
 ## My experience, so far
 
 This talk has not happened yet, so I am not writing a report of it here. What I can record now is the preparation: a poster, a topic, a time slot, and a community I respect. After Nov 4, this page will be updated with a report from the event itself — what I actually said, how the audience responded, and photos from the evening — so that this page records a completed contribution, not just a planned one.
-
-## For EB-1A reviewers
-
-- **Criterion — Speaking / Teaching:** Speaker, PyData Boston, Wednesday November 4, 2026, 7:10–7:55 PM.
-- **Topic:** Data Design Practices for EHR Data.
-- **Event:** PyData Boston, Nov 4, 2026, 6:30 PM. PyData is a community-driven Python data community founded in 2012, with PyData Boston first held in July 2013.
-- **Evidence on this page:** event poster above. A post-event report, with photos and outcome, will be added after Nov 4 — this page is currently a preview of an upcoming talk, not a report of a completed talk.

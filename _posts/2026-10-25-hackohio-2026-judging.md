@@ -49,10 +49,3 @@ I am listing these eight projects by name, team, and wave exactly as the organis
 Judging at HackOHI/O, in the same weekend as DS+X in Boston, gave me a useful comparison. Two different universities, two different student cultures, the same lesson: the best student work is not the most complicated work. It is the work where the team can explain, in plain words, what problem they chose, what they actually built, and what they would do next if they had another week. That is what I looked for in Room 2, and that is what I will keep looking for as a judge.
 
 Thank you to Elizabeth Stong and the HackOHI/O organising team for running the event and for keeping volunteers in the loop. I would love to collaborate again in upcoming events.
-
-## For EB-1A reviewers
-
-- **Criterion — Judging:** Judge, Room 2, HackOHI/O 2026, Ohio State — 8 teams judged, Wave 1 (Teams 20, 21, 26, 27) and Wave 2 (Teams 28, 29, 32, 33), as listed in the Master Judging sheet.
-- **Event:** HackOHI/O, Ohio State University's flagship hackathon, founded 2013, now Ohio's largest hackathon, with 800+ participants in recent years, student-run, with MakeOHI/O and High School I/O as spin-offs.
-- **Organisers:** Elizabeth Stong, Hamsika Tummala, Divyagna Abburi, and the HackOHI/O organising team.
-- **Evidence on this page:** full team and project list above, as recorded in the HackOHI/O 2026 Master Judging sheet (Participants and Judges Assignments). The organisers' 2026 HackOHI/O Opening Keynote deck is also on record.
