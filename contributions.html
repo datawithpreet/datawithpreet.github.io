@@ -1,0 +1,82 @@
+---
+layout: null
+permalink: /contributions/
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>My Contributions | Preet Mehta</title>
+  <meta name="description" content="Preet Mehta's contributions — judging, mentoring, teaching and speaking at hackathons, universities and community events. Click any event for the full detail.">
+  <link rel="icon" href="/assets/img/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <style>
+    .event-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 8px; }
+    @media (max-width: 640px) { .event-grid { grid-template-columns: 1fr; } }
+    .event-card { border: 1px solid var(--line); border-radius: 12px; padding: 26px 28px; background: #fff; text-decoration: none; display: block; transition: transform .2s ease, box-shadow .2s ease; }
+    .event-card:hover { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(20,35,51,.13); }
+    .event-card h3 { font-family: var(--font-display); font-size: 20px; margin: 0 0 8px; line-height: 1.3; color: var(--ink); }
+    .event-card p { font-size: 15px; color: var(--gray); line-height: 1.7; margin: 0; }
+    .event-card p strong { color: var(--ink); }
+    .event-meta { font-size: 13px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #E0632A; margin-bottom: 10px; }
+    .event-cta { display: block; margin-top: 14px; font-size: 14px; font-weight: 700; color: var(--ink); }
+    .event-card.upcoming { opacity: 1; }
+    .event-card.upcoming .event-meta { color: #405463; }
+  </style>
+</head>
+<body>
+  <header class="site-header scrolled">
+    <a class="brand" href="/"><span class="brand-mark">PM</span><span class="brand-copy"><strong>PREET MEHTA</strong><small>CONTRIBUTIONS</small></span></a>
+    <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false"><span></span><span></span></button>
+    <nav class="nav" aria-label="Primary navigation"><a href="/blog/">Writing</a><a href="/daily/">Daily</a><a href="/book-series/">Book Series</a><a href="/#skills">Expertise</a><a href="/#experience">Experience</a><a href="/#community">Community</a><a href="/#contact">Contact</a></nav>
+  </header>
+  <main>
+    <section class="hero section" style="min-height:62vh;grid-template-columns:1fr;padding-top:155px">
+      <div class="hero-grid"></div>
+      <div class="hero-content">
+        <div class="eyebrow"><span class="pulse"></span> JUDGING · MENTORING · TEACHING · SPEAKING</div>
+        <h1>My<br><span>contributions.</span></h1>
+        <p class="hero-lede">Every event I have judged, mentored at, taught at, or spoken at — in one place. Click any event for the full detail: what I did, when, and who I did it with.</p>
+        <div class="hero-actions"><a class="btn btn-primary" href="https://www.linkedin.com/in/preetmehta/" target="_blank" rel="noopener">Connect on LinkedIn ↗</a></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-kicker">EVENTS</div>
+      <div class="event-grid">
+        <a class="event-card" href="/writing/pydata-boston-nov-4-2026/">
+          <div class="event-meta">Upcoming · Nov 4, 2026 · Speaking</div>
+          <h3>PyData Boston</h3>
+          <p><strong>Speaker.</strong> Talk: Data Design Practices for EHR Data, 7:10–7:55 PM, Wednesday, November 4, 2026.</p>
+          <span class="event-cta">See detail →</span>
+        </a>
+        <a class="event-card" href="/writing/hackohio-2026-judging/">
+          <div class="event-meta">2026 · Judging</div>
+          <h3>HackOHI/O 2026, Ohio State</h3>
+          <p><strong>Judge, Room 2.</strong> Judged 8 teams across Wave 1 and Wave 2, including Campus Pilot, Fireline, ChemSpeak, V.I.S.I.O.N., Open Keys, HerVoice, Synesthesia, and FormAI.</p>
+          <span class="event-cta">See detail →</span>
+        </a>
+        <a class="event-card" href="/writing/dsx-bu-spark-hackathon-oct-24-25-2026/">
+          <div class="event-meta">Oct 24–25, 2026 · Mentoring &amp; Judging</div>
+          <h3>BU Spark! DS+X, Boston University</h3>
+          <p><strong>Mentor and Technical Judge.</strong> Mentored teams table to table on Saturday, and judged Health &amp; BioTech projects on Sunday, reviewing Kiro code, GitHub repositories, and machine learning models.</p>
+          <span class="event-cta">See detail →</span>
+        </a>
+        <a class="event-card" href="/writing/purdue-data-mine-session-oct-20-2026/">
+          <div class="event-meta">Oct 20, 2026 · Teaching</div>
+          <h3>Purdue Data Mine Guest Session</h3>
+          <p><strong>Guest session with Professor Mark Ward.</strong> Around 70 undergraduate students, on daily work, campus to corporate, and what I wish I had learned in my masters.</p>
+          <span class="event-cta">See detail →</span>
+        </a>
+        <div class="event-card upcoming">
+          <div class="event-meta">Upcoming · April 2027 · Judging</div>
+          <h3>DataFest 2027, UMass Amherst</h3>
+          <p><strong>Judge — accepted.</strong> Signed up as a DataFest 2027 judge. Detail page to follow closer to the event.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
