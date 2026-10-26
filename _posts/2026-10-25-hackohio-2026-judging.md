@@ -31,3 +31,10 @@ I judged 8 teams in Room 2, as listed in the HackOHI/O 2026 Master Judging sheet
 ## Thanks
 
 Thank you to Elizabeth Stong and the HackOHI/O organising team for running the event and for keeping volunteers in the loop. I would love to collaborate again in upcoming events.
+
+## For EB-1A reviewers
+
+- **Criterion — Judging:** Judge, Room 2, HackOHI/O 2026, Ohio State — 8 teams judged, Wave 1 (Teams 20, 21, 26, 27) and Wave 2 (Teams 28, 29, 32, 33), as listed in the Master Judging sheet.
+- **Organisers:** Elizabeth Stong, Hamsika Tummala, Divyagna Abburi, and the HackOHI/O organising team.
+- **Evidence on this page:** full team and project list above, as recorded in the HackOHI/O 2026 Master Judging sheet (Participants and Judges Assignments).
+- **Related:** 2026 HackOHI/O Opening Keynote deck, shared by the organisers.

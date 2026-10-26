@@ -24,3 +24,11 @@ Presentations ran 11:30 AM–1:30 PM on Sunday, with no live Q&A — questions w
 Thank you to Lydia Holck, Ziba Cranmer, Alena Patel, Karina Palos, and the BU Spark! team for running DS+X and for the opportunity to mentor and judge.
 
 ![DS+X judges and mentors](/assets/img/dsx-judges-group.svg)
+
+## For EB-1A reviewers
+
+- **Criterion — Judging:** Technical Judge, Health & BioTech, Sunday Oct 25, 2026, scoring on the official six-criterion rubric (Idea 25%, Data Science 25%, Technical Implementation 20%, Design 10%, Responsibility & Ethics 10%, Presentation 10%).
+- **Criterion — Mentoring / Teaching:** Mentor, Saturday Oct 24, 2026, table-to-table mentoring of participating teams.
+- **Event:** BU Spark! DS+X, Boston University, Center for Computing & Data Sciences, 665 Commonwealth Ave, Boston, MA 02215, in person, Oct 24–25, 2026.
+- **Organisers:** Lydia Holck, Ziba Cranmer, Alena Patel, Karina Palos, and the BU Spark! team (hackbu@bu.edu).
+- **Evidence on this page:** event photos above, role and rubric as above. Judge certification was confirmed as forthcoming by the organisers on Oct 24, 2026; it will be added here when received.
