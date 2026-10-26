@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1500" viewBox="0 0 1200 1500">
+  <rect width="1200" height="1500" fill="#faf8f2"/>
+  <rect x="24" y="24" width="1152" height="1452" fill="none" stroke="#111111" stroke-width="4"/>
+  <rect x="24" y="24" width="1152" height="140" fill="#111111"/>
+  <text x="80" y="110" font-family="Arial, Helvetica, sans-serif" font-size="40" font-weight="900" fill="#ffffff" letter-spacing="3">JUDGE  ·  DATAFEST</text>
+<rect x="80" y="190" width="1040" height="310" fill="none" stroke="#5a5648" stroke-width="2" stroke-dasharray="14 10"/>
+<text x="600" y="330" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="32" fill="#5a5648">Official Five College DataFest logo</text>
+<text x="600" y="380" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="32" fill="#5a5648">to be confirmed — not shown here</text>
+  <text x="80" y="575" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="700" fill="#E0632A" letter-spacing="2">PREET MEHTA</text>
+<text x="80" y="680" font-family="Arial, Helvetica, sans-serif" font-size="96" font-weight="900" fill="#111111" letter-spacing="-1">DATAFEST</text>
+<text x="80" y="794" font-family="Arial, Helvetica, sans-serif" font-size="96" font-weight="900" fill="#111111" letter-spacing="-1">2027</text>
+
+  <line x1="80" y1="855" x2="1120" y2="855" stroke="#111111" stroke-width="3"/>
+  <rect x="80" y="900" width="1040" height="440" fill="none" stroke="#111111" stroke-width="2"/>
+<text x="120" y="962" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" fill="#5a5648" letter-spacing="3">ROLE</text>
+<text x="120" y="1004" font-family="Arial, Helvetica, sans-serif" font-size="38" font-weight="700" fill="#111111">Judge</text>
+<text x="120" y="1062" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" fill="#5a5648" letter-spacing="3">DATE</text>
+<text x="120" y="1104" font-family="Arial, Helvetica, sans-serif" font-size="38" font-weight="700" fill="#111111">April 2027</text>
+<text x="120" y="1162" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" fill="#5a5648" letter-spacing="3">FORMAT</text>
+<text x="120" y="1204" font-family="Arial, Helvetica, sans-serif" font-size="38" font-weight="700" fill="#111111">In person</text>
+<text x="120" y="1262" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" fill="#5a5648" letter-spacing="3">VENUE</text>
+<text x="120" y="1304" font-family="Arial, Helvetica, sans-serif" font-size="38" font-weight="700" fill="#111111">UMass Amherst, MA</text>
+
+<text x="80" y="1392" font-family="Arial, Helvetica, sans-serif" font-size="32" fill="#5a5648">Five College DataFest · Exact dates not yet public</text>
+  <text x="80" y="1445" font-family="Arial, Helvetica, sans-serif" font-size="26" fill="#5a5648">Poster artwork — not a photograph of the event.</text>
+</svg>
