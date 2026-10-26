@@ -30,3 +30,10 @@ Other events I have attended recently:
 - Oct 15, 2026 — Jimeng Sun call, PyHealth cohort
 - Oct 13, 2026 — Rochester / Goergen call with Nick Koziol
 - Oct 13, 2026 — Alexander Tuzhilin call
+
+## For EB-1A reviewers
+
+- **Criterion — Teaching / Speaking:** Guest session, Purdue Data Mine, Purdue University, Oct 20, 2026, with Professor Mark Ward.
+- **Audience:** Around 70 undergraduate students, coding and non-coding backgrounds.
+- **Organiser / host:** Professor Mark Ward, founding director of The Data Mine, Purdue University. Professor Ward approved this post and use of the session screenshot on Oct 24, 2026.
+- **Evidence on this page:** session screenshot above (Purdue University frame, Oct 20, 2026), and the session account above.
