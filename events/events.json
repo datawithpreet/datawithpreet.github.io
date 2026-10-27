@@ -78,8 +78,8 @@
    "date": "October 29, 2026",
    "format": "",
    "highlights": [],
-   "image": "https://datawithpreet.github.io/assets/img/events/umass-finals-oct-29-2026.svg",
-   "imageAlt": "UMass Boston hackathon finals judging poster with the UMass Boston logo, October 29, 2026",
+   "image": "https://datawithpreet.github.io/assets/img/UMass%20Boston%20at%20Twilight.png",
+   "imageAlt": "UMass Boston campus at twilight, with illuminated campus buildings and the university sign",
    "location": "UMass Boston",
    "organizer": "Paul English Applied AI Institute, UMass Boston",
    "role": "Judge",
@@ -102,7 +102,7 @@
    "endDate": null,
    "statusOverride": null,
    "monthKey": null,
-   "mediaType": "poster"
+   "mediaType": "photograph"
   },
   {
    "categories": [
