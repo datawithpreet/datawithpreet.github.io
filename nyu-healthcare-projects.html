@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Free Healthcare Data Projects | Preet Mehta</title>
+  <meta name="description" content="Three free, hands-on healthcare data engineering projects for students: design an EHR data model, take a pipeline from notebook to production, and build a governed healthcare ML project. Step-by-step instructions, synthetic data only, no real patient data.">
+  <link rel="icon" href="assets/img/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css?v=20261015hdr">
+  <style>
+    .proj { max-width: 860px; margin: 0 auto; padding: 40px 22px 80px; }
+    .proj h1 { font-family: var(--font-display); font-size: 34px; line-height: 1.2; margin: 0 0 10px; }
+    .proj h2 { font-family: var(--font-display); font-size: 24px; margin: 44px 0 10px; }
+    .proj h3 { font-size: 17px; margin: 22px 0 6px; }
+    .proj p, .proj li { font-size: 16px; line-height: 1.7; color: var(--ink); }
+    .proj .lede { font-size: 18px; color: var(--gray); }
+    .proj .card { border: 1px solid var(--line); border-radius: 14px; padding: 24px; margin: 22px 0; background: #fff; }
+    .proj .tag { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--teal); border: 1px solid var(--line); border-radius: 999px; padding: 5px 11px; margin: 0 6px 10px 0; }
+    .proj ol, .proj ul { padding-left: 22px; }
+    .proj li { margin-bottom: 8px; }
+    .proj .note { background: rgba(42,161,152,.08); border: 1px solid rgba(42,161,152,.4); border-radius: 12px; padding: 16px 20px; }
+  </style>
+</head>
+<body>
+  <main class="proj">
+    <p><a href="resources.html">&larr; Back to Resources</a></p>
+    <h1>Free Healthcare Data Projects</h1>
+    <p class="lede">Three hands-on projects shared after my NYU Center for Data Science Capstone session. Each one takes you from messy, real-world-style data to something you could actually show an employer — with every step written out, A to Z.</p>
+    <div class="note">
+      <p><strong>Important — data safety:</strong> use <strong>synthetic or openly published demo data only</strong> for every project below. Never use real patient records, and never upload real health data to a public repo or notebook. If a dataset asks for credentials or a data-use agreement, pick the synthetic alternative listed instead.</p>
+    </div>
+    <p><strong>What you need:</strong> Python, pandas, and a notebook (or Databricks Community Edition / Google Colab, if you prefer). No paid tools and no cloud account are required. Each project is designed to take roughly 3–6 hours.</p>
+
+    <section class="card" id="project-1">
+      <span class="tag">Project 1</span><span class="tag">Data modelling</span><span class="tag">Beginner-friendly</span>
+      <h2>1. Design a trustworthy EHR data model</h2>
+      <p><strong>Goal:</strong> turn messy, multi-source patient, encounter, lab and medication records into one clean, queryable data model that a clinician or analyst could actually trust.</p>
+      <h3>Step by step</h3>
+      <ol>
+        <li><strong>Get synthetic data.</strong> Generate a small synthetic dataset (for example with Python's Faker, or the CMS Synthetic Public Use Files) with at least: patients, encounters, lab results and medications. Keep the row counts small — a few thousand rows is plenty.</li>
+        <li><strong>Profile it first.</strong> Before you model anything, write down: how many rows, how many missing values per column, duplicate patient IDs, impossible dates (discharge before admission), and conflicting units (mg vs mcg) in lab results.</li>
+        <li><strong>Draw the model.</strong> Sketch a simple star schema: a patient dimension, an encounter fact, and lab / medication facts linked by patient and encounter keys. Write one paragraph explaining every table and key — if you cannot explain it, it is not ready.</li>
+        <li><strong>Build it.</strong> Load the raw tables, apply your cleaning rules, and write the clean tables out (CSV, Parquet or a small database). Keep the raw and clean layers separate — never overwrite raw data.</li>
+        <li><strong>Prove it with checks.</strong> Add automated checks: no duplicate primary keys, no orphan encounters, lab values within plausible ranges, and a row-count reconciliation from raw to clean. Make the checks fail loudly, not silently.</li>
+        <li><strong>Answer three questions with it.</strong> For example: average length of stay by department, most common lab test per encounter type, and medication counts per patient. If a question is hard to answer, your model needs fixing — that is the lesson.</li>
+      </ol>
+      <h3>What breaks in real life (and what to watch for)</h3>
+      <ul>
+        <li>Two systems spelling the same patient differently — identity matching is a data problem, not a modelling afterthought.</li>
+        <li>Units and code systems changing over time — version your reference tables.</li>
+        <li>“Just one more column” from every team — governance is deciding what does <em>not</em> go in.</li>
+      </ul>
+      <h3>Stretch goal</h3>
+      <p>Add a slowly-changing dimension for patient addresses, and a data-quality dashboard that reports your checks every time the pipeline runs.</p>
+    </section>
+
+    <section class="card" id="project-2">
+      <span class="tag">Project 2</span><span class="tag">Data engineering</span><span class="tag">Intermediate</span>
+      <h2>2. From notebook to a production-ready pipeline</h2>
+      <p><strong>Goal:</strong> take a notebook that “works on my machine” and turn it into a pipeline that survives schema drift, late-arriving data, duplicates and re-runs — the exact story from the talk.</p>
+      <h3>Step by step</h3>
+      <ol>
+        <li><strong>Start with the notebook.</strong> Write a notebook that reads a synthetic claims or encounters file, cleans it, and produces one summary table. Get it working end to end first.</li>
+        <li><strong>Extract the pipeline.</strong> Move the logic into functions or a script with three stages: bronze (raw, as landed), silver (cleaned, validated) and gold (aggregated, ready to query). Each stage writes its own output — never skip a stage.</li>
+        <li><strong>Break it on purpose.</strong> Feed it: a file with a renamed column, a file arriving two days late, a file with 5% duplicate rows, and an empty file. Write down what breaks each time.</li>
+        <li><strong>Fix each break.</strong> Add a schema check that rejects (and quarantines) bad files instead of crashing; add deduplication on a business key; make every stage idempotent, so re-running it produces the same result; log row counts at every stage.</li>
+        <li><strong>Schedule it.</strong> Run it on a schedule (even a simple cron job or a notebook job) for a week of synthetic daily files, and keep a run log: date, rows in, rows out, checks passed or failed.</li>
+        <li><strong>Write the runbook.</strong> One page: what the pipeline does, what each check means, and exactly what to do when a check fails. A pipeline without a runbook is not production-ready.</li>
+      </ol>
+      <h3>What breaks in real life (and what to watch for)</h3>
+      <ul>
+        <li>Silent schema changes from an upstream system — quarantine, don't guess.</li>
+        <li>Re-runs double-counting data — idempotency is non-negotiable.</li>
+        <li>Nobody knowing who owns a failure — name an owner for every stage.</li>
+      </ul>
+      <h3>Stretch goal</h3>
+      <p>Add alerting (even a simple email or message on failure), partition the output by date, and backfill one historical month cleanly.</p>
+    </section>
+
+    <section class="card" id="project-3">
+      <span class="tag">Project 3</span><span class="tag">Machine learning</span><span class="tag">Governance</span>
+      <h2>3. A governed healthcare ML project</h2>
+      <p><strong>Goal:</strong> build a simple risk-prediction model on synthetic data — and show the governance around it: validation, fairness checks and monitoring. The model is the easy part; the governance is the project.</p>
+      <h3>Step by step</h3>
+      <ol>
+        <li><strong>Pick a synthetic problem.</strong> For example, predicting a 30-day return visit from synthetic encounter, diagnosis and lab features. Use a published synthetic dataset or generate one with a documented recipe — and write down its limitations.</li>
+        <li><strong>Split honestly.</strong> Split by time (train on earlier encounters, test on later ones), not randomly — random splits leak the future in healthcare data. Report this choice explicitly.</li>
+        <li><strong>Build a simple baseline first.</strong> A logistic regression or a small gradient-boosting model, with clear feature definitions. Beat the baseline before you add complexity.</li>
+        <li><strong>Validate beyond accuracy.</strong> Report precision, recall and calibration, not just accuracy. Check performance by subgroup (age band, sex, department) and write down any gap you find — do not hide it.</li>
+        <li><strong>Document the model.</strong> One model card: what it predicts, what data it was trained on, what it should never be used for, and its known limitations.</li>
+        <li><strong>Monitor it.</strong> Simulate a second month of data with a small distribution shift, re-score the model, and show how performance moves. Write the monitoring plan: what metric, what threshold, and what action follows a breach.</li>
+      </ol>
+      <h3>What breaks in real life (and what to watch for)</h3>
+      <ul>
+        <li>Training-serving skew: the data at prediction time is never as clean as training data.</li>
+        <li>Shortcut features that leak the answer — a discharge code that only exists after the outcome.</li>
+        <li>A model that works on average and fails for one group — subgroup checks are mandatory, not optional.</li>
+      </ul>
+      <h3>Stretch goal</h3>
+      <p>Explain one prediction with SHAP or a similar method, and write the clinician-facing explanation in plain language — no jargon, no model internals.</p>
+    </section>
+
+    <section>
+      <h2>How to show this work</h2>
+      <p>Put each project in its own public repository with a README that states the goal, the data source (synthetic only), how to run it, and what the checks prove. Recruiters and capstone reviewers care far more about the checks, the runbook and the model card than about the model itself — that is the production-ready difference.</p>
+      <p>Questions? Find me on <a href="https://www.linkedin.com/in/preetmehta">LinkedIn</a>, or through the main site at <a href="https://datawithpreet.github.io">datawithpreet.github.io</a>.</p>
+    </section>
+  </main>
+</body>
+</html>
