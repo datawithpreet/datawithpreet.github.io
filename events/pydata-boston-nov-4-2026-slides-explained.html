@@ -1,0 +1,425 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Data Design Practices for EHR Data — What Each Slide Meant | PyData Boston | Preet Mehta</title><meta name="description" content="Slide-by-slide companion to the PyData Boston talk Data Design Practices for EHR Data: what each slide meant, plus the downloadable slides."><meta name="theme-color" content="#faf8f2"><meta property="og:title" content="Data Design Practices for EHR Data — What Each Slide Meant | PyData Boston | Preet Mehta"><meta property="og:description" content="Slide-by-slide companion to the PyData Boston talk Data Design Practices for EHR Data: what each slide meant, plus the downloadable slides."><meta property="og:image" content="https://datawithpreet.github.io/assets/img/pydata-boston-poster.svg"><link rel="icon" href="https://datawithpreet.github.io/favicon.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Space+Grotesk:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Oswald:wght@400;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://datawithpreet.github.io/assets/css/style.css?v=20261015hdr"><link rel="stylesheet" href="https://datawithpreet.github.io/assets/css/chatbot.css"><style>
+body{background:#faf8f2;color:#111}.ev-wrap{max-width:1140px;margin:0 auto;padding:0 22px 80px}
+.ev-hero{display:grid;grid-template-columns:1.1fr .9fr;gap:32px;align-items:center;padding:120px 22px 24px;max-width:1140px;margin:0 auto}
+.eyebrow{letter-spacing:2px;text-transform:uppercase;color:#6a6560;font-size:13px;font-weight:700}
+.ev-hero h1{font-family:'Instrument Serif',serif;font-size:clamp(44px,6.5vw,80px);line-height:1.02;margin:14px 0}
+.ev-hero p{color:#444;line-height:1.65;font-size:18px;max-width:560px}
+.ev-hero .eyebrow{color:#e0632a}.ev-hero h1 .org{color:#e0632a}.ev-collage{position:relative;height:540px}.ev-collage img{position:absolute;border:1px solid #111}.ev-collage .collage-photo{left:0;top:6%;width:58%;height:76%;object-fit:cover;object-position:center top;border-radius:28px;z-index:2}.ev-collage .art-top{right:0;top:0;width:44%;height:46%;object-fit:contain;background:#e9e2d1;border-radius:24px;z-index:3}.ev-collage .art-bottom{right:2%;bottom:0;width:46%;height:50%;object-fit:contain;background:#e9e2d1;border-radius:24px;z-index:3}.ev-collage .deco-orb{position:absolute;right:8%;top:40%;width:150px;height:150px;border-radius:50%;background:#e0632a;opacity:.85;z-index:1}.ev-collage .deco-dots{position:absolute;left:2%;bottom:1%;width:110px;height:90px;background:radial-gradient(circle,rgba(17,17,17,.35) 0 2px,transparent 3px) 0 0/18px 18px;z-index:1}.ev-collage .deco-sky{position:absolute;right:0;top:-2%;width:52%;opacity:.14;z-index:0}@media(max-width:900px){.ev-collage{height:auto;display:grid;grid-template-columns:1fr 1fr;gap:12px}.ev-collage img{position:static;width:100%}.ev-collage .collage-photo{grid-row:span 2;height:100%}.ev-collage .art-top,.ev-collage .art-bottom{height:220px}.ev-collage .deco-orb,.ev-collage .deco-dots,.ev-collage .deco-sky{display:none}}@media(max-width:640px){.ev-collage{grid-template-columns:1fr}.ev-collage .collage-photo{grid-row:auto;height:280px}.ev-collage .art-top,.ev-collage .art-bottom{height:200px}}
+.ev-badge{display:inline-block;background:#111;color:#fff;border-radius:999px;padding:4px 11px;font-size:12px;letter-spacing:1px;text-transform:uppercase;margin:6px 6px 0 0}
+.ev-badge.feat{background:#e0632a}.ev-badge.light{background:#fff;color:#111;border:1px solid #111}
+.ev-featured{display:grid;grid-template-columns:1fr 1fr;gap:0;background:#111;color:#fff;border-radius:20px;overflow:hidden;margin:36px 0}
+.ev-featured .txt{padding:32px}.ev-featured p{color:#ccc;line-height:1.6}.ev-featured h2{font-family:'Instrument Serif',serif;font-size:clamp(30px,4vw,48px);margin:12px 0}
+.ev-featured .ev-media{height:100%}.ev-featured .ev-media img{width:100%;height:100%;background:#e9e2d1}.ev-featured .ev-media.media-poster img,.ev-featured .ev-media.media-illustration img{object-fit:contain}.ev-featured .ev-media.media-photograph img{object-fit:cover;object-position:center top}
+.ev-cta{display:inline-block;margin-top:18px;color:#fff;text-decoration:none;border-bottom:2px solid #e0632a;padding-bottom:2px;font-weight:700}
+.ev-cta.dark{color:#111}
+.filters{display:flex;flex-wrap:wrap;gap:10px;margin:30px 0 8px}.filters button{background:#fff;border:1px solid #111;color:#111;padding:9px 16px;border-radius:999px;cursor:pointer;font-size:15px}.filters button.on,.filters button:focus-visible{background:#111;color:#fff;outline:2px solid #e0632a;outline-offset:2px}
+.sec h2{font-family:'Instrument Serif',serif;font-size:34px;margin:44px 0 4px}.sec .count{color:#6a6560}
+.ev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:18px}
+.ev-card{background:#fff;border:1px solid #111;border-radius:18px;overflow:hidden;text-decoration:none;color:#111;display:block;transition:transform .25s,box-shadow .25s,border-color .25s}
+.ev-card:hover,.ev-card:focus-visible{transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.15);border-color:#e0632a;outline:none}
+.ev-card:hover .ev-cta,.ev-card:focus-visible .ev-cta{color:#e0632a}.ev-card .ev-media{height:200px}.ev-card .ev-media img{width:100%;height:100%;background:#e9e2d1;transition:transform .3s}.ev-card .ev-media.media-poster img,.ev-card .ev-media.media-illustration img{object-fit:contain}.ev-card .ev-media.media-photograph img{object-fit:cover;object-position:center top}.ev-card:hover .ev-media img{transform:scale(1.03)}
+.ev-card.wide{grid-column:span 2}.ev-card.wide .ev-media{height:260px}.ev-card .ev-media.media-scene{height:280px;display:grid;grid-template-columns:1.15fr .85fr;background:#fdf9f0;border-bottom:1px solid #111;overflow:hidden}.scene-txt{padding:18px;display:flex;flex-direction:column;gap:9px;min-width:0}.scene-pill{align-self:flex-start;background:#111;color:#fff;border-radius:999px;padding:4px 11px;font-size:11px;letter-spacing:1px;text-transform:uppercase;white-space:nowrap}.scene-title{font-family:'Instrument Serif',serif;font-size:25px;line-height:1.22;letter-spacing:.2px;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}.scene-title .org{color:#e0632a}.scene-tag{font-size:13.5px;line-height:1.5;color:#555;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}.ev-card .ev-media.media-scene .scene-img{width:100%;height:100%;min-width:0;min-height:0;object-fit:cover;background:#f3ecdd}.ev-card.wide .ev-media.media-scene{height:280px}.ev-card.wide .scene-title{font-size:29px}.gallery .ev-media.media-scene{height:360px}.detail-hero .ev-media.media-scene{height:380px}
+.ev-card .body{padding:18px}.ev-card h3{font-size:21px;margin:12px 0 6px}.ev-card p{color:#555;line-height:1.55;margin:0}.ev-date{color:#6a6560;font-size:14px;letter-spacing:1px;text-transform:uppercase}
+.ev-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;background:repeating-linear-gradient(45deg,#e9e2d1,#e9e2d1 12px,#efe9dc 12px,#efe9dc 24px);border:1px dashed #6a6560;border-radius:12px;text-align:center;padding:12px}.ev-placeholder .ph-kicker{letter-spacing:2px;text-transform:uppercase;color:#6a6560;font-size:12px;font-weight:700}.detail-hero .ev-media.ev-placeholder{border-style:dashed}.ev-placeholder span{font-family:'Instrument Serif',serif;font-size:26px}.ev-placeholder small{color:#6a6560}
+.ev-empty{display:none;color:#555;padding:20px 0}
+.meta-strip{display:flex;flex-wrap:wrap;gap:0;border:1px solid #111;border-radius:16px;background:#fff;margin:24px 0;overflow:hidden}.meta-strip div{flex:1 1 160px;padding:14px 18px;border-right:1px solid #ddd}.meta-strip div:last-child{border-right:none}.meta-strip dt{color:#6a6560;font-size:12px;letter-spacing:1px;text-transform:uppercase}.meta-strip dd{margin:4px 0 0;font-weight:600}
+.detail-hero{padding:120px 22px 0;max-width:1000px;margin:0 auto}.detail-hero h1{font-family:'Instrument Serif',serif;font-size:clamp(36px,6vw,64px);line-height:1.05}
+.detail-hero .ev-media{height:380px;border:1px solid #111;border-radius:20px;overflow:hidden;margin-top:20px}.detail-hero .ev-media img{width:100%;height:100%;background:#e9e2d1}.detail-hero .ev-media.media-poster img,.detail-hero .ev-media.media-illustration img{object-fit:contain}.detail-hero .ev-media.media-photograph img{object-fit:cover;object-position:center top}
+.subnav{position:sticky;top:74px;background:#faf8f2;border-top:1px solid #111;border-bottom:1px solid #111;padding:12px 22px;display:flex;gap:18px;justify-content:center;flex-wrap:wrap;z-index:5}.subnav a{color:#111;text-decoration:none}
+.detail{max-width:820px;margin:0 auto;padding:30px 22px 80px}.detail h2{font-family:'Instrument Serif',serif;font-size:30px;margin-top:36px}.detail p,.detail li{line-height:1.7;color:#222}
+.gallery{display:grid;grid-template-columns:2fr 1fr;gap:14px}.gallery img{width:100%;height:100%;background:#e9e2d1;border:1px solid #111;border-radius:14px;cursor:pointer}.gallery img.media-poster,.gallery img.media-illustration{object-fit:contain}.gallery img.media-photograph{object-fit:cover;object-position:center top}
+.lb{position:fixed;inset:0;background:rgba(0,0,0,.88);display:none;align-items:center;justify-content:center;z-index:50}.lb.open{display:flex}.lb img{max-width:90vw;max-height:85vh;background:#fff}.lb button{position:absolute;background:#fff;border:1px solid #111;border-radius:999px;padding:10px 16px;cursor:pointer}.lb .close{top:18px;right:18px}.lb .prev{left:14px}.lb .next{right:14px}
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .5s,transform .5s}.reveal.in{opacity:1;transform:none}
+@media(max-width:900px){.ev-grid{grid-template-columns:repeat(2,1fr)}.ev-card.wide{grid-column:span 2}.ev-hero,.ev-featured{grid-template-columns:1fr}}
+@media(max-width:640px){.ev-grid{grid-template-columns:1fr}.ev-card.wide{grid-column:span 1}.ev-card .ev-media.media-scene{grid-template-columns:1fr;height:auto}.ev-card .ev-media.media-scene .scene-img{height:220px}.gallery .ev-media.media-scene{height:auto}.detail-hero .ev-media{height:240px}.gallery{grid-template-columns:1fr}}
+.feat-label{display:inline-block;background:#e0632a;color:#fff;border-radius:999px;padding:6px 14px;font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:700;margin:0 0 12px}
+.ev-featured{border-top:3px solid #e0632a}
+a:focus-visible,.filters button:focus-visible,.subnav a:focus-visible,.lb button:focus-visible,.menu-toggle:focus-visible,.nav-drop button:focus-visible,.gallery img:focus-visible{outline:3px solid #e0632a;outline-offset:3px}
+.ev-card:focus-visible{outline:3px solid #e0632a;outline-offset:3px}
+.ev-hero>*,.ev-grid>*,.ev-featured>*{min-width:0}
+.ev-wrap,.detail{overflow-wrap:break-word}
+.detail h2{scroll-margin-top:140px}
+.nav .nav-drop{position:relative}.nav .nav-drop>button{appearance:none;background:none;border:0;cursor:pointer;font:inherit;font-size:13px;font-weight:500;padding:8px 14px;border-radius:999px;color:var(--ink-soft);white-space:nowrap;position:relative;display:inline-flex;align-items:center;gap:6px;transition:font-weight .25s ease,color .25s ease,background .25s ease}.nav .nav-drop>button .caret{font-size:10px;line-height:1;transition:transform .2s ease}.nav .nav-drop.open>button .caret{transform:rotate(180deg)}.nav .nav-drop>button::after{content:"";position:absolute;bottom:2px;left:14px;right:14px;height:2px;background:#E0632A;transform:scaleX(0);transform-origin:right center;transition:transform .25s ease-in;pointer-events:none}.nav .nav-drop>button:hover{background:transparent;font-weight:700;color:var(--ink)}.nav .nav-drop>button:hover::after{transform:scaleX(1);transform-origin:left center;transition:transform .3s ease-out}.nav .drop-menu{display:none;position:absolute;top:calc(100% + 10px);left:0;min-width:200px;margin:0;padding:8px;list-style:none;background:var(--paper);border:1px solid var(--line-strong);border-radius:16px;box-shadow:0 20px 40px rgba(20,20,20,0.14);z-index:200}.nav .nav-drop.open .drop-menu{display:block}.nav .drop-menu a{display:block;padding:10px 14px;border-radius:10px}@media(max-width:940px){.nav .nav-drop{width:100%}.nav .nav-drop>button{padding:12px 16px;font-size:14px;width:100%;justify-content:space-between}.nav .drop-menu{position:static;border:0;box-shadow:none;background:transparent;padding:0 0 4px 16px}}.ev-cover{position:relative;overflow:hidden;display:flex;flex-direction:column;gap:6px;padding:18px 20px;background:#f3ecdd;border:1px solid #111;border-radius:12px;text-align:left;font-size:15px}.ev-cover>*{position:relative;z-index:1}.ev-cover .cover-mark{position:absolute;z-index:0;pointer-events:none}.cover-kicker{font-size:.72em;letter-spacing:2px;text-transform:uppercase;color:#6a6560;font-weight:700}.cover-title{font-family:'Instrument Serif',serif;font-size:1.7em;line-height:1.05;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}.cover-org{font-size:.9em;color:#444;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.cover-meta{font-size:.85em;color:#555}.cover-foot{margin-top:auto;display:flex;flex-direction:column;gap:6px}.cover-role{align-self:flex-start;background:#111;color:#fff;border-radius:999px;padding:4px 11px;font-size:.72em;letter-spacing:1px;text-transform:uppercase}.cover-note{font-size:.7em;color:#6a6560}.detail-hero .ev-cover{font-size:19px;padding:26px 28px}.cover-speaking .cover-mark{right:-24px;top:-24px;width:130px;height:130px;border-radius:50%;background:rgba(224,99,42,.18)}.cover-speaking::after{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:#e0632a;z-index:1}.cover-hackathon .cover-mark{right:14px;top:14px;width:84px;height:84px;border:2px solid rgba(17,17,17,.18);border-radius:14px;transform:rotate(12deg)}.cover-hackathon::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0 26px,rgba(17,17,17,.05) 26px 27px),repeating-linear-gradient(0deg,transparent 0 26px,rgba(17,17,17,.05) 26px 27px);z-index:0}.cover-university .cover-mark{right:-10px;top:-6px;width:150px;height:75px;border-radius:150px 150px 0 0;background:rgba(17,17,17,.07)}.cover-university::before{content:"";position:absolute;right:0;top:0;bottom:0;width:34%;background:repeating-linear-gradient(90deg,transparent 0 20px,rgba(17,17,17,.06) 20px 22px);z-index:0}.cover-conference .cover-mark{right:0;top:0;bottom:0;width:44%;background:repeating-linear-gradient(0deg,transparent 0 12px,rgba(17,17,17,.06) 12px 14px)}.cover-community .cover-mark{right:10px;top:10px;width:120px;height:90px;background:radial-gradient(circle at 24px 24px,rgba(224,99,42,.4) 0 9px,transparent 10px),radial-gradient(circle at 84px 44px,rgba(17,17,17,.25) 0 8px,transparent 9px),radial-gradient(circle at 48px 72px,rgba(17,17,17,.18) 0 7px,transparent 8px)}.cover-advisory .cover-mark{right:16px;top:16px;width:88px;height:88px;border:2px solid rgba(224,99,42,.45);border-radius:50%}.cover-editorial .cover-mark{right:-20px;bottom:-20px;width:120px;height:120px;border-radius:50%;background:rgba(224,99,42,.12)}@media(max-width:640px){.detail-hero .ev-cover{font-size:15px;padding:18px 20px}}.archive-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;margin:44px 0 8px}.archive-head h2,.sec-head h2{font-family:'Instrument Serif',serif;font-size:34px;margin:0}.archive-head .filters{margin:0}.filter-note{color:#6a6560;margin:0 0 4px}.sec-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;margin:44px 0 4px}.view-all{font-weight:700;color:#111;text-decoration:none;border-bottom:2px solid #e0632a;padding-bottom:2px;white-space:nowrap}.ev-card{box-shadow:0 2px 12px rgba(20,20,20,.05)}.ev-card:hover{box-shadow:0 14px 30px rgba(20,20,20,.12)}.ev-card .ev-media.media-cover img{object-fit:cover}.detail-hero .ev-media.media-cover img{object-fit:cover}.gallery .ev-media.media-cover{height:360px}.gallery .ev-media.media-cover img{object-fit:cover}@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.ev-card,.ev-card .ev-media img{transition:none}}
+</style><style>
+.contents{background:#fff;border:1px solid #111;border-radius:18px;padding:22px 26px;margin:0 0 8px}
+.contents ol{margin:10px 0 0;padding-left:22px;line-height:1.9}
+.slide-sec{margin-top:52px}
+.slide-sec h2{font-family:'Instrument Serif',serif;font-size:34px;margin:0 0 8px}
+.slide-sec h3{font-size:20px;margin:26px 0 6px}
+.slide-sec p{color:#333;line-height:1.7}
+.c-table{border-collapse:collapse;width:100%;margin:14px 0;background:#fff}
+.c-table th,.c-table td{border:1px solid #c9c2b4;padding:9px 12px;text-align:left;line-height:1.55}
+.c-table th{background:#e9e2d1}
+.c-table code{background:#f3efe4;padding:1px 5px;border-radius:4px}
+.key-msg{background:#fdf9f0;border-left:4px solid #e0632a;padding:14px 18px;margin:22px 0;line-height:1.65}
+.download-note{background:#fff;border:1px dashed #111;border-radius:14px;padding:16px 20px}
+</style>
+</head><body><header class="site-header" id="top"><a class="brand" href="https://datawithpreet.github.io/"><span class="brand-mark">DwP</span><span class="brand-copy"><strong>DATA WITH PREET</strong><small>BY PREET MEHTA</small></span></a><button class="menu-toggle" aria-label="Open navigation" aria-expanded="false"><span></span><span></span></button><nav class="nav" aria-label="Primary navigation"><a href="https://datawithpreet.github.io/#about">About</a><div class="nav-drop"><button type="button" aria-expanded="false" aria-haspopup="true">Work <span class="caret" aria-hidden="true">&#9662;</span></button><ul class="drop-menu"><li><a href="https://datawithpreet.github.io/#work">Selected work</a></li><li><a href="https://datawithpreet.github.io/#skills">Skills</a></li><li><a href="https://datawithpreet.github.io/#experience">Experience</a></li></ul></div><div class="nav-drop"><button type="button" aria-expanded="false" aria-haspopup="true">Insights <span class="caret" aria-hidden="true">&#9662;</span></button><ul class="drop-menu"><li><a href="https://datawithpreet.github.io/#writing">Articles &amp; Insights</a></li><li><a href="https://datawithpreet.github.io/book-series/">Book Series</a></li><li><a href="https://datawithpreet.github.io/research.html">Research &amp; Publications</a></li></ul></div><a href="https://datawithpreet.github.io/demos.html">AI Demos</a><a href="https://datawithpreet.github.io/resources.html">Resources</a><a href="../events.html" style="background:#111;color:#fff;border-radius:999px;padding:8px 14px">Events</a><a href="https://datawithpreet.github.io/#contact">Contact</a></nav></header><div class="cursor-dot" aria-hidden="true"></div><div class="cursor-ring" aria-hidden="true"><span class="cursor-label"></span></div>
+<section class="detail-hero"><p class="eyebrow">Events &amp; Experiences</p><h1>Data Design Practices for EHR Data — What Each Slide Meant</h1><p style="color:#555">November 4, 2026 · PyData Boston · Slide-by-slide companion to the talk</p><span class="ev-badge">Speaking Engagements</span><span class="ev-badge feat">Talk Companion</span><div class="ev-media media-poster "><img src="https://datawithpreet.github.io/assets/img/pydata-boston-poster.svg" alt="PyData Boston poster announcing Preet Mehta&#x27;s talk, Data Design Practices for EHR Data" loading="lazy"></div></section>
+<nav class="contents"><p><strong>On this page</strong> — what each slide meant, in order:</p><ol>
+<li><a href="#slide-1">Slide 1 — The EHR Data Challenge</a></li>
+<li><a href="#slide-2">Slide 2 — Understanding EHR Architecture</a></li>
+<li><a href="#slide-3">Slide 3 — Database Architecture: Care First, Analysis Second</a></li>
+<li><a href="#slide-4">Slide 4 — Healthcare Interoperability</a></li>
+<li><a href="#slide-5">Slide 5 — Standardized Data Modeling</a></li>
+<li><a href="#slide-6">Slide 6 — Multi-EHR Data Integration</a></li>
+<li><a href="#slide-7">Slide 7 — Data Quality and Governance</a></li>
+<li><a href="#slide-8">Slide 8 — Security and Privacy</a></li>
+<li><a href="#slide-9">Slide 9 — Clinical Usability</a></li>
+<li><a href="#slide-10">Slide 10 — Building an Analytics-Ready Healthcare Data Platform</a></li>
+<li><a href="#slide-11">Slide 11 — Practical Implementation: Bringing It All Together</a></li>
+<li><a href="#slide-12">Slide 12 — Key Takeaways</a></li>
+</ol></nav>
+<div class="detail">
+<p>This page is the companion to the PyData Boston talk <strong>“Data Design Practices for EHR Data”</strong> (November 4, 2026). It explains, slide by slide, what each slide meant — the ideas behind it, why they matter, and what to remember from them.</p>
+<p>Two notes on the examples used throughout. <strong>ABC General Hospital</strong> is a fictional example hospital in Boston, and <strong>Mary</strong> is an illustrative patient, not a real person: an 85-year-old living with diabetes, whose HbA1c is tracked over time. She previously received care at two other hospitals — Hospital A for one chronic condition and Hospital B for another — and now visits ABC, which needs her records from both before its own care and analytics can be complete.</p>
+<h2 id="download">Download the slides</h2>
+<p class="download-note">The downloadable slides (PPT) will be linked here once the final version is ready. The slide-by-slide explanations below are available now.</p>
+
+<section class="slide-sec" id="slide-1">
+<h2>Slide 1 — The EHR Data Challenge</h2>
+<p>Before databases, interoperability, standardization, or analytics, this slide answers one fundamental question: why does healthcare need a specialized information system at all?</p>
+<p>Compare an ordinary business with a hospital. In e-commerce, a purchase generates an order, a warehouse action, a payment, and a delivery — a clean chain of business data. In a hospital, one patient draws in many different people, each creating or updating a different piece of information:</p>
+<table class="c-table"><tr><th>Healthcare professional</th><th>Information they record</th></tr>
+<tr><td>Doctor</td><td>Symptoms, diagnosis, treatment plan</td></tr>
+<tr><td>Nurse</td><td>Blood pressure, temperature, pulse, observations</td></tr>
+<tr><td>Laboratory technician</td><td>Blood tests, urine tests, test results</td></tr>
+<tr><td>Pharmacist</td><td>Prescribed medications, dosage, dispensing</td></tr>
+<tr><td>Radiologist</td><td>X-rays, CT scans, imaging findings</td></tr>
+<tr><td>Administrative staff</td><td>Patient registration, insurance, appointments</td></tr></table>
+<p>All of it belongs to the same patient, but it is generated by different people, at different times, in different departments. That is the first challenge.</p>
+<h3>Why healthcare data is different from ordinary business data</h3>
+<p><strong>Multiple people contribute to the same record.</strong> A doctor diagnoses hypertension, a nurse records blood pressure, a lab technician enters cholesterol results, a pharmacist records the prescribed medication — separate activities that together describe one patient's health.</p>
+<p><strong>Information is continuously changing.</strong> A patient record is not a one-time transaction. Across a single visit — arrival at 9:00 AM, vitals at 9:30, examination at 10:00, lab orders at 10:30, results at 11:30, a revised plan at noon, medication at 1:00 PM — the record keeps evolving.</p>
+<p><strong>Information has real-world consequences.</strong> A doctor prescribing without knowing a patient's allergy, a lab result attached to the wrong patient, a wrong dosage recorded — these are not reporting errors. They can influence clinical decisions and patient safety.</p>
+<p><strong>Different departments must work together.</strong> The doctor needs lab results, the pharmacist needs medication orders, the nurse needs the treatment plan, the radiologist needs the imaging request. The information system has to support coordination across the whole care process.</p>
+<h3>What is an EHR?</h3>
+<p>EHR stands for Electronic Health Record: a digital system that helps healthcare organizations document, manage, retrieve, and coordinate patient health information — replacing disconnected paper records and supporting clinical workflows. An EHR can contain demographics and registration details, medical history and diagnoses, doctor's notes, medication information, allergies, laboratory results, vital signs, imaging information, procedures, and clinical encounters. One clarification: an EHR is not necessarily one giant database or one screen. It is a broader clinical information environment with different functions and connected components.</p>
+<h3>The numbers on the slide</h3>
+<p>The slide shows 100 doctors, 200 nurses, and 50 administrative staff. These numbers are illustrative — they help visualize the scale of coordination inside a hospital. Even a relatively small hospital may have hundreds of people contributing to patient-related information. The point is not the exact headcount; it is the number of interactions and updates happening across the organization.</p>
+<div class="key-msg"><strong>Key messages:</strong> Healthcare data is generated everywhere — doctors, nurses, laboratories, pharmacies, radiology, and administration all contribute. Everything connects to the patient: different activities and records must come together to support one care journey. And data quality is directly connected to patient safety: incorrect, missing, delayed, or misidentified information can have consequences beyond reporting.</div>
+</section>
+
+<section class="slide-sec" id="slide-2">
+<h2>Slide 2 — Understanding EHR Architecture: One Longitudinal Record, Many Connected Parts</h2>
+<p>This slide looks inside an EHR: what actually exists in it, and how the different pieces of patient information connect. An EHR is not simply a digital replacement for paper records. It is an organized clinical information system in which different types of information are connected to the same patient.</p>
+<h3>The longitudinal patient record</h3>
+<p>Take Mary. Over the years she may have visited several hospitals, clinics, laboratories, and pharmacies — Hospital A for one condition, Hospital B for another, lab tests, a specialist, and now ABC General Hospital. Each visit creates new information, and all of it belongs to the same person. That is a longitudinal patient record: her health information viewed over time, as a timeline, rather than as a single visit. One distinction matters: a longitudinal record is a way of organizing and viewing information. It does not automatically mean every hospital has access to every other hospital's records — that requires appropriate information exchange and authorization, covered later.</p>
+<h3>Where does EHR information come from?</h3>
+<table class="c-table"><tr><th>Source</th><th>What information does it contribute?</th></tr>
+<tr><td>Hospitals</td><td>Admissions, diagnoses, treatments, procedures</td></tr>
+<tr><td>Clinics</td><td>Consultations, medical history, prescriptions</td></tr>
+<tr><td>Laboratories</td><td>Blood tests, urine tests, test results</td></tr>
+<tr><td>Pharmacies</td><td>Medication dispensing and prescription information</td></tr>
+<tr><td>Radiology centers</td><td>X-rays, CT scans, MRI reports</td></tr>
+<tr><td>Telemedicine</td><td>Virtual consultations and clinical notes</td></tr>
+<tr><td>Patient mobile apps</td><td>Patient-reported information, health tracking</td></tr></table>
+<p>Patient information is generated across many settings, not in one place. One clarification: not every pharmacy, laboratory, or mobile application automatically writes directly into the same EHR. Information may be exchanged through interfaces, integrations, or other connected systems, depending on the organization's setup.</p>
+<h3>How the patient record is organized</h3>
+<p><strong>Patient — Mary.</strong> The person whose health information is being maintained: name, date of birth, gender, contact details, patient identifier, and other demographics. This is the main identity to which her clinical information is associated.</p>
+<p><strong>Encounter — one visit or stay.</strong> A specific interaction with a healthcare provider. Mary visiting ABC today is one encounter; a follow-up next month is another; an overnight stay in December is a third. One patient has many encounters over a lifetime. Mary is the patient; each visit is an encounter.</p>
+<p><strong>Diagnosis.</strong> A medical condition identified or assessed by a healthcare professional — for Mary, hypertension, type 2 diabetes, or hyperlipidemia. One encounter can have more than one diagnosis.</p>
+<p><strong>Medication.</strong> Medications prescribed or administered, including name, strength, dosage, frequency, and prescribing details — for example metformin for diabetes or lisinopril for hypertension. Note that a medication order, a medication administration, and a pharmacy dispensing record are not necessarily the same event.</p>
+<p><strong>Observation.</strong> A clinical measurement or finding: blood pressure, heart rate, temperature, weight, HbA1c, cholesterol, creatinine. For Mary, blood pressure might be 140/90 mmHg and HbA1c 7.2%. Observations show current health status and how it changes over time.</p>
+<p><strong>Procedure.</strong> A clinical intervention or service performed for a patient — surgery, biopsy, endoscopy, or certain diagnostic procedures. A blood pressure reading is an observation; a surgical intervention is a procedure.</p>
+<h3>Why these relationships matter</h3>
+<p>Mary might have three encounters: visit 1 with a hypertension diagnosis and blood pressure, visit 2 with a diabetes diagnosis and an HbA1c result, visit 3 a follow-up consultation with a medication review. The same patient has multiple encounters, and each encounter can have multiple diagnoses, medications, observations, and procedures. If these relationships are not preserved, a lab result can end up associated with the wrong patient or the wrong visit — and a doctor or analyst can interpret the wrong information.</p>
+<p>Mary's example ties it together: she is 85, has diabetes with HbA1c tracked over time, was seen at Hospital A for one chronic condition and Hospital B for another, and now visits ABC. ABC needs her previous history to provide appropriate care. The challenge this raises — how to make sure all the information belongs to the correct Mary, is associated with the correct visit, and is available when needed — is what the interoperability and multi-EHR sections explore.</p>
+<div class="key-msg"><strong>Key messages:</strong> One patient → multiple encounters → multiple clinical records. One encounter carries many clinical records: diagnoses, medications, observations, and procedures connect to the encounter. And relationships matter: every piece of information must be traceable to the right patient and the right encounter.</div>
+</section>
+
+<section class="slide-sec" id="slide-3">
+<h2>Slide 3 — Database Architecture: Care First, Analysis Second</h2>
+<p>This slide explains why a hospital needs different ways of storing and processing information for patient care versus large-scale analysis. During the day, hundreds of doctors, nurses, lab technicians, and pharmacists enter and update patient information. At the same time, hospital leadership may want to analyze thousands or millions of records to understand disease trends, readmissions, medication usage, and performance. These are two very different workloads.</p>
+<p>Follow Mary through a morning: vitals at 9:30 AM, diagnosis and plan at 10:00, a blood test ordered at 10:30, results uploaded at 11:30, a revised plan at noon. Every step reads, enters, or updates information quickly. Now contrast that with management's questions: how many patients visited this month, how many have diabetes, how many were readmitted within 30 days, how have HbA1c results changed over the last year? Those require analyzing large amounts of historical data. If the same system handling real-time clinical work is also forced to run heavy analytical queries, it could slow down the system clinicians depend on. That is why we distinguish OLTP from OLAP.</p>
+<h3>OLTP — Online Transaction Processing: day-to-day patient care</h3>
+<p>OLTP is the processing used when hospital staff actively work with patient records: a nurse enters blood pressure, a doctor updates a diagnosis, a lab technician enters test results, a pharmacist records medication dispensed. Each activity is a small, specific transaction. The requirements are speed (the system must respond quickly), accuracy (information must be saved correctly), consistency (staff must see the correct, latest information), and reliability (the system must not lose a clinical update). A doctor prescribing medication cannot wait 30 seconds for the order to save in a busy clinical environment.</p>
+<h3>OLAP — Online Analytical Processing: reporting and analysis</h3>
+<p>OLAP looks across the whole hospital instead of one visit. With 100,000 patients treated over a year, management asks how many were diagnosed with diabetes, which departments have the highest volumes, how many returned within 30 days, what percentage of diabetic patients have HbA1c above target. OLAP is not about updating one patient's record; it is about reading and analyzing large volumes of data to identify patterns and trends — where dashboards, reporting, research, and predictive analytics come in.</p>
+<h3>Relational databases</h3>
+<p>A relational database organizes information into structured tables connected through relationships. A hospital might keep separate tables for Patient (Mary's demographics), Encounter (her visits), Diagnosis (conditions per visit), Medication (medicines prescribed), Observation (blood pressure, temperature, lab results), and Procedure (tests and procedures performed). Separation exists because one patient has multiple encounters, and each encounter has multiple diagnoses, medications, and observations. Tables connect through identifiers and relationships, avoiding repeated storage of the same patient information and helping maintain consistency.</p>
+<h3>Document storage</h3>
+<p>Not all healthcare information fits rows and columns. A doctor's clinical note — “Patient reports persistent headaches for three days, occasional dizziness, and difficulty sleeping. Follow-up recommended in two weeks.” — is more naturally stored as a document or text record than as individual database columns. Discharge summaries, clinical notes, referral letters, radiology reports, and scanned documents are similar. Document storage handles records whose structure varies from one record to another.</p>
+<h3>ACID transactions</h3>
+<table class="c-table"><tr><th>Principle</th><th>Simple meaning</th><th>Healthcare example</th></tr>
+<tr><td>Atomicity</td><td>All of a transaction happens, or none of it does</td><td>A medication order should not be partially saved</td></tr>
+<tr><td>Consistency</td><td>Data must follow defined rules</td><td>A lab result must be associated with a valid patient and encounter</td></tr>
+<tr><td>Isolation</td><td>Simultaneous updates should not interfere incorrectly</td><td>Two staff members updating a record should not unexpectedly overwrite each other's changes</td></tr>
+<tr><td>Durability</td><td>Once successfully saved, data remains saved</td><td>A doctor's completed clinical note should not disappear after a system restart</td></tr></table>
+<div class="key-msg"><strong>Key message:</strong> The system supporting patient care should be optimized for speed, accuracy, and reliability. The system used for analytics should be optimized for reading, summarizing, and analyzing large volumes of data. Heavy analytical workloads must not interfere with the clinical systems doctors and nurses depend on.</div>
+</section>
+
+<section class="slide-sec" id="slide-4">
+<h2>Slide 4 — Healthcare Interoperability: How Hospitals Share Patient Information</h2>
+<p>So far: hospitals need an EHR because many departments create and use patient information; an EHR connects patient details, encounters, diagnoses, medications, lab results, and procedures; and database architecture must support real-time clinical work without letting analytics slow down care. Now the bigger challenge: what happens when a patient visits more than one hospital?</p>
+<p>Mary is 85. She visited Hospital A for one condition and Hospital B for another, and now visits ABC General Hospital in Boston. ABC's doctor needs her previous history: does she have hypertension, is she taking medication for it, does she have diabetes, what were her previous HbA1c results, does she have medication allergies? The problem: Hospital A and Hospital B maintain their own clinical records, and ABC cannot automatically see them just because Mary visited those hospitals.</p>
+<h3>What interoperability means</h3>
+<p>Interoperability means different healthcare systems can exchange information and understand what they receive. Think of three hospitals speaking three different languages: Hospital A stores patient information in one format, Hospital B in another, ABC in a third. Even if all three hold information about Mary, they need a way to exchange it consistently, understandably, and with authorization.</p>
+<p><strong>HL7 messaging.</strong> HL7 is a set of healthcare information standards. HL7 version 2 (HL7 v2) is commonly used for operational healthcare events: a patient is admitted, discharged, or transferred; a doctor orders a lab test; a laboratory publishes test results. When Mary is admitted at Hospital A, an admission message can go to another authorized system; when her blood test completes, a result message goes back to the relevant clinical system. Systems communicate clinical events rather than requiring someone to manually re-enter every piece of information.</p>
+<p><strong>FHIR APIs.</strong> FHIR (Fast Healthcare Interoperability Resources) is a standard designed around structured healthcare information and modern API-based exchange. If ABC wants Mary's medication information from Hospital A, an authorized system can request specific pieces — patient information, encounter history, diagnoses, medications, laboratory observations — instead of asking someone to print the entire record. A Patient resource represents patient information; an Observation resource can represent a blood pressure reading or lab result. Note: FHIR helps systems exchange information in a standardized way. It does not automatically merge patient identities or guarantee every hospital has the same internal database structure.</p>
+<p><strong>Health Information Exchange (HIE).</strong> An HIE is a network or organization that facilitates sharing healthcare information between participating providers — a secure information-sharing network. Hospital A and Hospital B participate; ABC can then retrieve relevant information when it has an authorized reason to do so.</p>
+<h3>Mary's journey, step by step</h3>
+<ol>
+<li>Mary visits Hospital A for one condition. Hospital A records her diagnosis, medication, and relevant test results.</li>
+<li>Mary visits Hospital B for another condition. Hospital B records its diagnosis and HbA1c results.</li>
+<li>Mary visits ABC General Hospital. The doctor needs information from both previous hospitals.</li>
+<li>Through an authorized information exchange, ABC requests and receives relevant records from Hospital A and Hospital B.</li>
+<li>The doctor reviews the available information and makes a more informed clinical decision.</li>
+</ol>
+<p>One important distinction: this does not mean Hospital A automatically copies its entire database into Hospital B or ABC. Information is exchanged according to the participating systems' arrangements, permissions, privacy requirements, and the purpose of the request.</p>
+<table class="c-table"><tr><th>Concept</th><th>Simple explanation</th></tr>
+<tr><td>HL7 v2</td><td>A standard for exchanging healthcare messages</td></tr>
+<tr><td>FHIR</td><td>A standard for representing and exchanging healthcare information through modern interfaces</td></tr>
+<tr><td>HIE</td><td>A network or mechanism that facilitates information sharing between healthcare organizations</td></tr></table>
+<div class="key-msg"><strong>Key message:</strong> An EHR manages patient information within a healthcare environment. Interoperability lets that information be exchanged across different healthcare environments — so care decisions are made with better information.</div>
+</section>
+
+<section class="slide-sec" id="slide-5">
+<h2>Slide 5 — Standardized Data Modeling: Making Healthcare Data Speak the Same Language</h2>
+<p>Slide 4 explained how Hospital A, Hospital B, and ABC can exchange information. Now the next question: even when hospitals successfully exchange data, how do we make sure they understand it the same way?</p>
+<p>Mary visited three hospitals, and all three may store her information differently. Hospital A stores her date of birth as <code>DOB = 1944-05-12</code>; Hospital B as <code>Birth_Date = 05/12/1944</code>; ABC as <code>DateOfBirth = 12-May-1944</code>. Same information, different names and formats. The same applies to diagnoses: Hospital A might record hypertension using an ICD-10 code while Hospital B uses a different terminology or description for a related concept. Simply bringing both records into one location does not automatically make the information consistent. That is the difference between exchanging data and understanding data. Standardized data modeling organizes information consistently so it can be interpreted and used correctly across systems.</p>
+<h3>FHIR resources — a standard structure for healthcare information</h3>
+<p>FHIR organizes healthcare information into standardized building blocks called resources:</p>
+<table class="c-table"><tr><th>FHIR resource</th><th>What it represents</th><th>Mary's example</th></tr>
+<tr><td>Patient</td><td>Patient demographics</td><td>Mary's name, date of birth</td></tr>
+<tr><td>Encounter</td><td>A healthcare visit</td><td>Mary's visit to Hospital A</td></tr>
+<tr><td>Condition</td><td>A health condition</td><td>Hypertension or diabetes</td></tr>
+<tr><td>Observation</td><td>A measurement or result</td><td>Blood pressure, HbA1c</td></tr>
+<tr><td>MedicationRequest</td><td>A medication order</td><td>Mary's prescription</td></tr>
+<tr><td>Procedure</td><td>A clinical procedure</td><td>A diagnostic procedure</td></tr></table>
+<p>Different hospitals may use different internal database structures, but they can represent information through common resource definitions when exchanging FHIR data. FHIR does not force every hospital to redesign its internal database; it provides a standardized way to represent and exchange information.</p>
+<h3>Clinical terminologies — giving clinical concepts consistent meaning</h3>
+<p>Hospital A records “Hypertension,” Hospital B records “High Blood Pressure,” a third system stores a clinical code rather than a description. These may refer to the same clinical concept — but how do we know? Healthcare uses standardized clinical terminologies:</p>
+<table class="c-table"><tr><th>Standard</th><th>Used for</th></tr>
+<tr><td>ICD-10</td><td>Diagnoses and disease classification</td></tr>
+<tr><td>SNOMED CT</td><td>Detailed clinical concepts</td></tr>
+<tr><td>LOINC</td><td>Laboratory tests and clinical observations</td></tr>
+<tr><td>RxNorm</td><td>Standardized medication concepts</td></tr></table>
+<p>Hospital A may record hypertension with an ICD-10 code while Hospital B represents the same condition with SNOMED CT. Integration must understand both codes and map them appropriately. A blood glucose test should be identified consistently; a medication should be understood even if systems use different names or identifiers; a lab result should retain its unit of measurement and clinical meaning. Healthcare data standardization is more than renaming columns.</p>
+<h3>Canonical data model — one common structure for multiple hospitals</h3>
+<p>Imagine integrating three hospitals. Hospital A has <code>PATIENT_ID, FIRST_NAME, LAST_NAME, DOB</code>; Hospital B has <code>Patient_Number, Full_Name, Birth_Date</code>; Hospital C has <code>PAT_ID, PATIENT_NAME, DATE_OF_BIRTH</code>. All describe a patient, but their structures differ. Instead of building separate downstream reports for every hospital, we establish a common structure:</p>
+<table class="c-table"><tr><th>Standardized field</th><th>Hospital A</th><th>Hospital B</th><th>Hospital C</th></tr>
+<tr><td>Patient ID</td><td>PATIENT_ID</td><td>Patient_Number</td><td>PAT_ID</td></tr>
+<tr><td>Patient name</td><td>FIRST_NAME + LAST_NAME</td><td>Full_Name</td><td>PATIENT_NAME</td></tr>
+<tr><td>Date of birth</td><td>DOB</td><td>Birth_Date</td><td>DATE_OF_BIRTH</td></tr></table>
+<p>The common model might contain patient ID, first name, last name, date of birth, source hospital, and original source patient ID. This common structure is called a canonical data model: it gives downstream applications and analytics a consistent way to work with information even when the original systems differ. One important point: standardizing fields does not automatically establish that two records belong to the same person. That requires patient identity resolution — the next slide.</p>
+<h3>Data validation — making sure standardized data is trustworthy</h3>
+<p>Standardization alone is not enough. We must validate: is the date of birth valid, is blood pressure in the expected format, is the lab result associated with the correct patient, does the medication have a valid identifier, does the diagnosis code map to a recognized clinical concept? If a code cannot be mapped, it should be flagged for investigation rather than silently discarded — because incorrect healthcare data can affect clinical decisions and downstream analytics.</p>
+<table class="c-table"><tr><th>Challenge</th><th>What solves it?</th></tr>
+<tr><td>Different field names and database structures</td><td>Canonical data model</td></tr>
+<tr><td>Different ways of representing clinical concepts</td><td>Clinical terminology standards</td></tr>
+<tr><td>Different formats for exchanging healthcare information</td><td>HL7 and FHIR</td></tr>
+<tr><td>Different patient identifiers</td><td>Patient identity resolution</td></tr>
+<tr><td>Incorrect or inconsistent values</td><td>Data validation</td></tr></table>
+<div class="key-msg"><strong>Key message:</strong> Healthcare data standardization is not about making column names look the same. It is about making sure information from different hospitals has a consistent structure and, more importantly, retains its correct clinical meaning.</div>
+</section>
+
+<section class="slide-sec" id="slide-6">
+<h2>Slide 6 — Multi-EHR Data Integration: Three Hospitals, Three Different Schemas</h2>
+<p>What happens when three different hospitals store information about the same patient in three completely different ways? How do we bring that information together without losing its meaning?</p>
+<p>Mary is 85. She has received care from three hospitals: Hospital A for one condition, Hospital B for another, and now ABC General Hospital. Each hospital has its own EHR system, and these systems may store patient information differently — patient identifiers, dates of birth, encounter information, diagnosis codes, medication details, lab results. The challenge is not simply collecting data from three hospitals; it is making sure the information represents the same patient and has the same meaning when brought together.</p>
+<h3>Hospital A stores it one way</h3>
+<table class="c-table"><tr><th>Field</th><th>Value</th></tr>
+<tr><td>first_name</td><td>Mary</td></tr>
+<tr><td>last_name</td><td>(stored separately)</td></tr>
+<tr><td>dob</td><td>1944-05-12</td></tr>
+<tr><td>patient_id</td><td>A100</td></tr></table>
+<h3>Hospital B stores it another way</h3>
+<table class="c-table"><tr><th>Field</th><th>Value</th></tr>
+<tr><td>full_name</td><td>Mary</td></tr>
+<tr><td>birth_date</td><td>05/12/1944</td></tr>
+<tr><td>patient_number</td><td>B250</td></tr></table>
+<p>Three differences: Hospital A has separate first and last name fields while Hospital B combines them; the date formats differ; the patient identifiers differ. Both hospitals refer to Mary, but their systems represent her differently. Different field names do not necessarily mean different information, and similar field names do not necessarily mean identical meaning.</p>
+<h3>ABC maps both into one model</h3>
+<table class="c-table"><tr><th>Standard field</th><th>Hospital A</th><th>Hospital B</th></tr>
+<tr><td>Patient name</td><td>first_name + last_name</td><td>full_name</td></tr>
+<tr><td>Date of birth</td><td>dob</td><td>birth_date</td></tr>
+<tr><td>Source patient ID</td><td>A100</td><td>B250</td></tr></table>
+<p>ABC can also assign an enterprise patient identifier, for example <code>P10001</code>, while retaining the original hospital identifiers. We should never simply overwrite the original source identifiers.</p>
+<h3>The three key challenges</h3>
+<p><strong>Column mappings.</strong> Every hospital may use different field names and formats. We must understand what each field represents and map it to the appropriate standardized field — and check formats, units, codes, and business meaning, not just rename columns.</p>
+<p><strong>Primary keys do not travel.</strong> Hospital A identifies Mary as A100; Hospital B as B250. Neither identifier is universally valid across both hospitals. We cannot assume A100 and B250 are different people just because the IDs differ, nor assume two records are the same person just because names match.</p>
+<p><strong>Patient identity resolution.</strong> This determines whether records from different hospitals belong to the same individual, using multiple attributes together — name, date of birth, other approved patient identifiers, additional demographic information. A Master Patient Index (MPI) or identity-resolution process links records belonging to the same patient, preserving the evidence and confidence behind the match. Incorrectly linking two patients can be dangerous.</p>
+<table class="c-table"><tr><th>Concept</th><th>What problem does it solve?</th></tr>
+<tr><td>Column mapping</td><td>Different field names and structures</td></tr>
+<tr><td>Data standardization</td><td>Different formats and representations</td></tr>
+<tr><td>Patient identity resolution</td><td>Different IDs for the same person</td></tr>
+<tr><td>Clinical terminology mapping</td><td>Different codes or descriptions for the same clinical concept</td></tr></table>
+<div class="key-msg"><strong>Key message:</strong> One patient, multiple source systems, different schemas — but a consistent representation. The goal is one unified data platform for Mary's records that preserves where each piece of information originated, without asking the three hospitals to replace their existing EHR systems.</div>
+</section>
+
+<section class="slide-sec" id="slide-7">
+<h2>Slide 7 — Data Quality and Governance: Making Healthcare Data Trustworthy</h2>
+<p>We have discussed how data is collected, how EHR systems store it, and how it is brought into one standardized structure. One question remains: how do we know the data is actually correct? Just because data moved successfully from Hospitals A, B, and C into a centralized platform does not mean it is accurate, complete, or reliable. In healthcare, incorrect data can affect clinical decisions, patient safety, research, and machine learning models.</p>
+<p>Imagine Mary's unified record is built — and then: her date of birth is incorrect in Hospital B; her diabetes diagnosis appears twice because the same record loaded twice; her lab result is missing; her blood pressure is recorded in an incorrect unit; another patient's lab result is accidentally associated with her; Hospital B updates a diagnosis but the platform still holds the old one. All of these produce inaccurate data even though integration itself worked. That is why data quality and governance are essential.</p>
+<h3>Five data-quality dimensions</h3>
+<p><strong>Accuracy — is the information correct?</strong> Mary's actual blood pressure is 128/82 mmHg but the system records 182/82 mmHg. The record was captured successfully, but the value is wrong. Similarly, another patient's lab result attached to Mary's record is a serious issue. Response: validate values against reasonable clinical ranges, verify patient identifiers, check the result belongs to the correct encounter and patient, and investigate unusual or inconsistent values. Successfully receiving a record does not guarantee it is accurate.</p>
+<p><strong>Completeness — are we missing information?</strong> Mary's allergy information missing means the record may look complete technically while an important clinical detail is unavailable. But missing data does not always mean bad data: a test may not have been ordered, may have been ordered but not completed, may not have been documented, or may not yet have arrived in the platform. These situations have different meanings and should not be treated identically.</p>
+<p><strong>Consistency — does information agree across systems?</strong> Hospital A records Mary's date of birth as <code>1944-05-12</code> and Hospital B as <code>5/12/1944</code> — different formats for the same date, a formatting difference, not necessarily a problem. But if Hospital C records <code>1944-05-21</code>, that is a genuine inconsistency needing investigation. Consistency also applies to units of measurement, diagnosis codes, medication names, patient identifiers, and date and time conventions.</p>
+<p><strong>Timeliness — is the information up to date?</strong> Hospital B updates Mary's medication on November 3, but the platform still holds the October 25 version. The data exists but is outdated. We need to understand when the clinical event happened, when the hospital recorded it, when the platform received it, and whether a correction or update arrived later — especially for medications, diagnoses, lab results, and encounters.</p>
+<p><strong>Uniqueness — are we creating duplicate records?</strong> The same encounter accidentally loaded twice means analytics report two encounters instead of one, twice the lab tests, and incorrect utilization statistics. Appropriate identifiers and duplicate-detection logic must identify records already processed.</p>
+<h3>Governance: who is responsible for the data?</h3>
+<p>Data quality asks whether information is accurate, complete, consistent, timely, and unique. Data governance asks who owns it, who can access it, what rules apply, and how it is managed throughout its lifecycle:</p>
+<table class="c-table"><tr><th>Governance area</th><th>Healthcare example</th></tr>
+<tr><td>Data ownership</td><td>Who is responsible for maintaining diagnosis information?</td></tr>
+<tr><td>Data access</td><td>Which employees can access patient information?</td></tr>
+<tr><td>Data definitions</td><td>What exactly qualifies as a hospital readmission?</td></tr>
+<tr><td>Data lineage</td><td>Which hospital and source record did this information come from?</td></tr>
+<tr><td>Data retention</td><td>How long should information be retained under applicable policies?</td></tr>
+<tr><td>Auditability</td><td>Who accessed or changed a patient record, and when?</td></tr></table>
+<p>Data lineage deserves emphasis: if someone asks where Mary's diabetes diagnosis came from, we should be able to trace it back to Hospital B and the original source record — not simply hold a diagnosis in the platform without knowing its origin.</p>
+<div class="key-msg"><strong>Key message:</strong> In healthcare, data integration tells us information has arrived. Data quality and governance tell us whether we can trust it. Trustworthy data → reliable decisions.</div>
+</section>
+
+<section class="slide-sec" id="slide-8">
+<h2>Slide 8 — Security and Privacy: Protecting Patient Information</h2>
+<p>The previous slide explained how hospitals ensure patient information is accurate, complete, consistent, and trustworthy. Now: even if patient data is accurate, how do we make sure it is protected and accessed only by the right people?</p>
+<p>Mary, 85, visits ABC General Hospital. Several departments create and access her information: the nurse records vitals, the doctor reviews history, allergies, diagnosis, and plan, the lab technician accesses the test order and records results, the pharmacist reviews the medication order and dispenses, the administrative team manages registration, insurance, and appointments. All need some of Mary's information to do their jobs. But should every employee in the hospital see her entire medical record? No. A lab technician needs information relevant to the test being performed; a pharmacist needs medication-related information including relevant allergies; an administrative employee may need insurance and registration details but generally does not need detailed clinical notes.</p>
+<h3>Four security practices</h3>
+<p><strong>Role-Based Access Control (RBAC).</strong> Every employee gets access based on job responsibilities: doctors review clinical records, nurses record vital signs, pharmacists access medication-related information. People access only the information they need to perform their jobs.</p>
+<p><strong>Data encryption.</strong> Patient information must be protected when stored and when it moves between systems. Think of encryption as placing patient information inside a locked container that only authorized systems or users with appropriate access can understand.</p>
+<p><strong>Audit trails.</strong> The hospital should be able to track who accessed a patient's record, when they accessed it, and what actions they performed. If someone opens Mary's record, the system records that activity.</p>
+<p><strong>Patient privacy and data protection.</strong> Patient information should only be used and shared for permitted purposes. When Mary's information is shared with another hospital, the exchange must follow applicable privacy, authorization, and security requirements.</p>
+<h3>What happens if security is missing?</h3>
+<p>Imagine an administrative employee opens Mary's record out of curiosity, with no work-related reason. With proper controls, the employee may not have permission to view the clinical information, the system records the access attempt or activity, and the hospital can investigate suspicious or unauthorized access. Or imagine Mary's information sent to another hospital without appropriate authorization or safeguards — exposing highly personal information and violating privacy requirements. Healthcare security is not just about protecting computers; it is about protecting the patient's confidentiality and trust.</p>
+<h3>What does HIPAA have to do with this?</h3>
+<p>HIPAA — the Health Insurance Portability and Accountability Act — establishes requirements in the United States for protecting certain health information. The full regulation is beyond this talk's scope, but three principles connect directly: confidentiality (only authorized people access patient information), integrity (patient information is not improperly altered or destroyed), and availability (authorized healthcare professionals can access information when needed for care). These three are commonly called the CIA triad in information security.</p>
+<div class="key-msg"><strong>Key message:</strong> The right information. To the right person. At the right time. Without compromising patient privacy or security.</div>
+</section>
+
+<section class="slide-sec" id="slide-9">
+<h2>Slide 9 — Clinical Usability: Designing EHRs for the People Who Use Them</h2>
+<p>So far we have covered how patient information is collected, stored, organized, standardized, governed, and protected. Now we move to the people who actually use this information every day: doctors, nurses, lab technicians, pharmacists, and administrative staff. The central question: even if an EHR stores accurate and secure information, is it easy for healthcare professionals to understand and use? That is what clinical usability is about.</p>
+<p>Imagine the doctor opens Mary's EHR before examining her and needs to understand, quickly: what conditions does Mary have, what medications is she taking, does she have known allergies, what were her latest blood test results, has she visited recently, what treatment was previously recommended? Now imagine all of that is scattered across 15 different screens — multiple tabs, lengthy clinical notes, several pages just to understand her history. The information technically exists, but accessing and understanding it takes too much time. In healthcare, where professionals work under time pressure and make decisions on available information, that is a usability problem. A well-designed EHR helps them find the right information quickly, understand it correctly, and take appropriate action.</p>
+<h3>Four aspects of clinical usability</h3>
+<p><strong>Clear presentation of information.</strong> Patient information should be organized logically. Mary's allergies, medications, active diagnoses, and latest lab results should be easy to locate rather than buried inside lengthy notes.</p>
+<p><strong>Meaningful visualizations.</strong> Sometimes a single number does not tell the complete story. Showing Mary's HbA1c results over the last 12 months helps the doctor understand whether her diabetes is improving or getting worse.</p>
+<p><strong>Relevant alerts and notifications.</strong> The EHR should notify healthcare professionals about important clinical risks — for example, warning if Mary has a documented allergy to a medication being prescribed. Too many unnecessary alerts, however, lead to alert fatigue (below).</p>
+<p><strong>Structured and unstructured information.</strong> Healthcare professionals document information in different ways. Some is structured — blood pressure, diagnosis codes, medication names, lab values. Other information is unstructured — physician observations, patient complaints, clinical notes.</p>
+<h3>Structured versus unstructured data</h3>
+<p>Mary tells the doctor: “I have been feeling unusually tired for the last two weeks, and sometimes I feel dizzy.” The doctor documents this in a clinical note — unstructured, free-text information. During the same visit, the nurse records structured data points:</p>
+<table class="c-table"><tr><th>Measurement</th><th>Recorded value</th></tr>
+<tr><td>Blood pressure</td><td>128/82 mmHg</td></tr>
+<tr><td>Heart rate</td><td>72 bpm</td></tr>
+<tr><td>Temperature</td><td>98.4°F</td></tr>
+<tr><td>Weight</td><td>70.2 kg</td></tr></table>
+<p>Both types matter. Structured information is easier to organize, filter, compare, and analyze. Unstructured information provides context about symptoms, experiences, and clinical observations. A good EHR supports both. Note: structured does not automatically mean accurate, and unstructured does not mean useless. Both require appropriate documentation and interpretation.</p>
+<h3>What is alert fatigue?</h3>
+<p>Imagine the doctor examining Mary, and every time the record opens, the EHR displays multiple warnings: medication reminder, missing documentation, routine follow-up notification, general clinical reminder, allergy warning. If the system generates too many notifications, the doctor may start ignoring them — and eventually an important warning could be overlooked. That is alert fatigue. The lesson: an EHR should not simply generate more alerts; it should prioritize clinically relevant ones. A serious medication-allergy warning should be more prominent than a routine administrative reminder.</p>
+<div class="key-msg"><strong>Key message:</strong> An EHR is not successful just because it stores information. It is successful when healthcare professionals can find, understand, and use that information effectively to support patient care.</div>
+</section>
+
+<section class="slide-sec" id="slide-10">
+<h2>Slide 10 — Building an Analytics-Ready Healthcare Data Platform</h2>
+<p>This slide explains what happens after information is collected and documented in the hospital's EHR systems. How can a healthcare organization use all this information to understand patients better, identify trends, improve care, and support research? That is where an analytics-ready healthcare data platform comes in.</p>
+<p>Mary is 85 and has visited three facilities: Hospital A for one condition, Hospital B for another, and now ABC General Hospital. Each maintains its own clinical records, possibly stored differently, with different patient identifiers and terminology. ABC wants her complete medical history — but simply collecting the information is not enough. Without organizing it, her name might be recorded differently across hospitals, blood pressure readings might use different formats or units, a diagnosis might carry different descriptions, an updated lab result might not be reflected in the combined record, and the same encounter might accidentally be counted twice. A structured process must transform information from different clinical systems into reliable, consistent data that can support analysis.</p>
+<h3>The three layers: Bronze, Silver, Gold</h3>
+<p><strong>Bronze — preserve the original information.</strong> Think of this as the receiving area. Information arrives from Hospital A, Hospital B, Hospital C, laboratories, pharmacies, and other healthcare systems. The priority is preserving what was received, including where it came from and when it arrived. Hospital A sends Mary's blood pressure reading, Hospital B her diabetes diagnosis, a laboratory her HbA1c result. The original source information is retained so it can be traced back if questions arise later.</p>
+<p><strong>Silver — clean, connect, and standardize the information.</strong> This is where information becomes more consistent and meaningful: identifying that Mary at Hospital A and Mary at Hospital B are the same person through an appropriate patient identity-matching process, standardizing different date formats, mapping different names for the same clinical concept, identifying duplicate records, and validating whether lab values and other information are represented correctly. The goal is a more consistent view without losing original meaning or source.</p>
+<p><strong>Gold — prepare information for specific questions.</strong> Now information is organized to answer business, clinical, and research questions: how many patients have diabetes, how many were readmitted within 30 days, how have patients' HbA1c levels changed over time, which patients may need additional follow-up? Gold data is organized around the questions people need to answer.</p>
+<p>One more important point: this platform does not replace the hospital's EHR. Doctors and nurses continue using their clinical systems to document and manage patient care. The data platform supports reporting, population health analysis, research, and decision-making.</p>
+<div class="key-msg"><strong>Key messages:</strong> Collecting data is not the same as making it useful — information must be organized and validated. Preserve the original source, so any clinical record can be traced to where it came from and when it was received. And build for the questions you want to answer: reporting and research require reliable, consistently defined information.</div>
+</section>
+
+<section class="slide-sec" id="slide-11">
+<h2>Slide 11 — Practical Implementation: Bringing It All Together</h2>
+<p>The previous slides covered individual concepts: how hospitals capture clinical information, how an EHR connects doctors, nurses, laboratories, and pharmacies, why healthcare systems need reliable data storage, how hospitals exchange information, why patient information needs standardization, how multiple EHR systems can be integrated, how to maintain data quality, governance, and privacy, and how raw clinical data becomes useful for analytics. The natural question: how would a healthcare organization actually put them together?</p>
+<p>Imagine ABC General Hospital wants to build a unified healthcare data platform. Mary has visited three hospitals:</p>
+<table class="c-table"><tr><th>Hospital</th><th>Information available</th></tr>
+<tr><td>Hospital A</td><td>One condition's diagnosis, consultations, medications</td></tr>
+<tr><td>Hospital B</td><td>Another condition's diagnosis, HbA1c results, prescriptions</td></tr>
+<tr><td>ABC General Hospital</td><td>Current consultation, new observations, treatment plan</td></tr></table>
+<p>The challenge is bringing this information together without confusing patients, losing clinical history, or creating inaccurate records.</p>
+<h3>Five practical steps</h3>
+<p><strong>1. Identify the sources.</strong> Understand which hospitals and clinical departments provide information — patient registration, doctors' consultations, nursing observations, lab results, pharmacy records, radiology information.</p>
+<p><strong>2. Understand the information.</strong> Identify patients, encounters, diagnoses, medications, lab results, and other clinical records. Every record must be understood for what it represents; not every record represents the same thing.</p>
+<p><strong>3. Standardize the information.</strong> Different hospitals may use different formats, names, identifiers, and terminology. Records belonging to the same patient must be carefully connected and brought into a consistent structure.</p>
+<p><strong>4. Validate the information.</strong> Check for missing, duplicate, inconsistent, or incorrect records — while ensuring sensitive healthcare information is protected and accessible only to authorized individuals.</p>
+<p><strong>5. Make it useful.</strong> Prepare reliable information for reporting, research, and healthcare decision-making.</p>
+<p>Visually, the flow is: multiple clinical sources (Hospital A · Hospital B · ABC General Hospital — different systems, formats, and patient identifiers) → understand and organize (Patient · Encounter · Diagnosis · Medication · Lab Results) → standardize and connect (resolve patient identities · align formats · standardize clinical terminology) → validate and protect (check accuracy · identify duplicates · apply privacy and access controls) → one trusted healthcare view: Mary's unified record, ready for reporting, analytics, research, and informed decisions.</p>
+<div class="key-msg"><strong>Key messages:</strong> Integration is not just moving data — we must understand what the data represents. One patient must not become three patients — identity resolution is essential. And a unified record must be trustworthy, because incorrect information can lead to incorrect conclusions.</div>
+</section>
+
+<section class="slide-sec" id="slide-12">
+<h2>Slide 12 — Key Takeaways: Designing Reliable and Useful Healthcare Data</h2>
+<p>This final slide brings the entire presentation together. Instead of introducing another technical concept, it states one central message: healthcare data design is not simply about collecting and storing patient information. It is about making sure the information is accurate, connected, secure, accessible to the right people, and useful for better healthcare decisions.</p>
+<p>Return to Mary: 85, visiting ABC General Hospital in Boston. The nurse records vitals, the doctor reviews history and documents a diagnosis, orders lab tests, the lab technician records results, the doctor reviews them and updates the plan, the pharmacist manages the prescribed medication, administrative staff manage appointments and insurance. Now imagine her information stored in different systems, using different formats, with some information missing or incorrect. Even with sophisticated technology, the overall process can fail if the underlying data is unreliable. That is why all eight areas below matter.</p>
+<h3>The eight takeaways</h3>
+<p><strong>1. EHR architecture — understand the clinical workflow.</strong> An EHR brings together information generated by different healthcare professionals. The doctor, nurse, lab technician, and pharmacist perform different activities, but their information contributes to the same patient's clinical record. An EHR must support the complete patient journey, not just one department.</p>
+<p><strong>2. Database architecture — care comes first.</strong> Healthcare systems must reliably handle information while doctors and nurses actively provide care — when a nurse records Mary's blood pressure, it must be saved correctly and made available to the appropriate care team. Analytical workloads should not slow down the clinical system.</p>
+<p><strong>3. Interoperability — systems must communicate.</strong> Mary visited Hospital A and Hospital B before ABC. ABC needs relevant information from those previous visits, subject to appropriate authorization and privacy requirements. Healthcare systems need ways to exchange information safely.</p>
+<p><strong>4. Standardized data modeling — information must have a common meaning.</strong> Different hospitals might record the same information differently — one uses <code>patient_id</code>, another <code>Patient_Number</code>. Standardization helps different systems interpret information consistently.</p>
+<p><strong>5. Multi-EHR integration — bring information together.</strong> Different patient identifiers may refer to the same person: Mary could have patient ID A100 at Hospital A, B250 at Hospital B, and a third ID at ABC. A reliable way to establish that these records belong to the same individual is essential, because incorrectly linking two patients' records could have serious consequences.</p>
+<p><strong>6. Data quality — trust the information.</strong> Having more data does not automatically mean having better data. We must identify missing information, duplicate records, incorrect values, inconsistent dates and measurements, and outdated clinical information. If Mary's lab result is accidentally associated with another patient, the issue is not merely a reporting error — it could influence a clinical decision.</p>
+<p><strong>7. Governance and privacy — protect patient information.</strong> Healthcare information is sensitive. Not everyone in a hospital should have access to every patient's information. Appropriate access controls, audit trails, encryption, and privacy safeguards must ensure the right people can access the right information for an authorized purpose.</p>
+<p><strong>8. Analytics-ready platform — make information useful.</strong> Once information is collected, standardized, integrated, and validated, it can support reporting, research, and analytics: how many patients have diabetes, how many were readmitted within 30 days, how lab results change over time, which patients may be at higher risk of readmission. The analytics platform supports clinical and operational decision-making; it does not replace the operational EHR used to manage patient care.</p>
+<div class="key-msg"><strong>The one message to take away:</strong> Good healthcare data design is not just about storing information. It is about making information connected, trusted, secure, and useful. Because behind every healthcare record, there is a real patient like Mary — and the quality of the data we design can influence the quality of decisions made about that patient.</div>
+</section>
+
+<p style="margin-top:36px"><a href="pydata-boston-nov-4-2026.html">← Back to the PyData Boston event page</a> · <a href="../events.html">All events</a></p>
+</div>
+
+<footer class="ev-footer"><p><strong>DATA WITH PREET</strong> · BY PREET MEHTA</p><p><a href="https://www.linkedin.com/in/preetmehta/">LinkedIn</a> · <a href="https://github.com/ynpreet">GitHub</a> · <a href="https://open.substack.com/pub/masterdataengineering">Substack</a> · <a href="https://ynpreetmehta.medium.com/">Medium</a> · <a href="https://www.youtube.com/@PreetMehtaUSA">YouTube</a> · <a href="https://datawithpreet.github.io/">Home</a></p></footer><script>
+var mt=document.querySelector('.menu-toggle');if(mt){mt.addEventListener('click',function(){var h=document.querySelector('.site-header');var open=h.classList.toggle('open');mt.setAttribute('aria-expanded',open);mt.setAttribute('aria-label',open?'Close navigation':'Open navigation');});}
+document.querySelectorAll('.nav-drop button').forEach(function(b){b.addEventListener('click',function(){var ex=b.getAttribute('aria-expanded')==='true';b.setAttribute('aria-expanded',!ex);b.parentElement.classList.toggle('open',!ex);});});
+(function(){
+  if(!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var dot = document.querySelector('.cursor-dot');
+  var ring = document.querySelector('.cursor-ring');
+  if(!dot){ dot = document.createElement('div'); dot.className = 'cursor-dot'; dot.setAttribute('aria-hidden', 'true'); document.body.appendChild(dot); }
+  if(!ring){ ring = document.createElement('div'); ring.className = 'cursor-ring'; ring.setAttribute('aria-hidden', 'true'); ring.innerHTML = '<span class="cursor-label"></span>'; document.body.appendChild(ring); }
+  var label = ring.querySelector('.cursor-label');
+  var mx = -100, my = -100, rx = -100, ry = -100;
+  document.addEventListener('mousemove', function(e){
+    mx = e.clientX; my = e.clientY;
+    dot.style.left = mx + 'px'; dot.style.top = my + 'px';
+    if(reduceMotion){ ring.style.left = mx + 'px'; ring.style.top = my + 'px'; }
+  }, {passive: true});
+  if(!reduceMotion){
+    (function loop(){
+      rx += (mx - rx) * 0.16; ry += (my - ry) * 0.16;
+      ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+      requestAnimationFrame(loop);
+    })();
+  }
+  function textOn(){
+    ring.classList.remove('is-hover'); ring.classList.remove('has-label');
+    dot.style.width = '2px'; dot.style.height = '28px';
+    dot.style.borderRadius = '1px'; dot.style.background = '#E0632A';
+    ring.style.opacity = '0';
+  }
+  function textOff(){
+    dot.style.width = ''; dot.style.height = '';
+    dot.style.borderRadius = ''; dot.style.background = '';
+    ring.style.opacity = '';
+  }
+  document.querySelectorAll('a, button, .tab-btn, [role="button"], [data-cursor-label]').forEach(function(el){
+    el.addEventListener('mouseenter', function(){
+      textOff();
+      var txt = el.getAttribute('data-cursor-label');
+      if(txt && label){ label.textContent = txt; ring.classList.add('has-label'); }
+      else { ring.classList.add('is-hover'); }
+    });
+    el.addEventListener('mouseleave', function(){
+      ring.classList.remove('is-hover'); ring.classList.remove('has-label');
+    });
+  });
+  document.querySelectorAll('p, h1, h2, h3').forEach(function(el){
+    if(el.closest('[data-cursor-label], input, textarea')) return;
+    el.addEventListener('mouseenter', textOn);
+    el.addEventListener('mouseleave', textOff);
+  });
+})();
+
+
+var imgs=Array.prototype.slice.call(document.querySelectorAll('.gallery img'));var lb=document.getElementById('lb'),lbi=document.getElementById('lbimg'),idx=0,opener=null;
+function show(i){if(!imgs.length)return;idx=(i+imgs.length)%imgs.length;lbi.src=imgs[idx].src;lbi.alt=imgs[idx].alt;}
+function openLb(i){if(!imgs.length)return;opener=document.activeElement;show(i);lb.classList.add('open');lb.setAttribute('aria-hidden','false');document.getElementById('lbclose').focus();}
+function closeLb(){lb.classList.remove('open');lb.setAttribute('aria-hidden','true');if(opener&&opener.focus)opener.focus();}
+imgs.forEach(function(im,i){im.setAttribute('tabindex','0');im.setAttribute('role','button');im.addEventListener('click',function(){openLb(i);});im.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();openLb(i);}});});
+document.getElementById('lbclose').addEventListener('click',closeLb);
+document.getElementById('lbprev').addEventListener('click',function(){show(idx-1);});
+document.getElementById('lbnext').addEventListener('click',function(){show(idx+1);});
+document.addEventListener('keydown',function(e){if(!lb.classList.contains('open'))return;if(e.key==='Escape'){closeLb();return;}if(e.key==='ArrowLeft'){show(idx-1);return;}if(e.key==='ArrowRight'){show(idx+1);return;}if(e.key==='Tab'){var f=Array.prototype.slice.call(lb.querySelectorAll('button'));if(!f.length)return;var first=f[0],last=f[f.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}}});
+</script></body></html>
