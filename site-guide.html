@@ -314,9 +314,8 @@ body{background:#faf8f2;color:#111}
 <p>You are here: the <a href="/site-guide.html">Site Guide</a> itself. It is linked from the main navigation on every page.</p>
 <a class="backtop" href="#top">Back to top ↑</a>
 </main>
-<script>
-var mt=document.querySelector('.menu-toggle');if(mt){mt.addEventListener('click',function(){var h=document.querySelector('.site-header');var open=h.classList.toggle('open');mt.setAttribute('aria-expanded',open);mt.setAttribute('aria-label',open?'Close navigation':'Open navigation');});}
-document.querySelectorAll('.nav-drop button').forEach(function(b){b.addEventListener('click',function(){var ex=b.getAttribute('aria-expanded')==='true';b.setAttribute('aria-expanded',!ex);b.parentElement.classList.toggle('open',!ex);});});
+<script src="/assets/js/main.js?v=20261015snrail"></script>
+<script>document.querySelectorAll('.nav-drop button').forEach(function(b){b.addEventListener('click',function(){var ex=b.getAttribute('aria-expanded')==='true';b.setAttribute('aria-expanded',!ex);b.parentElement.classList.toggle('open',!ex);});});
 </script>
 </body>
 </html>
