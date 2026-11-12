@@ -8,8 +8,6 @@ categories: [daily, databricks-edu-series]
 
 *Part of my daily Databricks series — the hardest topics, explained simply. Also published on [Substack](https://masterdataengineering.substack.com/) and in my LinkedIn newsletter, Master Data Engineering.*
 
-Part of my daily Databricks series — the hardest topics, explained simply.
-
 Picture this. It is 2 AM and a nightly job is rebuilding a table of patient appointments. It reads yesterday's appointments, applies the day's changes, and writes the whole table back out.
 
 Halfway through the write, the cluster dies. A node goes down, the job fails, and nobody is awake to notice.

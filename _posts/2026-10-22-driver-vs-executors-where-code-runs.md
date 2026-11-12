@@ -8,8 +8,6 @@ categories: [daily, databricks-edu-series]
 
 *Part of my daily Databricks series — the hardest topics, explained simply. Also published on [Substack](https://masterdataengineering.substack.com/) and in my LinkedIn newsletter, Master Data Engineering.*
 
-*Part of my daily Databricks series — the hardest topics, explained simply.*
-
 A job failed at 2 AM, and the error message made no sense.
 
 The cluster was large. Ten workers, plenty of memory, plenty of cores. The notebook cell was small. It read a table, did a bit of filtering, and then pulled the result back to the notebook with a single `collect()` so the analyst could loop over the rows in plain Python.

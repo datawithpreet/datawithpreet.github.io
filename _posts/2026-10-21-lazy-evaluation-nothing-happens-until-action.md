@@ -8,10 +8,6 @@ categories: [daily, databricks-edu-series]
 
 *Part of my daily Databricks series — the hardest topics, explained simply. Also published on [Substack](https://masterdataengineering.substack.com/) and in my LinkedIn newsletter, Master Data Engineering.*
 
-*Part of my daily Databricks series — the hardest topics, explained simply.*
-
-*Part of my daily Databricks series — the hardest topics, explained simply.*
-
 A teammate once ran a notebook cell and watched it finish in about two seconds.
 
 The cell read a large events table, filtered it, joined it to a customer table, and built a new column by parsing a messy date string. Ten transformations, one after another, and the whole thing came back instantly. He turned to me and said the pipeline was fast. Then he ran the next cell, a simple row count, and the job ground on for a long time before failing with a date-parsing error.

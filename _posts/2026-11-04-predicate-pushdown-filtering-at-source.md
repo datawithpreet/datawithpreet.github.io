@@ -8,8 +8,6 @@ categories: [daily, databricks-edu-series]
 
 *Part of my daily Databricks series — the hardest topics, explained simply. Also published on [Substack](https://masterdataengineering.substack.com/) and in my LinkedIn newsletter, Master Data Engineering.*
 
-Part of my daily Databricks series — the hardest topics, explained simply.
-
 A team I know had a simple question. How many orders came in yesterday?
 
 The table held years of orders. The query was not complicated. It read the table, kept yesterday's rows, and counted them. It should have been quick.

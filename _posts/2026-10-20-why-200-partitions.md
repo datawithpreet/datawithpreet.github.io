@@ -8,8 +8,6 @@ categories: [daily, databricks-edu-series]
 
 *Part of my daily Databricks series — the hardest topics, explained simply. Also published on [Substack](https://masterdataengineering.substack.com/) and in my LinkedIn newsletter, Master Data Engineering.*
 
-*Part of my daily Databricks series — the hardest topics, explained simply.*
-
 A colleague once pinged me about a daily aggregate job. It read a few gigabytes of events, grouped by customer, and wrote the result out. Every single day, the output folder had exactly 200 files.
 
 Nobody had asked for 200 files. The code had no repartition call. The cluster had 16 cores, not 200. And yet — 200 tasks, 200 files, every day, like clockwork.

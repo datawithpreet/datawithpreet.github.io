@@ -8,10 +8,6 @@ categories: [daily, databricks-edu-series]
 
 *Part of my daily Databricks series — the hardest topics, explained simply. Also published on [Substack](https://masterdataengineering.substack.com/) and in my LinkedIn newsletter, Master Data Engineering.*
 
-MERGE done right, and the match conditions that bite
-
-Part of my daily Databricks series — the hardest topics, explained simply.
-
 Picture this. It is Monday morning, and the member roster table has twice as many rows as it did on Friday.
 
 The nightly load job ran green all weekend. No errors, no alerts, no failed stages. But the Monday report shows member counts nearly doubled, and the same member appears twice — once with the old address, once with the new one. The downstream team is asking which row is real, and nobody can answer, because both rows came from the same job.

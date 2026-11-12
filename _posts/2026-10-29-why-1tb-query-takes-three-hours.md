@@ -8,8 +8,6 @@ categories: [daily, databricks-edu-series]
 
 *Part of my daily Databricks series — the hardest topics, explained simply. Also published on [Substack](https://masterdataengineering.substack.com/) and in my LinkedIn newsletter, Master Data Engineering.*
 
-*Part of my daily Databricks series — the hardest topics, explained simply.*
-
 A query was supposed to finish before the morning meeting. It was still running at lunch.
 
 Nobody had changed the logic. The data had grown, but not that much. The cluster was the same size it had always been. So the team did what teams usually do: they stared at the query, they stared at the cluster, and they argued about which one to blame.

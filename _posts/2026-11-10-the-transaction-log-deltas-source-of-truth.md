@@ -8,10 +8,6 @@ categories: [daily, databricks-edu-series]
 
 *Part of my daily Databricks series — the hardest topics, explained simply. Also published on [Substack](https://masterdataengineering.substack.com/) and in my LinkedIn newsletter, Master Data Engineering.*
 
-The transaction log: Delta's source of truth
-
-Part of my daily Databricks series — the hardest topics, explained simply.
-
 Picture this. It is 2 AM, and a job that loads member claims data has crashed halfway through.
 
 The job wrote new files for three hours, then died. The on-call engineer opens the table folder to see what landed. There are new Parquet files in there, timestamps from tonight. There are also the old files, still sitting next to them.

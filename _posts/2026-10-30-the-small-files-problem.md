@@ -8,8 +8,6 @@ categories: [daily, databricks-edu-series]
 
 Part of my daily Databricks series — the hardest topics, explained simply. Also published on [Substack](https://masterdataengineering.substack.com/) and in my LinkedIn newsletter, Master Data Engineering.
 
-Part of my daily Databricks series — the hardest topics, explained simply.
-
 A query that used to finish in seconds started taking minutes, and nobody could say why.
 
 The query had not changed. The cluster had not changed. The data had grown, but slowly, and not by enough to explain it. So the team did what teams usually do: they blamed the cluster, then they blamed the query, then they opened the execution plan and went looking for a slow operator.

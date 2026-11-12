@@ -8,8 +8,6 @@ categories: [daily, databricks-edu-series]
 
 *Part of my daily Databricks series — the hardest topics, explained simply. Also published on [Substack](https://masterdataengineering.substack.com/) and in my LinkedIn newsletter, Master Data Engineering.*
 
-Part of my daily Databricks series — the hardest topics, explained simply.
-
 Picture a table that has grown quietly for years. It holds events, one row per event, stored as a large pile of files. Then one morning a simple question comes in: how many events happened on one particular day? The query looks trivial. One filter, one count. But it runs slowly, and it stays slow. The engineer watching it knows the data for that one day is a tiny fraction of the table. So why does the query behave as if it has to read everything?
 
 The answer is that, in a sense, it does. Not because the engine is lazy, but because it has no safe reason to skip anything.

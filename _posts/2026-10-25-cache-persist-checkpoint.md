@@ -8,8 +8,6 @@ categories: [daily, databricks-edu-series]
 
 *Part of my daily Databricks series — the hardest topics, explained simply. Also published on [Substack](https://masterdataengineering.substack.com/) and in my LinkedIn newsletter, Master Data Engineering.*
 
-*Part of my daily Databricks series — the hardest topics, explained simply.*
-
 A job read the same cleaned dataset three times, and nobody noticed for a while.
 
 The job started by joining raw events to a reference table, filtering out bad rows, and tidying a handful of columns. That cleaned result was then used three times: once for a summary, once for a top-customers list, and once for a quality check.

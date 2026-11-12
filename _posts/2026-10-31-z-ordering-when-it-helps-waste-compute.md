@@ -8,8 +8,6 @@ categories: [daily, databricks-edu-series]
 
 *Part of my daily Databricks series — the hardest topics, explained simply. Also published on [Substack](https://masterdataengineering.substack.com/) and in my LinkedIn newsletter, Master Data Engineering.*
 
-Part of my daily Databricks series — the hardest topics, explained simply.
-
 A dashboard query was slow, and the usual suspects were all innocent.
 
 The query filtered a large events table down to one customer. It was a simple filter, on a single column, and the table was partitioned by date. The team had done the sensible thing: partition by the column most queries seemed to use. So why did a query for one customer still read so much data?

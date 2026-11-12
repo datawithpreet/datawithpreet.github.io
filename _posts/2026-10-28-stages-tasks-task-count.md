@@ -8,8 +8,6 @@ categories: [daily, databricks-edu-series]
 
 *Part of my daily Databricks series — the hardest topics, explained simply. Also published on [Substack](https://masterdataengineering.substack.com/) and in my LinkedIn newsletter, Master Data Engineering.*
 
-*Part of my daily Databricks series — the hardest topics, explained simply.*
-
 A team once told me their job was slow even though they were running it on a big cluster.
 
 They had the numbers ready. Dozens of workers, plenty of cores, a cluster that cost real money every hour it ran. The job still took hours, and every run looked the same.

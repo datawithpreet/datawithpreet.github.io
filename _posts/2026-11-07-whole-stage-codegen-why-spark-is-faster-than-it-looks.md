@@ -8,8 +8,6 @@ categories: [daily, databricks-edu-series]
 
 *Part of my daily Databricks series — the hardest topics, explained simply. Also published on [Substack](https://masterdataengineering.substack.com/) and in my LinkedIn newsletter, Master Data Engineering.*
 
-Part of my daily Databricks series — the hardest topics, explained simply.
-
 A team I know had two queries. On paper, they did almost the same thing. Read a table of orders, keep the ones from this year, add up the amounts by region.
 
 The first query ran through in the time it takes to make coffee. The second one crawled. Same table, same cluster, same amount of data. The only difference was one small piece of logic in the middle.

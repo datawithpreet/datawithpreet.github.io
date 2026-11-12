@@ -8,8 +8,6 @@ categories: [daily, databricks-edu-series]
 
 *Part of my daily Databricks series — the hardest topics, explained simply. Also published on [Substack](https://masterdataengineering.substack.com/) and in my LinkedIn newsletter, Master Data Engineering.*
 
-*Part of my daily Databricks series — the hardest topics, explained simply.*
-
 A job was almost done, and then it was not.
 
 Most of the tasks finished quickly. The cluster went quiet. One task kept running, long after everything else had finished, and the job could not finish until it did.

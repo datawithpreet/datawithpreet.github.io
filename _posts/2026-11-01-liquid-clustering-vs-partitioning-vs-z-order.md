@@ -8,8 +8,6 @@ categories: [daily, databricks-edu-series]
 
 *Part of my daily Databricks series — the hardest topics, explained simply. Also published on [Substack](https://masterdataengineering.substack.com/) and in my LinkedIn newsletter, Master Data Engineering.*
 
-Part of my daily Databricks series — the hardest topics, explained simply.
-
 Three engineers were looking at the same slow table, and each one was sure of the fix.
 
 The table held customer events. It was partitioned by event date: one folder per day, neat and easy to explain. But most of the slow queries did not filter by date at all. They filtered by customer, and sometimes by region as well.

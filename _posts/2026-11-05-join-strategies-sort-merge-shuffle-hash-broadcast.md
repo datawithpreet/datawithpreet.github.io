@@ -8,8 +8,6 @@ categories: [daily, databricks-edu-series]
 
 *Part of my daily Databricks series — the hardest topics, explained simply. Also published on [Substack](https://masterdataengineering.substack.com/) and in my LinkedIn newsletter, Master Data Engineering.*
 
-Part of my daily Databricks series — the hardest topics, explained simply.
-
 A team I know ran the same join every night. Orders against stores. A fact table, a small reference table, and one key between them.
 
 It was a simple join. One line of SQL. And every night it shuffled the big table across the whole cluster, sorted both sides, and ran long enough that the morning report was always waiting on it.

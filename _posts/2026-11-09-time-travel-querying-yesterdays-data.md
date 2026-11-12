@@ -8,10 +8,6 @@ categories: [daily, databricks-edu-series]
 
 *Part of my daily Databricks series — the hardest topics, explained simply. Also published on [Substack](https://masterdataengineering.substack.com/) and in my LinkedIn newsletter, Master Data Engineering.*
 
-Time travel: querying yesterday's data
-
-Part of my daily Databricks series — the hardest topics, explained simply.
-
 Picture this. It is Monday morning, and a dashboard that tracks member eligibility has changed overnight.
 
 On Friday, the dashboard said 48,000 members were active. On Monday, it says 41,000. Nobody changed the dashboard. Nobody changed the query. Seven thousand members have simply vanished from the numbers.
