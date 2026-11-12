@@ -24,6 +24,6 @@ A few details that matter:
 
 - An insight auto-resolves after the next successful run.
 
-I work with healthcare data, so a stale table is worse than a loud failure. A job that crashes pages you. A table that quietly stops updating feeds bad numbers downstream until someone notices. That is the failure mode I would point this at first.
+I work with healthcare data, so a stale table is worse than a loud failure. A job that crashes pages you. A table that quietly stops updating feeds bad numbers downstream. That is where I would point it first.
 
 What is the failure you keep getting paged for?
