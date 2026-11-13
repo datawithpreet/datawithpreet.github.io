@@ -528,7 +528,7 @@
     flowStages.forEach(s => {
       s.addEventListener('click', () => setStage(s.dataset.stage));
     });
-    setStage('lakehouse');
+    setStage('sources');
   }
 
   /* ---------- parallax + timeline draw (single rAF loop) ---------- */

@@ -500,9 +500,9 @@
       <h2 class="section-title reveal">How I think about <span class="serif">a data platform.</span></h2>
       <p class="section-sub reveal">A practical view of the journey: source systems → ingestion → governed storage → transformation → quality → analytics and ML.</p>
       <div class="flow-board reveal">
-        <button class="flow-stage" data-stage="sources"><small>01</small><h3>Sources</h3><p>EMR • SQL Server • APIs • Claims • Files</p></button>
+        <button class="flow-stage active" data-stage="sources"><small>01</small><h3>Sources</h3><p>EMR • SQL Server • APIs • Claims • Files</p></button>
         <div class="flow-arrow">→</div>
-        <button class="flow-stage active" data-stage="lakehouse"><small>02</small><h3>Lakehouse</h3><p>Bronze → Silver → Gold • Delta</p></button>
+        <button class="flow-stage" data-stage="lakehouse"><small>02</small><h3>Lakehouse</h3><p>Bronze → Silver → Gold • Delta</p></button>
         <div class="flow-arrow">→</div>
         <button class="flow-stage" data-stage="governance"><small>03</small><h3>Governance</h3><p>Catalog • Access • Quality • Lineage</p></button>
         <div class="flow-arrow">→</div>
@@ -510,7 +510,7 @@
       </div>
       <div class="flow-detail reveal" id="flowDetail" aria-live="polite">
         <div class="fd-kicker">STAGE INSPECTOR</div>
-        <h4 id="fdTitle">Lakehouse</h4>
+        <h4 id="fdTitle">Sources</h4>
         <div class="fd-grid">
           <div><b>Design decision</b><p id="fdDecision"></p></div>
           <div><b>Why this choice</b><p id="fdWhy"></p></div>
@@ -1052,7 +1052,7 @@
     document.querySelectorAll('.flow-stage[data-stage]').forEach(function(s){
       s.addEventListener('click', function(){ setStageExtra(s.dataset.stage); });
     });
-    setStageExtra('lakehouse');
+    setStageExtra('sources');
   })();
   </script>
   <script src="assets/js/chatbot.js"></script>
