@@ -1,7 +1,7 @@
 ---
 layout: daily-post
 title: "OAuth On-Behalf-Of for Service Principals Is Generally Available"
-description: "OAuth on-behalf-of is GA: act as a service principal through the standard user-to-machine OAuth flow, with no OAuth secret to create, store, or rotate."
+description: "Databricks OAuth on-behalf-of for service principals is GA: act as a service principal through the standard user-to-machine flow, with no OAuth secret to create or rotate."
 date: 2026-11-13
 categories: [daily, databricks]
 source_url: "https://docs.databricks.com/aws/en/release-notes/product/2026/november"
@@ -13,6 +13,8 @@ Stop minting secrets just to work as a service principal.
 OAuth on-behalf-of for service principals is now generally available on Databricks. It is on by default. No Previews toggle, nothing to enable.
 
 The flow is simple. Run databricks auth login, pick the service principal from a dropdown in the browser step, and you are in. The token carries the service principal's identity. No OAuth secret to create, copy once, store somewhere, and rotate later.
+
+Two things worth knowing.
 
 You need the Service Principal Manager role on the service principal to use it. And the tokens are short-lived, one hour, auto-refreshed by unified auth.
 
