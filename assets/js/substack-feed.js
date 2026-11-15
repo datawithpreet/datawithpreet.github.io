@@ -14,7 +14,7 @@
     container.appendChild(p);
   };
 
-  fetch('assets/data/substack-posts.json', { cache: 'no-store' })
+  fetch('/assets/data/substack-posts.json', { cache: 'no-store' })
     .then((res) => {
       if (!res.ok) throw new Error('article index not found');
       return res.json();
