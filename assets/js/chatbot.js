@@ -193,6 +193,12 @@
     return { score, exact };
   }
 
+  // Client names the chatbot must NEVER mention. Preet works with clients
+  // through EXL and does not name them publicly. "CVS Health" is NOT in
+  // this list — he worked there directly (not as an EXL client), so
+  // employment mentions of CVS are allowed.
+  const CLIENT_NAME_RE = /\b(humana|panoramic)\b/i;
+
   function answer(kb, index, rawQuery) {
     const query = rawQuery.trim();
     if (!query) return null;
@@ -211,6 +217,10 @@
     if (/\b(married|marriage|wife|husband|spouse|fiance|fiancee|girlfriend|boyfriend|dating|divorce|children|kids|kid|son|daughter|family|parents|mother|father|mom|dad|brother|sister|sibling|grandmother|grandfather|age|how old|born|birth|birthday|dob|hobby|hobbies|pastime|favorite food|favourite food|movie|movies|film|films|music|song|songs|sport|sports|cricket|religion|religious|politics|political)\b/i.test(query)) {
       return null;
     }
+
+    // client-name guard (query level): if the visitor asks about an EXL
+    // client by name, stay silent (fallback) rather than answering.
+    if (CLIENT_NAME_RE.test(query)) return null;
 
     // exact question-variant substring bonus (very high precision).
     // longest matching variant wins; ties break toward more words
@@ -244,6 +254,9 @@
     // term match — fuzzy-only matches ("married"~"mart") must stay silent.
     const CONFIDENCE = 2.2;
     if (!best || bestScore < CONFIDENCE || bestExact <= 0) return null;
+    // client-name guard (answer level): never display an answer that
+    // names an EXL client, even if a KB entry is edited later to include one.
+    if (CLIENT_NAME_RE.test(best.a)) return null;
     return { entry: best, score: bestScore };
   }
 
