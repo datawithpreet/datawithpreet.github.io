@@ -194,10 +194,10 @@
   }
 
   // Client names the chatbot must NEVER mention. Preet works with clients
-  // through EXL and does not name them publicly. "CVS Health" is NOT in
-  // this list — he worked there directly (not as an EXL client), so
-  // employment mentions of CVS are allowed.
-  const CLIENT_NAME_RE = /\b(humana|panoramic)\b/i;
+  // through EXL and does not name them publicly — no client name is ever
+  // allowed anywhere, including a former employer that is also an EXL
+  // client (Nov 27, 2026 rule).
+  const CLIENT_NAME_RE = /\b(cvs|humana|panoramic|aetna)\b/i;
 
   function answer(kb, index, rawQuery) {
     const query = rawQuery.trim();
@@ -224,7 +224,7 @@
 
     // exact question-variant substring bonus (very high precision).
     // longest matching variant wins; ties break toward more words
-    // ("cvs health" beats "experience", "teaching award" beats "teaching").
+    // ("teaching award" beats "teaching").
     let phraseHit = null, phraseLen = 0, phraseWords = 0;
     kb.entries.forEach((e) => {
       e.q.forEach((qv) => {
