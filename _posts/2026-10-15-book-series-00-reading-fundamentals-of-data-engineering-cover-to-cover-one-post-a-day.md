@@ -14,7 +14,7 @@ Not skimming it. Not reading summaries of it. The actual book — Joe Reis and M
 
 Most people don't read books. They watch a video, take a course, move on. Fair enough. But some ideas don't fit in a 10-minute video, and this book is full of them.
 
-So here's what I'm doing: one post a day, every chapter, in plain words. And for each idea, what it actually looks like in real life — from my own work across LinkedIn, CVS Health, and EXL: pipelines, messy healthcare data, Databricks, Airflow, the works.
+So here's what I'm doing: one post a day, every chapter, in plain words. And for each idea, what it actually looks like in real life — from my own work across LinkedIn, a large health insurer, and EXL: pipelines, messy healthcare data, Databricks, Airflow, the works.
 
 23 posts. Follow along if this is your world.
 
